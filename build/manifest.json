@@ -10,8 +10,13 @@
     "content_scripts": [
         {
           "matches": ["http://www.uzletiliga.hu/*"],
-          "css": ["css/matches.css"]
-          // "js": ["jquery.js", "myscript.js"]
+          "css": ["css/matches.css"],
+          "js": ["js/matches.js"],
+          "run_at": "document_end"
         }
+    ],
+
+    "web_accessible_resources": [
+      "js/injected-script.js"
     ]
 }
