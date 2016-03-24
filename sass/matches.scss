@@ -2,7 +2,11 @@ html {
     body {
         background: #f5f5f5;
         font-family: 'Roboto', arial, sans-serif;
-        font-size: 13px;
+        font-size: 14px;
+
+        > div[style^="position: absolute;"] {
+            display: none;
+        }
     }
 
     div.page {
@@ -21,9 +25,5 @@ html {
         height: auto;
         background: green;
         margin: 0;
-    }
-
-    > div[style^="position: absolute;"] {
-        display: none;
     }
 }
