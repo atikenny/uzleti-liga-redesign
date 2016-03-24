@@ -18,3 +18,4 @@ $RECYCLE.BIN/
 
 node_modules
 *.css
+.idea

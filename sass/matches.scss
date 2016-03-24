@@ -1,12 +1,47 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url(chrome-extension://__MSG_@@extension_id__/font/opensans-regular.ttf);
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url(chrome-extension://__MSG_@@extension_id__/font/opensans-bold.ttf);
+}
+
+@font-face {
+    font-family: 'Open Sans Condensed';
+    font-style: normal;
+    font-weight: 700;
+    src: url(chrome-extension://__MSG_@@extension_id__/font/opensans-condbold.ttf);
+}
+
+$font: 'Open Sans', Arial, sans-serif;
+$fontCondensed: 'Open Sans Condensed', Arial, sans-serif;
+
+%hidden {
+    display: none;
+}
+
 html {
     body {
         background: #f5f5f5;
-        font-family: 'Roboto', arial, sans-serif;
+        font-family: $font;
         font-size: 14px;
 
         > div[style^="position: absolute;"] {
-            display: none;
+            @extend %hidden;
         }
+    }
+
+    h2 {
+        font-family: $fontCondensed;
+        font-size: 32px;
+        text-transform: uppercase;
+        font-weight: normal;
     }
 
     div.page {
@@ -16,8 +51,8 @@ html {
         border: 0 none;
     }
 
-    .header {
-        display: none;
+    div.header {
+        @extend %hidden;
     }
 
     div.menu {
@@ -25,5 +60,48 @@ html {
         height: auto;
         background: green;
         margin: 0;
+    }
+
+    div.content {
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0 -390px 0 0;
+        padding-right: 390px;
+        padding-left: 20px;
+    }
+
+    .magyarazat,
+    div.magyarazat {
+        font-size: inherit;
+    }
+
+    table.eventmenu_table,
+    table.matches_table {
+        width: 100%;
+    }
+
+    table.matches_table {
+        background: #f9f9f9;
+
+        td,th {
+            padding: 0;
+        }
+
+        th {
+            font-family: $fontCondensed;
+            font-size: 18px;
+            background: #f0f0f0;
+        }
+
+    }
+
+
+    #login {
+        width: 365px;
+    }
+
+    div.footer {
+        margin-left: 0;
+        width: auto;
     }
 }

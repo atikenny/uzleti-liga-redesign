@@ -17,6 +17,9 @@ gulp.task('build', ['sass'], function () {
     gulp.src('./css/**/*.css')
         .pipe(gulp.dest('./build/css'));
 
+    gulp.src('./font/**/*.*')
+        .pipe(gulp.dest('./build/font'));
+
     gulp.src('./manifest.json')
         .pipe(gulp.dest('./build'));
 
@@ -27,6 +30,7 @@ gulp.task('build', ['sass'], function () {
 gulp.task('build:watch', function () {
     gulp.watch('./sass/**/*.scss', ['sass']);
     gulp.watch('./css/**/*.css', ['build']);
+    gulp.watch('./font/**/*.*', ['build']);
     gulp.watch('./manifest.json', ['build']);
     gulp.watch('./img/**/*.*', ['build']);
 });
