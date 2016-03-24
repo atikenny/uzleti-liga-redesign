@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/atikenny/uzleti-liga-redesign#readme",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.2.0"
   }
 }

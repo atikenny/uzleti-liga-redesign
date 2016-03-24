@@ -25,6 +25,9 @@ gulp.task('build', ['sass'], function () {
 
     gulp.src('./img/**/*.*')
         .pipe(gulp.dest('./build/img'));
+
+    gulp.src('./js/**/*.*')
+        .pipe(gulp.dest('./build/js'));
 });
 
 gulp.task('build:watch', function () {
@@ -33,4 +36,5 @@ gulp.task('build:watch', function () {
     gulp.watch('./font/**/*.*', ['build']);
     gulp.watch('./manifest.json', ['build']);
     gulp.watch('./img/**/*.*', ['build']);
+    gulp.watch('./js/**/*.*', ['build']);
 });
