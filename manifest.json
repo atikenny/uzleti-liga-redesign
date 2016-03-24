@@ -11,7 +11,7 @@
         {
           "matches": ["http://www.uzletiliga.hu/*"],
           "css": ["css/matches.css"],
-          "js": ["js/matches.js"],
+          "js": ["js/matches.js", "js/jquery.js"],
           "run_at": "document_end"
         }
     ],

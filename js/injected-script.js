@@ -25,7 +25,7 @@ setTimeout(function() {
     function flattenMenuItems(windowProperty) {
         return {
             key: windowProperty,
-            value: window[windowProperty]
+            itemValue: window[windowProperty]
         };
     }
 
@@ -40,12 +40,12 @@ setTimeout(function() {
             if (!currentDepth.menuItems) {
                 currentDepth.menuItems = [{
                     name: current.key,
-                    value: current.value
+                    itemValue: current.itemValue
                 }];
             } else if (!currentDepth.menuItems[(menuIndexArray[i] - 1)]) {
                 currentDepth.menuItems.push({
                     name: current.key,
-                    value: current.value
+                    itemValue: current.itemValue
                 });
             }
 
