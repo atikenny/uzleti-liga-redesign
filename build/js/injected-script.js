@@ -34,20 +34,23 @@ setTimeout(function() {
             menuIndexArray = menuIndex.split('_'),
             menuDepth = menuIndexArray.length,
             currentDepth,
-            i;
+            i = 0;
 
         for (i = 0, currentDepth = prev; i < menuDepth; i++) {
             if (!currentDepth.menuItems) {
-                currentDepth.menuItems = []
+                currentDepth.menuItems = [{
+                    name: current.key,
+                    value: current.value
+                }];
+            } else if (!currentDepth.menuItems[(menuIndexArray[i] - 1)]) {
+                currentDepth.menuItems.push({
+                    name: current.key,
+                    value: current.value
+                });
             }
 
-            currentDepth = currentDepth.menuItems;
+            currentDepth = currentDepth.menuItems[(menuIndexArray[i] - 1)];
         }
-
-        currentDepth.push({
-            name: current.key,
-            value: current.value
-        });
 
         return prev;
     }
