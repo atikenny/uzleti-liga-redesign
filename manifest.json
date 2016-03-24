@@ -6,9 +6,6 @@
     "icons": {
         "128": "img/favicon-128.png"
     },
-    "web_accessible_resources": [
-        "font/*.*"
-    ],
     "content_scripts": [
         {
           "matches": ["http://www.uzletiliga.hu/*"],
@@ -17,8 +14,8 @@
           "run_at": "document_end"
         }
     ],
-
     "web_accessible_resources": [
-      "js/injected-script.js"
+        "font/*.*",
+        "js/injected-script.js"
     ]
 }
