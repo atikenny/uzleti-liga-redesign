@@ -14,12 +14,7 @@ document.addEventListener('scriptInjected', function (event) {
 
 function redesigner(menuItems) {
     function init(menuItems) {
-        appendMenuContainer();
         appendMenuItems(getMenuItemsHTML(menuItems));
-    }
-
-    function appendMenuContainer() {
-        $('body').append('<div id="menu"></div>');
     }
 
     function getMenuItemsHTML(menuItem) {
@@ -47,7 +42,7 @@ function redesigner(menuItems) {
     }
 
     function appendMenuItems(html) {
-        $('#menu').html(html);
+        $('.menu').html(html);
     }
 
     init(menuItems);
