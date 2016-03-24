@@ -1,0 +1,29 @@
+html {
+    body {
+        background: #f5f5f5;
+        font-family: 'Roboto', arial, sans-serif;
+        font-size: 13px;
+    }
+
+    div.page {
+        width: auto;
+        background: none;
+        margin: 0;
+        border: 0 none;
+    }
+
+    .header {
+        display: none;
+    }
+
+    div.menu {
+        width: auto;
+        height: auto;
+        background: green;
+        margin: 0;
+    }
+
+    > div[style^="position: absolute;"] {
+        display: none;
+    }
+}

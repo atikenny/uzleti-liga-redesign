@@ -1,0 +1,17 @@
+{
+    "manifest_version": 2,
+    "name": "Uzleti liga redesign",
+    "version": "1.0",    
+
+    "icons": {
+        "128": "favicon-128.png"
+    },
+
+    "content_scripts": [
+        {
+          "matches": ["http://www.uzletiliga.hu/*"],
+          "css": ["matches.css"]
+          // "js": ["jquery.js", "myscript.js"]
+        }
+    ]
+}

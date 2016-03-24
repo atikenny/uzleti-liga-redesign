@@ -1,0 +1,29 @@
+{
+  "name": "uzleti-liga-redesign",
+  "version": "0.0.1",
+  "description": "Redesign for Üzleti Liga pages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atikenny/uzleti-liga-redesign.git"
+  },
+  "keywords": [
+    "redesign",
+    "üzleti",
+    "liga",
+    "chrome",
+    "extension"
+  ],
+  "author": "Attila Bartha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atikenny/uzleti-liga-redesign/issues"
+  },
+  "homepage": "https://github.com/atikenny/uzleti-liga-redesign#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
