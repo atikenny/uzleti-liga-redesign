@@ -27,21 +27,19 @@ function redesigner(menuItems) {
 
         html += '<ul>';
 
-        if (menuItem.menuItems) {
-            menuItem.menuItems.forEach(function (menuItem) {
-                html += '<li>';
-                
-                if (menuItem.itemValue && menuItem.itemValue[0]) {
-                    html += '<span>' + menuItem.itemValue[0] + '</span>';
-                }
+        menuItem.menuItems.forEach(function (menuItem) {
+            html += '<li>';
 
-                if (menuItem.menuItems) {
-                    html += getMenuItemsHTML(menuItem);
-                }
+            if (menuItem.itemValue && menuItem.itemValue[0]) {
+                html += '<span>' + menuItem.itemValue[0] + '</span>';
+            }
 
-                html += '</li>';
-            });
-        }
+            if (menuItem.menuItems) {
+                html += getMenuItemsHTML(menuItem);
+            }
+
+            html += '</li>';
+        });
         
         html += '</ul>';
 
