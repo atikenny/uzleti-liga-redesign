@@ -56,6 +56,7 @@ function redesigner(menuItems) {
 
     function cleanupHTML() {
         $('.matches_table tr:has(th[colspan="4"]:contains(" "))').remove();
+        $('.matches_table').parent().addClass('table_container');
     }
 
     init(menuItems);
