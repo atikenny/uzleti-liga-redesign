@@ -8,12 +8,12 @@ script.onload = function() {
 };
 
 document.addEventListener('scriptInjected', function (event) {
-    console.log(event.detail);
     redesigner(event.detail);
 });
 
 function redesigner(menuItems) {
-    var activePageName = $('.lap').html();
+    var activePageName = $('.lap').html(),
+        activeLeagueName = $('.eventmenu_table h2').html();
 
     function init(menuItems) {
         appendMenuItems(getMenuItemsHTML(menuItems));
@@ -62,6 +62,7 @@ function redesigner(menuItems) {
         setActiveTab();
         addMenuTabsClass();
         removeEmptyTabsRow();
+        moveSeasonsList();
     }
 
     function removeEmptyRows() {
@@ -82,6 +83,22 @@ function redesigner(menuItems) {
 
     function removeEmptyTabsRow() {
         $('.eventmenu_table tr:has(td[colspan="7"])').remove();
+    }
+
+    function moveSeasonsList() {
+        var newSeasonsHTML = '';
+
+        newSeasonsHTML += '<ul id="seasons-list">';
+
+        $('.idenylink,.idenyaktiv').each(function () {
+            newSeasonsHTML += '<li>';
+            newSeasonsHTML += $(this).get(0).outerHTML;
+            newSeasonsHTML += '</li>';
+        });
+
+        newSeasonsHTML += '</ul>';
+
+        $('.tabs:first').after(newSeasonsHTML);
     }
 
     init(menuItems);
