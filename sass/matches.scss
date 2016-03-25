@@ -96,14 +96,20 @@ html {
     div.content {
         box-sizing: border-box;
         width: 100%;
-        margin: 0 -390px 0 0;
-        padding-right: 390px;
         padding-left: 20px;
+    }
+
+    div.content2 {
+        min-height: auto;
+    }
+
+    #login + table {
+        display: none;
     }
 
     .magyarazat,
     div.magyarazat {
-        font-size: inherit;
+        display: none;
     }
 
     table.eventmenu_table,
@@ -123,7 +129,6 @@ html {
             font-size: 18px;
             background: #f0f0f0;
         }
-
     }
 
 

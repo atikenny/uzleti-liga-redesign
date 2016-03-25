@@ -26,7 +26,15 @@ function redesigner(menuItems) {
             html += '<li>';
 
             if (menuItem.itemValue && menuItem.itemValue[0]) {
-                html += '<span>' + menuItem.itemValue[0] + '</span>';
+                html += '<span>';
+                
+                if (menuItem.menuItems) {
+                    html += menuItem.itemValue[0];
+                } else {
+                    html += '<a href="' + menuItem.itemValue[1] + '">' + menuItem.itemValue[0] + '</a>';
+                }
+                
+                html += '</span>';
             }
 
             if (menuItem.menuItems) {
