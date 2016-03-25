@@ -21,7 +21,8 @@
 
 $font: 'Open Sans', Arial, sans-serif;
 $fontCondensed: 'Open Sans Condensed', Arial, sans-serif;
-$menuHeight: 40px;
+$menuHeight: 64px;
+$mainColor: #DA6D03;
 
 %hidden {
     display: none;
@@ -58,32 +59,51 @@ html {
     }
 
     div.menu {
+        display: flex;
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         width: auto;
-        height: $menuHeight;
+        height: auto;
         margin: 0;
-        background: #f0f0f0;
+        padding: 0;
+        background: $mainColor;
+        box-shadow: 0 1px 8px rgba(0, 0, 0, .3);
 
         > ul {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            height: $menuHeight;
+            padding: 0;
+
             li {
                 white-space: nowrap;
             }
 
             > li {
-                display: inline-block;
+                flex: 1;
                 position: relative;
+                font-size: 18px;
+                color: white;
+                text-align: center;
+                line-height: 48px;
+                padding: 8px;
+                margin: 0;
 
                 > ul {
                     display: none;
                     position: absolute;
                     left: 0;
-                    top: 100%;
+                    margin-top: 18px;
+                    top: 40px;
                     background: #fff;
-                    box-shadow: 0 2px 2px rgba(0,0,0,.4);
+                    box-shadow: 0 2px 10px rgba(0,0,0,.2);
                     min-width: 200px;
+                    color: $mainColor;
+                    border: 1px solid #ccc;
+                    border-color: rgba(0,0,0,.2);
                 }
 
                 &:hover > ul {
@@ -103,13 +123,9 @@ html {
         min-height: auto;
     }
 
-    #login + table {
-        display: none;
-    }
-
     .magyarazat,
     div.magyarazat {
-        display: none;
+        @extend %hidden;
     }
 
     table.eventmenu_table,
@@ -131,9 +147,12 @@ html {
         }
     }
 
-
     #login {
         width: 365px;
+    }
+
+    #login + table {
+        @extend %hidden;
     }
 
     div.footer {
