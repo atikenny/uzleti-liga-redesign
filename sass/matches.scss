@@ -164,5 +164,10 @@ html {
     div.footer {
         margin-left: 0;
         width: auto;
+        border: 0;
+    }
+
+    .copyright {
+        @extend %hidden;
     }
 }

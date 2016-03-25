@@ -15,6 +15,7 @@ document.addEventListener('scriptInjected', function (event) {
 function redesigner(menuItems) {
     function init(menuItems) {
         appendMenuItems(getMenuItemsHTML(menuItems));
+        cleanupHTML();
     }
 
     function getMenuItemsHTML(menuItem) {
@@ -51,6 +52,10 @@ function redesigner(menuItems) {
 
     function appendMenuItems(html) {
         $('.menu').html(html);
+    }
+
+    function cleanupHTML() {
+        $('.matches_table tr:has(th[colspan="4"]:contains(" "))').remove();
     }
 
     init(menuItems);
