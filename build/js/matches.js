@@ -11,21 +11,22 @@ document.addEventListener('scriptInjected', function (event) {
     redesigner(event.detail);
 });
 
-function redesigner(menuItems) {
+function redesigner(sidebarItems) {
     var activePageName = $('.lap').html(),
         activeLeagueName = $('.eventmenu_table h2').html();
 
-    function init(menuItems) {
-        appendMenuItems(getMenuItemsHTML(menuItems));
+    function init(sidebarItems) {
+        appendMenuItems();
+        appendSidebarItems(getSidebarItemsHTML(sidebarItems));
         cleanupHTML();
     }
 
-    function getMenuItemsHTML(menuItem) {
+    function getSidebarItemsHTML(sidebarItems) {
         var html = '';
 
         html += '<ul>';
 
-        menuItem.menuItems.forEach(function (menuItem) {
+        sidebarItems.menuItems.forEach(function (menuItem) {
             html += '<li>';
 
             if (menuItem.itemValue && menuItem.itemValue[0]) {
@@ -41,7 +42,7 @@ function redesigner(menuItems) {
             }
 
             if (menuItem.menuItems) {
-                html += getMenuItemsHTML(menuItem);
+                html += getSidebarItemsHTML(menuItem);
             }
 
             html += '</li>';
@@ -52,8 +53,19 @@ function redesigner(menuItems) {
         return html;
     }
 
-    function appendMenuItems(html) {
-        $('.menu').html(html);
+    function appendMenuItems() {
+        var menuItems = '';
+
+        menuItems += '<button class="hamburger-menu"></button>';
+        menuItems += '<span class="logo"></span>';
+        menuItems += '<span class="page-name">' + activeLeagueName + '</span>';
+        menuItems += '<button class="login-button"></button>';
+
+        $('.menu').append(menuItems);
+    }
+
+    function appendSidebarItems(html) {
+        $('body').append('<div class="sidebar">' + html + '</div>');
     }
 
     function cleanupHTML() {
@@ -101,5 +113,5 @@ function redesigner(menuItems) {
         $('.tabs:first').after(newSeasonsHTML);
     }
 
-    init(menuItems);
+    init(sidebarItems);
 }
