@@ -153,6 +153,10 @@ html {
         }
     }
 
+    .lap {
+        @extend %hidden;
+    }
+
     #login {
         width: 365px;
     }

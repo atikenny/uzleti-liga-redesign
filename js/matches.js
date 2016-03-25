@@ -13,6 +13,8 @@ document.addEventListener('scriptInjected', function (event) {
 });
 
 function redesigner(menuItems) {
+    var activePageName = $('.lap').html();
+
     function init(menuItems) {
         appendMenuItems(getMenuItemsHTML(menuItems));
         cleanupHTML();
@@ -55,8 +57,31 @@ function redesigner(menuItems) {
     }
 
     function cleanupHTML() {
+        removeEmptyRows();
+        addMainTableContainerClass();
+        setActiveTab();
+        addMenuTabsClass();
+        removeEmptyTabsRow();
+    }
+
+    function removeEmptyRows() {
         $('.matches_table tr:has(th[colspan="4"]:contains(" "))').remove();
+    }
+
+    function addMainTableContainerClass() {
         $('.matches_table').parent().addClass('table_container');
+    }
+
+    function setActiveTab() {
+        $('.eventmenu_table th:has(a:contains("' + activePageName + '"))').addClass('active');
+    }
+
+    function addMenuTabsClass() {
+        $('.eventmenu_table:has(a:contains("' + activePageName + '"))').addClass('tabs');
+    }
+
+    function removeEmptyTabsRow() {
+        $('.eventmenu_table tr:has(td[colspan="7"])').remove();
     }
 
     init(menuItems);
