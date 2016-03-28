@@ -1,9 +1,9 @@
 var script = document.createElement('script');
 
 script.src = chrome.extension.getURL('js/injected-script.js');
-(document.head||document.documentElement).appendChild(script);
+(document.head || document.documentElement).appendChild(script);
 
-script.onload = function() {
+script.onload = function () {
     script.parentNode.removeChild(script);
 };
 
@@ -13,12 +13,16 @@ document.addEventListener('scriptInjected', function (event) {
 
 function redesigner(sidebarItems) {
     var activePageName = $('.lap').html(),
-        activeLeagueName = $('.eventmenu_table h2').html();
+        activeLeagueName = $('.eventmenu_table h2').html(),
+        hamburgerMenuIconHTML = '<svg width="24px" height="24px" viewBox="0 0 48 48"><path d="M6 36h36v-4H6v4zm0-10h36v-4H6v4zm0-14v4h36v-4H6z"></path></svg>',
+        $hamburgerMenu,
+        $sidebar;
 
     function init(sidebarItems) {
         appendMenuItems();
         appendSidebarItems(getSidebarItemsHTML(sidebarItems));
         cleanupHTML();
+        attachEventHandlers();
     }
 
     function getSidebarItemsHTML(sidebarItems) {
@@ -56,16 +60,18 @@ function redesigner(sidebarItems) {
     function appendMenuItems() {
         var menuItems = '';
 
-        menuItems += '<button class="hamburger-menu"></button>';
+        menuItems += '<button class="hamburger-menu">' + hamburgerMenuIconHTML + '</button>';
         menuItems += '<span class="logo"></span>';
         menuItems += '<span class="page-name">' + activeLeagueName + '</span>';
         menuItems += '<button class="login-button"></button>';
 
         $('.menu').append(menuItems);
+        $hamburgerMenu = $('.hamburger-menu');
     }
 
     function appendSidebarItems(html) {
         $('body').append('<div class="sidebar">' + html + '</div>');
+        $sidebar = $('.sidebar');
     }
 
     function cleanupHTML() {
@@ -111,6 +117,12 @@ function redesigner(sidebarItems) {
         newSeasonsHTML += '</ul>';
 
         $('.tabs:first').after(newSeasonsHTML);
+    }
+
+    function attachEventHandlers() {
+        $hamburgerMenu.on('click', function () {
+            $('body').toggleClass('sidebarred');
+        });
     }
 
     init(sidebarItems);
