@@ -19,10 +19,16 @@ function redesigner(sidebarItems) {
         $sidebar;
 
     function init(sidebarItems) {
+        appendMetaTags();
         appendMenuItems();
         appendSidebarItems(getSidebarItemsHTML(sidebarItems));
         cleanupHTML();
         attachEventHandlers();
+        removeTextNodesFromBody();
+    }
+
+    function appendMetaTags() {
+        $('head').append('<meta name="viewport" content="width=device-width, initial-scale=1">');
     }
 
     function getSidebarItemsHTML(sidebarItems) {
@@ -119,11 +125,21 @@ function redesigner(sidebarItems) {
         $('.tabs:first').after(newSeasonsHTML);
     }
 
+    function removeTextNodesFromBody() {
+        $('body')
+            .contents()
+            .filter(function () {
+                return this.nodeType === 3;
+            })
+            .remove();
+    }
+
     function attachEventHandlers() {
         $hamburgerMenu.on('click', function () {
             $('body').toggleClass('sidebarred');
         });
     }
+
 
     init(sidebarItems);
 }
