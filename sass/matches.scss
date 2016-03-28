@@ -279,13 +279,14 @@ html {
 
     .tabs {
         background-color: white;
+        border-bottom: 1px solid $mainColor;
 
         a {
             display: block;
             color: $greyColor;
             text-decoration: none;
             font-size: 14px;
-            padding: 8px 0;
+            padding: 12px 0 8px 0;
             border-bottom: 4px solid transparent;
         }
 
@@ -309,7 +310,7 @@ html {
 
         a,
         span {
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .idenyaktiv {
@@ -328,9 +329,23 @@ html {
     }
 
     div.footer {
-        margin-left: 0;
+        margin: 24px 0 0 0;
         width: auto;
         border: 0;
+        background-color: #2f2f2f;
+
+        a, 
+        a:active,
+        a:hover,
+        a:visited {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        a:hover {
+            color: $mainColor;
+        }
     }
 
     .copyright {

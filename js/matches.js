@@ -23,8 +23,8 @@ function redesigner(sidebarItems) {
         appendMenuItems();
         appendSidebarItems(getSidebarItemsHTML(sidebarItems));
         cleanupHTML();
-        attachEventHandlers();
         removeTextNodesFromBody();
+        attachEventHandlers();
     }
 
     function appendMetaTags() {
