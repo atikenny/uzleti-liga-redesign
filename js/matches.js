@@ -16,7 +16,8 @@ function redesigner(sidebarItems) {
         activeLeagueName = $('.eventmenu_table h2').html(),
         hamburgerMenuIconHTML = '<svg width="24px" height="24px" viewBox="0 0 48 48"><path d="M6 36h36v-4H6v4zm0-10h36v-4H6v4zm0-14v4h36v-4H6z"></path></svg>',
         $hamburgerMenu,
-        $sidebar;
+        $sidebar,
+        $seasonsList;
 
     function init(sidebarItems) {
         appendMetaTags();
@@ -24,6 +25,7 @@ function redesigner(sidebarItems) {
         appendSidebarItems(getSidebarItemsHTML(sidebarItems));
         cleanupHTML();
         removeTextNodesFromBody();
+        appendMatches(collectMatches());
         attachEventHandlers();
     }
 
@@ -123,6 +125,7 @@ function redesigner(sidebarItems) {
         newSeasonsHTML += '</ul>';
 
         $('.tabs:first').after(newSeasonsHTML);
+        $seasonsList = $('#seasons-list');
     }
 
     function removeTextNodesFromBody() {
@@ -134,12 +137,154 @@ function redesigner(sidebarItems) {
             .remove();
     }
 
+    function collectMatches() {
+        var gamesByDate = {};
+
+        $('.matches_table tr').each(function () {
+            var isDateRow = $(this).children('th[colspan="4"]').length,
+                isGameRow = $(this).children('td').length === 4,
+                dateString;
+            
+            if (isDateRow) {
+                dateString = $(this).children('th').html();
+
+                if (!gamesByDate[dateString]) {
+                    gamesByDate[dateString] = [];
+                }
+            } else if (isGameRow) {
+                dateString = $(this).prevAll('tr:has(th[colspan="4"]):first').children('th').html();
+
+                gamesByDate[dateString].push(getGameDetails($(this).children('td')));
+            }
+        });
+
+        function getGameDetails($gamesRow) {
+            var details = {
+                    homeTeam: getTeamDetails($gamesRow.eq(0)),
+                    awayTeam: getTeamDetails($gamesRow.eq(1)),
+                    location: getLocationDetails($gamesRow.eq(2)),
+                    result: getResultDetails($gamesRow.eq(3)),
+                    winner: null
+                };
+
+            if (details.result.homeScore > details.result.awayScore) {
+                details.winner = details.homeTeam.name;
+            } else if (details.result.homeScore < details.result.awayScore) {
+                details.winner = details.awayTeam.name;
+            }
+
+            return details;
+        }
+
+        function getTeamDetails($teamCell) {
+            var $temaLink = $teamCell.find('a');
+
+            return {
+                name: $temaLink.html(),
+                link: $temaLink.attr('href')
+            };
+        }
+
+        function getLocationDetails($locationCell) {
+            var $locationLink = $locationCell.find('a');
+
+            return {
+                name: $locationLink.html(),
+                link: $locationLink.attr('href')
+            };
+        }
+
+        function getResultDetails($resultCell) {
+            var endResultArray = $resultCell.find('b').html().split(':'),
+                quartersArray = $resultCell.find('b').next('font').html().replace('(', '').replace(')', '').split(',');
+
+            return {
+                homeScore: endResultArray[0],
+                awayScore: endResultArray[1],
+                quarters: quartersArray
+            };
+        }
+
+        return gamesByDate;
+    }
+
+    function appendMatches(matches) {
+        var matchesHTML = '';
+
+        matchesHTML += '<div id="matches-container">';
+
+        Object.keys(matches).forEach(appendDateContainer);
+
+        function appendDateContainer(date) {
+            var games = matches[date];
+
+            matchesHTML += '<div class="card">';
+            matchesHTML += '<h3 class="date">' + date + '</h3>';
+            matchesHTML += '<ul class="matches">';
+            
+            games.forEach(function (game) {
+                matchesHTML += '<li>';
+                matchesHTML += getTeamsHTML(game);
+                matchesHTML += getResultHTML(game.result);
+                matchesHTML += '</li>';
+            });
+
+            matchesHTML += '</ul>';
+            matchesHTML += '</div>';
+        }
+
+        matchesHTML += '</div>';
+        $seasonsList.after(matchesHTML);
+        console.log(matches);
+    }
+
+    function getTeamsHTML(game) {
+        var teamsHTML = '';
+
+        teamsHTML += '<div class="teams">';
+        teamsHTML += '<div class="home team';
+
+        if (game.winner === game.homeTeam.name) {
+            teamsHTML += ' winner';
+        }
+
+        teamsHTML += '">';
+        teamsHTML += '<a href="' + game.homeTeam.link + '">';
+        teamsHTML += game.homeTeam.name;
+        teamsHTML += '</a>';
+        teamsHTML += '</div>';
+        teamsHTML += '<div class="away team';
+
+        if (game.winner === game.awayTeam.name) {
+            teamsHTML += ' winner';
+        }
+
+        teamsHTML += '">';
+        teamsHTML += '<a href="' + game.awayTeam.link + '">';
+        teamsHTML += game.awayTeam.name;
+        teamsHTML += '</a>';
+        teamsHTML += '</div>';
+        teamsHTML += '</div>';
+
+        return teamsHTML;
+    }
+
+    function getResultHTML(result) {
+        var gameHTML = '';
+
+        gameHTML += '<div class="scores">';
+        gameHTML += '<div class="home score">' + result.homeScore + '</div>';
+        gameHTML += '<div class="away score">' + result.awayScore + '</div>';
+        gameHTML += '</div>';
+
+        return gameHTML;
+    }
+
     function attachEventHandlers() {
         $hamburgerMenu.on('click', function () {
             $('body').toggleClass('sidebarred');
         });
     }
-
 
     init(sidebarItems);
 }

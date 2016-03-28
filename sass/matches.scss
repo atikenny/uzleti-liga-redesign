@@ -108,6 +108,13 @@ html {
         font-weight: normal;
     }
 
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
     div.page {
         width: auto;
         background: none;
@@ -235,10 +242,56 @@ html {
     }
 
     .table_container {
+        display: none;
+    }
+
+    .card {
         margin: 12px;
-        padding: 12px;
         background-color: white;
         box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .14);
+    }
+
+    #matches-container {
+        .matches li {
+            padding: 16px;
+            overflow: hidden;
+        }
+
+        .date {
+            font-size: 20px;
+            font-weight: normal;
+            margin: 0 8px;
+            padding: 16px 8px;
+            color: black;
+            border-bottom: 1px solid #ebebeb;
+        }
+
+        .score,
+        .team {
+            box-sizing: border-box;
+            width: 50%;
+            float: left;
+            padding: 0 20px;
+            margin-bottom: 12px;
+        }
+
+        .team {
+            font-size: 18px;
+
+            &.winner {
+                color: $mainColor;
+                font-weight: bold;
+            }
+        }
+
+        .score {
+            font-size: 24px;
+        }
+
+        .score.home,
+        .team.home {
+            text-align: right;
+        }
     }
 
     .sidebarred div.content {
