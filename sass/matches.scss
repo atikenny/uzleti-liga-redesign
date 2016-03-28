@@ -41,6 +41,17 @@ html {
         }
     }
 
+    a {
+        color: #03A7DA;
+        text-decoration: none;
+        transition: all .3s ease;
+
+        &:hover {
+            text-decoration: none;
+            color: #003342;
+        }
+    }
+
     h2 {
         font-family: $fontCondensed;
         font-size: 32px;
@@ -61,6 +72,7 @@ html {
 
     div.menu {
         display: flex;
+        align-items: center;
         position: fixed;
         top: 0;
         left: 0;
@@ -68,54 +80,62 @@ html {
         width: auto;
         height: auto;
         margin: 0;
-        padding: 0;
+        padding: 2px 10px;
         background: $mainColor;
+        color: #fff;
         box-shadow: 0 1px 8px rgba(0, 0, 0, .3);
+    }
 
-        > ul {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            height: $menuHeight;
-            padding: 0;
+    .hamburger-menu {
+        display: inline-block;
+        background: transparent;
+        outline: 0;
+        border: 0;
+        border-top: 3px solid #fff;
+        border-bottom: 3px solid #fff;
+        width: 24px;
+        height: 17px;
+        padding: 3px 0;
+        margin: 0 20px 0 0;
+        cursor: pointer;
 
-            li {
-                white-space: nowrap;
-            }
+        &:before {
+            content: '';
+            display: block;
+            height: 3px;
+            background: #fff;
+        }
+    }
 
-            > li {
-                flex: 1;
-                position: relative;
-                font-size: 18px;
-                color: white;
-                text-align: center;
-                line-height: 48px;
-                padding: 8px;
-                margin: 0;
+    .logo {
+        display: inline-block;
+        margin-right: 10px;
+        background: url(chrome-extension://__MSG_@@extension_id__/img/logo.png) no-repeat 50% 50% / contain;
+        height: 40px;
+        width: 30px;
+    }
 
-                > ul {
-                    display: none;
-                    position: absolute;
-                    left: 0;
-                    top: 60px;
-                    background: #fff;
-                    box-shadow: 0 2px 10px rgba(0,0,0,.2);
-                    min-width: 200px;
-                    color: $mainColor;
-                    border: 1px solid #ccc;
-                    border-color: rgba(0,0,0,.2);
-                    padding: 0;
-                    margin: 0;
+    .page-name {
+        font-size: 20px;
+        font-weight: bold;
+        display: inline-block;
+        line-height: 40px;
+        margin: 0 20px 0 0;
+    }
 
-                    li {
-                        margin: 8px 0;
-                    }
-                }
+    .login-button {
+        float: right;
+        margin: 0 10px 0 0;
+        text-transform: uppercase;
+        background: transparent;
+        color: #fff;
+        border: 0;
+        outline: 0;
+        font-weight: bold;
+        cursor: pointer;
 
-                &:hover > ul {
-                    display: block;
-                }
-            }
+        &:after {
+            content: 'Belépés';
         }
     }
 
@@ -125,6 +145,10 @@ html {
         padding-top: 0;
         padding-left: 20px;
         margin-left: 0;
+
+        table {
+            border-collapse: collapse;
+        }
     }
 
     div.content2 {
@@ -144,6 +168,13 @@ html {
     table.matches_table {
         background: #f9f9f9;
 
+        tr:first-child {
+            th {
+                background: #ccc;
+                font-size: 20px;
+            }
+        }
+
         td,th {
             padding: 0;
         }
@@ -152,6 +183,15 @@ html {
             font-family: $fontCondensed;
             font-size: 18px;
             background: #f0f0f0;
+        }
+
+        a {
+            display: block;
+            padding: 5px 10px;
+
+            &:hover {
+                background: #fff;
+            }
         }
     }
 

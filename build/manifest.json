@@ -4,6 +4,7 @@
     "version": "1.0",    
 
     "icons": {
+        "16": "img/favicon-16.png",
         "128": "img/favicon-128.png"
     },
     "content_scripts": [
@@ -16,6 +17,7 @@
     ],
     "web_accessible_resources": [
         "font/*.*",
+        "img/*.*",
         "js/injected-script.js"
     ]
 }
