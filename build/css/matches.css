@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
@@ -40,7 +41,7 @@ html .sidebar > ul::-webkit-scrollbar-track {
   border-width: 0 0 0 4px; }
 
 html body > div[style^="position: absolute;"], html div.header, html .magyarazat,
-html div.magyarazat, html .lap, html #login + table, html .copyright, html .eventmenu_table:not(.tabs) {
+html div.magyarazat, html .lap, html #login, html #login + table, html .copyright, html .eventmenu_table:not(.tabs) {
   display: none; }
 
 html body {
@@ -55,7 +56,8 @@ html a:hover,
 html a:active,
 html a:visited {
   text-decoration: none;
-  color: inherit; }
+  color: inherit;
+  transition: all .3s ease; }
 
 html button {
   padding: 0;
@@ -93,6 +95,7 @@ html div.page {
 html div.menu {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
@@ -100,10 +103,10 @@ html div.menu {
   width: auto;
   height: 64px;
   margin: 0;
-  padding: 0 0 0 8px;
+  padding: 0 8px;
   background: #DA6D03;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-  color: white; }
+  color: #fff;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3); }
   html div.menu .hamburger-menu {
     display: inline-block;
     cursor: pointer;
@@ -112,13 +115,30 @@ html div.menu {
     html div.menu .hamburger-menu path {
       fill: white; }
   html div.menu .logo {
-    margin-left: 12px; }
+    margin-left: 12px;
+    background: url(chrome-extension://__MSG_@@extension_id__/img/logo.png) no-repeat 50% 50%/contain;
+    display: inline-block;
+    width: 46px;
+    height: 80%; }
   html div.menu .page-name {
+    flex: 1;
     font-size: 20px;
     font-weight: bold;
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     margin-left: 24px;
     padding-left: 24px; }
+  html div.menu .login-button {
+    float: right;
+    margin: 0 10px 0 0;
+    text-transform: uppercase;
+    background: transparent;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    font-weight: bold;
+    cursor: pointer; }
+    html div.menu .login-button:after {
+      content: 'Belépés'; }
 
 html .sidebar {
   position: fixed;
@@ -142,7 +162,8 @@ html .sidebar {
     margin-top: 16px; }
   html .sidebar span,
   html .sidebar a {
-    opacity: .85; }
+    opacity: .85;
+    text-transform: capitalize; }
     html .sidebar span:hover,
     html .sidebar a:hover {
       opacity: 1; }
@@ -189,8 +210,8 @@ html .card {
 
 html #matches-container .matches {
   padding: 20px 0; }
-  html #matches-container .matches li {
-    margin-bottom: 20px; }
+  html #matches-container .matches > li {
+    margin-bottom: 32px; }
 
 html #matches-container .card.past .date {
   color: #B15800;
@@ -232,7 +253,22 @@ html #matches-container .score.home,
 html #matches-container .team.home {
   text-align: right; }
 
-html .sidebarred div.content {
+html #matches-container .quarters {
+  display: flex;
+  align-items: center;
+  background-color: #f7f7f7;
+  border: 1px solid #ebebeb;
+  border-width: 1px 0;
+  margin-top: 12px; }
+  html #matches-container .quarters .result {
+    flex: 1;
+    margin: 0 12px;
+    text-align: center;
+    font-size: 16px;
+    padding: 12px; }
+
+html .sidebarred div.content,
+html .sidebarred div.footer {
   margin-left: 230px; }
 
 html div.content2 {
@@ -244,12 +280,18 @@ html table.matches_table {
 
 html table.matches_table {
   background: white; }
-  html table.matches_table td, html table.matches_table th {
-    padding: 0; }
+  html table.matches_table tr:first-child th {
+    background: #ccc;
+    font-size: 20px; }
   html table.matches_table th {
     font-family: "Open Sans Condensed", Arial, sans-serif;
     font-size: 18px;
     background: #f0f0f0; }
+  html table.matches_table a {
+    display: block;
+    padding: 5px 10px; }
+    html table.matches_table a:hover {
+      background: #fff; }
 
 html .tabs {
   background-color: white;
@@ -283,13 +325,28 @@ html #seasons-list {
     color: #DA6D03; }
 
 html #login {
-  width: 365px; }
+  position: fixed;
+  z-index: 9999;
+  top: 64px;
+  right: 12px;
+  width: 365px;
+  margin: 0;
+  padding: 20px;
+  background: #fff;
+  border-radius: 0 !important;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); }
+  html #login.open {
+    display: block; }
 
 html div.footer {
   margin: 24px 0 0 0;
+  padding: 20px;
   width: auto;
+  height: auto;
   border: 0;
   background-color: #2f2f2f;
+  margin-left: 0;
+  transition: margin-left 0.3s cubic-bezier(0, 0, 0.2, 1);
   overflow: hidden; }
   html div.footer a,
   html div.footer a:active,
@@ -297,7 +354,8 @@ html div.footer {
   html div.footer a:visited {
     color: white;
     text-decoration: none;
-    font-size: 13px; }
+    font-size: 13px;
+    text-transform: capitalize; }
   html div.footer a:hover {
     color: #DA6D03; }
 
@@ -308,7 +366,8 @@ html div.footer {
     height: 48px; }
   html .sidebar > ul {
     top: 48px; }
-  html .sidebarred div.content {
+  html .sidebarred div.content,
+  html .sidebarred div.footer {
     margin-left: 0; }
   html .sidebarred .sidebar {
     background-color: white;

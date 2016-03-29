@@ -18,6 +18,7 @@ function redesigner(sidebarItems) {
         $hamburgerMenu,
         $sidebar,
         $seasonsList,
+        $loginButton,
         todayTimestamp = Date.parse((new Date()).toISOString().substr(0, 10));
 
     function init(sidebarItems) {
@@ -76,6 +77,7 @@ function redesigner(sidebarItems) {
 
         $('.menu').append(menuItems);
         $hamburgerMenu = $('.hamburger-menu');
+        $loginButton = $('.login-button');
     }
 
     function appendSidebarItems(html) {
@@ -250,6 +252,7 @@ function redesigner(sidebarItems) {
 
                 if (game.result) {
                     matchesHTML += getResultHTML(game.result);
+                    matchesHTML += getQuarters(game.result.quarters);
                 }
 
                 matchesHTML += '</li>';
@@ -306,9 +309,26 @@ function redesigner(sidebarItems) {
         return gameHTML;
     }
 
+    function getQuarters(quarters) {
+        var quartersHTML = '';
+
+        quartersHTML += '<ul class="quarters">';
+
+        quarters.forEach(function (quarterResult) {
+            quartersHTML += '<li class="result">' + quarterResult + '</li>';
+        });
+
+        quartersHTML += '</ul>';
+
+        return quartersHTML;
+    }
+
     function attachEventHandlers() {
         $hamburgerMenu.on('click', function () {
             $('body').toggleClass('sidebarred');
+        });
+        $loginButton.on('click', function () {
+            $('#login').toggleClass('open');
         });
     }
 
