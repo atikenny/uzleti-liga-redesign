@@ -1,0 +1,315 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(chrome-extension://__MSG_@@extension_id__/font/opensans-regular.ttf); }
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url(chrome-extension://__MSG_@@extension_id__/font/opensans-bold.ttf); }
+
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-style: normal;
+  font-weight: 700;
+  src: url(chrome-extension://__MSG_@@extension_id__/font/opensans-condbold.ttf); }
+
+html .sidebar > ul::-webkit-scrollbar {
+  height: 16px;
+  overflow: visible;
+  width: 16px; }
+
+html .sidebar > ul::-webkit-scrollbar-corner {
+  background: transparent; }
+
+html .sidebar > ul::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 1px 1px 1px 6px;
+  min-height: 28px;
+  padding: 100px 0 0;
+  -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }
+
+html .sidebar > ul::-webkit-scrollbar-track {
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 0 0 0 4px; }
+
+html body > div[style^="position: absolute;"], html div.header, html .magyarazat,
+html div.magyarazat, html .lap, html #login + table, html .copyright, html .eventmenu_table:not(.tabs) {
+  display: none; }
+
+html body {
+  background: #eee;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 14px;
+  padding-top: 64px;
+  line-height: normal; }
+
+html a,
+html a:hover,
+html a:active,
+html a:visited {
+  text-decoration: none;
+  color: inherit; }
+
+html button {
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent; }
+
+html table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+  html table th,
+  html table td {
+    padding: 0;
+    margin: 0;
+    border: 0; }
+
+html h2 {
+  font-family: "Open Sans Condensed", Arial, sans-serif;
+  font-size: 32px;
+  text-transform: uppercase;
+  font-weight: normal; }
+
+html ul,
+html li {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+html div.page {
+  width: auto;
+  background: none;
+  margin: 0;
+  border: 0 none; }
+
+html div.menu {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 64px;
+  margin: 0;
+  padding: 0 0 0 8px;
+  background: #DA6D03;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  color: white; }
+  html div.menu .hamburger-menu {
+    display: inline-block;
+    cursor: pointer;
+    width: 48px;
+    height: 48px; }
+    html div.menu .hamburger-menu path {
+      fill: white; }
+  html div.menu .logo {
+    margin-left: 12px; }
+  html div.menu .page-name {
+    font-size: 20px;
+    font-weight: bold;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    margin-left: 24px;
+    padding-left: 24px; }
+
+html .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 230px;
+  transform: translateX(-100%);
+  transition: all 0.3s cubic-bezier(0, 0, 0.2, 1); }
+  html .sidebar ul, html .sidebar li {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+  html .sidebar > ul {
+    overflow-y: auto;
+    position: absolute;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    margin-top: 16px; }
+  html .sidebar span,
+  html .sidebar a {
+    opacity: .85; }
+    html .sidebar span:hover,
+    html .sidebar a:hover {
+      opacity: 1; }
+  html .sidebar span {
+    display: block;
+    outline: none;
+    padding: 0 12px 0 20px;
+    font-size: 14px;
+    font-weight: bold;
+    height: 48px;
+    line-height: 50px;
+    color: rgba(0, 0, 0, 0.87);
+    transition: background-color 0.3s cubic-bezier(0, 0, 0.2, 1); }
+    html .sidebar span a {
+      height: 48px;
+      line-height: 50px;
+      display: block;
+      color: #DA6D03;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden; }
+    html .sidebar span:hover {
+      background-color: #e7e7e7; }
+
+html .sidebarred .sidebar {
+  transform: translateX(0); }
+
+html div.content {
+  width: auto;
+  float: none;
+  box-sizing: border-box;
+  padding: 0;
+  margin-left: 0;
+  transition: margin-left 0.3s cubic-bezier(0, 0, 0.2, 1);
+  background-color: transparent; }
+
+html .table_container {
+  display: none; }
+
+html .card {
+  margin: 12px;
+  background-color: white;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14); }
+
+html #matches-container .matches {
+  padding: 20px 0; }
+  html #matches-container .matches li {
+    margin-bottom: 20px; }
+
+html #matches-container .card.past .date {
+  color: #B15800;
+  border-bottom: 1px solid #FFAA57; }
+
+html #matches-container .card.today .date {
+  color: #066E87;
+  border-bottom: 1px solid #3C92A6; }
+
+html #matches-container .date {
+  font-size: 20px;
+  font-weight: normal;
+  margin: 0 8px;
+  padding: 16px 8px;
+  color: rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid #ebebeb; }
+
+html #matches-container .teams,
+html #matches-container .scores {
+  overflow: hidden; }
+
+html #matches-container .score,
+html #matches-container .team {
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  padding: 0 20px; }
+
+html #matches-container .team {
+  font-size: 18px; }
+  html #matches-container .team.winner {
+    color: #3C92A6;
+    font-weight: bold; }
+
+html #matches-container .score {
+  font-size: 32px; }
+
+html #matches-container .score.home,
+html #matches-container .team.home {
+  text-align: right; }
+
+html .sidebarred div.content {
+  margin-left: 230px; }
+
+html div.content2 {
+  min-height: auto; }
+
+html table.eventmenu_table,
+html table.matches_table {
+  width: 100%; }
+
+html table.matches_table {
+  background: white; }
+  html table.matches_table td, html table.matches_table th {
+    padding: 0; }
+  html table.matches_table th {
+    font-family: "Open Sans Condensed", Arial, sans-serif;
+    font-size: 18px;
+    background: #f0f0f0; }
+
+html .tabs {
+  background-color: white;
+  border-bottom: 1px solid #DA6D03; }
+  html .tabs a {
+    display: block;
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 12px 0 8px 0;
+    border-bottom: 4px solid transparent; }
+  html .tabs .active a,
+  html .tabs a:hover {
+    color: #DA6D03;
+    border-bottom: 4px solid #DA6D03; }
+
+html #seasons-list {
+  margin: 0;
+  padding: 16px 8px 8px 8px;
+  list-style: none;
+  background-color: transparent; }
+  html #seasons-list li {
+    display: inline-block;
+    margin-right: 8px; }
+  html #seasons-list a,
+  html #seasons-list span {
+    font-size: 12px; }
+  html #seasons-list .idenyaktiv {
+    font-size: 18px;
+    font-weight: bold;
+    color: #DA6D03; }
+
+html #login {
+  width: 365px; }
+
+html div.footer {
+  margin: 24px 0 0 0;
+  width: auto;
+  border: 0;
+  background-color: #2f2f2f;
+  overflow: hidden; }
+  html div.footer a,
+  html div.footer a:active,
+  html div.footer a:hover,
+  html div.footer a:visited {
+    color: white;
+    text-decoration: none;
+    font-size: 13px; }
+  html div.footer a:hover {
+    color: #DA6D03; }
+
+@media (max-width: 768px) {
+  html body {
+    padding-top: 48px; }
+  html div.menu {
+    height: 48px; }
+  html .sidebar > ul {
+    top: 48px; }
+  html .sidebarred div.content {
+    margin-left: 0; }
+  html .sidebarred .sidebar {
+    background-color: white;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4); } }
