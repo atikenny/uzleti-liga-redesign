@@ -44,15 +44,11 @@ function redesigner(sidebarItems) {
             html += '<li>';
 
             if (menuItem.itemValue && menuItem.itemValue[0]) {
-                html += '<span>';
-                
                 if (menuItem.menuItems) {
-                    html += menuItem.itemValue[0];
+                    html += '<span>' + menuItem.itemValue[0] + '</span>';
                 } else {
                     html += '<a href="' + menuItem.itemValue[1] + '">' + menuItem.itemValue[0] + '</a>';
                 }
-                
-                html += '</span>';
             }
 
             if (menuItem.menuItems) {

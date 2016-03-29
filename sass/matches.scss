@@ -23,7 +23,7 @@ $font: 'Open Sans', Arial, sans-serif;
 $fontCondensed: 'Open Sans Condensed', Arial, sans-serif;
 $menuHeight: 64px;
 $menuHeightMobile: 48px;
-$sidebarWidth: 230px;
+$sidebarWidth: 300px;
 $mainColor: #DA6D03;
 $mainColorLighter: #FA9129;
 $mainColorLightest: #FFAA57;
@@ -41,9 +41,8 @@ $bgHoverColor: #e7e7e7;
 
 %scroller {
     &::-webkit-scrollbar {
-        height: 16px;
         overflow: visible;
-        width: 16px;
+        width: 10px;
     }
 
     &::-webkit-scrollbar-corner {
@@ -51,20 +50,17 @@ $bgHoverColor: #e7e7e7;
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, .2);
-        background-clip: padding-box;
-        border: solid transparent;
-        border-width: 1px 1px 1px 6px;
         min-height: 28px;
         padding: 100px 0 0;
-        -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
-        box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
+        background-color: rgba(0, 0, 0, .2);
+        border: 0;
+        cursor: pointer;
     }
 
     &::-webkit-scrollbar-track {
         background-clip: padding-box;
         border: solid transparent;
-        border-width: 0 0 0 4px;
+        border-width: 0;
     }
 }
 
@@ -208,6 +204,27 @@ html {
         transform: translateX(-100%);
         transition: all .3s cubic-bezier(0, 0, .2, 1);
 
+        span, a {
+            display: block;
+            outline: none;
+            padding: 12px 12px 12px 20px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, .87);
+            text-transform: capitalize;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            transition: background-color .3s cubic-bezier(0, 0, .2, 1);
+        }
+
+        a {
+            color: $mainColor;
+
+            &:hover {
+                background-color: rgba(255,255,255,.5);
+            }
+        }
+
         ul, li {
             margin: 0;
             padding: 0;
@@ -221,43 +238,28 @@ html {
             top: $menuHeight;
             bottom: 0;
             left: 0;
-            max-width: 100%;
-            margin-top: 16px;
-        }
+            right: 0;
+            font-size: 16px;
 
-        span,
-        a {
-            opacity: .85;
-            text-transform: capitalize;
+            ul {
+                border-top: 1px solid rgba(0,0,0,.1);
+                background: rgba(0,0,0,.03);
+                font-size: 90%;
 
-            &:hover {
-                opacity: 1;
-            }
-        }
+                span, a {
+                    padding-top: .5em;
+                    padding-bottom: .5em;
+                }
 
-        span {
-            display: block;
-            outline: none;
-            padding: 0 12px 0 20px;
-            font-size: 14px;
-            font-weight: bold;
-            height: 48px;
-            line-height: 50px;
-            color: rgba(0, 0, 0, .87);
-            transition: background-color .3s cubic-bezier(0, 0, .2, 1);
+                span {
+                    color: rgba(0, 0, 0, .6);
+                }
 
-            a {
-                height: 48px;
-                line-height: 50px;
-                display: block;
-                color: $mainColor;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                overflow: hidden;
-            }
-
-            &:hover {
-                background-color: $bgHoverColor;
+                ul {
+                    span, a {
+                        padding-left: 32px;
+                    }
+                }
             }
         }
     }
@@ -464,10 +466,9 @@ html {
     }
 
     #login {
-        @extend %hidden;
         position: fixed;
-        z-index: 9999;
-        top: 64px;
+        z-index: 1900;
+        top: -1000px;
         right: 12px;
         width: 365px;
         margin: 0;
@@ -475,13 +476,18 @@ html {
         background: #fff;
         border-radius: 0!important;
         box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+        transition: all .3s ease;
 
         & + table {
             @extend %hidden;
         }
 
         &.open {
-            display: block;
+            top: 64px;
+        }
+
+        a:hover {
+            color: $mainColor;
         }
     }
 
