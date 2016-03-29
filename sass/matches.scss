@@ -22,8 +22,41 @@
 $font: 'Open Sans', Arial, sans-serif;
 $fontCondensed: 'Open Sans Condensed', Arial, sans-serif;
 $menuHeight: 64px;
+$menuHeightMobile: 48px;
+$sidebarWidth: 230px;
 $mainColor: #DA6D03;
 $greyColor: rgba(0, 0, 0, .6);
+$bgColor: #eee;
+$bgHoverColor: #e7e7e7;
+
+%scroller {
+    &::-webkit-scrollbar {
+        height: 16px;
+        overflow: visible;
+        width: 16px;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, .2);
+        background-clip: padding-box;
+        border: solid transparent;
+        border-width: 1px 1px 1px 6px;
+        min-height: 28px;
+        padding: 100px 0 0;
+        -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
+        box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
+    }
+
+    &::-webkit-scrollbar-track {
+        background-clip: padding-box;
+        border: solid transparent;
+        border-width: 0 0 0 4px;
+    }
+}
 
 %hidden {
     display: none;
@@ -31,7 +64,7 @@ $greyColor: rgba(0, 0, 0, .6);
 
 html {
     body {
-        background: #fff;
+        background: $bgColor;
         font-family: $font;
         font-size: 14px;
         padding-top: $menuHeight;
@@ -41,14 +74,31 @@ html {
         }
     }
 
-    a {
-        color: #03A7DA;
+    a,
+    a:hover,
+    a:active,
+    a:visited {
         text-decoration: none;
+        color: inherit;
         transition: all .3s ease;
+    }
 
-        &:hover {
-            text-decoration: none;
-            color: #003342;
+    button {
+        padding: 0;
+        border: 0;
+        outline: none;
+        background: transparent;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+
+        th,
+        td {
+            padding: 0;
+            margin: 0;
+            border: 0;
         }
     }
 
@@ -57,6 +107,13 @@ html {
         font-size: 32px;
         text-transform: uppercase;
         font-weight: normal;
+    }
+
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
     }
 
     div.page {
@@ -73,82 +130,197 @@ html {
     div.menu {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         width: auto;
-        height: auto;
+        height: $menuHeight;
         margin: 0;
-        padding: 2px 10px;
+        padding: 0 8px;
         background: $mainColor;
         color: #fff;
         box-shadow: 0 1px 8px rgba(0, 0, 0, .3);
+
+        .hamburger-menu {
+            display: inline-block;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+
+            path {
+                fill: white;
+            }
+        }
+
+        .logo {
+            margin-left: 12px;
+            background: url(chrome-extension://__MSG_@@extension_id__/img/logo.png) no-repeat 50% 50% / contain;
+            display: inline-block;
+            width: 46px;
+            height: 46px;
+        }
+        
+        .page-name {
+            flex: 1;
+            font-size: 20px;
+            font-weight: bold;
+            border-left: 1px solid rgba(255, 255, 255, .2);
+            margin-left: 24px;
+            padding-left: 24px;
+        }
+
+        .login-button {
+            float: right;
+            margin: 0 10px 0 0;
+            text-transform: uppercase;
+            background: transparent;
+            color: #fff;
+            border: 0;
+            outline: 0;
+            font-weight: bold;
+            cursor: pointer;
+
+            &:after {
+                content: 'Belépés';
+            }
+        }
+
     }
 
-    .hamburger-menu {
-        display: inline-block;
-        background: transparent;
-        outline: 0;
-        border: 0;
-        border-top: 3px solid #fff;
-        border-bottom: 3px solid #fff;
-        width: 24px;
-        height: 17px;
-        padding: 3px 0;
-        margin: 0 20px 0 0;
-        cursor: pointer;
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: $sidebarWidth;
+        transform: translateX(-100%);
+        transition: all .3s cubic-bezier(0, 0, .2, 1);
 
-        &:before {
-            content: '';
+        ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        > ul {
+            @extend %scroller;
+            overflow-y: auto;
+            position: absolute;
+            top: $menuHeight;
+            bottom: 0;
+            left: 0;
+            max-width: 100%;
+            margin-top: 16px;
+        }
+
+        span,
+        a {
+            opacity: .85;
+            text-transform: capitalize;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        span {
             display: block;
-            height: 3px;
-            background: #fff;
+            outline: none;
+            padding: 0 12px 0 20px;
+            font-size: 14px;
+            font-weight: bold;
+            height: 48px;
+            line-height: 50px;
+            color: rgba(0, 0, 0, .87);
+            transition: background-color .3s cubic-bezier(0, 0, .2, 1);
+
+            a {
+                height: 48px;
+                line-height: 50px;
+                display: block;
+                color: $mainColor;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
+            &:hover {
+                background-color: $bgHoverColor;
+            }
         }
     }
 
-    .logo {
-        display: inline-block;
-        margin-right: 10px;
-        background: url(chrome-extension://__MSG_@@extension_id__/img/logo.png) no-repeat 50% 50% / contain;
-        height: 40px;
-        width: 30px;
-    }
-
-    .page-name {
-        font-size: 20px;
-        font-weight: bold;
-        display: inline-block;
-        line-height: 40px;
-        margin: 0 20px 0 0;
-    }
-
-    .login-button {
-        float: right;
-        margin: 0 10px 0 0;
-        text-transform: uppercase;
-        background: transparent;
-        color: #fff;
-        border: 0;
-        outline: 0;
-        font-weight: bold;
-        cursor: pointer;
-
-        &:after {
-            content: 'Belépés';
-        }
+    .sidebarred .sidebar {
+        transform: translateX(0);
     }
 
     div.content {
+        width: auto;
+        float: none;
         box-sizing: border-box;
-        width: 100%;
-        padding-top: 0;
-        padding-left: 20px;
+        padding: 0;
         margin-left: 0;
+        transition: margin-left .3s cubic-bezier(0, 0, .2, 1);
+        background-color: transparent;
+    }
 
-        table {
-            border-collapse: collapse;
+    .table_container {
+        display: none;
+    }
+
+    .card {
+        margin: 12px;
+        background-color: white;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .14);
+    }
+
+    #matches-container {
+        .matches li {
+            padding: 16px;
+            overflow: hidden;
         }
+
+        .date {
+            font-size: 20px;
+            font-weight: normal;
+            margin: 0 8px;
+            padding: 16px 8px;
+            color: black;
+            border-bottom: 1px solid #ebebeb;
+        }
+
+        .score,
+        .team {
+            box-sizing: border-box;
+            width: 50%;
+            float: left;
+            padding: 0 20px;
+            margin-bottom: 12px;
+        }
+
+        .team {
+            font-size: 18px;
+
+            &.winner {
+                color: $mainColor;
+                font-weight: bold;
+            }
+        }
+
+        .score {
+            font-size: 24px;
+        }
+
+        .score.home,
+        .team.home {
+            text-align: right;
+        }
+    }
+
+    .sidebarred div.content {
+        margin-left: $sidebarWidth;
     }
 
     div.content2 {
@@ -166,17 +338,13 @@ html {
     }
 
     table.matches_table {
-        background: #f9f9f9;
+        background: white;
 
         tr:first-child {
             th {
                 background: #ccc;
                 font-size: 20px;
             }
-        }
-
-        td,th {
-            padding: 0;
         }
 
         th {
@@ -191,7 +359,7 @@ html {
 
             &:hover {
                 background: #fff;
-            }
+    }
         }
     }
 
@@ -200,12 +368,15 @@ html {
     }
 
     .tabs {
+        background-color: white;
+        border-bottom: 1px solid $mainColor;
+
         a {
             display: block;
             color: $greyColor;
             text-decoration: none;
             font-size: 14px;
-            padding: 8px 0;
+            padding: 12px 0 8px 0;
             border-bottom: 4px solid transparent;
         }
 
@@ -218,26 +389,64 @@ html {
 
     #seasons-list {
         margin: 0;
-        padding: 0;
+        padding: 16px 8px 8px 8px;
         list-style: none;
+        background-color: transparent;
 
         li {
             display: inline-block;
+            margin-right: 8px;
+        }
+
+        a,
+        span {
+            font-size: 12px;
+        }
+
+        .idenyaktiv {
+            font-size: 18px;
+            font-weight: bold;
+            color: $mainColor;
         }
     }
 
     #login {
+        position: fixed;
+        z-index: 9999;
+        top: 64px;
+        right: 12px;
         width: 365px;
+        margin: 0;
+        padding: 20px;
+        background: #fff;
+        border-radius: 0!important;
+        box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+
+
+        & + table {
+            @extend %hidden;
+        }
     }
 
-    #login + table {
-        @extend %hidden;
-    }
 
     div.footer {
-        margin-left: 0;
+        margin: 24px 0 0 0;
         width: auto;
         border: 0;
+        background-color: #2f2f2f;
+
+        a, 
+        a:active,
+        a:hover,
+        a:visited {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        a:hover {
+            color: $mainColor;
+        }
     }
 
     .copyright {
@@ -246,5 +455,32 @@ html {
 
     .eventmenu_table:not(.tabs) {
         @extend %hidden;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        body {
+            padding-top: $menuHeightMobile;
+        }
+
+        div.menu {
+            height: $menuHeightMobile;
+        }
+
+        .sidebar {
+            > ul {
+                top: $menuHeightMobile;
+            }
+        }
+
+        .sidebarred div.content {
+            margin-left: 0;
+        }
+
+        .sidebarred .sidebar {
+            background-color: white;
+            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .4);
+        }
     }
 }
