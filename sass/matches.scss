@@ -291,13 +291,20 @@ html {
     #matches-container {
         .matches {
             padding: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
 
             > li {
                 margin-bottom: 32px;
+                min-width: 400px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
             }
         }
 
-        .card {
+        .date-container {
             &.past {
                 .date {
                     color: $mainColorDarker;
@@ -319,7 +326,7 @@ html {
             margin: 0 8px;
             padding: 16px 8px;
             color: $greyColor;
-            border-bottom: 1px solid #ebebeb;
+            border-bottom: 1px solid #ccc;
         }
 
         .teams,
@@ -333,6 +340,13 @@ html {
             width: 50%;
             float: left;
             padding: 0 20px;
+        }
+
+        .teams {
+            margin-top: 20px;
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
         }
 
         .team {
@@ -368,6 +382,12 @@ html {
                 font-size: 16px;
                 padding: 12px;
             }
+        }
+
+        .location-container {
+            text-align: center;
+            font-size: 14px;
+            margin: 12px 0;
         }
     }
 

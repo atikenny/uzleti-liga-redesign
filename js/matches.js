@@ -229,7 +229,7 @@ function redesigner(sidebarItems) {
             var games = matches[date],
                 dayTimestamp = Date.parse(date);
 
-            matchesHTML += '<div class="card';
+            matchesHTML += '<div class="date-container';
             
             if (dayTimestamp < todayTimestamp) {
                 matchesHTML += ' past';
@@ -243,13 +243,15 @@ function redesigner(sidebarItems) {
             matchesHTML += '<ul class="matches">';
             
             games.forEach(function (game) {
-                matchesHTML += '<li>';
+                matchesHTML += '<li class="card">';
                 matchesHTML += getTeamsHTML(game);
 
                 if (game.result) {
                     matchesHTML += getResultHTML(game.result);
                     matchesHTML += getQuarters(game.result.quarters);
                 }
+                
+                matchesHTML += getLocationHTML(game.location);
 
                 matchesHTML += '</li>';
             });
@@ -261,6 +263,10 @@ function redesigner(sidebarItems) {
         matchesHTML += '</div>';
         $seasonsList.after(matchesHTML);
         console.log(matches);
+    }
+
+    function getLocationHTML(location) {
+        return '<div class="location-container"><a class="location" href="' + location.link + '">' + location.name + '</a></div>';
     }
 
     function getTeamsHTML(game) {

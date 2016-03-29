@@ -204,15 +204,22 @@ html .card {
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14); }
 
 html #matches-container .matches {
-  padding: 20px 0; }
+  padding: 20px 0;
+  display: flex;
+  flex-wrap: wrap; }
   html #matches-container .matches > li {
-    margin-bottom: 32px; }
+    margin-bottom: 32px;
+    min-width: 400px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; }
 
-html #matches-container .card.past .date {
+html #matches-container .date-container.past .date {
   color: #B15800;
   border-bottom: 1px solid #FFAA57; }
 
-html #matches-container .card.today .date {
+html #matches-container .date-container.today .date {
   color: #066E87;
   border-bottom: 1px solid #3C92A6; }
 
@@ -222,7 +229,7 @@ html #matches-container .date {
   margin: 0 8px;
   padding: 16px 8px;
   color: rgba(0, 0, 0, 0.6);
-  border-bottom: 1px solid #ebebeb; }
+  border-bottom: 1px solid #ccc; }
 
 html #matches-container .teams,
 html #matches-container .scores {
@@ -234,6 +241,12 @@ html #matches-container .team {
   width: 50%;
   float: left;
   padding: 0 20px; }
+
+html #matches-container .teams {
+  margin-top: 20px;
+  display: flex;
+  flex-grow: 1;
+  align-items: center; }
 
 html #matches-container .team {
   font-size: 18px; }
@@ -261,6 +274,11 @@ html #matches-container .quarters {
     text-align: center;
     font-size: 16px;
     padding: 12px; }
+
+html #matches-container .location-container {
+  text-align: center;
+  font-size: 14px;
+  margin: 12px 0; }
 
 html .sidebarred div.content,
 html .sidebarred div.footer {
