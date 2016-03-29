@@ -25,6 +25,16 @@ $menuHeight: 64px;
 $menuHeightMobile: 48px;
 $sidebarWidth: 230px;
 $mainColor: #DA6D03;
+$mainColorLighter: #FA9129;
+$mainColorLightest: #FFAA57;
+$mainColorDarker: #B15800;
+$mainColorDarkest: #884400;
+$secondaryColor: #DA9803;
+$inverseColor: #066E87;
+$inverseColorLighter: #1D839B;
+$inverseColorLightest: #3C92A6;
+$inverseColorDarker: #035A6E;
+$inverseColorDarkest: #024454;
 $greyColor: rgba(0, 0, 0, .6);
 $bgColor: #eee;
 $bgHoverColor: #e7e7e7;
@@ -257,12 +267,28 @@ html {
             overflow: hidden;
         }
 
+        .card {
+            &.past {
+                .date {
+                    color: $mainColorDarker;
+                    border-bottom: 1px solid $mainColorLightest;
+                }
+            }
+
+            &.today {
+                .date {
+                    color: $inverseColor;
+                    border-bottom: 1px solid $inverseColorLightest;
+                }
+            }
+        }
+
         .date {
             font-size: 20px;
             font-weight: normal;
             margin: 0 8px;
             padding: 16px 8px;
-            color: black;
+            color: $greyColor;
             border-bottom: 1px solid #ebebeb;
         }
 
@@ -279,13 +305,13 @@ html {
             font-size: 18px;
 
             &.winner {
-                color: $mainColor;
+                color: $inverseColorLightest;
                 font-weight: bold;
             }
         }
 
         .score {
-            font-size: 24px;
+            font-size: 32px;
         }
 
         .score.home,
