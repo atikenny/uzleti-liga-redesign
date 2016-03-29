@@ -17,7 +17,8 @@ function redesigner(sidebarItems) {
         hamburgerMenuIconHTML = '<svg width="24px" height="24px" viewBox="0 0 48 48"><path d="M6 36h36v-4H6v4zm0-10h36v-4H6v4zm0-14v4h36v-4H6z"></path></svg>',
         $hamburgerMenu,
         $sidebar,
-        $seasonsList;
+        $seasonsList,
+        todayTimestamp = Date.parse((new Date()).toISOString().substr(0, 10));
 
     function init(sidebarItems) {
         appendMetaTags();
@@ -167,10 +168,12 @@ function redesigner(sidebarItems) {
                     winner: null
                 };
 
-            if (details.result.homeScore > details.result.awayScore) {
-                details.winner = details.homeTeam.name;
-            } else if (details.result.homeScore < details.result.awayScore) {
-                details.winner = details.awayTeam.name;
+            if (details.result) {
+                if (details.result.homeScore > details.result.awayScore) {
+                    details.winner = details.homeTeam.name;
+                } else if (details.result.homeScore < details.result.awayScore) {
+                    details.winner = details.awayTeam.name;
+                }
             }
 
             return details;
@@ -195,14 +198,23 @@ function redesigner(sidebarItems) {
         }
 
         function getResultDetails($resultCell) {
-            var endResultArray = $resultCell.find('b').html().split(':'),
+            var endResultHTML = $resultCell.find('b').html(),
+                endResultArray,
+                quartersArray,
+                resultDetails;
+
+            if (endResultHTML) {
+                endResultArray = endResultHTML.split(':');
                 quartersArray = $resultCell.find('b').next('font').html().replace('(', '').replace(')', '').split(',');
 
-            return {
-                homeScore: endResultArray[0],
-                awayScore: endResultArray[1],
-                quarters: quartersArray
-            };
+                resultDetails = {
+                    homeScore: parseInt(endResultArray[0], 10),
+                    awayScore: parseInt(endResultArray[1], 10),
+                    quarters: quartersArray
+                };
+            }
+
+            return resultDetails;
         }
 
         return gamesByDate;
@@ -216,16 +228,30 @@ function redesigner(sidebarItems) {
         Object.keys(matches).forEach(appendDateContainer);
 
         function appendDateContainer(date) {
-            var games = matches[date];
+            var games = matches[date],
+                dayTimestamp = Date.parse(date);
 
-            matchesHTML += '<div class="card">';
+            matchesHTML += '<div class="card';
+            
+            if (dayTimestamp < todayTimestamp) {
+                matchesHTML += ' past';
+            } else if (dayTimestamp === todayTimestamp) {
+                matchesHTML += ' today';
+            }
+
+            matchesHTML += '">';
+
             matchesHTML += '<h3 class="date">' + date + '</h3>';
             matchesHTML += '<ul class="matches">';
             
             games.forEach(function (game) {
                 matchesHTML += '<li>';
                 matchesHTML += getTeamsHTML(game);
-                matchesHTML += getResultHTML(game.result);
+
+                if (game.result) {
+                    matchesHTML += getResultHTML(game.result);
+                }
+
                 matchesHTML += '</li>';
             });
 

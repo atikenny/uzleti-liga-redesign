@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
@@ -48,15 +47,15 @@ html body {
   background: #eee;
   font-family: "Open Sans", Arial, sans-serif;
   font-size: 14px;
-  padding-top: 64px; }
+  padding-top: 64px;
+  line-height: normal; }
 
 html a,
 html a:hover,
 html a:active,
 html a:visited {
   text-decoration: none;
-  color: inherit;
-  transition: all .3s ease; }
+  color: inherit; }
 
 html button {
   padding: 0;
@@ -94,7 +93,6 @@ html div.page {
 html div.menu {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
@@ -102,10 +100,10 @@ html div.menu {
   width: auto;
   height: 64px;
   margin: 0;
-  padding: 0 8px;
+  padding: 0 0 0 8px;
   background: #DA6D03;
-  color: #fff;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3); }
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  color: white; }
   html div.menu .hamburger-menu {
     display: inline-block;
     cursor: pointer;
@@ -114,30 +112,13 @@ html div.menu {
     html div.menu .hamburger-menu path {
       fill: white; }
   html div.menu .logo {
-    margin-left: 12px;
-    background: url(chrome-extension://__MSG_@@extension_id__/img/logo.png) no-repeat 50% 50%/contain;
-    display: inline-block;
-    width: 46px;
-    height: 46px; }
+    margin-left: 12px; }
   html div.menu .page-name {
-    flex: 1;
     font-size: 20px;
     font-weight: bold;
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     margin-left: 24px;
     padding-left: 24px; }
-  html div.menu .login-button {
-    float: right;
-    margin: 0 10px 0 0;
-    text-transform: uppercase;
-    background: transparent;
-    color: #fff;
-    border: 0;
-    outline: 0;
-    font-weight: bold;
-    cursor: pointer; }
-    html div.menu .login-button:after {
-      content: 'Belépés'; }
 
 html .sidebar {
   position: fixed;
@@ -161,8 +142,7 @@ html .sidebar {
     margin-top: 16px; }
   html .sidebar span,
   html .sidebar a {
-    opacity: .85;
-    text-transform: capitalize; }
+    opacity: .85; }
     html .sidebar span:hover,
     html .sidebar a:hover {
       opacity: 1; }
@@ -207,34 +187,46 @@ html .card {
   background-color: white;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14); }
 
-html #matches-container .matches li {
-  padding: 16px;
-  overflow: hidden; }
+html #matches-container .matches {
+  padding: 20px 0; }
+  html #matches-container .matches li {
+    margin-bottom: 20px; }
+
+html #matches-container .card.past .date {
+  color: #B15800;
+  border-bottom: 1px solid #FFAA57; }
+
+html #matches-container .card.today .date {
+  color: #066E87;
+  border-bottom: 1px solid #3C92A6; }
 
 html #matches-container .date {
   font-size: 20px;
   font-weight: normal;
   margin: 0 8px;
   padding: 16px 8px;
-  color: black;
+  color: rgba(0, 0, 0, 0.6);
   border-bottom: 1px solid #ebebeb; }
+
+html #matches-container .teams,
+html #matches-container .scores {
+  overflow: hidden; }
 
 html #matches-container .score,
 html #matches-container .team {
   box-sizing: border-box;
   width: 50%;
   float: left;
-  padding: 0 20px;
-  margin-bottom: 12px; }
+  padding: 0 20px; }
 
 html #matches-container .team {
   font-size: 18px; }
   html #matches-container .team.winner {
-    color: #DA6D03;
+    color: #3C92A6;
     font-weight: bold; }
 
 html #matches-container .score {
-  font-size: 24px; }
+  font-size: 32px; }
 
 html #matches-container .score.home,
 html #matches-container .team.home {
@@ -252,18 +244,12 @@ html table.matches_table {
 
 html table.matches_table {
   background: white; }
-  html table.matches_table tr:first-child th {
-    background: #ccc;
-    font-size: 20px; }
+  html table.matches_table td, html table.matches_table th {
+    padding: 0; }
   html table.matches_table th {
     font-family: "Open Sans Condensed", Arial, sans-serif;
     font-size: 18px;
     background: #f0f0f0; }
-  html table.matches_table a {
-    display: block;
-    padding: 5px 10px; }
-    html table.matches_table a:hover {
-      background: #fff; }
 
 html .tabs {
   background-color: white;
@@ -297,22 +283,14 @@ html #seasons-list {
     color: #DA6D03; }
 
 html #login {
-  position: fixed;
-  z-index: 9999;
-  top: 64px;
-  right: 12px;
-  width: 365px;
-  margin: 0;
-  padding: 20px;
-  background: #fff;
-  border-radius: 0 !important;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); }
+  width: 365px; }
 
 html div.footer {
   margin: 24px 0 0 0;
   width: auto;
   border: 0;
-  background-color: #2f2f2f; }
+  background-color: #2f2f2f;
+  overflow: hidden; }
   html div.footer a,
   html div.footer a:active,
   html div.footer a:hover,
