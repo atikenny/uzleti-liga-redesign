@@ -256,7 +256,7 @@ function redesigner(sidebarItems) {
 
                 if (game.result.scores) {
                     matchesHTML += getResultHTML(game.result);
-                    matchesHTML += getQuarters(game.result.scores.quarters);
+                    matchesHTML += getQuartersHTML(game.result.scores.quarters);
                 }
 
                 if (game.result.matchTime) {
@@ -309,36 +309,46 @@ function redesigner(sidebarItems) {
     }
 
     function getResultHTML(result) {
-        var gameHTML = '';
-
-        gameHTML += '<a class="scores" href="' + result.matchDetailsLink + '">';
-        gameHTML += '<span class="home score">' + result.scores.homeScore + '</span>';
-        gameHTML += '<span class="away score">' + result.scores.awayScore + '</span>';
-        gameHTML += '</a>';
-
-        return gameHTML;
+        return (
+            `<a class="scores" href="${result.matchDetailsLink}">
+                <span class="home score">${result.scores.homeScore}</span>
+                <span class="away score">${result.scores.awayScore}</span>
+            </a>`
+        );
     }
 
-    function getQuarters(quarters) {
-        var quartersHTML = '';
+    function getQuartersHTML(quarters) {
+        return (
+            `<ul class="quarters">
+                ${quarters.reduce(getQuarterResultHTML, '')}
+            </ul>`
+        );
+    }
 
-        quartersHTML += '<ul class="quarters">';
-
-        quarters.forEach(function (quarterResult) {
-            quartersHTML += '<li class="result">' + quarterResult + '</li>';
-        });
-
-        quartersHTML += '</ul>';
-
-        return quartersHTML;
+    function getQuarterResultHTML(quartersHTML, quarterResult) {
+        return (
+            `${quartersHTML}<li class="result">${quarterResult}</li>`
+        );
     }
 
     function getMatchTimeHTML(result) {
-        return '<div class="match-time-container"><a class="clock-icon" href="' + result.matchDetailsLink + '">' + result.matchTime + '</a></div>';
+        return (
+            `<div class="match-time-container">
+                <a class="clock-icon" href="${result.matchDetailsLink}">
+                    ${result.matchTime}
+                </a>
+            </div>`
+        );
     }
 
     function getLocationHTML(location) {
-        return '<div class="location-container"><a class="location map-icon" href="' + location.link + '">' + location.name + '</a></div>';
+        return (
+            `<div class="location-container">
+                <a class="location map-icon" href="${location.link}">
+                    ${location.name}
+                </a>
+            </div>`
+        );
     }
 
     function attachEventHandlers() {
