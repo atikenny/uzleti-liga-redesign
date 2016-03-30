@@ -36,7 +36,7 @@ html .sidebar > ul::-webkit-scrollbar-track {
   border: solid transparent;
   border-width: 0; }
 
-html body > div[style^="position: absolute;"], html div.header, html .magyarazat,
+html body > div[style^="position: absolute;"], html div.header, html .matches_table, html .magyarazat,
 html div.magyarazat, html .lap, html #login + table, html .copyright, html .eventmenu_table:not(.tabs) {
   display: none; }
 

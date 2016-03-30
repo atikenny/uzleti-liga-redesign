@@ -9,7 +9,7 @@
     },
     "content_scripts": [
         {
-          "matches": ["http://www.uzletiliga.hu/*"],
+          "matches": ["http://www.uzletiliga.hu/eredmenyek/matches*"],
           "css": ["css/matches.css"],
           "js": ["js/matches.js", "js/jquery.js"],
           "run_at": "document_end"

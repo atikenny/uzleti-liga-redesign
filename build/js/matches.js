@@ -311,10 +311,10 @@ function redesigner(sidebarItems) {
     function getResultHTML(result) {
         var gameHTML = '';
 
-        gameHTML += '<div class="scores">';
-        gameHTML += '<div class="home score"><a href="' + result.matchDetailsLink + '">' + result.scores.homeScore + '</a></div>';
-        gameHTML += '<div class="away score"><a href="' + result.matchDetailsLink + '">' + result.scores.awayScore + '</a></div>';
-        gameHTML += '</div>';
+        gameHTML += '<a class="scores" href="' + result.matchDetailsLink + '">';
+        gameHTML += '<span class="home score">' + result.scores.homeScore + '</span>';
+        gameHTML += '<span class="away score">' + result.scores.awayScore + '</span>';
+        gameHTML += '</a>';
 
         return gameHTML;
     }
