@@ -19,6 +19,7 @@ function redesigner(sidebarItems) {
         $sidebar,
         $seasonsList,
         $loginButton,
+        $todayButton,
         todayTimestamp = Date.parse((new Date()).toISOString().substr(0, 10));
 
     function init(sidebarItems) {
@@ -69,11 +70,13 @@ function redesigner(sidebarItems) {
         menuItems += '<button class="hamburger-menu">' + hamburgerMenuIconHTML + '</button>';
         menuItems += '<span class="logo"></span>';
         menuItems += '<span class="page-name">' + activeLeagueName + '</span>';
+        menuItems += '<button class="today-button">MA</button>';
         menuItems += '<button class="login-button"></button>';
 
         $('.menu').append(menuItems);
         $hamburgerMenu = $('.hamburger-menu');
         $loginButton = $('.login-button');
+        $todayButton = $('.today-button');
     }
 
     function appendSidebarItems(html) {
@@ -354,9 +357,14 @@ function redesigner(sidebarItems) {
     function attachEventHandlers() {
         $hamburgerMenu.on('click', function () {
             $('body').toggleClass('sidebarred');
+            $(this).toggleClass('active');
         });
         $loginButton.on('click', function () {
             $('#login').toggleClass('open');
+            $(this).toggleClass('active');
+        });
+        $todayButton.on('click', function () {
+            $('body').scrollTop($('.today').offset().top - $('.menu').height());
         });
     }
 

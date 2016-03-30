@@ -109,6 +109,7 @@ html {
         border: 0;
         outline: none;
         background: transparent;
+        cursor: pointer;
     }
 
     table {
@@ -164,11 +165,15 @@ html {
         color: #fff;
         box-shadow: 0 1px 8px rgba(0, 0, 0, .3);
 
+        button {
+            height: 48px;
+            margin: 12px;
+            color: inherit;
+        }
+
         .hamburger-menu {
             display: inline-block;
-            cursor: pointer;
             width: 48px;
-            height: 48px;
 
             path {
                 fill: white;
@@ -194,14 +199,12 @@ html {
 
         .login-button {
             float: right;
-            margin: 0 10px 0 0;
             text-transform: uppercase;
             background: transparent;
             color: #fff;
             border: 0;
             outline: 0;
             font-weight: bold;
-            cursor: pointer;
 
             &:after {
                 content: 'Belépés';
