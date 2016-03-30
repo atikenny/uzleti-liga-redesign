@@ -55,6 +55,17 @@ html a:visited {
   color: inherit;
   transition: all .3s ease; }
 
+html a:hover {
+  color: #FA9129; }
+
+html .map-icon {
+  background: url(chrome-extension://__MSG_@@extension_id__/img/map-icon.png) no-repeat 0 50%;
+  padding-left: 30px; }
+
+html .clock-icon {
+  background: url(chrome-extension://__MSG_@@extension_id__/img/clock-icon.png) no-repeat 0 50%;
+  padding-left: 30px; }
+
 html button {
   padding: 0;
   border: 0;
@@ -267,7 +278,7 @@ html #matches-container .quarters {
   background-color: #f7f7f7;
   border: 1px solid #ebebeb;
   border-width: 1px 0;
-  margin-top: 12px; }
+  margin-top: 20px; }
   html #matches-container .quarters .result {
     flex: 1;
     margin: 0 12px;
@@ -278,7 +289,12 @@ html #matches-container .quarters {
 html #matches-container .location-container {
   text-align: center;
   font-size: 14px;
-  margin: 12px 0; }
+  margin: 20px 0; }
+
+html #matches-container .match-time-container {
+  padding: 12px;
+  font-size: 32px;
+  text-align: center; }
 
 html .sidebarred div.content,
 html .sidebarred div.footer {

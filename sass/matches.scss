@@ -90,6 +90,20 @@ html {
         transition: all .3s ease;
     }
 
+    a:hover {
+        color: $mainColorLighter;
+    }
+
+    .map-icon {
+        background: url(chrome-extension://__MSG_@@extension_id__/img/map-icon.png) no-repeat 0 50%;
+        padding-left: 30px;
+    }
+
+    .clock-icon {
+        background: url(chrome-extension://__MSG_@@extension_id__/img/clock-icon.png) no-repeat 0 50%;
+        padding-left: 30px;
+    }
+
     button {
         padding: 0;
         border: 0;
@@ -373,7 +387,7 @@ html {
             background-color: #f7f7f7;
             border: 1px solid #ebebeb;
             border-width: 1px 0;
-            margin-top: 12px;
+            margin-top: 20px;
 
             .result {
                 flex: 1;
@@ -387,7 +401,13 @@ html {
         .location-container {
             text-align: center;
             font-size: 14px;
-            margin: 12px 0;
+            margin: 20px 0;
+        }
+
+        .match-time-container {
+            padding: 12px;
+            font-size: 32px;
+            text-align: center;
         }
     }
 

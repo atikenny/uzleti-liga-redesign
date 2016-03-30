@@ -166,10 +166,10 @@ function redesigner(sidebarItems) {
                     winner: null
                 };
 
-            if (details.result) {
-                if (details.result.homeScore > details.result.awayScore) {
+            if (details.result.scores) {
+                if (details.result.scores.homeScore > details.result.scores.awayScore) {
                     details.winner = details.homeTeam.name;
-                } else if (details.result.homeScore < details.result.awayScore) {
+                } else if (details.result.scores.homeScore < details.result.scores.awayScore) {
                     details.winner = details.awayTeam.name;
                 }
             }
@@ -197,18 +197,26 @@ function redesigner(sidebarItems) {
 
         function getResultDetails($resultCell) {
             var endResultHTML = $resultCell.find('b').html(),
+                matchDetailsLink = $resultCell.find('a'),
                 endResultArray,
-                quartersArray,
-                resultDetails;
+                quartersArray;
 
             if (endResultHTML) {
                 endResultArray = endResultHTML.split(':');
                 quartersArray = $resultCell.find('b').next('font').html().replace('(', '').replace(')', '').split(',');
 
                 resultDetails = {
-                    homeScore: parseInt(endResultArray[0], 10),
-                    awayScore: parseInt(endResultArray[1], 10),
-                    quarters: quartersArray
+                    scores: {
+                        homeScore: parseInt(endResultArray[0], 10),
+                        awayScore: parseInt(endResultArray[1], 10),
+                        quarters: quartersArray
+                    },
+                    matchDetailsLink: matchDetailsLink.attr('href')
+                };
+            } else if (matchDetailsLink) {
+                resultDetails = {
+                    matchDetailsLink: matchDetailsLink.attr('href'),
+                    matchTime: matchDetailsLink.html()
                 };
             }
 
@@ -246,9 +254,13 @@ function redesigner(sidebarItems) {
                 matchesHTML += '<li class="card">';
                 matchesHTML += getTeamsHTML(game);
 
-                if (game.result) {
+                if (game.result.scores) {
                     matchesHTML += getResultHTML(game.result);
-                    matchesHTML += getQuarters(game.result.quarters);
+                    matchesHTML += getQuarters(game.result.scores.quarters);
+                }
+
+                if (game.result.matchTime) {
+                    matchesHTML += getMatchTimeHTML(game.result);
                 }
                 
                 matchesHTML += getLocationHTML(game.location);
@@ -263,10 +275,6 @@ function redesigner(sidebarItems) {
         matchesHTML += '</div>';
         $seasonsList.after(matchesHTML);
         console.log(matches);
-    }
-
-    function getLocationHTML(location) {
-        return '<div class="location-container"><a class="location" href="' + location.link + '">' + location.name + '</a></div>';
     }
 
     function getTeamsHTML(game) {
@@ -304,8 +312,8 @@ function redesigner(sidebarItems) {
         var gameHTML = '';
 
         gameHTML += '<div class="scores">';
-        gameHTML += '<div class="home score">' + result.homeScore + '</div>';
-        gameHTML += '<div class="away score">' + result.awayScore + '</div>';
+        gameHTML += '<div class="home score"><a href="' + result.matchDetailsLink + '">' + result.scores.homeScore + '</a></div>';
+        gameHTML += '<div class="away score"><a href="' + result.matchDetailsLink + '">' + result.scores.awayScore + '</a></div>';
         gameHTML += '</div>';
 
         return gameHTML;
@@ -323,6 +331,14 @@ function redesigner(sidebarItems) {
         quartersHTML += '</ul>';
 
         return quartersHTML;
+    }
+
+    function getMatchTimeHTML(result) {
+        return '<div class="match-time-container"><a class="clock-icon" href="' + result.matchDetailsLink + '">' + result.matchTime + '</a></div>';
+    }
+
+    function getLocationHTML(location) {
+        return '<div class="location-container"><a class="location map-icon" href="' + location.link + '">' + location.name + '</a></div>';
     }
 
     function attachEventHandlers() {
