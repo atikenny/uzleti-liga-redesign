@@ -68,6 +68,17 @@ $bgHoverColor: #e7e7e7;
     display: none;
 }
 
+%menu-poppdown {
+    position: fixed;
+    z-index: 1900;
+    top: -1000px;
+    width: 365px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
+    transition: all .3s ease;
+}
+
 html {
     body {
         background: $bgColor;
@@ -196,10 +207,6 @@ html {
             border-left: 1px solid rgba(255, 255, 255, .2);
             margin-left: 24px;
             padding-left: 24px;
-        }
-
-        .login-button {
-            float: right;
         }
 
         .today-button {
@@ -509,21 +516,23 @@ html {
     }
 
     #login {
-        position: fixed;
-        z-index: 1900;
-        top: -1000px;
+        @extend %menu-poppdown;
         right: 12px;
-        width: 365px;
-        margin: 0;
-        padding: 20px;
-        background: #fff;
         border-radius: 0 !important;
-        box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
-        transition: all .3s ease;
-
+        margin: 0;
+        
         & + table {
             @extend %hidden;
         }
+
+        &.open {
+            top: 64px;
+        }
+    }
+
+    #filter {
+        @extend %menu-poppdown;
+        right: 12px;
 
         &.open {
             top: 64px;

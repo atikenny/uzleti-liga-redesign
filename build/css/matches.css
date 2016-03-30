@@ -39,6 +39,16 @@ html body > div[style^="position: absolute;"], html div.header, html .matches_ta
 html div.magyarazat, html .lap, html #login + table, html .copyright, html .eventmenu_table:not(.tabs) {
   display: none; }
 
+html #login, html #filter {
+  position: fixed;
+  z-index: 1900;
+  top: -1000px;
+  width: 365px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  transition: all .3s ease; }
+
 html body {
   background: #eee;
   font-family: "Open Sans", Arial, sans-serif;
@@ -137,8 +147,6 @@ html div.menu {
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     margin-left: 24px;
     padding-left: 24px; }
-  html div.menu .login-button {
-    float: right; }
   html div.menu .today-button {
     background: url(chrome-extension://__MSG_@@extension_id__/img/calendar-icon.png) no-repeat 50% 50%;
     width: 24px; }
@@ -350,18 +358,15 @@ html #seasons-list {
     color: #DA6D03; }
 
 html #login {
-  position: fixed;
-  z-index: 1900;
-  top: -1000px;
   right: 12px;
-  width: 365px;
-  margin: 0;
-  padding: 20px;
-  background: #fff;
   border-radius: 0 !important;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-  transition: all .3s ease; }
+  margin: 0; }
   html #login.open {
+    top: 64px; }
+
+html #filter {
+  right: 12px; }
+  html #filter.open {
     top: 64px; }
 
 html div.footer {

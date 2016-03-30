@@ -28,6 +28,7 @@ function redesigner(sidebarItems) {
         appendMetaTags();
         appendMenuItems();
         appendSidebarItems(getSidebarItemsHTML(sidebarItems));
+        appendFilter();
         cleanupHTML();
         removeTextNodesFromBody();
         appendMatches(collectMatches());
@@ -86,6 +87,12 @@ function redesigner(sidebarItems) {
     function appendSidebarItems(html) {
         $('body').append('<div class="sidebar">' + html + '</div>');
         $sidebar = $('.sidebar');
+    }
+
+    function appendFilter() {
+        var filterHTML = '';
+
+        $('body').append(filterHTML);
     }
 
     function cleanupHTML() {
