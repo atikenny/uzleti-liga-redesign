@@ -167,8 +167,9 @@ html {
 
         button {
             height: 48px;
-            margin: 12px;
+            margin: 0 12px;
             color: inherit;
+            text-transform: uppercase;
         }
 
         .hamburger-menu {
@@ -199,16 +200,11 @@ html {
 
         .login-button {
             float: right;
-            text-transform: uppercase;
-            background: transparent;
-            color: #fff;
-            border: 0;
-            outline: 0;
-            font-weight: bold;
+        }
 
-            &:after {
-                content: 'Belépés';
-            }
+        .today-button {
+            background: url(chrome-extension://__MSG_@@extension_id__/img/calendar-icon.png) no-repeat 50% 50%;
+            width: 24px;
         }
     }
 
@@ -521,8 +517,8 @@ html {
         margin: 0;
         padding: 20px;
         background: #fff;
-        border-radius: 0!important;
-        box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+        border-radius: 0 !important;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
         transition: all .3s ease;
 
         & + table {
@@ -531,10 +527,6 @@ html {
 
         &.open {
             top: 64px;
-        }
-
-        a:hover {
-            color: $mainColor;
         }
     }
 

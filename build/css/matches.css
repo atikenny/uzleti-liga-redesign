@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
@@ -117,8 +116,9 @@ html div.menu {
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3); }
   html div.menu button {
     height: 48px;
-    margin: 12px;
-    color: inherit; }
+    margin: 0 12px;
+    color: inherit;
+    text-transform: uppercase; }
   html div.menu .hamburger-menu {
     display: inline-block;
     width: 48px; }
@@ -138,15 +138,10 @@ html div.menu {
     margin-left: 24px;
     padding-left: 24px; }
   html div.menu .login-button {
-    float: right;
-    text-transform: uppercase;
-    background: transparent;
-    color: #fff;
-    border: 0;
-    outline: 0;
-    font-weight: bold; }
-    html div.menu .login-button:after {
-      content: 'Belépés'; }
+    float: right; }
+  html div.menu .today-button {
+    background: url(chrome-extension://__MSG_@@extension_id__/img/calendar-icon.png) no-repeat 50% 50%;
+    width: 24px; }
 
 html .sidebar {
   position: fixed;
@@ -368,8 +363,6 @@ html #login {
   transition: all .3s ease; }
   html #login.open {
     top: 64px; }
-  html #login a:hover {
-    color: #DA6D03; }
 
 html div.footer {
   margin: 24px 0 0 0;

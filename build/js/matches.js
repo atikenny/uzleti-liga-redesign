@@ -20,6 +20,8 @@ function redesigner(sidebarItems) {
         $seasonsList,
         $loginButton,
         $todayButton,
+        $filterButton,
+        $filter,
         todayTimestamp = Date.parse((new Date()).toISOString().substr(0, 10));
 
     function init(sidebarItems) {
@@ -70,11 +72,13 @@ function redesigner(sidebarItems) {
         menuItems += '<button class="hamburger-menu">' + hamburgerMenuIconHTML + '</button>';
         menuItems += '<span class="logo"></span>';
         menuItems += '<span class="page-name">' + activeLeagueName + '</span>';
-        menuItems += '<button class="today-button">MA</button>';
-        menuItems += '<button class="login-button"></button>';
+        menuItems += '<button class="filter-button">szűrés</button>';
+        menuItems += '<button class="today-button"></button>';
+        menuItems += '<button class="login-button">belépés</button>';
 
         $('.menu').append(menuItems);
         $hamburgerMenu = $('.hamburger-menu');
+        $filterButton = $('.filter-button');
         $loginButton = $('.login-button');
         $todayButton = $('.today-button');
     }
@@ -364,7 +368,14 @@ function redesigner(sidebarItems) {
             $(this).toggleClass('active');
         });
         $todayButton.on('click', function () {
-            $('body').scrollTop($('.today').offset().top - $('.menu').height());
+            var todayOffset = $('.today').offset().top - $('.menu').height();
+
+            $('html:not(:animated),body:not(:animated)')
+                .animate({ scrollTop: todayOffset }, 1500);
+        });
+        $filterButton.on('click', function () {
+            $filter.toggleClass('open');
+            $(this).toggleClass('active');
         });
     }
 
