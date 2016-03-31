@@ -338,13 +338,17 @@ html .tabs {
     border-bottom: 4px solid #DA6D03; }
 
 html #seasons-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
   margin: 0;
   padding: 16px 8px 8px 8px;
   list-style: none;
   background-color: transparent; }
   html #seasons-list li {
     display: inline-block;
-    margin-right: 8px; }
+    margin: 0 8px; }
   html #seasons-list a,
   html #seasons-list span {
     font-size: 12px; }
@@ -403,4 +407,6 @@ html div.footer {
     margin-left: 0; }
   html .sidebarred .sidebar {
     background-color: white;
-    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4); } }
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4); }
+  html #seasons-list {
+    justify-content: center; } }
