@@ -376,10 +376,16 @@ function redesigner(sidebarItems) {
             $(this).toggleClass('active');
         });
         $todayButton.on('click', function () {
-            var todayOffset = $('.today').offset().top - $('.menu').height();
+            var $today = $('.today'),
+                $scrollTarget = $today.length ? $today : $('.date-container:not(.past):first'),
+                todayOffset;
 
-            $('html:not(:animated),body:not(:animated)')
-                .animate({ scrollTop: todayOffset }, 1500);
+            if ($scrollTarget.length) {
+                todayOffset = $scrollTarget.offset().top - $('.menu').height();
+
+                $('html:not(:animated),body:not(:animated)')
+                    .animate({ scrollTop: todayOffset }, 1500);
+            }
         });
         $filterButton.on('click', function () {
             $filter.toggleClass('open');
