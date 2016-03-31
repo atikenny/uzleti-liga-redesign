@@ -14,7 +14,6 @@ document.addEventListener('scriptInjected', function (event) {
 function redesigner(sidebarItems) {
     var activePageName = $('.lap').html(),
         activeLeagueName = $('.eventmenu_table h2').html(),
-        hamburgerMenuIconHTML = '<svg width="24px" height="24px" viewBox="0 0 48 48"><path d="M6 36h36v-4H6v4zm0-10h36v-4H6v4zm0-14v4h36v-4H6z"></path></svg>',
         $hamburgerMenu,
         $sidebar,
         $seasonsList,
@@ -70,12 +69,12 @@ function redesigner(sidebarItems) {
     function appendMenuItems() {
         var menuItems = '';
 
-        menuItems += '<button class="hamburger-menu">' + hamburgerMenuIconHTML + '</button>';
+        menuItems += '<button class="hamburger-menu"><i class="material-icons">menu</i></button>';
         menuItems += '<span class="logo"></span>';
         menuItems += '<span class="page-name">' + activeLeagueName + '</span>';
-        menuItems += '<button class="filter-button">szűrés</button>';
-        menuItems += '<button class="today-button"></button>';
-        menuItems += '<button class="login-button">belépés</button>';
+        menuItems += '<button class="filter-button"><i class="material-icons">filter_list</i></button>';
+        menuItems += '<button class="today-button"><i class="material-icons">today</i></button>';
+        menuItems += '<button class="login-button"><i class="material-icons">account_box</i></button>';
 
         $('.menu').append(menuItems);
         $hamburgerMenu = $('.hamburger-menu');
@@ -348,7 +347,8 @@ function redesigner(sidebarItems) {
     function getMatchTimeHTML(result) {
         return (
             `<div class="match-time-container">
-                <a class="clock-icon" href="${result.matchDetailsLink}">
+                <a href="${result.matchDetailsLink}">
+                    <i class="material-icons">schedule</i>
                     ${result.matchTime}
                 </a>
             </div>`
@@ -358,7 +358,8 @@ function redesigner(sidebarItems) {
     function getLocationHTML(location) {
         return (
             `<div class="location-container">
-                <a class="location map-icon" href="${location.link}">
+                <a class="location" href="${location.link}">
+                    <i class="material-icons">location_on</i>
                     ${location.name}
                 </a>
             </div>`

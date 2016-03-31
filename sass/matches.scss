@@ -1,24 +1,4 @@
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: url(chrome-extension://__MSG_@@extension_id__/font/opensans-regular.ttf);
-}
-
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 700;
-    src: url(chrome-extension://__MSG_@@extension_id__/font/opensans-bold.ttf);
-}
-
-@font-face {
-    font-family: 'Open Sans Condensed';
-    font-style: normal;
-    font-weight: 700;
-    src: url(chrome-extension://__MSG_@@extension_id__/font/opensans-condbold.ttf);
-}
-
+$root: 'chrome-extension://__MSG_@@extension_id__';
 $font: 'Open Sans', Arial, sans-serif;
 $fontCondensed: 'Open Sans Condensed', Arial, sans-serif;
 $menuHeight: 64px;
@@ -38,6 +18,34 @@ $inverseColorDarkest: #024454;
 $greyColor: rgba(0, 0, 0, .6);
 $bgColor: #eee;
 $bgHoverColor: #e7e7e7;
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url(#{$root}/font/opensans-regular.ttf);
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url(#{$root}/font/opensans-bold.ttf);
+}
+
+@font-face {
+    font-family: 'Open Sans Condensed';
+    font-style: normal;
+    font-weight: 700;
+    src: url(#{$root}/font/opensans-condbold.ttf);
+}
+
+@font-face {
+  font-family: 'icon';
+  font-style: normal;
+  font-weight: 400;
+  src: url(#{$root}/font/icons.woff2) format('woff2');
+}
 
 %scroller {
     &::-webkit-scrollbar {
@@ -79,6 +87,22 @@ $bgHoverColor: #e7e7e7;
     transition: all .3s ease;
 }
 
+.material-icons {
+  font-family: 'icon';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
 html {
     body {
         background: $bgColor;
@@ -105,15 +129,6 @@ html {
         color: $mainColorLighter;
     }
 
-    .map-icon {
-        background: url(chrome-extension://__MSG_@@extension_id__/img/map-icon.png) no-repeat 0 50%;
-        padding-left: 30px;
-    }
-
-    .clock-icon {
-        background: url(chrome-extension://__MSG_@@extension_id__/img/clock-icon.png) no-repeat 0 50%;
-        padding-left: 30px;
-    }
 
     button {
         padding: 0;
@@ -194,7 +209,7 @@ html {
 
         .logo {
             margin-left: 12px;
-            background: url(chrome-extension://__MSG_@@extension_id__/img/logo.png) no-repeat 50% 50% / contain;
+            background: url(#{$root}/img/logo.png) no-repeat 50% 50% / contain;
             display: inline-block;
             width: 46px;
             height: 80%;
@@ -207,11 +222,6 @@ html {
             border-left: 1px solid rgba(255, 255, 255, .2);
             margin-left: 24px;
             padding-left: 24px;
-        }
-
-        .today-button {
-            background: url(chrome-extension://__MSG_@@extension_id__/img/calendar-icon.png) no-repeat 50% 50%;
-            width: 24px;
         }
     }
 
@@ -412,6 +422,10 @@ html {
             text-align: center;
             font-size: 14px;
             margin: 20px 0;
+
+            .material-icons {
+                vertical-align: -0.15em;
+            }
         }
 
         .match-time-container {
