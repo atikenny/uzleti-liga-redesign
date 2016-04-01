@@ -67,14 +67,14 @@ function redesigner(sidebarItems) {
     }
 
     function appendMenuItems() {
-        var menuItems = '';
-
-        menuItems += '<button class="hamburger-menu"><i class="material-icons">menu</i></button>';
-        menuItems += '<span class="logo"></span>';
-        menuItems += '<span class="page-name">' + activeLeagueName + '</span>';
-        menuItems += '<button class="filter-button"><i class="material-icons">filter_list</i></button>';
-        menuItems += '<button class="today-button"><i class="material-icons">today</i></button>';
-        menuItems += '<button class="login-button"><i class="material-icons">account_box</i></button>';
+        var menuItems = (`
+            <button class="hamburger-menu"><i class="material-icons">menu</i></button>
+            <span class="logo"></span>
+            <span class="page-name">${activeLeagueName}</span>
+            <button class="filter-button"><i class="material-icons">filter_list</i></button>
+            <button class="today-button"><i class="material-icons">today</i></button>
+            <button class="login-button"><i class="material-icons">account_box</i></button>
+        `);
 
         $('.menu').append(menuItems);
         $hamburgerMenu = $('.hamburger-menu');
