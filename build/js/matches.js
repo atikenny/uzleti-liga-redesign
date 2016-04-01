@@ -89,9 +89,10 @@ function redesigner(sidebarItems) {
     }
 
     function appendFilter() {
-        var filterHTML = '';
+        var filterHTML = '<div id="filter"></div>';
 
         $('body').append(filterHTML);
+        $filter = $('#filter');
     }
 
     function cleanupHTML() {
