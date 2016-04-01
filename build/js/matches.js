@@ -350,7 +350,7 @@ function redesigner(sidebarItems) {
             `<div class="match-time-container">
                 <a href="${result.matchDetailsLink}">
                     <i class="material-icons">schedule</i>
-                    ${result.matchTime}
+                    <span>${result.matchTime}</span>
                 </a>
             </div>`
         );
@@ -361,7 +361,7 @@ function redesigner(sidebarItems) {
             `<div class="location-container">
                 <a class="location" href="${location.link}">
                     <i class="material-icons">location_on</i>
-                    ${location.name}
+                    <span>${location.name}</span>
                 </a>
             </div>`
         );
