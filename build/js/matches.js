@@ -21,16 +21,20 @@ function redesigner(sidebarItems) {
         $todayButton,
         $filterButton,
         $filter,
+        $showFinishedButton,
+        $hideFinishedButton,
+        $teamSelectors,
+        teams = [],
         todayTimestamp = Date.parse((new Date()).toISOString().substr(0, 10));
 
     function init(sidebarItems) {
         appendMetaTags();
         appendMenuItems();
         appendSidebarItems(getSidebarItemsHTML(sidebarItems));
-        appendFilter();
         cleanupHTML();
         removeTextNodesFromBody();
         appendMatches(collectMatches());
+        appendFilter(teams);
         attachEventHandlers();
     }
 
@@ -88,11 +92,31 @@ function redesigner(sidebarItems) {
         $sidebar = $('.sidebar');
     }
 
-    function appendFilter() {
-        var filterHTML = '<div id="filter"></div>';
+    function appendFilter(teams) {
+        var filterHTML = (`
+                <div id="filter">
+                    <button class="hide-finished-matches">végetért meccsek elrejtése</button>
+                    <button class="show-finished-matches hidden">végetért meccsek mutatása</button>
+                    <ul class="team-selector-container scroller">
+                        ${teams.reduce(getTeamSelectorHTML, '')}
+                    </ul>
+                </div>
+            `);
 
         $('body').append(filterHTML);
         $filter = $('#filter');
+        $hideFinishedButton = $('.hide-finished-matches');
+        $showFinishedButton = $('.show-finished-matches');
+        $teamSelectors = $('.team-selector');
+    }
+    
+    function getTeamSelectorHTML(teamSelectorsHTML, team) {
+        return (`
+            ${teamSelectorsHTML}
+            <li>
+                <button class="team-selector selected" data-team-id="${team.id}">${team.name}</button>
+            </li>
+        `);
     }
 
     function cleanupHTML() {
@@ -180,6 +204,9 @@ function redesigner(sidebarItems) {
                     winner: null
                 };
 
+            collectTeam($gamesRow.eq(0));
+            collectTeam($gamesRow.eq(1));
+            
             if (details.result.scores) {
                 if (details.result.scores.homeScore > details.result.scores.awayScore) {
                     details.winner = details.homeTeam.name;
@@ -192,11 +219,14 @@ function redesigner(sidebarItems) {
         }
 
         function getTeamDetails($teamCell) {
-            var $temaLink = $teamCell.find('a');
+            var $teamLink = $teamCell.find('a'),
+                link = $teamLink && $teamLink.attr('href'), 
+                teamId = link.substr(link.indexOf('tid=') + 4);
 
             return {
-                name: $temaLink.html(),
-                link: $temaLink.attr('href')
+                id: teamId,
+                name: $teamLink.html(),
+                link: link
             };
         }
 
@@ -236,6 +266,20 @@ function redesigner(sidebarItems) {
 
             return resultDetails;
         }
+        
+        function collectTeam($teamCell) {
+            var $teamLink = $teamCell.find('a'),
+                link = $teamLink && $teamLink.attr('href'), 
+                teamId = link.substr(link.indexOf('tid=') + 4),
+                teamName = $teamLink.html();
+            
+            if (teamId && !teams.find((team) => team.id === teamId)) {
+                teams.push({
+                    id: teamId,
+                    name: teamName
+                });
+            }
+        }
 
         return gamesByDate;
     }
@@ -265,7 +309,13 @@ function redesigner(sidebarItems) {
             matchesHTML += '<ul class="matches">';
             
             games.forEach(function (game) {
-                matchesHTML += '<li class="card">';
+                matchesHTML += '<li class="match card';
+                
+                if (game.result.scores) {
+                    matchesHTML += ' finished';
+                }
+                
+                matchesHTML += '">';
                 matchesHTML += getTeamsHTML(game);
 
                 if (game.result.scores) {
@@ -301,10 +351,18 @@ function redesigner(sidebarItems) {
             teamsHTML += ' winner';
         }
 
-        teamsHTML += '">';
-        teamsHTML += '<a href="' + game.homeTeam.link + '">';
-        teamsHTML += game.homeTeam.name;
-        teamsHTML += '</a>';
+        teamsHTML += '"';
+        
+        if (game.homeTeam.id) {
+            teamsHTML += ` data-team-id="${game.homeTeam.id}"`;
+        }
+        
+        teamsHTML += '>';
+        teamsHTML += (
+            `<a href="${game.homeTeam.link}">
+                ${game.homeTeam.name}
+            </a>`
+        );
         teamsHTML += '</div>';
         teamsHTML += '<div class="away team';
 
@@ -312,10 +370,18 @@ function redesigner(sidebarItems) {
             teamsHTML += ' winner';
         }
 
-        teamsHTML += '">';
-        teamsHTML += '<a href="' + game.awayTeam.link + '">';
-        teamsHTML += game.awayTeam.name;
-        teamsHTML += '</a>';
+        teamsHTML += '"';
+        
+        if (game.awayTeam.id) {
+            teamsHTML += ` data-team-id="${game.awayTeam.id}"`;
+        }
+        
+        teamsHTML += '>';
+        teamsHTML += (
+            `<a href="${game.awayTeam.link}">
+                ${game.awayTeam.name}
+            </a>`
+        );
         teamsHTML += '</div>';
         teamsHTML += '</div>';
 
@@ -392,6 +458,54 @@ function redesigner(sidebarItems) {
             $filter.toggleClass('open');
             $(this).toggleClass('active');
         });
+        $hideFinishedButton.on('click', function () {
+            $(this).addClass('hidden');
+            $showFinishedButton.removeClass('hidden');
+            hideFinishedMatches();
+        });
+        $showFinishedButton.on('click', function () {
+            $(this).addClass('hidden');
+            $hideFinishedButton.removeClass('hidden');
+            showFinishedMatches();
+        });
+        $teamSelectors.on('click', function () {
+            var teamId = $(this).attr('data-team-id');
+            
+            $(this).toggleClass('selected');
+            toggleTeamMatches();
+        });
+    }
+    
+    function hideFinishedMatches() {
+        $('.date-container.past').hide();
+        $('.match.finished').hide();
+    }
+    
+    function showFinishedMatches() {
+        $('.match.finished').show();
+        $('.date-container.past').show();
+    }
+    
+    function toggleTeamMatches() {
+        var activeTeamIds = $('.team-selector.selected').map(function (index, element) {
+            return $(element).attr('data-team-id');
+        }).toArray();
+        
+        $('.match')
+            .each(function () {
+                toggleTeamVisibility(activeTeamIds, $(this))
+            });
+    }
+    
+    function toggleTeamVisibility(activeTeamIds, $match) {
+        var hasTeamToShow = $match
+            .find('.team')
+            .filter(function () {
+                return activeTeamIds.indexOf($(this).attr('data-team-id')) > -1;
+            })
+            .length;
+
+        $match.toggleClass('hidden', !hasTeamToShow);
     }
 
     init(sidebarItems);

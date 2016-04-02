@@ -76,6 +76,10 @@ $bgHoverColor: #e7e7e7;
     display: none;
 }
 
+.hidden {
+    @extend %hidden;
+}
+
 %menu-poppdown {
     position: fixed;
     z-index: 1900;
@@ -335,6 +339,10 @@ html {
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-end;
+                
+                &.hidden {
+                    @extend %hidden;
+                }
             }
         }
 
@@ -551,9 +559,33 @@ html {
     #filter {
         @extend %menu-poppdown;
         right: 12px;
+        width: 600px;
 
         &.open {
             top: 64px;
+        }
+        
+        .team-selector-container {
+            max-height: 300px;
+            overflow-y: scroll;
+            padding: 12px 0;
+            
+            li {
+                display: inline-block;
+            }
+            
+            .team-selector {
+                padding: 8px 12px;
+                margin: 8px 4px;
+                color: black;
+                border-radius: 3px;
+                background-color: #ccc;
+                
+                &.selected {
+                    background-color: $inverseColorLightest;
+                    color: white;
+                }
+            }
         }
     }
 
@@ -600,6 +632,10 @@ html {
 
         div.menu {
             height: $menuHeightMobile;
+        }
+        
+        #filter {
+            width: 365px;
         }
 
         .sidebar {

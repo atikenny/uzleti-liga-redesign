@@ -41,7 +41,7 @@ html .sidebar > ul::-webkit-scrollbar-track {
   border: solid transparent;
   border-width: 0; }
 
-html body > div[style^="position: absolute;"], html div.header, html .matches_table, html .magyarazat,
+.hidden, html body > div[style^="position: absolute;"], html div.header, html .matches_table, html #matches-container .matches > li.hidden, html .magyarazat,
 html div.magyarazat, html .lap, html #login + table, html .copyright, html .eventmenu_table:not(.tabs) {
   display: none; }
 
@@ -381,9 +381,25 @@ html #login {
     top: 64px; }
 
 html #filter {
-  right: 12px; }
+  right: 12px;
+  width: 600px; }
   html #filter.open {
     top: 64px; }
+  html #filter .team-selector-container {
+    max-height: 300px;
+    overflow-y: scroll;
+    padding: 12px 0; }
+    html #filter .team-selector-container li {
+      display: inline-block; }
+    html #filter .team-selector-container .team-selector {
+      padding: 8px 12px;
+      margin: 8px 4px;
+      color: black;
+      border-radius: 3px;
+      background-color: #ccc; }
+      html #filter .team-selector-container .team-selector.selected {
+        background-color: #3C92A6;
+        color: white; }
 
 html div.footer {
   margin: 24px 0 0 0;
@@ -411,6 +427,8 @@ html div.footer {
     padding-top: 48px; }
   html div.menu {
     height: 48px; }
+  html #filter {
+    width: 365px; }
   html .sidebar > ul {
     top: 48px; }
   html .sidebarred div.content,
