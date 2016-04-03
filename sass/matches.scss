@@ -227,6 +227,10 @@ html {
             margin-left: 24px;
             padding-left: 24px;
         }
+        
+        .filter-button.filtered {
+            color: $inverseColorLightest;
+        }
     }
 
     .sidebar {
@@ -255,7 +259,7 @@ html {
             color: $mainColor;
 
             &:hover {
-                background-color: rgba(255,255,255,.5);
+                background-color: rgba(255, 255, 255, .5);
             }
         }
 
@@ -276,8 +280,8 @@ html {
             font-size: 16px;
 
             ul {
-                border-top: 1px solid rgba(0,0,0,.1);
-                background: rgba(0,0,0,.03);
+                border-top: 1px solid rgba(0, 0, 0, .1);
+                background: rgba(0, 0, 0, .03);
                 font-size: 90%;
 
                 span, a {
@@ -560,30 +564,43 @@ html {
         @extend %menu-poppdown;
         right: 12px;
         width: 600px;
-
+        
         &.open {
             top: 64px;
+        }
+        
+        button {
+            padding: 8px 12px;
+            margin: 8px 4px;
+            border-radius: 3px;
+            color: black;
+            background-color: #ccc;
+            
+            &.active {
+                color: white;
+            }
+        }
+        
+        .main-controls {
+            button.active {
+                background-color: $inverseColorDarkest;
+            }
         }
         
         .team-selector-container {
             max-height: 300px;
             overflow-y: scroll;
             padding: 12px 0;
+            margin-top: 12px;
+            border-top: 1px solid rgba(0, 0, 0, .1);
             
             li {
                 display: inline-block;
             }
             
             .team-selector {
-                padding: 8px 12px;
-                margin: 8px 4px;
-                color: black;
-                border-radius: 3px;
-                background-color: #ccc;
-                
-                &.selected {
+                &.active {
                     background-color: $inverseColorLightest;
-                    color: white;
                 }
             }
         }

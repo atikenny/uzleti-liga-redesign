@@ -160,6 +160,8 @@ html div.menu {
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     margin-left: 24px;
     padding-left: 24px; }
+  html div.menu .filter-button.filtered {
+    color: #3C92A6; }
 
 html .sidebar {
   position: fixed;
@@ -385,21 +387,26 @@ html #filter {
   width: 600px; }
   html #filter.open {
     top: 64px; }
+  html #filter button {
+    padding: 8px 12px;
+    margin: 8px 4px;
+    border-radius: 3px;
+    color: black;
+    background-color: #ccc; }
+    html #filter button.active {
+      color: white; }
+  html #filter .main-controls button.active {
+    background-color: #024454; }
   html #filter .team-selector-container {
     max-height: 300px;
     overflow-y: scroll;
-    padding: 12px 0; }
+    padding: 12px 0;
+    margin-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1); }
     html #filter .team-selector-container li {
       display: inline-block; }
-    html #filter .team-selector-container .team-selector {
-      padding: 8px 12px;
-      margin: 8px 4px;
-      color: black;
-      border-radius: 3px;
-      background-color: #ccc; }
-      html #filter .team-selector-container .team-selector.selected {
-        background-color: #3C92A6;
-        color: white; }
+    html #filter .team-selector-container .team-selector.active {
+      background-color: #3C92A6; }
 
 html div.footer {
   margin: 24px 0 0 0;

@@ -1,33 +1,22 @@
-var script = document.createElement('script');
+const redesigner = (sidebarItems) => {
+    const activePageName = $('.lap').html();
+    const activeLeagueName = $('.eventmenu_table h2').html();
+    const todayTimestamp = Date.parse((new Date()).toISOString().substr(0, 10));
+    
+    let $hamburgerMenu;
+    let $sidebar;
+    let $seasonsList;
+    let $loginButton;
+    let $todayButton;
+    let $filterButton;
+    let $filter;
+    let $showFinishedButton;
+    let $showAllTeamsButton;
+    let $teamSelectors;
+    let $filteringButtons;
+    let teams = [];
 
-script.src = chrome.extension.getURL('js/injected-script.js');
-(document.head || document.documentElement).appendChild(script);
-
-script.onload = function () {
-    script.parentNode.removeChild(script);
-};
-
-document.addEventListener('scriptInjected', function (event) {
-    redesigner(event.detail);
-});
-
-function redesigner(sidebarItems) {
-    var activePageName = $('.lap').html(),
-        activeLeagueName = $('.eventmenu_table h2').html(),
-        $hamburgerMenu,
-        $sidebar,
-        $seasonsList,
-        $loginButton,
-        $todayButton,
-        $filterButton,
-        $filter,
-        $showFinishedButton,
-        $hideFinishedButton,
-        $teamSelectors,
-        teams = [],
-        todayTimestamp = Date.parse((new Date()).toISOString().substr(0, 10));
-
-    function init(sidebarItems) {
+    const init = (sidebarItems) => {
         appendMetaTags();
         appendMenuItems();
         appendSidebarItems(getSidebarItemsHTML(sidebarItems));
@@ -36,42 +25,44 @@ function redesigner(sidebarItems) {
         appendMatches(collectMatches());
         appendFilter(teams);
         attachEventHandlers();
-    }
+    };
 
-    function appendMetaTags() {
+    const appendMetaTags = () => {
         $('head').append('<meta name="viewport" content="width=device-width, initial-scale=1">');
-    }
+    };
 
-    function getSidebarItemsHTML(sidebarItems) {
-        var html = '';
+    const getSidebarItemsHTML = (sidebarItems) => {
+        let html = '';
 
         html += '<ul>';
 
-        sidebarItems.menuItems.forEach(function (menuItem) {
-            html += '<li>';
+        html += sidebarItems.menuItems.reduce((sidebarHTML, menuItem) => {
+            sidebarHTML += '<li>';
 
             if (menuItem.itemValue && menuItem.itemValue[0]) {
                 if (menuItem.menuItems) {
-                    html += '<span>' + menuItem.itemValue[0] + '</span>';
+                    sidebarHTML += `<span>${menuItem.itemValue[0]}</span>`;
                 } else {
-                    html += '<a href="' + menuItem.itemValue[1] + '">' + menuItem.itemValue[0] + '</a>';
+                    sidebarHTML += `<a href="${menuItem.itemValue[1]}">${menuItem.itemValue[0]}</a>`;
                 }
             }
 
             if (menuItem.menuItems) {
-                html += getSidebarItemsHTML(menuItem);
+                sidebarHTML += getSidebarItemsHTML(menuItem);
             }
 
-            html += '</li>';
-        });
+            sidebarHTML += '</li>';
+            
+            return sidebarHTML;
+        }, '');
         
         html += '</ul>';
 
         return html;
-    }
+    };
 
-    function appendMenuItems() {
-        var menuItems = (`
+    const appendMenuItems = () => {
+        const menuItems = (`
             <button class="hamburger-menu"><i class="material-icons">menu</i></button>
             <span class="logo"></span>
             <span class="page-name">${activeLeagueName}</span>
@@ -85,71 +76,74 @@ function redesigner(sidebarItems) {
         $filterButton = $('.filter-button');
         $loginButton = $('.login-button');
         $todayButton = $('.today-button');
-    }
+    };
 
-    function appendSidebarItems(html) {
+    const appendSidebarItems = (html) => {
         $('body').append('<div class="sidebar">' + html + '</div>');
         $sidebar = $('.sidebar');
-    }
+    };
 
-    function appendFilter(teams) {
-        var filterHTML = (`
-                <div id="filter">
-                    <button class="hide-finished-matches">végetért meccsek elrejtése</button>
-                    <button class="show-finished-matches hidden">végetért meccsek mutatása</button>
-                    <ul class="team-selector-container scroller">
-                        ${teams.reduce(getTeamSelectorHTML, '')}
-                    </ul>
+    const appendFilter = (teams) => {
+        const filterHTML = (`
+            <div id="filter">
+                <div class="main-controls">
+                    <button class="show-finished-matches active">végetért meccsek</button>
+                    <button class="show-all-teams active">összes csapat</button>
                 </div>
-            `);
+                <ul class="team-selector-container scroller">
+                    ${teams.reduce(getTeamSelectorHTML, '')}
+                </ul>
+            </div>
+        `);
 
         $('body').append(filterHTML);
         $filter = $('#filter');
-        $hideFinishedButton = $('.hide-finished-matches');
         $showFinishedButton = $('.show-finished-matches');
+        $showAllTeamsButton = $('.show-all-teams');
         $teamSelectors = $('.team-selector');
-    }
+        $filteringButtons = $('#filter button');
+    };
     
-    function getTeamSelectorHTML(teamSelectorsHTML, team) {
+    const getTeamSelectorHTML = (teamSelectorsHTML, team) => {
         return (`
             ${teamSelectorsHTML}
             <li>
-                <button class="team-selector selected" data-team-id="${team.id}">${team.name}</button>
+                <button class="team-selector active" data-team-id="${team.id}">${team.name}</button>
             </li>
         `);
-    }
+    };
 
-    function cleanupHTML() {
+    const cleanupHTML = () => {
         removeEmptyRows();
         addMainTableContainerClass();
         setActiveTab();
         addMenuTabsClass();
         removeEmptyTabsRow();
         moveSeasonsList();
-    }
+    };
 
-    function removeEmptyRows() {
+    const removeEmptyRows = () => {
         $('.matches_table tr:has(th[colspan="4"]:contains(" "))').remove();
-    }
+    };
 
-    function addMainTableContainerClass() {
+    const addMainTableContainerClass = () => {
         $('.matches_table').parent().addClass('table_container');
-    }
+    };
 
-    function setActiveTab() {
+    const setActiveTab = () => {
         $('.eventmenu_table th:has(a:contains("' + activePageName + '"))').addClass('active');
-    }
+    };
 
-    function addMenuTabsClass() {
+    const addMenuTabsClass = () => {
         $('.eventmenu_table:has(a:contains("' + activePageName + '"))').addClass('tabs');
-    }
+    };
 
-    function removeEmptyTabsRow() {
+    const removeEmptyTabsRow = () => {
         $('.eventmenu_table tr:has(td[colspan="7"])').remove();
-    }
+    };
 
-    function moveSeasonsList() {
-        var newSeasonsHTML = '';
+    const moveSeasonsList = () => {
+        let newSeasonsHTML = '';
 
         newSeasonsHTML += '<ul id="seasons-list">';
 
@@ -163,46 +157,51 @@ function redesigner(sidebarItems) {
 
         $('.tabs:first').after(newSeasonsHTML);
         $seasonsList = $('#seasons-list');
-    }
+    };
 
-    function removeTextNodesFromBody() {
+    const removeTextNodesFromBody = () => {
         $('body')
             .contents()
             .filter(function () {
                 return this.nodeType === 3;
             })
             .remove();
-    }
+    };
 
-    function collectMatches() {
-        var gamesByDate = {};
+    const collectMatches = () => {
+        const collect = () => {
+            const gamesByDate = $('.matches_table tr').toArray().reduce((gamesByDate, row) => {
+                const isDateRow = $(row).children('th[colspan="4"]').length;
+                const isGameRow = $(row).children('td').length === 4;
+                
+                let dateString;
+                
+                if (isDateRow) {
+                    dateString = $(row).children('th').html();
 
-        $('.matches_table tr').each(function () {
-            var isDateRow = $(this).children('th[colspan="4"]').length,
-                isGameRow = $(this).children('td').length === 4,
-                dateString;
-            
-            if (isDateRow) {
-                dateString = $(this).children('th').html();
+                    if (!gamesByDate[dateString]) {
+                        gamesByDate[dateString] = [];
+                    }
+                } else if (isGameRow) {
+                    dateString = $(row).prevAll('tr:has(th[colspan="4"]):first').children('th').html();
 
-                if (!gamesByDate[dateString]) {
-                    gamesByDate[dateString] = [];
+                    gamesByDate[dateString].push(getGameDetails($(row).children('td')));
                 }
-            } else if (isGameRow) {
-                dateString = $(this).prevAll('tr:has(th[colspan="4"]):first').children('th').html();
+                
+                return gamesByDate;
+            }, {});
+            
+            return gamesByDate;
+        };
 
-                gamesByDate[dateString].push(getGameDetails($(this).children('td')));
-            }
-        });
-
-        function getGameDetails($gamesRow) {
-            var details = {
-                    homeTeam: getTeamDetails($gamesRow.eq(0)),
-                    awayTeam: getTeamDetails($gamesRow.eq(1)),
-                    location: getLocationDetails($gamesRow.eq(2)),
-                    result: getResultDetails($gamesRow.eq(3)),
-                    winner: null
-                };
+        const getGameDetails = ($gamesRow) => {
+            const details = {
+                homeTeam: getTeamDetails($gamesRow.eq(0)),
+                awayTeam: getTeamDetails($gamesRow.eq(1)),
+                location: getLocationDetails($gamesRow.eq(2)),
+                result: getResultDetails($gamesRow.eq(3)),
+                winner: null
+            };
 
             collectTeam($gamesRow.eq(0));
             collectTeam($gamesRow.eq(1));
@@ -216,34 +215,35 @@ function redesigner(sidebarItems) {
             }
 
             return details;
-        }
+        };
 
-        function getTeamDetails($teamCell) {
-            var $teamLink = $teamCell.find('a'),
-                link = $teamLink && $teamLink.attr('href'), 
-                teamId = link.substr(link.indexOf('tid=') + 4);
+        const getTeamDetails = ($teamCell) => {
+            const $teamLink = $teamCell.find('a');
+            const link = $teamLink && $teamLink.attr('href'); 
+            const teamId = link.substr(link.indexOf('tid=') + 4);
 
             return {
                 id: teamId,
                 name: $teamLink.html(),
                 link: link
             };
-        }
+        };
 
-        function getLocationDetails($locationCell) {
-            var $locationLink = $locationCell.find('a');
+        const getLocationDetails = ($locationCell) => {
+            const $locationLink = $locationCell.find('a');
 
             return {
                 name: $locationLink.html(),
                 link: $locationLink.attr('href')
             };
-        }
+        };
 
-        function getResultDetails($resultCell) {
-            var endResultHTML = $resultCell.find('b').html(),
-                matchDetailsLink = $resultCell.find('a'),
-                endResultArray,
-                quartersArray;
+        const getResultDetails = ($resultCell) => {
+            const endResultHTML = $resultCell.find('b').html();
+            const matchDetailsLink = $resultCell.find('a');
+            
+            let endResultArray;
+            let quartersArray;
 
             if (endResultHTML) {
                 endResultArray = endResultHTML.split(':');
@@ -265,13 +265,13 @@ function redesigner(sidebarItems) {
             }
 
             return resultDetails;
-        }
+        };
         
-        function collectTeam($teamCell) {
-            var $teamLink = $teamCell.find('a'),
-                link = $teamLink && $teamLink.attr('href'), 
-                teamId = link.substr(link.indexOf('tid=') + 4),
-                teamName = $teamLink.html();
+        const collectTeam = ($teamCell) => {
+            const $teamLink = $teamCell.find('a');
+            const link = $teamLink && $teamLink.attr('href'); 
+            const teamId = link.substr(link.indexOf('tid=') + 4);
+            const teamName = $teamLink.html();
             
             if (teamId && !teams.find((team) => team.id === teamId)) {
                 teams.push({
@@ -279,21 +279,17 @@ function redesigner(sidebarItems) {
                     name: teamName
                 });
             }
-        }
+        };
 
-        return gamesByDate;
-    }
+        return collect();
+    };
 
-    function appendMatches(matches) {
-        var matchesHTML = '';
+    const appendMatches = (matches) => {
+        let matchesHTML = '';
 
-        matchesHTML += '<div id="matches-container">';
-
-        Object.keys(matches).forEach(appendDateContainer);
-
-        function appendDateContainer(date) {
-            var games = matches[date],
-                dayTimestamp = Date.parse(date);
+        const appendDateContainer = (matchesHTML, date) => {
+            const games = matches[date];
+            const dayTimestamp = Date.parse(date);
 
             matchesHTML += '<div class="date-container';
             
@@ -308,7 +304,7 @@ function redesigner(sidebarItems) {
             matchesHTML += '<h3 class="date">' + date + '</h3>';
             matchesHTML += '<ul class="matches">';
             
-            games.forEach(function (game) {
+            games.forEach((game) => {
                 matchesHTML += '<li class="match card';
                 
                 if (game.result.scores) {
@@ -334,15 +330,23 @@ function redesigner(sidebarItems) {
 
             matchesHTML += '</ul>';
             matchesHTML += '</div>';
-        }
+            
+            return matchesHTML;
+        };
+        
+        matchesHTML += '<div id="matches-container">';
+        
+        matchesHTML += Object.keys(matches).reduce(appendDateContainer, '');
 
         matchesHTML += '</div>';
         $seasonsList.after(matchesHTML);
+        
+        // logger NOT FOR PRODUCTION
         console.log(matches);
-    }
+    };
 
-    function getTeamsHTML(game) {
-        var teamsHTML = '';
+    const getTeamsHTML = (game) => {
+        let teamsHTML = '';
 
         teamsHTML += '<div class="teams">';
         teamsHTML += '<div class="home team';
@@ -386,32 +390,32 @@ function redesigner(sidebarItems) {
         teamsHTML += '</div>';
 
         return teamsHTML;
-    }
+    };
 
-    function getResultHTML(result) {
+    const getResultHTML = (result) => {
         return (
             `<a class="scores" href="${result.matchDetailsLink}">
                 <span class="home score">${result.scores.homeScore}</span>
                 <span class="away score">${result.scores.awayScore}</span>
             </a>`
         );
-    }
+    };
 
-    function getQuartersHTML(quarters) {
+    const getQuartersHTML = (quarters) => {
         return (
             `<ul class="quarters">
                 ${quarters.reduce(getQuarterResultHTML, '')}
             </ul>`
         );
-    }
+    };
 
-    function getQuarterResultHTML(quartersHTML, quarterResult) {
+    const getQuarterResultHTML = (quartersHTML, quarterResult) => {
         return (
             `${quartersHTML}<li class="result">${quarterResult}</li>`
         );
-    }
+    };
 
-    function getMatchTimeHTML(result) {
+    const getMatchTimeHTML = (result) => {
         return (
             `<div class="match-time-container">
                 <a href="${result.matchDetailsLink}">
@@ -420,9 +424,9 @@ function redesigner(sidebarItems) {
                 </a>
             </div>`
         );
-    }
+    };
 
-    function getLocationHTML(location) {
+    const getLocationHTML = (location) => {
         return (
             `<div class="location-container">
                 <a class="location" href="${location.link}">
@@ -431,9 +435,9 @@ function redesigner(sidebarItems) {
                 </a>
             </div>`
         );
-    }
+    };
 
-    function attachEventHandlers() {
+    const attachEventHandlers = () => {
         $hamburgerMenu.on('click', function () {
             $('body').toggleClass('sidebarred');
             $(this).toggleClass('active');
@@ -443,9 +447,10 @@ function redesigner(sidebarItems) {
             $(this).toggleClass('active');
         });
         $todayButton.on('click', function () {
-            var $today = $('.today'),
-                $scrollTarget = $today.length ? $today : $('.date-container:not(.past):first'),
-                todayOffset;
+            const $today = $('.today');
+            const $scrollTarget = $today.length ? $today : $('.date-container:not(.past):first');
+            
+            let todayOffset;
 
             if ($scrollTarget.length) {
                 todayOffset = $scrollTarget.offset().top - $('.menu').height();
@@ -458,36 +463,38 @@ function redesigner(sidebarItems) {
             $filter.toggleClass('open');
             $(this).toggleClass('active');
         });
-        $hideFinishedButton.on('click', function () {
-            $(this).addClass('hidden');
-            $showFinishedButton.removeClass('hidden');
-            hideFinishedMatches();
-        });
         $showFinishedButton.on('click', function () {
-            $(this).addClass('hidden');
-            $hideFinishedButton.removeClass('hidden');
-            showFinishedMatches();
+            $(this).toggleClass('active');
+            toggleFinishedMatches($(this).hasClass('active'));
         });
         $teamSelectors.on('click', function () {
             var teamId = $(this).attr('data-team-id');
             
-            $(this).toggleClass('selected');
+            $(this).toggleClass('active');
             toggleTeamMatches();
         });
-    }
+        $showAllTeamsButton.on('click', function () {
+            $(this).toggleClass('active');
+            $('.team-selector').toggleClass('active', $(this).hasClass('active'));
+            toggleTeamMatches();
+        });
+        $filteringButtons.on('click', function () {
+            setFilterButtonState();
+        });
+    };
     
-    function hideFinishedMatches() {
-        $('.date-container.past').hide();
-        $('.match.finished').hide();
-    }
+    const toggleFinishedMatches = (show) => {
+        if (show) {
+            $('.match.finished').removeClass('hidden');
+            $('.date-container.past').removeClass('hidden');
+        } else {
+            $('.date-container.past').addClass('hidden');
+            $('.match.finished').addClass('hidden');
+        }
+    };
     
-    function showFinishedMatches() {
-        $('.match.finished').show();
-        $('.date-container.past').show();
-    }
-    
-    function toggleTeamMatches() {
-        var activeTeamIds = $('.team-selector.selected').map(function (index, element) {
+    const toggleTeamMatches = () => {
+        const activeTeamIds = $('.team-selector.active').map((index, element) => {
             return $(element).attr('data-team-id');
         }).toArray();
         
@@ -495,10 +502,12 @@ function redesigner(sidebarItems) {
             .each(function () {
                 toggleTeamVisibility(activeTeamIds, $(this))
             });
-    }
+        
+        hideEmptyDateContainers();
+    };
     
-    function toggleTeamVisibility(activeTeamIds, $match) {
-        var hasTeamToShow = $match
+    const toggleTeamVisibility = (activeTeamIds, $match) => {
+        const hasTeamToShow = $match
             .find('.team')
             .filter(function () {
                 return activeTeamIds.indexOf($(this).attr('data-team-id')) > -1;
@@ -506,7 +515,39 @@ function redesigner(sidebarItems) {
             .length;
 
         $match.toggleClass('hidden', !hasTeamToShow);
-    }
+    };
+    
+    const hideEmptyDateContainers = () => {
+        $('.date-container')
+            .each(function () {
+                const hasVisibleMatch = $(this).find('.match:not(.hidden)').length;
+                
+                $(this).toggleClass('hidden', !hasVisibleMatch);
+            });
+    };
+    
+    const setFilterButtonState = () => {
+        const isFiltered = Boolean($('#filter button:not(.active)').length);
+        
+        $filterButton.toggleClass('filtered', isFiltered);
+    };
 
     init(sidebarItems);
-}
+};
+
+const scriptLoader = (redesigner) => {
+    const script = document.createElement('script');
+
+    script.src = chrome.extension.getURL('js/injected-script.js');
+    (document.head || document.documentElement).appendChild(script);
+
+    script.onload = () => {
+        script.parentNode.removeChild(script);
+    };
+
+    document.addEventListener('scriptInjected', (event) => {
+        redesigner(event.detail);
+    });
+};
+
+scriptLoader(redesigner);
