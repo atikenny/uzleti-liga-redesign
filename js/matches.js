@@ -14,6 +14,7 @@ const redesigner = (sidebarItems) => {
     let $showAllTeamsButton;
     let $teamSelectors;
     let $filteringButtons;
+    let activeTeamIds = [];
     let teams = [];
 
     const init = (sidebarItems) => {
@@ -466,56 +467,45 @@ const redesigner = (sidebarItems) => {
         });
         $showFinishedButton.on('click', function () {
             $(this).toggleClass('active');
-            toggleFinishedMatches($(this).hasClass('active'));
+            toggleMatches();
         });
         $teamSelectors.on('click', function () {
-            var teamId = $(this).attr('data-team-id');
-            
             $(this).toggleClass('active');
-            toggleTeamMatches();
+            setActiveTeamIds();
+            toggleMatches();
         });
         $showAllTeamsButton.on('click', function () {
             $(this).toggleClass('active');
             $('.team-selector').toggleClass('active', $(this).hasClass('active'));
-            toggleTeamMatches();
+            setActiveTeamIds();
+            toggleMatches();
         });
         $filteringButtons.on('click', function () {
             setFilterButtonState();
         });
     };
     
-    const toggleFinishedMatches = (show) => {
-        if (show) {
-            $('.match.finished').removeClass('hidden');
-            $('.date-container.past').removeClass('hidden');
-        } else {
-            $('.date-container.past').addClass('hidden');
-            $('.match.finished').addClass('hidden');
-        }
-    };
-    
-    const toggleTeamMatches = () => {
-        const activeTeamIds = $('.team-selector.active').map((index, element) => {
-            return $(element).attr('data-team-id');
-        }).toArray();
-        
-        $('.match')
-            .each(function () {
-                toggleTeamVisibility(activeTeamIds, $(this))
-            });
+    const toggleMatches = () => {
+        $('.match').each(filterMatch);
         
         hideEmptyDateContainers();
     };
-    
-    const toggleTeamVisibility = (activeTeamIds, $match) => {
-        const hasTeamToShow = $match
-            .find('.team')
-            .filter(function () {
-                return activeTeamIds.indexOf($(this).attr('data-team-id')) > -1;
-            })
-            .length;
 
-        $match.toggleClass('hidden', !hasTeamToShow);
+    const setActiveTeamIds = () => {
+        activeTeamIds = $('.team-selector.active').map((index, element) => $(element).attr('data-team-id')).toArray();
+    };
+
+    const filterMatch = (index, matchElement) => {
+        const $match = $(matchElement);
+        const matchTeamIds = getTeamIdsFromMatch($match);
+        const areTeamsFiltered = !(matchTeamIds.some((matchTeamId) => activeTeamIds.indexOf(matchTeamId) > -1));
+        const isTimeFiltered = $showFinishedButton.hasClass('active') ? false : $match.hasClass('finished');
+
+        $match.toggleClass('hidden', areTeamsFiltered || isTimeFiltered);
+    };
+
+    const getTeamIdsFromMatch = ($match) => {
+        return $match.find('.team').map((index, element) => $(element).attr('data-team-id')).toArray();
     };
     
     const hideEmptyDateContainers = () => {
