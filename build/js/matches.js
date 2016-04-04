@@ -16,6 +16,7 @@ const redesigner = (sidebarItems) => {
     let $teamSelectors;
     let $filteringButtons;
     let $tabs;
+    let $stats;
     let activeTeamIds = [];
     let teams = [];
     let stats = {};
@@ -32,6 +33,7 @@ const redesigner = (sidebarItems) => {
         appendMatches(matches);
         teams.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1);
         appendFilter(teams);
+        appendStats(stats);
         attachEventHandlers();
     };
 
@@ -112,6 +114,17 @@ const redesigner = (sidebarItems) => {
         $showAllTeamsButton = $('.show-all-teams');
         $teamSelectors = $('.team-selector');
         $filteringButtons = $('#filter button');
+    };
+
+    const appendStats = (stats) => {
+        const statsHTML = (`
+            <div id="stats" class="sub-page">
+                <h2>STATS</h2>
+            </div>
+        `);
+
+        $('body').append(statsHTML);
+        $stats = $('#stats');
     };
     
     const getTeamSelectorHTML = (teamSelectorsHTML, team) => {
@@ -476,6 +489,10 @@ const redesigner = (sidebarItems) => {
         $hamburgerMenu.on('click', function () {
             $('body').toggleClass('sidebarred');
             $(this).toggleClass('active');
+        });
+        $statsButton.on('click', function () {
+            $(this).toggleClass('active');
+            $stats.toggleClass('show');
         });
         $loginButton.on('click', function () {
             $('#login').toggleClass('open');

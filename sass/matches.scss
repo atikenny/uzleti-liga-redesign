@@ -109,6 +109,7 @@ $bgHoverColor: #e7e7e7;
 
 html {
     body {
+        position: relative;
         background: $bgColor;
         font-family: $font;
         font-size: 14px;
@@ -501,6 +502,8 @@ html {
     .tabs {
         background-color: white;
         border-bottom: 1px solid $mainColor;
+        position: relative;
+        z-index: 1000;
 
         a {
             display: block;
@@ -520,6 +523,24 @@ html {
         &.fixed {
             position: fixed;
             box-shadow: 0 1px 8px rgba(0, 0, 0, .3);
+        }
+    }
+
+    .sub-page {
+        position: absolute;
+        top: 108px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 500;
+        background-color: $bgColor;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 1s ease;
+
+        &.show {
+            opacity: 1;
+            transform: translateY(0);
         }
     }
 

@@ -71,6 +71,7 @@ html #login, html #filter {
   -webkit-font-smoothing: antialiased; }
 
 html body {
+  position: relative;
   background: #eee;
   font-family: "Open Sans", Arial, sans-serif;
   font-size: 14px;
@@ -342,7 +343,9 @@ html table.matches_table {
 
 html .tabs {
   background-color: white;
-  border-bottom: 1px solid #DA6D03; }
+  border-bottom: 1px solid #DA6D03;
+  position: relative;
+  z-index: 1000; }
   html .tabs a {
     display: block;
     color: rgba(0, 0, 0, 0.6);
@@ -357,6 +360,21 @@ html .tabs {
   html .tabs.fixed {
     position: fixed;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3); }
+
+html .sub-page {
+  position: absolute;
+  top: 108px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  background-color: #eee;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 1s ease; }
+  html .sub-page.show {
+    opacity: 1;
+    transform: translateY(0); }
 
 html #seasons-list {
   display: flex;
