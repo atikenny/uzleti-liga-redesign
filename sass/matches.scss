@@ -229,6 +229,10 @@ html {
             padding-left: 24px;
         }
         
+        > button.active {
+            color: $mainColorLightest;
+        }
+
         .filter-button.filtered {
             color: $inverseColorLightest;
         }

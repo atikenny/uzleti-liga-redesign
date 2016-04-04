@@ -161,6 +161,8 @@ html div.menu {
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     margin-left: 24px;
     padding-left: 24px; }
+  html div.menu > button.active {
+    color: #FFAA57; }
   html div.menu .filter-button.filtered {
     color: #3C92A6; }
 
