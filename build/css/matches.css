@@ -378,6 +378,12 @@ html .sub-page {
     opacity: 1;
     transform: translateY(0); }
 
+html #stats .card {
+  padding: 12px; }
+
+html #stats .stats-table {
+  width: 100%; }
+
 html #seasons-list {
   display: flex;
   justify-content: space-around;

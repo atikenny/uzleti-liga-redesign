@@ -33,7 +33,7 @@ const redesigner = (sidebarItems) => {
         appendMatches(matches);
         teams.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1);
         appendFilter(teams);
-        appendStats(stats);
+        appendStats(teams, matches);
         attachEventHandlers();
     };
 
@@ -116,15 +116,47 @@ const redesigner = (sidebarItems) => {
         $filteringButtons = $('#filter button');
     };
 
-    const appendStats = (stats) => {
+    const appendStats = (teams, matches) => {
         const statsHTML = (`
             <div id="stats" class="sub-page">
-                <h2>STATS</h2>
+                <div class="team-stats card">
+                    <table class="stats-table">
+                        <tr>
+                            <th></th>
+                            <th>GY</th>
+                            <th>V</th>
+                            <th>KP</th>
+                            <th>DP</th>
+                        </tr>
+                        ${getTeamStatsHTML(teams, matches)}
+                    </table>
+                </div>
             </div>
         `);
 
         $('body').append(statsHTML);
         $stats = $('#stats');
+    };
+
+    const getTeamStatsHTML = (teams, matches) => {
+        return teams.reduce((html, team) => {
+            const row = (`
+                <tr>
+                    <td>${team.name}</td>
+                    <td>${getTeamWinCount(team.name, matches)}</td>
+                </tr>
+            `);
+
+            return html += row;
+        }, '');
+    };
+
+    const getTeamWinCount = (teamName, matches) => {
+        return Object.keys(matches).reduce((winCount, date) => {
+            return winCount += matches[date].reduce((dateWinCount, match) => {
+                return dateWinCount += Number(match.winner === teamName);
+            }, 0);
+        }, 0);
     };
     
     const getTeamSelectorHTML = (teamSelectorsHTML, team) => {
@@ -243,16 +275,20 @@ const redesigner = (sidebarItems) => {
         };
 
         const getGameDetails = ($gamesRow) => {
+            const $homeTeamCell = $gamesRow.eq(0);
+            const $awayTeamCell = $gamesRow.eq(1);
+            const $locationCell = $gamesRow.eq(2);
+            const $resultCell = $gamesRow.eq(3);
             const details = {
-                homeTeam: getTeamDetails($gamesRow.eq(0)),
-                awayTeam: getTeamDetails($gamesRow.eq(1)),
-                location: getLocationDetails($gamesRow.eq(2)),
-                result: getResultDetails($gamesRow.eq(3)),
+                homeTeam: getTeamDetails($homeTeamCell),
+                awayTeam: getTeamDetails($awayTeamCell),
+                location: getLocationDetails($locationCell),
+                result: getResultDetails($resultCell),
                 winner: null
             };
 
-            collectTeam($gamesRow.eq(0));
-            collectTeam($gamesRow.eq(1));
+            collectTeam($homeTeamCell);
+            collectTeam($awayTeamCell);
             
             if (details.result.scores) {
                 if (details.result.scores.homeScore > details.result.scores.awayScore) {

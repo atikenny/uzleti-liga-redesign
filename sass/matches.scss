@@ -548,6 +548,16 @@ html {
         }
     }
 
+    #stats {
+        .card {
+            padding: 12px;
+        }
+
+        .stats-table {
+            width: 100%;
+        }
+    }
+
     #seasons-list {
         display: flex;
         justify-content: space-around;
