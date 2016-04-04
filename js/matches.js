@@ -8,6 +8,7 @@ const redesigner = (sidebarItems) => {
     let $seasonsList;
     let $loginButton;
     let $todayButton;
+    let $statsButton;
     let $filterButton;
     let $filter;
     let $showFinishedButton;
@@ -73,6 +74,7 @@ const redesigner = (sidebarItems) => {
             <button class="hamburger-menu"><i class="material-icons">menu</i></button>
             <span class="logo"></span>
             <span class="page-name">${activeLeagueName}</span>
+            <button class="stats-button"><i class="material-icons">assessment</i></button>
             <button class="filter-button"><i class="material-icons">filter_list</i></button>
             <button class="today-button"><i class="material-icons">today</i></button>
             <button class="login-button"><i class="material-icons">account_box</i></button>
@@ -80,6 +82,7 @@ const redesigner = (sidebarItems) => {
 
         $('.menu').append(menuItems);
         $hamburgerMenu = $('.hamburger-menu');
+        $statsButton = $('.stats-button');
         $filterButton = $('.filter-button');
         $loginButton = $('.login-button');
         $todayButton = $('.today-button');
@@ -122,6 +125,7 @@ const redesigner = (sidebarItems) => {
 
     const cleanupHTML = () => {
         removeEmptyRows();
+        removeEmptyParagraphs();
         addMainTableContainerClass();
         setActiveTab();
         addMenuTabsClass();
@@ -132,6 +136,12 @@ const redesigner = (sidebarItems) => {
 
     const removeEmptyRows = () => {
         $('.matches_table tr:has(th[colspan="4"]:contains(" "))').remove();
+    };
+
+    const removeEmptyParagraphs = () => {
+        $('p')
+            .filter((index, element) => !(Boolean($(element).children().length)))
+            .remove();
     };
 
     const addMainTableContainerClass = () => {
@@ -150,18 +160,17 @@ const redesigner = (sidebarItems) => {
     const fixTabsOnScroll = () => {
         let timer;
 
-        const debouncedScrollHandler = (event) => {
+        const debouncedScrollHandler = () => {
             clearTimeout(timer);
             timer = setTimeout(() => {
-                $window = $(event.currentTarget);
-
-                $tabs.toggleClass('fixed', Boolean($window.scrollTop() >= 100));
+                $tabs.toggleClass('fixed', Boolean($(window).scrollTop() >= 100));
             }, 0);
 
             return timer;
         };
 
         $(window).scroll(debouncedScrollHandler);
+        debouncedScrollHandler();
     };
 
     const removeEmptyTabsRow = () => {
