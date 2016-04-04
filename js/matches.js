@@ -23,6 +23,7 @@ const redesigner = (sidebarItems) => {
         cleanupHTML();
         removeTextNodesFromBody();
         appendMatches(collectMatches());
+        teams.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1);
         appendFilter(teams);
         attachEventHandlers();
     };
