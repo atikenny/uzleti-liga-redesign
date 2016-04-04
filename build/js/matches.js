@@ -14,8 +14,12 @@ const redesigner = (sidebarItems) => {
     let $showAllTeamsButton;
     let $teamSelectors;
     let $filteringButtons;
+    let $tabs;
     let activeTeamIds = [];
     let teams = [];
+    let stats = {};
+    let filteredStats = {};
+    let matches = {};
 
     const init = (sidebarItems) => {
         appendMetaTags();
@@ -23,7 +27,8 @@ const redesigner = (sidebarItems) => {
         appendSidebarItems(getSidebarItemsHTML(sidebarItems));
         cleanupHTML();
         removeTextNodesFromBody();
-        appendMatches(collectMatches());
+        matches = collectMatches();
+        appendMatches(matches);
         teams.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1);
         appendFilter(teams);
         attachEventHandlers();
@@ -120,6 +125,7 @@ const redesigner = (sidebarItems) => {
         addMainTableContainerClass();
         setActiveTab();
         addMenuTabsClass();
+        fixTabsOnScroll();
         removeEmptyTabsRow();
         moveSeasonsList();
     };
@@ -138,6 +144,24 @@ const redesigner = (sidebarItems) => {
 
     const addMenuTabsClass = () => {
         $('.eventmenu_table:has(a:contains("' + activePageName + '"))').addClass('tabs');
+        $tabs = $('.tabs');
+    };
+
+    const fixTabsOnScroll = () => {
+        let timer;
+
+        const debouncedScrollHandler = (event) => {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                $window = $(event.currentTarget);
+
+                $tabs.toggleClass('fixed', Boolean($window.scrollTop() >= 100));
+            }, 0);
+
+            return timer;
+        };
+
+        $(window).scroll(debouncedScrollHandler);
     };
 
     const removeEmptyTabsRow = () => {

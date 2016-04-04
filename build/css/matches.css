@@ -354,6 +354,9 @@ html .tabs {
   html .tabs a:hover {
     color: #DA6D03;
     border-bottom: 4px solid #DA6D03; }
+  html .tabs.fixed {
+    position: fixed;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3); }
 
 html #seasons-list {
   display: flex;
