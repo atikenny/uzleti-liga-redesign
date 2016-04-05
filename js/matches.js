@@ -117,23 +117,12 @@ const redesigner = (sidebarItems) => {
     };
 
     const appendStats = (teams, matches) => {
-        const teamStats = getTeamStats(teams, matches);
+        const leagues = getLeagues(teams, matches);
         const statsHTML = (`
             <div id="stats" class="sub-page">
                 <div class="team-stats card">
-                    <table class="stats-table">
-                        <tr>
-                            <th></th>
-                            <th>Mérk.</th>
-                            <th>Győz.</th>
-                            <th>Ver.</th>
-                            <th>Dob.</th>
-                            <th>Kap.</th>
-                            <th>Kül.</th>
-                            <th>Pont</th>
-                        </tr>
-                        ${getTeamStatsHTML(teamStats)}
-                    </table>
+                    <h3 class="stats-title">Csapat statisztikák</h3>
+                    ${getLeagueStatsHTML(leagues, matches)}
                 </div>
             </div>
         `);
@@ -142,15 +131,64 @@ const redesigner = (sidebarItems) => {
         $stats = $('#stats');
     };
 
+    const getLeagues = (teams, matches) => {
+        return teams.reduce((leagues, team) => {
+            Object.keys(matches).forEach((date) => {
+                matches[date].forEach((match) => {
+                    const isTeamMatch = match.homeTeam.name === team.name || match.awayTeam.name === team.name;
+
+                    if (isTeamMatch) {
+                        const homeTeamLeague = leagues.find((league) => league.teams && (league.teams.indexOf(match.homeTeam.name) > -1));
+                        const awayTeamLeague = leagues.find((league) => league.teams && (league.teams.indexOf(match.awayTeam.name) > -1));
+
+                        if (!homeTeamLeague && !awayTeamLeague) {
+                            leagues.push({
+                                teams: [match.homeTeam.name, match.awayTeam.name]
+                            });
+                        } else if (!homeTeamLeague) {
+                            awayTeamLeague.teams.push(match.homeTeam.name)
+                        } else if (!awayTeamLeague) {
+                            homeTeamLeague.teams.push(match.awayTeam.name)
+                        }
+                    }
+                });
+            });
+
+            return leagues;
+        }, []);
+    };
+
+    const getLeagueStatsHTML = (leagues, matches) => {
+        return leagues.reduce((leagueStatsHTML, league) => {
+            const teamStats = getTeamStats(league.teams, matches).sort(statSorter);
+
+            return leagueStatsHTML += (`
+                <table class="stats-table">
+                    <tr>
+                        <th></th>
+                        <th>Mérk.</th>
+                        <th>Győz.</th>
+                        <th>Ver.</th>
+                        <th>Dob.</th>
+                        <th>Kap.</th>
+                        <th>Kül.</th>
+                        <th>Pont</th>
+                    </tr>
+                    ${getTeamStatsHTML(teamStats)}
+                </table>
+            `);
+        }, '');
+    };
+
     const getTeamStats = (teams, matches) => {
         return teams.map((team) => {
             const details = {
-                teamName: team.name,
-                matchCount: teamStatCounter(team.name, matches, matchCounter),
-                winCount: teamStatCounter(team.name, matches, winCounter),
-                lossCount: teamStatCounter(team.name, matches, lossCounter),
-                scoredPointsCount: teamStatCounter(team.name, matches, getScoredPointsCounter()),
-                againstPointsCount: teamStatCounter(team.name, matches, getScoredPointsCounter(true)),
+                teamName: team,
+                matchCount: teamStatCounter(team, matches, matchCounter),
+                winCount: teamStatCounter(team, matches, winCounter),
+                lossCount: teamStatCounter(team, matches, lossCounter),
+                scoredPointsCount: teamStatCounter(team, matches, getScoredPointsCounter()),
+                againstPointsCount: teamStatCounter(team, matches, getScoredPointsCounter(true)),
                 scoreDifference: null,
                 points: null
             };
@@ -160,6 +198,18 @@ const redesigner = (sidebarItems) => {
 
             return details;
         });
+    };
+
+    const statSorter = (a, b) => {
+        if (a.points > b.points || a.points === b.points && a.scoreDifference > b.scoreDifference) {
+            return -1;
+        }
+
+        if (a.points < b.points || a.points === b.points && a.scoreDifference < b.scoreDifference) {
+            return 1;
+        }
+
+        return 0;
     };
 
     const teamStatCounter = (teamName, matches, counter) => {

@@ -557,7 +557,43 @@ html {
         }
 
         .stats-table {
+            margin: 40px 0;
             width: 100%;
+
+            tr:nth-of-type(odd) {
+                background-color: #f9f9f9;
+            }
+
+            td,
+            th {
+                width: 8%;
+                text-align: center;
+                padding: 8px;
+                line-height: 1.42857143;
+                vertical-align: top;
+
+                &:first-child {
+                    width: auto;
+                    text-align: left;
+                }
+            }
+
+            th {
+                vertical-align: bottom;
+                border-bottom: 2px solid #ddd;
+            }
+
+            td {
+                border-top: 1px solid #ddd;
+            }
+        }
+
+        .stats-title {
+            margin: 0 0 10px 0;
+            padding: 10px 0;
+            font-size: 16px;
+            border-bottom: 1px solid #ccc;
+            color: $inverseColor;
         }
     }
 

@@ -384,7 +384,33 @@ html #stats .card {
   padding: 12px; }
 
 html #stats .stats-table {
+  margin: 40px 0;
   width: 100%; }
+  html #stats .stats-table tr:nth-of-type(odd) {
+    background-color: #f9f9f9; }
+  html #stats .stats-table td,
+  html #stats .stats-table th {
+    width: 8%;
+    text-align: center;
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top; }
+    html #stats .stats-table td:first-child,
+    html #stats .stats-table th:first-child {
+      width: auto;
+      text-align: left; }
+  html #stats .stats-table th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd; }
+  html #stats .stats-table td {
+    border-top: 1px solid #ddd; }
+
+html #stats .stats-title {
+  margin: 0 0 10px 0;
+  padding: 10px 0;
+  font-size: 16px;
+  border-bottom: 1px solid #ccc;
+  color: #066E87; }
 
 html #seasons-list {
   display: flex;
