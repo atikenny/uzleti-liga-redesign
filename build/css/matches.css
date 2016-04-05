@@ -75,7 +75,7 @@ html body {
   background: #eee;
   font-family: "Open Sans", Arial, sans-serif;
   font-size: 14px;
-  padding-top: 64px;
+  padding-top: 108px;
   line-height: normal; }
 
 html a,
@@ -155,11 +155,10 @@ html div.menu {
     width: 46px;
     height: 80%; }
   html div.menu .page-name {
-    flex: 1;
     font-size: 20px;
     font-weight: bold;
     border-left: 1px solid rgba(255, 255, 255, 0.2);
-    margin-left: 24px;
+    margin: 0 24px;
     padding-left: 24px; }
   html div.menu > button.active {
     color: #FFAA57; }
@@ -196,7 +195,7 @@ html .sidebar {
   html .sidebar > ul {
     overflow-y: auto;
     position: absolute;
-    top: 64px;
+    top: 108px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -346,7 +345,11 @@ html table.matches_table {
 html .tabs {
   background-color: white;
   border-bottom: 1px solid #DA6D03;
-  position: relative;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
   z-index: 1000; }
   html .tabs a {
     display: block;
@@ -359,9 +362,6 @@ html .tabs {
   html .tabs a:hover {
     color: #DA6D03;
     border-bottom: 4px solid #DA6D03; }
-  html .tabs.fixed {
-    position: fixed;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3); }
 
 html .sub-page {
   position: absolute;
@@ -413,23 +413,44 @@ html #stats .stats-title {
   color: #066E87; }
 
 html #seasons-list {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 0;
-  padding: 16px 8px 8px 8px;
+  position: relative;
+  align-self: flex-start;
+  padding: 15px 8px 19px;
   list-style: none;
-  background-color: transparent; }
+  background-color: #fff;
+  font-size: 16px;
+  margin-right: auto;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  outline: 0;
+  transition: all .3s ease; }
+  html #seasons-list:focus {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); }
+    html #seasons-list:focus li {
+      transform: scaleY(1);
+      height: 2em; }
   html #seasons-list li {
-    display: inline-block;
-    margin: 0 8px; }
-  html #seasons-list a,
-  html #seasons-list span {
-    font-size: 12px; }
-  html #seasons-list .idenyaktiv {
-    font-size: 18px;
-    font-weight: bold;
+    text-align: center;
+    margin: 0 8px;
+    padding: 0;
+    transform: scaleY(0);
+    height: 0;
+    transition: all .3s ease; }
+    html #seasons-list li.active {
+      font-size: 18px;
+      font-weight: bold;
+      color: #DA6D03;
+      transform: scaleY(1);
+      height: 2em; }
+    html #seasons-list li a,
+    html #seasons-list li span {
+      display: block;
+      line-height: 2em;
+      font-size: inherit;
+      color: inherit;
+      -webkit-user-select: none;
+      user-select: none; }
+  html #seasons-list a:hover {
     color: #DA6D03; }
 
 html #login {
@@ -488,13 +509,15 @@ html div.footer {
 
 @media (max-width: 768px) {
   html body {
-    padding-top: 48px; }
+    padding-top: 92px; }
   html div.menu {
     height: 48px; }
   html #filter {
     width: 365px; }
-  html .sidebar > ul {
+  html .tabs {
     top: 48px; }
+  html .sidebar > ul {
+    top: 92px; }
   html .sidebarred div.content,
   html .sidebarred div.footer {
     margin-left: 0; }
@@ -502,4 +525,4 @@ html div.footer {
     background-color: white;
     box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4); }
   html #seasons-list {
-    justify-content: center; } }
+    padding: 7px 0 11px; } }

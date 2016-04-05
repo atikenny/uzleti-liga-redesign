@@ -3,6 +3,7 @@ $font: 'Open Sans', Arial, sans-serif;
 $fontCondensed: 'Open Sans Condensed', Arial, sans-serif;
 $menuHeight: 64px;
 $menuHeightMobile: 48px;
+$tabsHeight: 44px;
 $sidebarWidth: 300px;
 $mainColor: #DA6D03;
 $mainColorLighter: #FA9129;
@@ -114,7 +115,7 @@ html {
         background: $bgColor;
         font-family: $font;
         font-size: 14px;
-        padding-top: $menuHeight;
+        padding-top: $menuHeight + $tabsHeight;
         line-height: normal;
 
         > div[style^="position: absolute;"] {
@@ -222,11 +223,10 @@ html {
         }
         
         .page-name {
-            flex: 1;
             font-size: 20px;
             font-weight: bold;
             border-left: 1px solid rgba(255, 255, 255, .2);
-            margin-left: 24px;
+            margin: 0 24px;
             padding-left: 24px;
         }
         
@@ -279,7 +279,7 @@ html {
             @extend %scroller;
             overflow-y: auto;
             position: absolute;
-            top: $menuHeight;
+            top: $menuHeight + $tabsHeight;
             bottom: 0;
             left: 0;
             right: 0;
@@ -507,7 +507,11 @@ html {
     .tabs {
         background-color: white;
         border-bottom: 1px solid $mainColor;
-        position: relative;
+        box-shadow: 0 1px 8px rgba(0, 0, 0, .3);
+        position: fixed;
+        top: $menuHeight;
+        left: 0;
+        right:0;
         z-index: 1000;
 
         a {
@@ -523,11 +527,6 @@ html {
         a:hover {
             color: $mainColor;
             border-bottom: 4px solid $mainColor;
-        }
-
-        &.fixed {
-            position: fixed;
-            box-shadow: 0 1px 8px rgba(0, 0, 0, .3);
         }
     }
 
@@ -598,28 +597,55 @@ html {
     }
 
     #seasons-list {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        align-items: center;
-        margin: 0;
-        padding: 16px 8px 8px 8px;
+        position: relative;
+        align-self: flex-start;
+        padding: 15px 8px 19px;
         list-style: none;
-        background-color: transparent;
+        background-color: #fff;
+        font-size: 16px;
+        margin-right: auto;
+        color: $greyColor;
+        text-align: center;
+        outline: 0;
+        transition: all .3s ease;
+
+        &:focus {
+            box-shadow: 0 3px 8px rgba(0,0,0,.15);
+
+            li {
+                transform: scaleY(1);
+                height: 2em;
+            }
+        }
 
         li {
-            display: inline-block;
+            text-align: center;
             margin: 0 8px;
+            padding: 0;
+            transform: scaleY(0);
+            height: 0;
+            transition: all .3s ease;
+
+            &.active {
+                font-size: 18px;
+                font-weight: bold;
+                color: $mainColor;
+                transform: scaleY(1);
+                height: 2em;
+            }
+
+            a,
+            span {
+                display: block;
+                line-height: 2em;
+                font-size: inherit;
+                color: inherit;
+                -webkit-user-select: none;
+                user-select: none;
+            }
         }
 
-        a,
-        span {
-            font-size: 12px;
-        }
-
-        .idenyaktiv {
-            font-size: 18px;
-            font-weight: bold;
+        a:hover {
             color: $mainColor;
         }
     }
@@ -723,7 +749,7 @@ html {
 @media (max-width: 768px) {
     html {
         body {
-            padding-top: $menuHeightMobile;
+            padding-top: $menuHeightMobile + $tabsHeight;
         }
 
         div.menu {
@@ -734,9 +760,13 @@ html {
             width: 365px;
         }
 
+        .tabs {
+            top: $menuHeightMobile;
+        }
+
         .sidebar {
             > ul {
-                top: $menuHeightMobile;
+                top: $menuHeightMobile + $tabsHeight;
             }
         }
 
@@ -753,7 +783,8 @@ html {
         }
 
         #seasons-list {
-            justify-content: center;
+            padding: 7px 0 11px;
         }
+
     }
 }

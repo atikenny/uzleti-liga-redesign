@@ -292,7 +292,6 @@ const redesigner = (sidebarItems) => {
         addMainTableContainerClass();
         setActiveTab();
         addMenuTabsClass();
-        fixTabsOnScroll();
         removeEmptyTabsRow();
         moveSeasonsList();
     };
@@ -320,22 +319,6 @@ const redesigner = (sidebarItems) => {
         $tabs = $('.tabs');
     };
 
-    const fixTabsOnScroll = () => {
-        let timer;
-
-        const debouncedScrollHandler = () => {
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-                $tabs.toggleClass('fixed', Boolean($(window).scrollTop() >= 100));
-            }, 0);
-
-            return timer;
-        };
-
-        $(window).scroll(debouncedScrollHandler);
-        debouncedScrollHandler();
-    };
-
     const removeEmptyTabsRow = () => {
         $('.eventmenu_table tr:has(td[colspan="7"])').remove();
     };
@@ -343,17 +326,18 @@ const redesigner = (sidebarItems) => {
     const moveSeasonsList = () => {
         let newSeasonsHTML = '';
 
-        newSeasonsHTML += '<ul id="seasons-list">';
+        newSeasonsHTML += '<ul id="seasons-list" tabindex="1">';
 
-        $('.idenylink,.idenyaktiv').each(function () {
-            newSeasonsHTML += '<li>';
-            newSeasonsHTML += $(this).get(0).outerHTML;
-            newSeasonsHTML += '</li>';
+        $('.idenylink,.idenyaktiv').each(function (index, element) {
+            var classes = $(element).hasClass('idenyaktiv') ? 'class="active"' : '',
+                menuTag = $(this).get(0).outerHTML;
+
+            newSeasonsHTML += `<li ${classes}>${menuTag}</li>`;
         });
 
         newSeasonsHTML += '</ul>';
 
-        $('.tabs:first').after(newSeasonsHTML);
+        $('.page-name').after(newSeasonsHTML);
         $seasonsList = $('#seasons-list');
     };
 
@@ -541,7 +525,7 @@ const redesigner = (sidebarItems) => {
         matchesHTML += Object.keys(matches).reduce(appendDateContainer, '');
 
         matchesHTML += '</div>';
-        $seasonsList.after(matchesHTML);
+        $('.tabs:first').after(matchesHTML);
         
         // logger NOT FOR PRODUCTION
         console.log(matches);
