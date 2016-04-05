@@ -365,18 +365,20 @@ html .tabs {
 
 html .sub-page {
   position: absolute;
-  top: 108px;
-  bottom: 0;
+  top: -100%;
   left: 0;
   right: 0;
   z-index: 500;
   background-color: #eee;
   opacity: 0;
   transform: translateY(10px);
-  transition: all 1s ease; }
+  transition: transform 1s ease, opacity 1s ease, top 0s ease 1s; }
   html .sub-page.show {
+    top: 108px;
+    bottom: 0;
     opacity: 1;
-    transform: translateY(0); }
+    transform: translateY(0);
+    transition: transform 1s ease, opacity 1s ease; }
 
 html #stats .card {
   padding: 12px; }

@@ -117,18 +117,22 @@ const redesigner = (sidebarItems) => {
     };
 
     const appendStats = (teams, matches) => {
+        const teamStats = getTeamStats(teams, matches);
         const statsHTML = (`
             <div id="stats" class="sub-page">
                 <div class="team-stats card">
                     <table class="stats-table">
                         <tr>
                             <th></th>
-                            <th>GY</th>
-                            <th>V</th>
-                            <th>KP</th>
-                            <th>DP</th>
+                            <th>Mérk.</th>
+                            <th>Győz.</th>
+                            <th>Ver.</th>
+                            <th>Dob.</th>
+                            <th>Kap.</th>
+                            <th>Kül.</th>
+                            <th>Pont</th>
                         </tr>
-                        ${getTeamStatsHTML(teams, matches)}
+                        ${getTeamStatsHTML(teamStats)}
                     </table>
                 </div>
             </div>
@@ -138,25 +142,89 @@ const redesigner = (sidebarItems) => {
         $stats = $('#stats');
     };
 
-    const getTeamStatsHTML = (teams, matches) => {
-        return teams.reduce((html, team) => {
+    const getTeamStats = (teams, matches) => {
+        return teams.map((team) => {
+            const details = {
+                teamName: team.name,
+                matchCount: teamStatCounter(team.name, matches, matchCounter),
+                winCount: teamStatCounter(team.name, matches, winCounter),
+                lossCount: teamStatCounter(team.name, matches, lossCounter),
+                scoredPointsCount: teamStatCounter(team.name, matches, getScoredPointsCounter()),
+                againstPointsCount: teamStatCounter(team.name, matches, getScoredPointsCounter(true)),
+                scoreDifference: null,
+                points: null
+            };
+
+            details.scoreDifference = details.scoredPointsCount - details.againstPointsCount;
+            details.points = (details.winCount * 2) + details.lossCount;
+
+            return details;
+        });
+    };
+
+    const teamStatCounter = (teamName, matches, counter) => {
+        return Object.keys(matches).reduce((count, date) => {
+            return count += matches[date].reduce(counter.bind(null, teamName), 0);
+        }, 0);
+    };
+
+    const matchCounter = (teamName, matchCount, match) => {
+        const isMatchEnded = Boolean(match.winner);
+        const hasPlayed = match.homeTeam.name === teamName || match.awayTeam.name === teamName;
+
+        return matchCount += Number(isMatchEnded && hasPlayed);
+    };
+
+    const winCounter = (teamName, winCount, match) => {
+        return winCount += Number(match.winner === teamName);
+    };
+
+    const lossCounter = (teamName, lossCount, match) => {
+        const isMatchEnded = Boolean(match.winner);
+        const hasPlayed = match.homeTeam.name === teamName || match.awayTeam.name === teamName;
+        const isWinner = match.winner === teamName;
+
+        return lossCount += Number(isMatchEnded && hasPlayed && !isWinner);
+    };
+
+    const getScoredPointsCounter = (collectPointsAgainst) => {
+        return (teamName, scoredPoints, match) => {
+            const isMatchEnded = Boolean(match.winner);
+            const hasPlayed = match.homeTeam.name === teamName || match.awayTeam.name === teamName;
+            
+            let teamScore = 0;
+
+            if (isMatchEnded && hasPlayed) {
+                const isHomeTeam = match.homeTeam.name === teamName;
+
+                if (collectPointsAgainst) {
+                    teamScore = isHomeTeam ? match.result.scores.homeScore : match.result.scores.awayScore;
+                } else {
+                    teamScore = isHomeTeam ? match.result.scores.awayScore : match.result.scores.homeScore;
+                }
+            }
+
+            return scoredPoints += teamScore;
+        };
+    };
+
+    const getTeamStatsHTML = (teamStats) => {
+        return teamStats.reduce((html, teamStat) => {
             const row = (`
                 <tr>
-                    <td>${team.name}</td>
-                    <td>${getTeamWinCount(team.name, matches)}</td>
+                    <td>${teamStat.teamName}</td>
+                    <td>${teamStat.matchCount}</td>
+                    <td>${teamStat.winCount}</td>
+                    <td>${teamStat.lossCount}</td>
+                    <td>${teamStat.scoredPointsCount}</td>
+                    <td>${teamStat.againstPointsCount}</td>
+                    <td>${teamStat.scoreDifference}</td>
+                    <td>${teamStat.points}</td>
                 </tr>
             `);
 
             return html += row;
         }, '');
-    };
-
-    const getTeamWinCount = (teamName, matches) => {
-        return Object.keys(matches).reduce((winCount, date) => {
-            return winCount += matches[date].reduce((dateWinCount, match) => {
-                return dateWinCount += Number(match.winner === teamName);
-            }, 0);
-        }, 0);
     };
     
     const getTeamSelectorHTML = (teamSelectorsHTML, team) => {

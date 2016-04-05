@@ -15,6 +15,7 @@ $inverseColorLighter: #1D839B;
 $inverseColorLightest: #3C92A6;
 $inverseColorDarker: #035A6E;
 $inverseColorDarkest: #024454;
+$complementColor: #02A32C;
 $greyColor: rgba(0, 0, 0, .6);
 $bgColor: #eee;
 $bgHoverColor: #e7e7e7;
@@ -532,19 +533,21 @@ html {
 
     .sub-page {
         position: absolute;
-        top: 108px;
-        bottom: 0;
+        top: -100%;
         left: 0;
         right: 0;
         z-index: 500;
         background-color: $bgColor;
         opacity: 0;
         transform: translateY(10px);
-        transition: all 1s ease;
+        transition: transform 1s ease, opacity 1s ease, top 0s ease 1s;
 
         &.show {
+            top: 108px;
+            bottom: 0;
             opacity: 1;
             transform: translateY(0);
+            transition: transform 1s ease, opacity 1s ease;
         }
     }
 
