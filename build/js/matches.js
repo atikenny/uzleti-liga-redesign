@@ -676,8 +676,8 @@ const redesigner = (sidebarItems) => {
                 <div class="team-stats card">
                     <h3 class="stats-title">Csapat statisztikák</h3>
                     ${getLeagueStatsHTML(leagues, matches)}
-                    <div id="individual-stats-container"></div>
                 </div>
+                <div id="individual-stats-container" class="top-scorers card"></div>
             </div>
         `);
 
