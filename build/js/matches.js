@@ -643,7 +643,7 @@ const redesigner = (sidebarItems) => {
             let todayOffset;
 
             if ($scrollTarget.length) {
-                todayOffset = $scrollTarget.offset().top - $('.menu').height();
+                todayOffset = $scrollTarget.offset().top - Number($('body').css('padding-top').replace('px', ''));
 
                 $('html:not(:animated),body:not(:animated)')
                     .animate({ scrollTop: todayOffset }, 1500);
