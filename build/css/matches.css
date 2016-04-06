@@ -78,8 +78,6 @@ html body {
   padding-top: 108px;
   line-height: normal;
   overflow: hidden; }
-  html body.stats-page-active #matches-container {
-    display: none; }
 
 html a,
 html a:hover,
@@ -367,8 +365,8 @@ html .tabs {
     border-bottom: 4px solid #DA6D03; }
 
 html .sub-page {
-  overflow-y: auto;
   display: none;
+  overflow-y: auto;
   background-color: #eee; }
   html .sub-page.show {
     display: block;

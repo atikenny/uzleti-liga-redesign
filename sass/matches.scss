@@ -122,12 +122,6 @@ html {
         > div[style^="position: absolute;"] {
             @extend %hidden;
         }
-
-        &.stats-page-active {
-            #matches-container {
-                display: none;
-            }
-        }
     }
 
     a,
@@ -538,8 +532,8 @@ html {
     }
 
     .sub-page {
-        overflow-y: auto;
         display: none;
+        overflow-y: auto;
         background-color: $bgColor;
 
         &.show {

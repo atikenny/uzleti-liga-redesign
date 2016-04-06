@@ -21,6 +21,7 @@ const redesigner = (sidebarItems) => {
     let $tabs;
     let $stats;
     let $individualStatsContainer;
+    let $matchesContainer;
     let activeTeamIds = [];
     let teams = [];
     let stats = {};
@@ -485,6 +486,7 @@ const redesigner = (sidebarItems) => {
 
         matchesHTML += '</div>';
         $('.tabs:first').after(matchesHTML);
+        $matchesContainer = $('#matches-container');
         
         // logger NOT FOR PRODUCTION
         console.log(matches);
@@ -786,6 +788,13 @@ const redesigner = (sidebarItems) => {
         $statsButton.on('click', function () {
             $('body').toggleClass('stats-page-active');
             $(this).toggleClass('active');
+
+            if ($(this).hasClass('active')) {
+                $matchesContainer.removeClass('show');
+            } else {
+                $matchesContainer.addClass('show');
+            }
+
             $stats.toggleClass('show');
         });
         $loginButton.on('click', function () {
