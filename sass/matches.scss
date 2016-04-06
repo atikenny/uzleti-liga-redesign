@@ -564,9 +564,15 @@ html {
             padding: 8px;
             line-height: 1.42857143;
             vertical-align: top;
+            white-space: nowrap;
 
             &:first-child {
                 width: auto;
+                text-align: left;
+                white-space: normal;
+            }
+
+            &.align-left {
                 text-align: left;
             }
         }

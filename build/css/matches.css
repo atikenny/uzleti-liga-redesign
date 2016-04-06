@@ -390,10 +390,15 @@ html table.table {
     text-align: center;
     padding: 8px;
     line-height: 1.42857143;
-    vertical-align: top; }
+    vertical-align: top;
+    white-space: nowrap; }
     html table.table td:first-child,
     html table.table th:first-child {
       width: auto;
+      text-align: left;
+      white-space: normal; }
+    html table.table td.align-left,
+    html table.table th.align-left {
       text-align: left; }
   html table.table th {
     vertical-align: bottom;

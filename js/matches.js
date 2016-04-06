@@ -35,14 +35,13 @@ const redesigner = (sidebarItems) => {
         appendMenuItems();
         appendSidebarItems(getSidebarItemsHTML(sidebarItems));
         cleanupHTML();
-        removeTextNodesFromBody();
         matches = collectMatches();
         collectStats();
         appendMatches(matches);
         teams.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1);
         appendFilter(teams);
         appendStats(teams, matches);
-        appendIndividualStats();
+        dataCollectingPromises.individualStats.then(appendIndividualStats);
         attachEventHandlers();
     };
 
@@ -150,6 +149,15 @@ const redesigner = (sidebarItems) => {
             $seasonsList = $('#seasons-list');
         };
 
+        const removeTextNodesFromBody = () => {
+            $('body')
+                .contents()
+                .filter(function () {
+                    return this.nodeType === 3;
+                })
+                .remove();
+        };
+
         removeEmptyRows();
         removeEmptyParagraphs();
         addMainTableContainerClass();
@@ -157,15 +165,7 @@ const redesigner = (sidebarItems) => {
         addMenuTabsClass();
         removeEmptyTabsRow();
         moveSeasonsList();
-    };
-
-    const removeTextNodesFromBody = () => {
-        $('body')
-            .contents()
-            .filter(function () {
-                return this.nodeType === 3;
-            })
-            .remove();
+        removeTextNodesFromBody();
     };
 
     const collectMatches = () => {
@@ -553,7 +553,7 @@ const redesigner = (sidebarItems) => {
         const getLeagueStatsHTML = (leagues, matches) => {
             const getTeamStatsHTML = (teamStats) => {
                 return teamStats.reduce((html, teamStat) => {
-                    const row = (`
+                    return html += (`
                         <tr>
                             <td>${teamStat.teamName}</td>
                             <td>${teamStat.matchCount}</td>
@@ -565,8 +565,6 @@ const redesigner = (sidebarItems) => {
                             <td>${teamStat.points}</td>
                         </tr>
                     `);
-
-                    return html += row;
                 }, '');
             };
 
@@ -575,17 +573,21 @@ const redesigner = (sidebarItems) => {
 
                 return leagueStatsHTML += (`
                     <table class="stats-table table">
-                        <tr>
-                            <th></th>
-                            <th>Mérk.</th>
-                            <th>Győz.</th>
-                            <th>Ver.</th>
-                            <th>Dob.</th>
-                            <th>Kap.</th>
-                            <th>Kül.</th>
-                            <th>Pont</th>
-                        </tr>
-                        ${getTeamStatsHTML(teamStats)}
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Mérk.</th>
+                                <th>Győz.</th>
+                                <th>Ver.</th>
+                                <th>Dob.</th>
+                                <th>Kap.</th>
+                                <th>Kül.</th>
+                                <th>Pont</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${getTeamStatsHTML(teamStats)}
+                        </tbody>
                     </table>
                 `);
             }, '');
@@ -681,11 +683,61 @@ const redesigner = (sidebarItems) => {
 
         $('body').append(statsHTML);
         $stats = $('#stats');
-        $individualStats = $('#individual-stats-container');
+        $individualStatsContainer = $('#individual-stats-container');
     };
 
-    const appendIndividualStats = () => {
+    const appendIndividualStats = (individualStats) => {
+        const individualStatsArray = Object.keys(individualStats).reduce((html, teamName) => {
+            individualStats[teamName].forEach((playerStat) => {
+                html.push({
+                    name: playerStat.name,
+                    teamName: teamName,
+                    points: playerStat.points
+                });
+            });
 
+            return html;
+        }, []);
+
+        const getIndividualStatsHTML = (individualStatsArray) => {
+            const individualStatsSorter = (a, b) => {
+                if (a.points > b.points) {
+                    return -1;
+                }
+
+                if (a.points < b.points) {
+                    return 1;
+                }
+
+                return 0;
+            };
+
+            return individualStatsArray.sort(individualStatsSorter).reduce((html, playerStat) => {
+                return html += (`
+                    <tr>
+                        <td><b>${playerStat.name}</b></td>
+                        <td class="align-left">${playerStat.teamName}</td>
+                        <td>${playerStat.points}</td>
+                    </tr>
+                `);
+            }, '');
+        };
+
+        $individualStatsContainer.html(`
+            <h3 class="stats-title">Legjobb dobók</h3>
+            <table id="individual-stats" class="stats-table table">
+                <thead>
+                    <tr>
+                        <th>Név</th>
+                        <th class="align-left">Csapat</th>
+                        <th>Pontok</th>
+                    </tr>
+                <thead>
+                <tbody>
+                    ${getIndividualStatsHTML(individualStatsArray)}
+                </tbody>
+            </table>
+        `);
     };
 
     const attachEventHandlers = () => {
