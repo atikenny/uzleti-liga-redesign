@@ -117,9 +117,16 @@ html {
         font-size: 14px;
         padding-top: $menuHeight + $tabsHeight;
         line-height: normal;
+        overflow: hidden;
 
         > div[style^="position: absolute;"] {
             @extend %hidden;
+        }
+
+        &.stats-page-active {
+            #matches-container {
+                display: none;
+            }
         }
     }
 
@@ -531,22 +538,13 @@ html {
     }
 
     .sub-page {
-        position: absolute;
-        top: -100%;
-        left: 0;
-        right: 0;
-        z-index: 500;
+        overflow-y: auto;
+        display: none;
         background-color: $bgColor;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: transform 1s ease, opacity 1s ease, top 0s ease 1s;
 
         &.show {
-            top: 108px;
-            bottom: 0;
-            opacity: 1;
-            transform: translateY(0);
-            transition: transform 1s ease, opacity 1s ease;
+            display: block;
+            height: 100%;
         }
     }
 

@@ -479,7 +479,7 @@ const redesigner = (sidebarItems) => {
             );
         };
         
-        matchesHTML += '<div id="matches-container">';
+        matchesHTML += '<div id="matches-container" class="sub-page show">';
         
         matchesHTML += Object.keys(matches).reduce(appendDateContainer, '');
 
@@ -681,7 +681,7 @@ const redesigner = (sidebarItems) => {
             </div>
         `);
 
-        $('body').append(statsHTML);
+        $('#matches-container').after(statsHTML);
         $stats = $('#stats');
         $individualStatsContainer = $('#individual-stats-container');
     };
@@ -784,6 +784,7 @@ const redesigner = (sidebarItems) => {
             $(this).toggleClass('active');
         });
         $statsButton.on('click', function () {
+            $('body').toggleClass('stats-page-active');
             $(this).toggleClass('active');
             $stats.toggleClass('show');
         });

@@ -76,7 +76,10 @@ html body {
   font-family: "Open Sans", Arial, sans-serif;
   font-size: 14px;
   padding-top: 108px;
-  line-height: normal; }
+  line-height: normal;
+  overflow: hidden; }
+  html body.stats-page-active #matches-container {
+    display: none; }
 
 html a,
 html a:hover,
@@ -364,21 +367,12 @@ html .tabs {
     border-bottom: 4px solid #DA6D03; }
 
 html .sub-page {
-  position: absolute;
-  top: -100%;
-  left: 0;
-  right: 0;
-  z-index: 500;
-  background-color: #eee;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: transform 1s ease, opacity 1s ease, top 0s ease 1s; }
+  overflow-y: auto;
+  display: none;
+  background-color: #eee; }
   html .sub-page.show {
-    top: 108px;
-    bottom: 0;
-    opacity: 1;
-    transform: translateY(0);
-    transition: transform 1s ease, opacity 1s ease; }
+    display: block;
+    height: 100%; }
 
 html table.table {
   width: 100%; }
