@@ -1,7 +1,7 @@
 'use strict';
  
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+const gulp  = require('gulp');
+const sass  = require('gulp-sass');
 
 gulp.task('default', ['build'], function () {
     gulp.start('build:watch');
@@ -31,10 +31,14 @@ gulp.task('build', ['sass'], function () {
 });
 
 gulp.task('build:watch', function () {
+    const filePatterns = [
+        'css/**/*.css',
+        'font/**/*.*',
+        'manifest.json',
+        'img/**/*.*',
+        'js/**/*.*'
+    ];
+
     gulp.watch('./sass/**/*.scss', ['sass']);
-    gulp.watch('./css/**/*.css', ['build']);
-    gulp.watch('./font/**/*.*', ['build']);
-    gulp.watch('./manifest.json', ['build']);
-    gulp.watch('./img/**/*.*', ['build']);
-    gulp.watch('./js/**/*.*', ['build']);
+    gulp.watch(filePatterns, ['build']);
 });

@@ -163,7 +163,7 @@ const redesigner = (sidebarItems) => {
             const teamStats = getTeamStats(league.teams, matches).sort(statSorter);
 
             return leagueStatsHTML += (`
-                <table class="stats-table">
+                <table class="stats-table table">
                     <tr>
                         <th></th>
                         <th>Mérk.</th>
@@ -248,9 +248,9 @@ const redesigner = (sidebarItems) => {
                 const isHomeTeam = match.homeTeam.name === teamName;
 
                 if (collectPointsAgainst) {
-                    teamScore = isHomeTeam ? match.result.scores.homeScore : match.result.scores.awayScore;
-                } else {
                     teamScore = isHomeTeam ? match.result.scores.awayScore : match.result.scores.homeScore;
+                } else {
+                    teamScore = isHomeTeam ? match.result.scores.homeScore : match.result.scores.awayScore;
                 }
             }
 

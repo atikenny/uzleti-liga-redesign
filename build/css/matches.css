@@ -380,30 +380,32 @@ html .sub-page {
     transform: translateY(0);
     transition: transform 1s ease, opacity 1s ease; }
 
-html #stats .card {
-  padding: 12px; }
-
-html #stats .stats-table {
-  margin: 40px 0;
+html table.table {
   width: 100%; }
-  html #stats .stats-table tr:nth-of-type(odd) {
+  html table.table tr:nth-of-type(odd) {
     background-color: #f9f9f9; }
-  html #stats .stats-table td,
-  html #stats .stats-table th {
+  html table.table td,
+  html table.table th {
     width: 8%;
     text-align: center;
     padding: 8px;
     line-height: 1.42857143;
     vertical-align: top; }
-    html #stats .stats-table td:first-child,
-    html #stats .stats-table th:first-child {
+    html table.table td:first-child,
+    html table.table th:first-child {
       width: auto;
       text-align: left; }
-  html #stats .stats-table th {
+  html table.table th {
     vertical-align: bottom;
     border-bottom: 2px solid #ddd; }
-  html #stats .stats-table td {
+  html table.table td {
     border-top: 1px solid #ddd; }
+
+html #stats .card {
+  padding: 12px; }
+
+html #stats .stats-table {
+  margin: 40px 0; }
 
 html #stats .stats-title {
   margin: 0 0 10px 0;
