@@ -808,10 +808,10 @@ const redesigner = (sidebarItems) => {
             let todayOffset;
 
             if ($scrollTarget.length) {
-                todayOffset = $scrollTarget.offset().top - Number($('body').css('padding-top').replace('px', ''));
+                todayOffset = $scrollTarget.get(0).offsetTop - Number($('body').css('padding-top').replace('px', ''));
 
-                $('html:not(:animated),body:not(:animated)')
-                    .animate({ scrollTop: todayOffset }, 1500);
+                $('.sub-page.show:not(:animated)')
+                    .animate({ scrollTop: todayOffset }, 1000);
             }
         });
         $filterButton.on('click', function () {
@@ -835,6 +835,9 @@ const redesigner = (sidebarItems) => {
         });
         $filteringButtons.on('click', function () {
             setFilterButtonState();
+        });
+        $('.sub-page').on('mousedown wheel DOMMouseScroll mousewheel keyup', () => {
+            $('.sub-page.show').stop(true, true);
         });
     };
 
