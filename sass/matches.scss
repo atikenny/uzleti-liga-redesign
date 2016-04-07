@@ -610,7 +610,7 @@ html {
         outline: 0;
         transition: all .3s ease;
 
-        &:focus {
+        &:hover {
             box-shadow: 0 3px 8px rgba(0,0,0,.15);
 
             li {

@@ -135,7 +135,7 @@ const redesigner = (sidebarItems) => {
         const moveSeasonsList = () => {
             let newSeasonsHTML = '';
 
-            newSeasonsHTML += '<ul id="seasons-list" tabindex="1">';
+            newSeasonsHTML += '<ul id="seasons-list">';
 
             $('.idenylink,.idenyaktiv').each(function (index, element) {
                 var classes = $(element).hasClass('idenyaktiv') ? 'class="active"' : '',

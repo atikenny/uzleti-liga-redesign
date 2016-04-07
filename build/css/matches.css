@@ -423,9 +423,9 @@ html #seasons-list {
   text-align: center;
   outline: 0;
   transition: all .3s ease; }
-  html #seasons-list:focus {
+  html #seasons-list:hover {
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); }
-    html #seasons-list:focus li {
+    html #seasons-list:hover li {
       transform: scaleY(1);
       height: 2em; }
   html #seasons-list li {
