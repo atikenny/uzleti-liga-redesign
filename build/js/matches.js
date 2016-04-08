@@ -551,6 +551,9 @@ const redesigner = (sidebarItems) => {
         };
 
         const leagues = getLeagues(teams, matches);
+        const allTeamsLeague = [{
+            teams: teams
+        }];
 
         const getLeagueStatsHTML = (leagues, matches) => {
             const getTeamStatsHTML = (teamStats) => {
@@ -675,11 +678,20 @@ const redesigner = (sidebarItems) => {
             
         const statsHTML = (`
             <div id="stats" class="sub-page">
-                <div class="team-stats card">
+                <nav class="tabmenu">
+                    <a href="#team-stats"></a>
+                    <a href="#individual-stats"></a>
+                    <a href="#all-team-stats"></a>
+                </nav>
+                <div id="team-stats-container" class="team-stats card">
                     <h3 class="stats-title">Csapat statisztikák</h3>
                     ${getLeagueStatsHTML(leagues, matches)}
                 </div>
                 <div id="individual-stats-container" class="top-scorers card"></div>
+                <div id="all-team-stats-container"  class="all-team-stats card">
+                    <h3 class="stats-title">Összes Csapat</h3>
+                    ${getLeagueStatsHTML(allTeamsLeague, matches)}
+                </div>
             </div>
         `);
 
