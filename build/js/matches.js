@@ -21,6 +21,7 @@ const redesigner = (sidebarItems) => {
     let $tabs;
     let $stats;
     let $individualStats;
+    let individualStats;
     let $matchesContainer;
     let activeTeamIds = [];
     let teams = [];
@@ -42,7 +43,10 @@ const redesigner = (sidebarItems) => {
         teams.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1);
         appendFilter(teams);
         appendStats(teams, matches);
-        dataCollectingPromises.individualStats.then(renderIndividualStats);
+        dataCollectingPromises.individualStats.then((data) => {
+            individualStats = data;
+            renderIndividualStats(individualStats);
+        });
         setActiveTeamIds();
         attachEventHandlers();
     };
@@ -738,7 +742,7 @@ const redesigner = (sidebarItems) => {
         attachEventHandlers();
     };
 
-    const renderIndividualStats = (individualStats) => {
+    const renderIndividualStats = (individualStats, sortByTeamOrder) => {
         const individualStatsArray = Object.keys(individualStats).reduce((html, teamName) => {
             individualStats[teamName].forEach((playerStat) => {
                 html.push({
@@ -751,20 +755,45 @@ const redesigner = (sidebarItems) => {
             return html;
         }, []);
 
-        const getIndividualStatsHTML = (individualStatsArray) => {
-            const individualStatsSorter = (a, b) => {
-                if (a.points > b.points) {
-                    return -1;
-                }
+        const getIndividualStatsHTML = (individualStatsArray, sortByTeamOrder) => {
+            const individualStatsSorters = {
+                sortByPoints(a, b) {
+                    if (a.points > b.points) {
+                        return -1;
+                    }
 
-                if (a.points < b.points) {
-                    return 1;
-                }
+                    if (a.points < b.points) {
+                        return 1;
+                    }
 
-                return 0;
+                    return 0;
+                },
+                sortByTeamAndPoints(order, a, b) {
+                    const teamNameA = a.teamName.toLowerCase();
+                    const teamNameB = b.teamName.toLowerCase();
+                    const isASC = order === 'asc';
+                    const isDESC = order === 'desc';
+                    const isWrongNameOrder = (isASC && teamNameA < teamNameB) || (isDESC && teamNameA > teamNameB);
+                    const isRightNameOrder = (isASC && teamNameA > teamNameB) || (isDESC && teamNameA < teamNameB);
+                    const isSameTeamName = teamNameA === teamNameB;
+                    const isWrongPointsOrder = a.points > b.points;
+                    const isRightPointsOrder = a.points < b.points;
+
+                    if (isWrongNameOrder || isSameTeamName && isWrongPointsOrder) {
+                        return -1;
+                    }
+
+                    if (isRightNameOrder || isSameTeamName && isRightPointsOrder) {
+                        return 1;
+                    }
+
+                    return 0;
+                }
             };
 
-            return individualStatsArray.sort(individualStatsSorter).reduce((html, playerStat, index) => {
+            const statsSorter = sortByTeamOrder ? individualStatsSorters.sortByTeamAndPoints.bind(null, sortByTeamOrder) : individualStatsSorters.sortByPoints;
+
+            return individualStatsArray.sort(statsSorter).reduce((html, playerStat, index) => {
                 return html += (`
                     <tr class="${colorOddRows(index)}">
                         <td><b>${playerStat.name}</b></td>
@@ -775,21 +804,45 @@ const redesigner = (sidebarItems) => {
             }, '');
         };
 
+        const attachIndividualStatsEvents = ($teamSorter) => {
+            $teamSorter.on('click', (event) => {
+                const $element = $(event.currentTarget);
+
+                switch ($element.attr('data-order')) {
+                    case 'asc':
+                        setTimeout(renderIndividualStats.bind(null, individualStats, 'desc'), 0);
+
+                        break;
+                    case 'desc':
+                        setTimeout(renderIndividualStats.bind(null, individualStats), 0);
+
+                        break;
+                    default:
+                        setTimeout(renderIndividualStats.bind(null, individualStats, 'asc'), 0);
+
+                        break;
+                }
+            });
+        };
+
+        sortByTeamOrder = sortByTeamOrder || '';
+
         $individualStats.html(`
             <h3 class="stats-title">Legjobb dobók</h3>
             <table class="stats-table table">
                 <thead>
                     <tr>
                         <th>Név</th>
-                        <th class="align-left">Csapat</th>
+                        <th class="sort-by-team align-left" data-order="${sortByTeamOrder}">Csapat</th>
                         <th>Pontok</th>
                     </tr>
                 </thead>
                 <tbody>
-                    ${getIndividualStatsHTML(individualStatsArray)}
+                    ${getIndividualStatsHTML(individualStatsArray, sortByTeamOrder)}
                 </tbody>
             </table>
         `);
+        attachIndividualStatsEvents($('.sort-by-team'));
     };
 
     const setActiveTeamIds = () => {
