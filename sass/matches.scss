@@ -17,7 +17,9 @@ $inverseColorLightest: #3C92A6;
 $inverseColorDarker: #035A6E;
 $inverseColorDarkest: #024454;
 $complementColor: #02A32C;
-$greyColor: rgba(0, 0, 0, .6);
+$greyColor: #666;
+$greyColorLighter: #eee;
+$greyColorLightest: #f9f9f9;
 $bgColor: #eee;
 $bgHoverColor: #e7e7e7;
 
@@ -531,6 +533,34 @@ html {
         }
     }
 
+    .tabmenu {
+        margin: 12px 12px -12px;
+        position: relative;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            height: 4px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 12px;
+            background: $greyColorLightest;
+            box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .14), inset 0 -4px 4px -4px rgba(0, 0, 0, .14);
+
+            &.active {
+                background: #fff;
+                pointer-events: none;
+                box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .14);
+            }
+        }
+    }
+
     .sub-page {
         display: none;
         overflow-y: auto;
@@ -546,7 +576,7 @@ html {
         width: 100%;
 
         tr:nth-of-type(odd) {
-            background-color: #f9f9f9;
+            background-color: $greyColorLightest;
         }
 
         td,
@@ -571,6 +601,7 @@ html {
 
         th {
             vertical-align: bottom;
+            background-color: $greyColorLighter;
             border-bottom: 2px solid #ddd;
         }
 
@@ -586,6 +617,14 @@ html {
 
         .stats-table {
             margin: 40px 0;
+
+            &:first-child {
+                margin-top: 12px;
+            }
+
+            &:last-child {
+                margin-bottom: 12px;
+            }
         }
 
         .stats-title {
