@@ -43,6 +43,7 @@ const redesigner = (sidebarItems) => {
         appendFilter(teams);
         appendStats(teams, matches);
         dataCollectingPromises.individualStats.then(renderIndividualStats);
+        setActiveTeamIds();
         attachEventHandlers();
     };
 
@@ -791,6 +792,10 @@ const redesigner = (sidebarItems) => {
         `);
     };
 
+    const setActiveTeamIds = () => {
+        activeTeamIds = $('.team-selector.active').map((index, element) => $(element).attr('data-team-id')).toArray();
+    };
+
     const attachEventHandlers = () => {
         const toggleMatches = () => {
             const getTeamIdsFromMatch = ($match) => {
@@ -818,10 +823,6 @@ const redesigner = (sidebarItems) => {
             $('.match').each(filterMatch);
             
             hideEmptyDateContainers();
-        };
-
-        const setActiveTeamIds = () => {
-            activeTeamIds = $('.team-selector.active').map((index, element) => $(element).attr('data-team-id')).toArray();
         };
 
         const setFilterButtonState = () => {
