@@ -20,7 +20,7 @@ const redesigner = (sidebarItems) => {
     let $filteringButtons;
     let $tabs;
     let $stats;
-    let $individualStatsContainer;
+    let $individualStats;
     let $matchesContainer;
     let activeTeamIds = [];
     let teams = [];
@@ -42,7 +42,7 @@ const redesigner = (sidebarItems) => {
         teams.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1);
         appendFilter(teams);
         appendStats(teams, matches);
-        dataCollectingPromises.individualStats.then(appendIndividualStats);
+        dataCollectingPromises.individualStats.then(renderIndividualStats);
         attachEventHandlers();
     };
 
@@ -679,16 +679,15 @@ const redesigner = (sidebarItems) => {
         const statsHTML = (`
             <div id="stats" class="sub-page">
                 <nav class="tabmenu">
-                    <a href="#team-stats"></a>
-                    <a href="#individual-stats"></a>
-                    <a href="#all-team-stats"></a>
+                    <a href="#team-stats" class="active">Csapat statisztikák</a>
+                    <a href="#individual-stats">Egyéni statisztikák</a>
+                    <a href="#all-team-stats">Liga statisztikák</a>
                 </nav>
-                <div id="team-stats-container" class="team-stats card">
-                    <h3 class="stats-title">Csapat statisztikák</h3>
+                <div id="team-stats" class="card active">
                     ${getLeagueStatsHTML(leagues, matches)}
                 </div>
-                <div id="individual-stats-container" class="top-scorers card"></div>
-                <div id="all-team-stats-container"  class="all-team-stats card">
+                <div id="individual-stats" class="card"></div>
+                <div id="all-team-stats" class="card">
                     <h3 class="stats-title">Összes Csapat</h3>
                     ${getLeagueStatsHTML(allTeamsLeague, matches)}
                 </div>
@@ -697,10 +696,10 @@ const redesigner = (sidebarItems) => {
 
         $('#matches-container').after(statsHTML);
         $stats = $('#stats');
-        $individualStatsContainer = $('#individual-stats-container');
+        $individualStats = $('#individual-stats');
     };
 
-    const appendIndividualStats = (individualStats) => {
+    const renderIndividualStats = (individualStats) => {
         const individualStatsArray = Object.keys(individualStats).reduce((html, teamName) => {
             individualStats[teamName].forEach((playerStat) => {
                 html.push({
@@ -737,9 +736,9 @@ const redesigner = (sidebarItems) => {
             }, '');
         };
 
-        $individualStatsContainer.html(`
+        $individualStats.html(`
             <h3 class="stats-title">Legjobb dobók</h3>
-            <table id="individual-stats" class="stats-table table">
+            <table class="stats-table table">
                 <thead>
                     <tr>
                         <th>Név</th>
