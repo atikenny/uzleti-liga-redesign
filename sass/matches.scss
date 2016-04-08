@@ -634,6 +634,14 @@ html {
             border-bottom: 1px solid #ccc;
             color: $inverseColor;
         }
+
+        .tab {
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
     }
 
     #seasons-list {

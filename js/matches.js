@@ -562,6 +562,7 @@ const redesigner = (sidebarItems) => {
 
         const leagues = getLeagues(teams, matches);
         const allTeamsLeague = [{
+            name: 'Selejtező',
             teams: teams.map((team) => team.name)
         }];
 
@@ -587,6 +588,10 @@ const redesigner = (sidebarItems) => {
 
             return leagues.reduce((leagueStatsHTML, league) => {
                 const teamStats = getTeamStats(league.teams, matches).sort(statSorter);
+
+                if (league.name) {
+                    leagueStatsHTML += `<h3 class="stats-title">${league.name}</h3>`;
+                }
 
                 return leagueStatsHTML += (`
                     <table class="stats-table table">
@@ -687,28 +692,49 @@ const redesigner = (sidebarItems) => {
 
             return 0;
         };
+
+        const seasonLeagueTeamCount = 8;
             
         const statsHTML = (`
             <div id="stats" class="sub-page">
                 <nav class="tabmenu">
-                    <a href="#team-stats" class="active">Csapat statisztikák</a>
-                    <a href="#individual-stats">Egyéni statisztikák</a>
-                    <a href="#all-team-stats">Liga statisztikák</a>
+                    <a href="#team-stats" for="team-stats" class="active">Csapat statisztikák</a>
+                    <a href="#individual-stats" for="individual-stats">Egyéni statisztikák</a>
+                    <a href="#all-team-stats" for="all-team-stats">Liga statisztikák</a>
                 </nav>
-                <div id="team-stats" class="card active">
+                <div id="team-stats" class="tab card active">
                     ${getLeagueStatsHTML(leagues, matches)}
                 </div>
-                <div id="individual-stats" class="card"></div>
-                <div id="all-team-stats" class="card">
-                    <h3 class="stats-title">Összes Csapat</h3>
-                    ${getLeagueStatsHTML(allTeamsLeague, matches, getOddRowBatchColorer(8))}
+                <div id="individual-stats" class="tab card"></div>
+                <div id="all-team-stats" class="tab card">
+                    ${getLeagueStatsHTML(allTeamsLeague, matches, getOddRowBatchColorer(seasonLeagueTeamCount))}
                 </div>
             </div>
         `);
 
+        const attachEventHandlers = () => {
+            $('.tabmenu a').on('click', (event) => {
+                const $tabNav = $(event.currentTarget);
+                const targetTabSelector = '#' + $tabNav.attr('for');
+
+                $('.tabmenu a').removeClass('active');
+                $tabNav.addClass('active');
+                
+                $('.tab')
+                    .removeClass('active')
+                    .filter(targetTabSelector)
+                    .addClass('active');
+
+                event.preventDefault();
+
+                return false;
+            });
+        };
+
         $('#matches-container').after(statsHTML);
         $stats = $('#stats');
         $individualStats = $('#individual-stats');
+        attachEventHandlers();
     };
 
     const renderIndividualStats = (individualStats) => {

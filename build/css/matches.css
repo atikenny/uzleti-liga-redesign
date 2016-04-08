@@ -437,6 +437,11 @@ html #stats .stats-title {
   border-bottom: 1px solid #ccc;
   color: #066E87; }
 
+html #stats .tab {
+  display: none; }
+  html #stats .tab.active {
+    display: block; }
+
 html #seasons-list {
   position: relative;
   align-self: flex-start;
