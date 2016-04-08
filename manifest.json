@@ -1,7 +1,9 @@
 {
     "manifest_version": 2,
     "name": "Uzleti liga redesign",
-    "version": "1.2",
+    "version": "1.2.1",
+
+    "description": "Redesign extension for www.uzletiliga.hu",
 
     "icons": {
         "16": "img/favicon-16.png",
