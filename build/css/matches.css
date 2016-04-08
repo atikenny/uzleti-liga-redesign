@@ -395,7 +395,7 @@ html .sub-page {
 
 html table.table {
   width: 100%; }
-  html table.table tr:nth-of-type(odd) {
+  html table.table tr.darker {
     background-color: #f9f9f9; }
   html table.table td,
   html table.table th {

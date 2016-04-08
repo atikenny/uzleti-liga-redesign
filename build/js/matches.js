@@ -522,6 +522,16 @@ const redesigner = (sidebarItems) => {
         $filteringButtons = $('#filter button');
     };
 
+    const colorOddRows = (index) => {
+        return (index % 2) !== 0 ? 'darker' : '';
+    };
+
+    const getOddRowBatchColorer = (batchSize) => {
+        return (index) => {
+            return (parseInt(index / batchSize, 10) % 2) !== 0 ? 'darker' : '';
+        };
+    };
+
     const appendStats = (teams, matches) => {
         const getLeagues = (teams, matches) => {
             return teams.reduce((leagues, team) => {
@@ -552,14 +562,14 @@ const redesigner = (sidebarItems) => {
 
         const leagues = getLeagues(teams, matches);
         const allTeamsLeague = [{
-            teams: teams
+            teams: teams.map((team) => team.name)
         }];
 
-        const getLeagueStatsHTML = (leagues, matches) => {
-            const getTeamStatsHTML = (teamStats) => {
-                return teamStats.reduce((html, teamStat) => {
+        const getLeagueStatsHTML = (leagues, matches, getRowGroupClass) => {
+            const getTeamStatsHTML = (teamStats, getRowGroupClass) => {
+                return teamStats.reduce((html, teamStat, index) => {
                     return html += (`
-                        <tr>
+                        <tr class="${getRowGroupClass(index)}">
                             <td>${teamStat.teamName}</td>
                             <td>${teamStat.matchCount}</td>
                             <td>${teamStat.winCount}</td>
@@ -572,6 +582,8 @@ const redesigner = (sidebarItems) => {
                     `);
                 }, '');
             };
+
+            const rowColoringFunction = getRowGroupClass || colorOddRows;
 
             return leagues.reduce((leagueStatsHTML, league) => {
                 const teamStats = getTeamStats(league.teams, matches).sort(statSorter);
@@ -591,7 +603,7 @@ const redesigner = (sidebarItems) => {
                             </tr>
                         </thead>
                         <tbody>
-                            ${getTeamStatsHTML(teamStats)}
+                            ${getTeamStatsHTML(teamStats, rowColoringFunction)}
                         </tbody>
                     </table>
                 `);
@@ -689,7 +701,7 @@ const redesigner = (sidebarItems) => {
                 <div id="individual-stats" class="card"></div>
                 <div id="all-team-stats" class="card">
                     <h3 class="stats-title">Összes Csapat</h3>
-                    ${getLeagueStatsHTML(allTeamsLeague, matches)}
+                    ${getLeagueStatsHTML(allTeamsLeague, matches, getOddRowBatchColorer(8))}
                 </div>
             </div>
         `);
@@ -725,9 +737,9 @@ const redesigner = (sidebarItems) => {
                 return 0;
             };
 
-            return individualStatsArray.sort(individualStatsSorter).reduce((html, playerStat) => {
+            return individualStatsArray.sort(individualStatsSorter).reduce((html, playerStat, index) => {
                 return html += (`
-                    <tr>
+                    <tr class="${colorOddRows(index)}">
                         <td><b>${playerStat.name}</b></td>
                         <td class="align-left">${playerStat.teamName}</td>
                         <td>${playerStat.points}</td>
@@ -745,7 +757,7 @@ const redesigner = (sidebarItems) => {
                         <th class="align-left">Csapat</th>
                         <th>Pontok</th>
                     </tr>
-                <thead>
+                </thead>
                 <tbody>
                     ${getIndividualStatsHTML(individualStatsArray)}
                 </tbody>
