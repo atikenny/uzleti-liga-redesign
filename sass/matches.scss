@@ -545,7 +545,7 @@ html {
     table.table {
         width: 100%;
 
-        tr:nth-of-type(odd) {
+        tr.darker {
             background-color: #f9f9f9;
         }
 
