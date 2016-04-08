@@ -603,6 +603,27 @@ html {
             vertical-align: bottom;
             background-color: $greyColorLighter;
             border-bottom: 2px solid #ddd;
+
+            span {
+                vertical-align: bottom;
+                -webkit-user-select: none;
+
+                &.sortable {
+                    cursor: pointer;
+                }
+            }
+
+            i.material-icons {
+                font-size: 17px;
+            }
+
+            &[data-order="asc"] i.material-icons:after {
+                content: 'keyboard_arrow_up';
+            }
+
+            &[data-order="desc"] i.material-icons:after {
+                content: 'keyboard_arrow_down';
+            }
         }
 
         td {

@@ -417,6 +417,17 @@ html table.table {
     vertical-align: bottom;
     background-color: #eee;
     border-bottom: 2px solid #ddd; }
+    html table.table th span {
+      vertical-align: bottom;
+      -webkit-user-select: none; }
+      html table.table th span.sortable {
+        cursor: pointer; }
+    html table.table th i.material-icons {
+      font-size: 17px; }
+    html table.table th[data-order="asc"] i.material-icons:after {
+      content: 'keyboard_arrow_up'; }
+    html table.table th[data-order="desc"] i.material-icons:after {
+      content: 'keyboard_arrow_down'; }
   html table.table td {
     border-top: 1px solid #ddd; }
 

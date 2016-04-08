@@ -833,8 +833,12 @@ const redesigner = (sidebarItems) => {
                 <thead>
                     <tr>
                         <th>Név</th>
-                        <th class="sort-by-team align-left" data-order="${sortByTeamOrder}">Csapat</th>
-                        <th>Pontok</th>
+                        <th class="sort-by-team align-left" data-order="${sortByTeamOrder}">
+                            <span class="sortable">Csapat</span><i class="material-icons"></i>
+                        </th>
+                        <th data-order="desc">
+                            <span>Pontok</span><i class="material-icons"></i>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
