@@ -360,19 +360,87 @@ const redesigner = (sidebarItems) => {
             promises.individualStats = individualStatsPromise;
         };
 
+        const filterMatchStats = (matchId) => {
+            return promises.matchStats.find((stat) => {
+                return stat.matchId === matchId;
+            });
+        };
+
+        const setMatchStatsResponseData = (matchId, matchStatsResponse) => {
+            const existingMatchStats = filterMatchStats(matchId);
+
+            existingMatchStats.data = matchStatsResponse.data;
+            console.log(existingMatchStats);
+        };
+
         const collectMatchStats = (matchId) => {
             const matchStatsPromise = new Promise((resolve, reject) => {
                 $.get(matchDetailsUrlBase + matchId, (response) => {
-                    console.log(response.substring(0, 10));
-                    resolve(response);
+                    resolve({
+                        matchId: matchId,
+                        data: matchStatsResponseProcessor.processResponse(response)
+                    });
+                }).fail(() => {
+                    collectMatchStats(matchId);
                 });
             });
 
-            promises.matchStats.push({
-                matchId: matchId,
-                promise: matchStatsPromise
-            });
+            matchStatsPromise.then(setMatchStatsResponseData.bind(null, matchId));
+            
+            const existingMatchStats = filterMatchStats(matchId);
+
+            if (existingMatchStats) {
+                existingMatchStats.promise = matchStatsPromise;
+            } else {
+                promises.matchStats.push({
+                    matchId: matchId,
+                    promise: matchStatsPromise,
+                    data: null
+                });
+            }
         };
+
+        const matchStatsResponseProcessor = (() => {
+            const processResponse = (response) => {
+                const $response = $(response);
+                const $homeTeamStatsTable = $response.find('.match_details_table:has(h6:contains("Hazai csapat"))');
+                const $awayTeamStatsTable = $response.find('.match_details_table:has(h6:contains("Vendég csapat"))');
+                const homeStats = getPlayerRows($homeTeamStatsTable).toArray().reduce(playerRowReducer, []);
+                const awayStats = getPlayerRows($awayTeamStatsTable).toArray().reduce(playerRowReducer, []);
+                
+                return {
+                    homeStats,
+                    awayStats
+                };
+            };
+
+            const getPlayerRows = ($teamStatsTable) => {
+                return $teamStatsTable.find('tr:has(a[href^="player_details"])');
+            };
+
+            const playerRowReducer = (stats, playerRow) => {
+                const $row = $(playerRow);
+                const $cells = $row.find('td');
+                const playerName = $row.find('td:first a').html();
+                const quarters = [
+                    Number($cells.eq(1).html()) || 0,
+                    Number($cells.eq(2).html()) || 0,
+                    Number($cells.eq(3).html()) || 0,
+                    Number($cells.eq(4).html()) || 0
+                ];
+
+                stats.push({
+                    name: playerName.substr(0, playerName.indexOf('&')),
+                    quarters: quarters
+                });
+
+                return stats;
+            };
+
+            return {
+                processResponse
+            };
+        })();
 
         return {
             collectIndividualStats,
