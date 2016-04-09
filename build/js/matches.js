@@ -2,9 +2,6 @@ const redesigner = (sidebarItems) => {
     const activePageName = $('.lap').html();
     const activeLeagueName = $('.eventmenu_table h2').html();
     const todayTimestamp = Date.parse((new Date()).toISOString().substr(0, 10));
-    const url = window.location;
-    const eventId = url.search.substring(url.search.indexOf('eid') + 4);
-    const topScorersPageUrl = 'http://www.uzletiliga.hu/eredmenyek/goals3.php?eid=' + eventId;
     
     let $hamburgerMenu;
     let $sidebar;
@@ -28,22 +25,20 @@ const redesigner = (sidebarItems) => {
     let stats = {};
     let filteredStats = {};
     let matches = {};
-    let dataCollectingPromises = {
-        individualStats: null
-    };
 
     const init = (sidebarItems) => {
+        const statsCollector = getStatsCollector();
+
         appendMetaTags();
         appendMenuItems();
         appendSidebarItems(getSidebarItemsHTML(sidebarItems));
         cleanupHTML();
-        matches = collectMatches();
-        collectStats();
+        matches = collectMatches(statsCollector);
         appendMatches(matches);
         teams.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1);
         appendFilter(teams);
         appendStats(teams, matches);
-        dataCollectingPromises.individualStats.then((data) => {
+        statsCollector.promises.individualStats.then((data) => {
             individualStats = data;
             renderIndividualStats(individualStats);
         });
@@ -174,9 +169,9 @@ const redesigner = (sidebarItems) => {
         removeTextNodesFromBody();
     };
 
-    const collectMatches = () => {
+    const collectMatches = (statsCollector) => {
         const collect = () => {
-            const gamesByDate = $('.matches_table tr').toArray().reduce((gamesByDate, row) => {
+            const matchesByDate = $('.matches_table tr').toArray().reduce((matchesByDate, row) => {
                 const isDateRow = $(row).children('th[colspan="4"]').length;
                 const isGameRow = $(row).children('td').length === 4;
                 
@@ -185,27 +180,33 @@ const redesigner = (sidebarItems) => {
                 if (isDateRow) {
                     dateString = $(row).children('th').html();
 
-                    if (!gamesByDate[dateString]) {
-                        gamesByDate[dateString] = [];
+                    if (!matchesByDate[dateString]) {
+                        matchesByDate[dateString] = [];
                     }
                 } else if (isGameRow) {
                     dateString = $(row).prevAll('tr:has(th[colspan="4"]):first').children('th').html();
 
-                    gamesByDate[dateString].push(getGameDetails($(row).children('td')));
+                    const matchDetails = getMatchDetails($(row).children('td'));
+                    
+                    matchesByDate[dateString].push(matchDetails);
+                    statsCollector.collectMatchStats(matchDetails.id);
                 }
                 
-                return gamesByDate;
+                return matchesByDate;
             }, {});
+
+            statsCollector.collectIndividualStats();
             
-            return gamesByDate;
+            return matchesByDate;
         };
 
-        const getGameDetails = ($gamesRow) => {
-            const $homeTeamCell = $gamesRow.eq(0);
-            const $awayTeamCell = $gamesRow.eq(1);
-            const $locationCell = $gamesRow.eq(2);
-            const $resultCell = $gamesRow.eq(3);
+        const getMatchDetails = ($matchRow) => {
+            const $homeTeamCell = $matchRow.eq(0);
+            const $awayTeamCell = $matchRow.eq(1);
+            const $locationCell = $matchRow.eq(2);
+            const $resultCell = $matchRow.eq(3);
             const details = {
+                id: getMatchId($resultCell),
                 homeTeam: getTeamDetails($homeTeamCell),
                 awayTeam: getTeamDetails($awayTeamCell),
                 location: getLocationDetails($locationCell),
@@ -225,6 +226,12 @@ const redesigner = (sidebarItems) => {
             }
 
             return details;
+        };
+
+        const getMatchId = ($resultCell) => {
+            const matchDetailsLink = $resultCell.find('a').attr('href');
+
+            return Number(matchDetailsLink.substr(matchDetailsLink.indexOf('mid=') + 4));
         };
 
         const getTeamDetails = ($teamCell) => {
@@ -294,8 +301,19 @@ const redesigner = (sidebarItems) => {
         return collect();
     };
 
-    const collectStats = () => {
+    const getStatsCollector = () => {
+        const promises = {
+            individualStats: null,
+            matchStats: []
+        };
+
+        const url = window.location;
+        const eventId = url.search.substring(url.search.indexOf('eid') + 4);
+        const matchDetailsUrlBase = 'http://www.uzletiliga.hu/eredmenyek/match_details3.php?eid=' + eventId + '&mid=';
+        
         const collectIndividualStats = () => {
+            const topScorersPageUrl = 'http://www.uzletiliga.hu/eredmenyek/goals3.php?eid=' + eventId;
+
             const reduceTopScorerTables = (topScorers, table) => {
                 $(table).find('tr').each((index, tableRow) => {
                     const topScorerData = getTopScorerData(tableRow);
@@ -330,7 +348,7 @@ const redesigner = (sidebarItems) => {
                 }
             };
 
-            return new Promise((resolve, reject) => {
+            const individualStatsPromise = new Promise((resolve, reject) => {
                 $.get(topScorersPageUrl, (response) => {
                     const topScorerTables = $(response).find('.goals_table').toArray();
                     const individualStats = topScorerTables.reduce(reduceTopScorerTables, {});
@@ -338,16 +356,36 @@ const redesigner = (sidebarItems) => {
                     resolve(individualStats);
                 });
             });
+
+            promises.individualStats = individualStatsPromise;
         };
 
-        dataCollectingPromises.individualStats = collectIndividualStats();
+        const collectMatchStats = (matchId) => {
+            const matchStatsPromise = new Promise((resolve, reject) => {
+                $.get(matchDetailsUrlBase + matchId, (response) => {
+                    console.log(response.substring(0, 10));
+                    resolve(response);
+                });
+            });
+
+            promises.matchStats.push({
+                matchId: matchId,
+                promise: matchStatsPromise
+            });
+        };
+
+        return {
+            collectIndividualStats,
+            collectMatchStats,
+            promises
+        };
     };
 
-    const appendMatches = (matches) => {
+    const appendMatches = (matchesData) => {
         let matchesHTML = '';
 
         const appendDateContainer = (matchesHTML, date) => {
-            const games = matches[date];
+            const matches = matchesData[date];
             const dayTimestamp = Date.parse(date);
 
             matchesHTML += '<div class="date-container';
@@ -363,26 +401,26 @@ const redesigner = (sidebarItems) => {
             matchesHTML += '<h3 class="date">' + date + '</h3>';
             matchesHTML += '<ul class="matches">';
             
-            games.forEach((game) => {
+            matches.forEach((match) => {
                 matchesHTML += '<li class="match card';
                 
-                if (game.result.scores) {
+                if (match.result.scores) {
                     matchesHTML += ' finished';
                 }
                 
                 matchesHTML += '">';
-                matchesHTML += getTeamsHTML(game);
+                matchesHTML += getTeamsHTML(match);
 
-                if (game.result.scores) {
-                    matchesHTML += getResultHTML(game.result);
-                    matchesHTML += getQuartersHTML(game.result.scores.quarters);
+                if (match.result.scores) {
+                    matchesHTML += getResultHTML(match.result);
+                    matchesHTML += getQuartersHTML(match.result.scores.quarters);
                 }
 
-                if (game.result.matchTime) {
-                    matchesHTML += getMatchTimeHTML(game.result);
+                if (match.result.matchTime) {
+                    matchesHTML += getMatchTimeHTML(match.result);
                 }
                 
-                matchesHTML += getLocationHTML(game.location);
+                matchesHTML += getLocationHTML(match.location);
 
                 matchesHTML += '</li>';
             });
@@ -393,45 +431,45 @@ const redesigner = (sidebarItems) => {
             return matchesHTML;
         };
 
-        const getTeamsHTML = (game) => {
+        const getTeamsHTML = (match) => {
             let teamsHTML = '';
 
             teamsHTML += '<div class="teams">';
             teamsHTML += '<div class="home team';
 
-            if (game.winner === game.homeTeam.name) {
+            if (match.winner === match.homeTeam.name) {
                 teamsHTML += ' winner';
             }
 
             teamsHTML += '"';
             
-            if (game.homeTeam.id) {
-                teamsHTML += ` data-team-id="${game.homeTeam.id}"`;
+            if (match.homeTeam.id) {
+                teamsHTML += ` data-team-id="${match.homeTeam.id}"`;
             }
             
             teamsHTML += '>';
             teamsHTML += (
-                `<a href="${game.homeTeam.link}">
-                    ${game.homeTeam.name}
+                `<a href="${match.homeTeam.link}">
+                    ${match.homeTeam.name}
                 </a>`
             );
             teamsHTML += '</div>';
             teamsHTML += '<div class="away team';
 
-            if (game.winner === game.awayTeam.name) {
+            if (match.winner === match.awayTeam.name) {
                 teamsHTML += ' winner';
             }
 
             teamsHTML += '"';
             
-            if (game.awayTeam.id) {
-                teamsHTML += ` data-team-id="${game.awayTeam.id}"`;
+            if (match.awayTeam.id) {
+                teamsHTML += ` data-team-id="${match.awayTeam.id}"`;
             }
             
             teamsHTML += '>';
             teamsHTML += (
-                `<a href="${game.awayTeam.link}">
-                    ${game.awayTeam.name}
+                `<a href="${match.awayTeam.link}">
+                    ${match.awayTeam.name}
                 </a>`
             );
             teamsHTML += '</div>';
