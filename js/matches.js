@@ -370,7 +370,6 @@ const redesigner = (sidebarItems) => {
             const existingMatchStats = filterMatchStats(matchId);
 
             existingMatchStats.data = matchStatsResponse.data;
-            console.log(existingMatchStats);
         };
 
         const collectMatchStats = (matchId) => {
@@ -405,13 +404,18 @@ const redesigner = (sidebarItems) => {
                 const $response = $(response);
                 const $homeTeamStatsTable = $response.find('.match_details_table:has(h6:contains("Hazai csapat"))');
                 const $awayTeamStatsTable = $response.find('.match_details_table:has(h6:contains("Vendég csapat"))');
-                const homeStats = getPlayerRows($homeTeamStatsTable).toArray().reduce(playerRowReducer, []);
-                const awayStats = getPlayerRows($awayTeamStatsTable).toArray().reduce(playerRowReducer, []);
+                const $homeRows = getPlayerRows($homeTeamStatsTable);
+                const $awayRows = getPlayerRows($awayTeamStatsTable);
                 
-                return {
-                    homeStats,
-                    awayStats
-                };
+                if ($homeRows.length || $awayRows.length) {
+                    const homeStats = $homeRows.toArray().reduce(playerRowReducer, []);
+                    const awayStats = $awayRows.toArray().reduce(playerRowReducer, []);
+
+                    return {
+                        homeStats,
+                        awayStats
+                    };
+                }
             };
 
             const getPlayerRows = ($teamStatsTable) => {
