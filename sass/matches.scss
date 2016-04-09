@@ -95,6 +95,12 @@ $bgHoverColor: #e7e7e7;
     transition: all .3s ease;
 }
 
+%nowrap-text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 .material-icons {
   font-family: 'icon';
   font-weight: normal;
@@ -226,6 +232,7 @@ html {
         }
         
         .page-name {
+            @extend %nowrap-text;
             font-size: 20px;
             font-weight: bold;
             border-left: 1px solid rgba(255, 255, 255, .2);
@@ -705,6 +712,7 @@ html {
 
             a,
             span {
+                @extend %nowrap-text;
                 display: block;
                 line-height: 2em;
                 font-size: inherit;

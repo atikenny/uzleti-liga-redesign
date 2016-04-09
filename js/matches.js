@@ -137,9 +137,9 @@ const redesigner = (sidebarItems) => {
 
             newSeasonsHTML += '<ul id="seasons-list">';
 
-            $('.idenylink,.idenyaktiv').each(function (index, element) {
+            $('.idenylink, .idenyaktiv').each((index, element) => {
                 var classes = $(element).hasClass('idenyaktiv') ? 'class="active"' : '',
-                    menuTag = $(this).get(0).outerHTML;
+                    menuTag = $(element).get(0).outerHTML.replace('-20', '/');
 
                 newSeasonsHTML += `<li ${classes}>${menuTag}</li>`;
             });

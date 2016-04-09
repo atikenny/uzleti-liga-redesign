@@ -55,6 +55,12 @@ html #login, html #filter {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
   transition: all .3s ease; }
 
+html div.menu .page-name, html #seasons-list li a,
+html #seasons-list li span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; }
+
 .material-icons {
   font-family: 'icon';
   font-weight: normal;
