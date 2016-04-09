@@ -428,10 +428,18 @@ const redesigner = (sidebarItems) => {
                     Number($cells.eq(3).html()) || 0,
                     Number($cells.eq(4).html()) || 0
                 ];
+                const freeThrowCount = Number($cells.eq(5).html()) || 0;
+                const fieldGoalCount = Number($cells.eq(6).html()) || 0;
+                const threePointerCount = Number($cells.eq(7).html()) || 0;
+                const fouls = Number($cells.eq(9).html()) || 0;
 
                 stats.push({
                     name: playerName.substr(0, playerName.indexOf('&')),
-                    quarters: quarters
+                    quarters: quarters,
+                    fouls: fouls,
+                    freeThrowCount: freeThrowCount,
+                    fieldGoalCount: fieldGoalCount,
+                    threePointerCount: threePointerCount
                 });
 
                 return stats;
