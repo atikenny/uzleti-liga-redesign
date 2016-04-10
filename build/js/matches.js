@@ -575,6 +575,7 @@ const redesigner = (sidebarItems) => {
                 matchesHTML += getTeamsHTML(match);
 
                 if (match.result.scores) {
+                    matchesHTML += '<button class="stats-toggler"><i class="material-icons">assessment</i></button>';
                     matchesHTML += getResultHTML(match.result);
                     matchesHTML += getQuartersHTML(match.result.scores.quarters);
                     matchesHTML += (`
@@ -1151,6 +1152,12 @@ const redesigner = (sidebarItems) => {
         });
         $('.sub-page').on('mousedown wheel DOMMouseScroll mousewheel keyup', () => {
             $('.sub-page.show').stop(true, true);
+        });
+        $('.stats-toggler').on('click', (event) => {
+            const $button = $(event.currentTarget);
+
+            $button.toggleClass('active');
+            $button.parents('.match:first').toggleClass('show-stats');
         });
     };
 

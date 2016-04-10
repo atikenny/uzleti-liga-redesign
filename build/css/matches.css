@@ -251,11 +251,13 @@ html #matches-container .matches {
     flex-direction: column;
     justify-content: flex-end;
     position: relative; }
-    html #matches-container .matches .match.show-stats .match-stats-container {
+    html #matches-container .matches .match.show-stats .match-stats-container,
+    html #matches-container .matches .match.show-stats .stats-toggler {
       display: block; }
     html #matches-container .matches .match .match-stats-container {
       display: none;
       position: absolute;
+      z-index: 500;
       top: 0;
       right: 0;
       bottom: 0;
@@ -263,6 +265,20 @@ html #matches-container .matches {
       overflow-y: auto; }
       html #matches-container .matches .match .match-stats-container .sum-score {
         font-weight: bold; }
+    html #matches-container .matches .match .stats-toggler {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 4px;
+      background-color: #3C92A6;
+      color: white;
+      z-index: 400;
+      transition: all .4s ease;
+      transform: translateY(-7px); }
+      html #matches-container .matches .match .stats-toggler.active {
+        color: #FFAA57; }
+    html #matches-container .matches .match:hover .stats-toggler {
+      transform: translateY(-32px); }
 
 html #matches-container .date-container.past .date {
   color: #B15800;
@@ -292,7 +308,10 @@ html #matches-container .team {
   padding: 0 20px; }
 
 html #matches-container .teams {
-  margin-top: 20px;
+  position: relative;
+  z-index: 500;
+  background-color: white;
+  padding-top: 20px;
   display: flex;
   flex-grow: 1;
   align-items: center; }
