@@ -27,8 +27,6 @@ const redesigner = (sidebarItems) => {
     let matches = {};
 
     const init = (sidebarItems) => {
-        const statsCollector = getStatsCollector();
-
         appendMetaTags();
         appendMenuItems();
         appendSidebarItems(getSidebarItemsHTML(sidebarItems));
@@ -301,7 +299,7 @@ const redesigner = (sidebarItems) => {
         return collect();
     };
 
-    const getStatsCollector = () => {
+    const statsCollector = (() => {
         const promises = {
             individualStats: null,
             matchStats: []
@@ -384,7 +382,10 @@ const redesigner = (sidebarItems) => {
                 });
             });
 
-            matchStatsPromise.then(setMatchStatsResponseData.bind(null, matchId));
+            matchStatsPromise.then((matchStatsResponse) => {
+                setMatchStatsResponseData(matchId, matchStatsResponse);
+                renderMatchStats(matchId);
+            });
             
             const existingMatchStats = filterMatchStats(matchId);
 
@@ -404,6 +405,8 @@ const redesigner = (sidebarItems) => {
                 const $response = $(response);
                 const $homeTeamStatsTable = $response.find('.match_details_table:has(h6:contains("Hazai csapat"))');
                 const $awayTeamStatsTable = $response.find('.match_details_table:has(h6:contains("Vendég csapat"))');
+                const homeTeamName = $homeTeamStatsTable.find('a[href^="team_details"]').html();
+                const awayTeamName = $awayTeamStatsTable.find('a[href^="team_details"]').html();
                 const $homeRows = getPlayerRows($homeTeamStatsTable);
                 const $awayRows = getPlayerRows($awayTeamStatsTable);
                 
@@ -412,7 +415,9 @@ const redesigner = (sidebarItems) => {
                     const awayStats = $awayRows.toArray().reduce(playerRowReducer, []);
 
                     return {
+                        homeTeamName,
                         homeStats,
+                        awayTeamName,
                         awayStats
                     };
                 }
@@ -454,12 +459,92 @@ const redesigner = (sidebarItems) => {
             };
         })();
 
+        const renderMatchStats = (matchId) => {
+            const matchStats = filterMatchStats(matchId);
+            const $matchStatsContainer = $(`.match-stats-container[data-match-id="${matchId}"]`);
+
+            if (matchStats.data) {
+                $matchStatsContainer.html(getMacthStatsHTML(matchStats.data));
+            } else {
+                $matchStatsContainer.html('');
+            }
+        };
+
+        const getMacthStatsHTML = (matchStats) => {
+            const html = (`
+                <div class="home-stats match-stats">
+                    ${getTeamStatsHTML(matchStats.homeTeamName, matchStats.homeStats)}
+                </div>
+                <div class="away-stats match-stats">
+                    ${getTeamStatsHTML(matchStats.awayTeamName, matchStats.homeStats)}
+                </div>
+            `);
+
+            return html;
+        };
+
+        const getTeamStatsHTML = (teamName, teamStats) => {
+            let teamStatsHTML = '';
+
+            teamStatsHTML += (`
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>${teamName}</th>
+                            <th>Q1</th>
+                            <th>Q2</th>
+                            <th>Q3</th>
+                            <th>Q4</th>
+                            <th></th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>H</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `);
+            
+            teamStatsHTML += teamStats.reduce((teamStatsHTML, playerStat) => {
+                return teamStatsHTML += (`
+                    <tr>
+                        <td class="player-name">${playerStat.name}</td>
+                        ${getQuartersHTML(playerStat.quarters)}
+                        <td class="sum-score">${getSumScore(playerStat.quarters)}</td>
+                        <td>${playerStat.freeThrowCount}</td>
+                        <td>${playerStat.fieldGoalCount}</td>
+                        <td>${playerStat.threePointerCount}</td>
+                        <td>${playerStat.fouls}</td>
+                    </tr>
+                `);
+            }, '');
+
+            teamStatsHTML += (`
+                    </tbody>
+                </table>
+            `);
+
+            return teamStatsHTML;
+        };
+
+        const getQuartersHTML = (quarters) => {
+            return quarters.reduce((quartersHTML, quarterScore) => {
+                return quartersHTML += (`
+                    <td class="quarter-score">${quarterScore}</td>
+                `);
+            }, '');
+        };
+
+        const getSumScore = (quarters) => {
+            return quarters.reduce((sum, score) => sum += score, 0);
+        };
+
         return {
             collectIndividualStats,
             collectMatchStats,
             promises
         };
-    };
+    })();
 
     const appendMatches = (matchesData) => {
         let matchesHTML = '';
@@ -467,6 +552,10 @@ const redesigner = (sidebarItems) => {
         const appendDateContainer = (matchesHTML, date) => {
             const matches = matchesData[date];
             const dayTimestamp = Date.parse(date);
+            
+            const getFinishedClass = (match) => {
+                return match.result.scores ? 'finished' : '';
+            };
 
             matchesHTML += '<div class="date-container';
             
@@ -481,19 +570,16 @@ const redesigner = (sidebarItems) => {
             matchesHTML += '<h3 class="date">' + date + '</h3>';
             matchesHTML += '<ul class="matches">';
             
-            matches.forEach((match) => {
-                matchesHTML += '<li class="match card';
-                
-                if (match.result.scores) {
-                    matchesHTML += ' finished';
-                }
-                
-                matchesHTML += '">';
+            matchesHTML += matches.reduce((matchesHTML, match) => {
+                matchesHTML += `<li class="match card ${getFinishedClass(match)}">`;
                 matchesHTML += getTeamsHTML(match);
 
                 if (match.result.scores) {
                     matchesHTML += getResultHTML(match.result);
                     matchesHTML += getQuartersHTML(match.result.scores.quarters);
+                    matchesHTML += (`
+                        <div class="match-stats-container" data-match-id="${match.id}"></div>
+                    `);
                 }
 
                 if (match.result.matchTime) {
@@ -503,7 +589,9 @@ const redesigner = (sidebarItems) => {
                 matchesHTML += getLocationHTML(match.location);
 
                 matchesHTML += '</li>';
-            });
+
+                return matchesHTML;
+            }, '');
 
             matchesHTML += '</ul>';
             matchesHTML += '</div>';
