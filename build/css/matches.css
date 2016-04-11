@@ -275,12 +275,16 @@ html #matches-container .matches {
       top: 0;
       right: 0;
       padding: 4px;
-      background-color: #3C92A6;
       color: white;
       z-index: 400;
       transition: all .4s ease;
       transform: translateY(-7px);
       border-radius: 4px 4px 0 0; }
+      html #matches-container .matches .match .stats-toggler.loading, html #matches-container .matches .match .stats-toggler.inactive {
+        background-color: #666;
+        pointer-events: none; }
+      html #matches-container .matches .match .stats-toggler.loaded {
+        background-color: #3C92A6; }
       html #matches-container .matches .match .stats-toggler.active {
         background-color: #FFAA57; }
     html #matches-container .matches .match:hover .stats-toggler {

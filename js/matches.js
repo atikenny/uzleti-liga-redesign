@@ -187,7 +187,10 @@ const redesigner = (sidebarItems) => {
                     const matchDetails = getMatchDetails($(row).children('td'));
                     
                     matchesByDate[dateString].push(matchDetails);
-                    statsCollector.collectMatchStats(matchDetails.id);
+
+                    if (matchDetails.result.scores) {
+                        statsCollector.collectMatchStats(matchDetails.id);
+                    }
                 }
                 
                 return matchesByDate;
@@ -301,8 +304,7 @@ const redesigner = (sidebarItems) => {
 
     const statsCollector = (() => {
         const promises = {
-            individualStats: null,
-            matchStats: []
+            individualStats: null
         };
 
         const url = window.location;
@@ -359,56 +361,44 @@ const redesigner = (sidebarItems) => {
         };
 
         const collectMatchStats = (matchId) => {
-            const matchStatsPromise = new Promise((resolve, reject) => {
-                $.get(matchDetailsUrlBase + matchId, (response) => {
-                    resolve({
-                        matchId: matchId,
-                        data: matchStatsResponseProcessor.processResponse(response)
+            loadFromStorage(matchId)
+                .catch(() => {
+                    return new Promise((resolve, reject) => {
+                        $.get(matchDetailsUrlBase + matchId, (response) => {
+                            const processedResponseData = Object.assign(matchStatsResponseProcessor.processResponse(response), { id: matchId });
+                            let processedResponse = {};
+
+                            processedResponse[String(matchId)] = processedResponseData;
+                            
+                            saveToStorage(processedResponse);
+                            resolve(processedResponseData);
+                        }).fail(() => {
+                            collectMatchStats(matchId);
+                        });
                     });
-                }).fail(() => {
-                    collectMatchStats(matchId);
-                });
-            });
-
-            matchStatsPromise.then((matchStatsResponse) => {
-                setMatchStatsResponseData(matchId, matchStatsResponse);
-                saveToStorage(matchStatsResponse);
-                renderMatchStats(matchId);
-            });
-            
-            const existingMatchStats = filterMatchStats(matchId);
-
-            if (existingMatchStats) {
-                existingMatchStats.promise = matchStatsPromise;
-            } else {
-                promises.matchStats.push({
-                    matchId: matchId,
-                    promise: matchStatsPromise,
-                    data: null
-                });
-            }
-        };
-
-        const setMatchStatsResponseData = (matchId, matchStatsResponse) => {
-            const existingMatchStats = filterMatchStats(matchId);
-
-            existingMatchStats.data = matchStatsResponse.data;
-        };
-
-        const filterMatchStats = (matchId) => {
-            return promises.matchStats.find((stat) => {
-                return stat.matchId === matchId;
-            });
+                })
+                .then(renderMatchStats);
         };
 
         const saveToStorage = (matchStatsResponse) => {
-            let storageObject = {};
-
-            storageObject[matchStatsResponse.matchId] = matchStatsResponse.data;
-
             chrome.runtime.sendMessage({
-                task: 'saveMatchStats',
-                data: storageObject
+                task: 'matchStats.save',
+                data: matchStatsResponse
+            });
+        };
+
+        const loadFromStorage = (matchId) => {
+            return new Promise((resolve, reject) => {
+                chrome.runtime.sendMessage({
+                    task: 'matchStats.get',
+                    matchId: matchId
+                }, (response) => {
+                    if (response[matchId]) {
+                        resolve(response[matchId]);
+                    } else {
+                        reject();
+                    }
+                });
             });
         };
 
@@ -427,10 +417,15 @@ const redesigner = (sidebarItems) => {
                     const awayStats = $awayRows.toArray().reduce(playerRowReducer, []);
 
                     return {
+                        isPlayed: true,
                         homeTeamName,
                         homeStats,
                         awayTeamName,
                         awayStats
+                    };
+                } else {
+                    return {
+                        isPlayed: false
                     };
                 }
             };
@@ -477,15 +472,20 @@ const redesigner = (sidebarItems) => {
             };
         })();
 
-        const renderMatchStats = (matchId) => {
-            const matchStats = filterMatchStats(matchId);
-            const $matchStatsContainer = $(`.match-stats-container[data-match-id="${matchId}"]`);
+        const renderMatchStats = (matchStatsResponse) => {
+            const $match = $(`.match[data-match-id="${matchStatsResponse.id}"]`);
+            const $matchStatsContainer = $match.find('.match-stats-container');
+            const $matchStatsToggler = $match.find('.stats-toggler');
+            
+            $matchStatsToggler.removeClass('loading');
 
-            if (matchStats.data) {
-                matchStats.data.homeStats.sort(matchStatsSorter);
-                matchStats.data.awayStats.sort(matchStatsSorter);
-                $matchStatsContainer.html(getMacthStatsHTML(matchStats.data));
+            if (matchStatsResponse.isPlayed) {
+                $matchStatsToggler.addClass('loaded');
+                matchStatsResponse.homeStats.sort(matchStatsSorter);
+                matchStatsResponse.awayStats.sort(matchStatsSorter);
+                $matchStatsContainer.html(getMacthStatsHTML(matchStatsResponse));
             } else {
+                $matchStatsToggler.addClass('inactive');
                 $matchStatsContainer.html('');
             }
         };
@@ -599,15 +599,15 @@ const redesigner = (sidebarItems) => {
             matchesHTML += '<ul class="matches">';
             
             matchesHTML += matches.reduce((matchesHTML, match) => {
-                matchesHTML += `<li class="match card ${getFinishedClass(match)}">`;
+                matchesHTML += `<li class="match card ${getFinishedClass(match)}" data-match-id="${match.id}">`;
                 matchesHTML += getTeamsHTML(match);
 
                 if (match.result.scores) {
-                    matchesHTML += '<button class="stats-toggler"><i class="material-icons">assessment</i></button>';
+                    matchesHTML += '<button class="stats-toggler loading"><i class="material-icons">assessment</i></button>';
                     matchesHTML += getResultHTML(match.result);
                     matchesHTML += getQuartersHTML(match.result.scores.quarters);
                     matchesHTML += (`
-                        <div class="match-stats-container" data-match-id="${match.id}"></div>
+                        <div class="match-stats-container"></div>
                     `);
                 }
 
