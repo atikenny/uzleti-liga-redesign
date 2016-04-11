@@ -394,10 +394,13 @@ html {
                 }
 
                 .match-stats-container {
-                    max-height: 243px;
+                    @extend %scroller;
+                    min-height: 219px;
+                    flex: 1 0;
                     display: none;
                     z-index: 500;
                     overflow-y: auto;
+                    background-color: white;
 
                     .sum-score {
                         font-weight: bold;
@@ -633,6 +636,7 @@ html {
     }
 
     .sub-page {
+        @extend %scroller;
         display: none;
         overflow-y: auto;
         background-color: $bgColor;

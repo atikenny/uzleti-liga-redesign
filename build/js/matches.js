@@ -358,18 +358,6 @@ const redesigner = (sidebarItems) => {
             promises.individualStats = individualStatsPromise;
         };
 
-        const filterMatchStats = (matchId) => {
-            return promises.matchStats.find((stat) => {
-                return stat.matchId === matchId;
-            });
-        };
-
-        const setMatchStatsResponseData = (matchId, matchStatsResponse) => {
-            const existingMatchStats = filterMatchStats(matchId);
-
-            existingMatchStats.data = matchStatsResponse.data;
-        };
-
         const collectMatchStats = (matchId) => {
             const matchStatsPromise = new Promise((resolve, reject) => {
                 $.get(matchDetailsUrlBase + matchId, (response) => {
@@ -384,6 +372,7 @@ const redesigner = (sidebarItems) => {
 
             matchStatsPromise.then((matchStatsResponse) => {
                 setMatchStatsResponseData(matchId, matchStatsResponse);
+                saveToStorage(matchStatsResponse);
                 renderMatchStats(matchId);
             });
             
@@ -398,6 +387,29 @@ const redesigner = (sidebarItems) => {
                     data: null
                 });
             }
+        };
+
+        const setMatchStatsResponseData = (matchId, matchStatsResponse) => {
+            const existingMatchStats = filterMatchStats(matchId);
+
+            existingMatchStats.data = matchStatsResponse.data;
+        };
+
+        const filterMatchStats = (matchId) => {
+            return promises.matchStats.find((stat) => {
+                return stat.matchId === matchId;
+            });
+        };
+
+        const saveToStorage = (matchStatsResponse) => {
+            let storageObject = {};
+
+            storageObject[matchStatsResponse.matchId] = matchStatsResponse.data;
+
+            chrome.runtime.sendMessage({
+                task: 'saveMatchStats',
+                data: storageObject
+            });
         };
 
         const matchStatsResponseProcessor = (() => {

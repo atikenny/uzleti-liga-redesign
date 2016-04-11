@@ -22,21 +22,21 @@
   font-weight: 400;
   src: url(chrome-extension://__MSG_@@extension_id__/font/icons.woff2) format("woff2"); }
 
-html .sidebar > ul::-webkit-scrollbar {
+html .sidebar > ul::-webkit-scrollbar, html #matches-container .matches .match .match-stats-container::-webkit-scrollbar, html .sub-page::-webkit-scrollbar {
   overflow: visible;
   width: 10px; }
 
-html .sidebar > ul::-webkit-scrollbar-corner {
+html .sidebar > ul::-webkit-scrollbar-corner, html #matches-container .matches .match .match-stats-container::-webkit-scrollbar-corner, html .sub-page::-webkit-scrollbar-corner {
   background: transparent; }
 
-html .sidebar > ul::-webkit-scrollbar-thumb {
+html .sidebar > ul::-webkit-scrollbar-thumb, html #matches-container .matches .match .match-stats-container::-webkit-scrollbar-thumb, html .sub-page::-webkit-scrollbar-thumb {
   min-height: 28px;
   padding: 100px 0 0;
   background-color: rgba(0, 0, 0, 0.2);
   border: 0;
   cursor: pointer; }
 
-html .sidebar > ul::-webkit-scrollbar-track {
+html .sidebar > ul::-webkit-scrollbar-track, html #matches-container .matches .match .match-stats-container::-webkit-scrollbar-track, html .sub-page::-webkit-scrollbar-track {
   background-clip: padding-box;
   border: solid transparent;
   border-width: 0; }
@@ -262,10 +262,12 @@ html #matches-container .matches {
     html #matches-container .matches .match.show-stats .stats-toggler {
       display: block; }
     html #matches-container .matches .match .match-stats-container {
-      max-height: 243px;
+      min-height: 219px;
+      flex: 1 0;
       display: none;
       z-index: 500;
-      overflow-y: auto; }
+      overflow-y: auto;
+      background-color: white; }
       html #matches-container .matches .match .match-stats-container .sum-score {
         font-weight: bold; }
     html #matches-container .matches .match .stats-toggler {

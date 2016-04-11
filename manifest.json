@@ -17,9 +17,15 @@
           "run_at": "document_end"
         }
     ],
+    "background": {
+        "scripts": ["js/storage-handler.js"]
+    },
     "web_accessible_resources": [
         "font/*.*",
         "img/*.*",
         "js/injected-script.js"
+    ],
+    "permissions": [
+        "storage"
     ]
 }
