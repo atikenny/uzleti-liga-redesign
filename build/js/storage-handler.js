@@ -27,24 +27,42 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 const eventStats = (() => {
     const save = (eventStats) => {
+        const eventId = Object.keys(eventStats)[0];
         let bulkStats = {};
 
-        bulkStats[String(eventStats.id)] = Object.keys(eventStats[eventStats.id]);
+        bulkStats[String(eventId)] = Object.keys(eventStats[eventId]);
         chrome.storage.sync.set(bulkStats);
 
-        Object.keys(eventStats[eventStats.id]).forEach((teamName) => {
+        Object.keys(eventStats[eventId]).forEach((teamName) => {
             let stats = {};
 
-            stats[eventStats.id + '.' + teamName] = eventStats[eventStats.id][teamName];
+            stats[eventId + '.' + teamName] = eventStats[eventId][teamName];
             chrome.storage.sync.set(stats);
         });
     };
 
     const get = (eventId) => {
         return new Promise((resolve, reject) => {
-            chrome.storage.sync.get(String(eventId), (response) => {
-                console.log(response);
-                reject();
+            chrome.storage.sync.get(String(eventId), (teamNamesResponse) => {
+                const _eventId = Object.keys(teamNamesResponse)[0];
+                const bulkIds = teamNamesResponse[eventId].map((teamName) => _eventId + '.' + teamName);
+                
+                chrome.storage.sync.get(bulkIds, (bulkResponse) => {
+                    let finalResponse = {};
+                    let reducedObject;
+
+                    reducedObject = Object.keys(bulkResponse).reduce((response, teamNameWithEventId) => {
+                        const teamName = teamNameWithEventId.substr(teamNameWithEventId.indexOf('.') + 1);
+                        
+                        response[teamName] = bulkResponse[teamNameWithEventId];
+
+                        return response;
+                    }, {});
+
+                    finalResponse[_eventId] = reducedObject;
+
+                    resolve(finalResponse);
+                });
             });
         });
     };
