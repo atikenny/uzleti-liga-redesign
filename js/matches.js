@@ -37,6 +37,7 @@ const redesigner = (sidebarItems) => {
         appendFilter(teams);
         appendStats(teams, matches);
         statsCollector.promises.individualStats.then((data) => {
+            delete data.id;
             individualStats = data;
             renderIndividualStats(individualStats);
         });
@@ -189,14 +190,14 @@ const redesigner = (sidebarItems) => {
                     matchesByDate[dateString].push(matchDetails);
 
                     if (matchDetails.result.scores) {
-                        statsCollector.collectMatchStats(matchDetails.id);
+                        statsCollector.matchStatsCollector.collect(matchDetails.id);
                     }
                 }
                 
                 return matchesByDate;
             }, {});
 
-            statsCollector.collectIndividualStats();
+            statsCollector.individualStatsCollector.collect();
             
             return matchesByDate;
         };
@@ -311,96 +312,92 @@ const redesigner = (sidebarItems) => {
         const eventId = url.search.substring(url.search.indexOf('eid') + 4);
         const matchDetailsUrlBase = 'http://www.uzletiliga.hu/eredmenyek/match_details3.php?eid=' + eventId + '&mid=';
         
-        const collectIndividualStats = () => {
+        const individualStatsCollector = (() => {
             const topScorersPageUrl = 'http://www.uzletiliga.hu/eredmenyek/goals3.php?eid=' + eventId;
 
-            const reduceTopScorerTables = (topScorers, table) => {
-                $(table).find('tr').each((index, tableRow) => {
-                    const topScorerData = getTopScorerData(tableRow);
-
-                    if (topScorerData) {
-                        if (!topScorers[topScorerData.teamName]) {
-                            topScorers[topScorerData.teamName] = [{
-                                name: topScorerData.name,
-                                points: topScorerData.points
-                            }];
-                        } else {
-                            topScorers[topScorerData.teamName].push({
-                                name: topScorerData.name,
-                                points: topScorerData.points
-                            });
-                        }
-                    }
-                });
-
-                return topScorers;
-            };
-
-            const getTopScorerData = (tableRow) => {
-                const $cells = $(tableRow).find('td:not([colspan])');
-
-                if ($cells.length) {
-                    return {
-                        name: $cells.eq(0).find('a').html(),
-                        teamName: $cells.eq(1).find('a').html(),
-                        points: Number($cells.eq(2).find('b').html())
-                    };
-                }
-            };
-
-            const individualStatsPromise = new Promise((resolve, reject) => {
-                $.get(topScorersPageUrl, (response) => {
+            const collect = () => {
+                const processResponse = (response) => {
                     const topScorerTables = $(response).find('.goals_table').toArray();
-                    const individualStats = topScorerTables.reduce(reduceTopScorerTables, {});
+                    
+                    return topScorerTables.reduce(reduceTopScorerTables, {});
+                };
 
-                    resolve(individualStats);
-                });
-            });
+                const reduceTopScorerTables = (topScorers, table) => {
+                    $(table).find('tr').each((index, tableRow) => {
+                        const topScorerData = getTopScorerData(tableRow);
 
-            promises.individualStats = individualStatsPromise;
-        };
+                        if (topScorerData) {
+                            if (!topScorers[topScorerData.teamName]) {
+                                topScorers[topScorerData.teamName] = [{
+                                    name: topScorerData.name,
+                                    points: topScorerData.points
+                                }];
+                            } else {
+                                topScorers[topScorerData.teamName].push({
+                                    name: topScorerData.name,
+                                    points: topScorerData.points
+                                });
+                            }
+                        }
+                    });
 
-        const collectMatchStats = (matchId) => {
-            loadFromStorage(matchId)
-                .catch(() => {
+                    return topScorers;
+                };
+
+                const getTopScorerData = (tableRow) => {
+                    const $cells = $(tableRow).find('td:not([colspan])');
+
+                    if ($cells.length) {
+                        return {
+                            name: $cells.eq(0).find('a').html(),
+                            teamName: $cells.eq(1).find('a').html(),
+                            points: Number($cells.eq(2).find('b').html())
+                        };
+                    }
+                };
+
+                const saveToStorage = (eventStatsResponse) => {
+                    chrome.runtime.sendMessage({
+                        task: 'eventStats.save',
+                        data: eventStatsResponse
+                    });
+                };
+
+                const loadFromStorage = (eventId) => {
                     return new Promise((resolve, reject) => {
-                        $.get(matchDetailsUrlBase + matchId, (response) => {
-                            const processedResponseData = Object.assign(matchStatsResponseProcessor.processResponse(response), { id: matchId });
-                            let processedResponse = {};
-
-                            processedResponse[String(matchId)] = processedResponseData;
-                            
-                            saveToStorage(processedResponse);
-                            resolve(processedResponseData);
-                        }).fail(() => {
-                            collectMatchStats(matchId);
+                        chrome.runtime.sendMessage({
+                            task: 'eventStats.get',
+                            eventId: eventId
+                        }, (response) => {
+                            if (response[eventId]) {
+                                resolve(response[eventId]);
+                            } else {
+                                reject();
+                            }
                         });
                     });
-                })
-                .then(renderMatchStats);
-        };
+                };
 
-        const saveToStorage = (matchStatsResponse) => {
-            chrome.runtime.sendMessage({
-                task: 'matchStats.save',
-                data: matchStatsResponse
-            });
-        };
+                promises.individualStats = loadFromStorage(eventId)
+                    .catch(() => {
+                        return new Promise((resolve, reject) => {
+                            $.get(topScorersPageUrl, (response) => {
+                                const processedResponseData = Object.assign(processResponse(response), { id: eventId });
+                                let processedResponse = {};
 
-        const loadFromStorage = (matchId) => {
-            return new Promise((resolve, reject) => {
-                chrome.runtime.sendMessage({
-                    task: 'matchStats.get',
-                    matchId: matchId
-                }, (response) => {
-                    if (response[matchId]) {
-                        resolve(response[matchId]);
-                    } else {
-                        reject();
-                    }
-                });
-            });
-        };
+                                processedResponse[String(eventId)] = processedResponseData;
+                                
+                                saveToStorage(processedResponse);
+                                resolve(processedResponseData);
+                            });
+                        });
+                    });
+            };
+
+            return {
+                collect
+            };
+        })();
 
         const matchStatsResponseProcessor = (() => {
             const processResponse = (response) => {
@@ -472,104 +469,152 @@ const redesigner = (sidebarItems) => {
             };
         })();
 
-        const renderMatchStats = (matchStatsResponse) => {
-            const $match = $(`.match[data-match-id="${matchStatsResponse.id}"]`);
-            const $matchStatsContainer = $match.find('.match-stats-container');
-            const $matchStatsToggler = $match.find('.stats-toggler');
-            
-            $matchStatsToggler.removeClass('loading');
+        const matchStatsCollector = ((matchStatsResponseProcessor) => {
+            const collect = (matchId) => {
+                loadFromStorage(matchId)
+                    .catch(() => {
+                        return new Promise((resolve, reject) => {
+                            $.get(matchDetailsUrlBase + matchId, (response) => {
+                                const processedResponseData = Object.assign(matchStatsResponseProcessor.processResponse(response), { id: matchId });
+                                let processedResponse = {};
 
-            if (matchStatsResponse.isPlayed) {
-                $matchStatsToggler.addClass('loaded');
-                matchStatsResponse.homeStats.sort(matchStatsSorter);
-                matchStatsResponse.awayStats.sort(matchStatsSorter);
-                $matchStatsContainer.html(getMacthStatsHTML(matchStatsResponse));
-            } else {
-                $matchStatsToggler.addClass('inactive');
-                $matchStatsContainer.html('');
-            }
-        };
+                                processedResponse[String(matchId)] = processedResponseData;
+                                
+                                saveToStorage(processedResponse);
+                                resolve(processedResponseData);
+                            }).fail(() => {
+                                collectMatchStats(matchId);
+                            });
+                        });
+                    })
+                    .then(renderMatchStats);
+            };
 
-        const matchStatsSorter = (a, b) => {
-            if (a.sumScore > b.sumScore) {
-                return -1;
-            }
+            const saveToStorage = (matchStatsResponse) => {
+                chrome.runtime.sendMessage({
+                    task: 'matchStats.save',
+                    data: matchStatsResponse
+                });
+            };
 
-            if (a.sumScore < b.sumScore) {
-                return 1;
-            }
+            const loadFromStorage = (matchId) => {
+                return new Promise((resolve, reject) => {
+                    chrome.runtime.sendMessage({
+                        task: 'matchStats.get',
+                        matchId: matchId
+                    }, (response) => {
+                        if (response[matchId]) {
+                            resolve(response[matchId]);
+                        } else {
+                            reject();
+                        }
+                    });
+                });
+            };
 
-            return 0;
-        };
+            const renderMatchStats = (matchStatsResponse) => {
+                const $match = $(`.match[data-match-id="${matchStatsResponse.id}"]`);
+                const $matchStatsContainer = $match.find('.match-stats-container');
+                const $matchStatsToggler = $match.find('.stats-toggler');
+                
+                $matchStatsToggler.removeClass('loading');
 
-        const getMacthStatsHTML = (matchStats) => {
-            const html = (`
-                <div class="home-stats match-stats">
-                    ${getTeamStatsHTML(matchStats.homeTeamName, matchStats.homeStats)}
-                </div>
-                <div class="away-stats match-stats">
-                    ${getTeamStatsHTML(matchStats.awayTeamName, matchStats.homeStats)}
-                </div>
-            `);
+                if (matchStatsResponse.isPlayed) {
+                    $matchStatsToggler.addClass('loaded');
+                    matchStatsResponse.homeStats.sort(matchStatsSorter);
+                    matchStatsResponse.awayStats.sort(matchStatsSorter);
+                    $matchStatsContainer.html(getMacthStatsHTML(matchStatsResponse));
+                } else {
+                    $matchStatsToggler.addClass('inactive');
+                    $matchStatsContainer.html('');
+                }
+            };
 
-            return html;
-        };
+            const matchStatsSorter = (a, b) => {
+                if (a.sumScore > b.sumScore) {
+                    return -1;
+                }
 
-        const getTeamStatsHTML = (teamName, teamStats) => {
-            let teamStatsHTML = '';
+                if (a.sumScore < b.sumScore) {
+                    return 1;
+                }
 
-            teamStatsHTML += (`
-                <table class="table">
-                    <thead>
+                return 0;
+            };
+
+            const getMacthStatsHTML = (matchStats) => {
+                const html = (`
+                    <div class="home-stats match-stats">
+                        ${getTeamStatsHTML(matchStats.homeTeamName, matchStats.homeStats)}
+                    </div>
+                    <div class="away-stats match-stats">
+                        ${getTeamStatsHTML(matchStats.awayTeamName, matchStats.homeStats)}
+                    </div>
+                `);
+
+                return html;
+            };
+
+            const getTeamStatsHTML = (teamName, teamStats) => {
+                let teamStatsHTML = '';
+
+                teamStatsHTML += (`
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>${teamName}</th>
+                                <th>Q1</th>
+                                <th>Q2</th>
+                                <th>Q3</th>
+                                <th>Q4</th>
+                                <th></th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>H</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `);
+                
+                teamStatsHTML += teamStats.reduce((teamStatsHTML, playerStat) => {
+                    return teamStatsHTML += (`
                         <tr>
-                            <th>${teamName}</th>
-                            <th>Q1</th>
-                            <th>Q2</th>
-                            <th>Q3</th>
-                            <th>Q4</th>
-                            <th></th>
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>H</th>
+                            <td class="player-name">${playerStat.name}</td>
+                            ${getQuartersHTML(playerStat.quarters)}
+                            <td class="sum-score">${playerStat.sumScore}</td>
+                            <td>${playerStat.freeThrowCount}</td>
+                            <td>${playerStat.fieldGoalCount}</td>
+                            <td>${playerStat.threePointerCount}</td>
+                            <td>${playerStat.fouls}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-            `);
-            
-            teamStatsHTML += teamStats.reduce((teamStatsHTML, playerStat) => {
-                return teamStatsHTML += (`
-                    <tr>
-                        <td class="player-name">${playerStat.name}</td>
-                        ${getQuartersHTML(playerStat.quarters)}
-                        <td class="sum-score">${playerStat.sumScore}</td>
-                        <td>${playerStat.freeThrowCount}</td>
-                        <td>${playerStat.fieldGoalCount}</td>
-                        <td>${playerStat.threePointerCount}</td>
-                        <td>${playerStat.fouls}</td>
-                    </tr>
+                    `);
+                }, '');
+
+                teamStatsHTML += (`
+                        </tbody>
+                    </table>
                 `);
-            }, '');
 
-            teamStatsHTML += (`
-                    </tbody>
-                </table>
-            `);
+                return teamStatsHTML;
+            };
 
-            return teamStatsHTML;
-        };
+            const getQuartersHTML = (quarters) => {
+                return quarters.reduce((quartersHTML, quarterScore) => {
+                    return quartersHTML += (`
+                        <td class="quarter-score">${quarterScore}</td>
+                    `);
+                }, '');
+            };
 
-        const getQuartersHTML = (quarters) => {
-            return quarters.reduce((quartersHTML, quarterScore) => {
-                return quartersHTML += (`
-                    <td class="quarter-score">${quarterScore}</td>
-                `);
-            }, '');
-        };
+            return {
+                collect
+            };
+        })(matchStatsResponseProcessor);
 
         return {
-            collectIndividualStats,
-            collectMatchStats,
+            individualStatsCollector,
+            matchStatsCollector,
             promises
         };
     })();
