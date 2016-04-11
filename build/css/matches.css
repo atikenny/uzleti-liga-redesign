@@ -76,6 +76,13 @@ html #seasons-list li span {
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased; }
 
+.clearfix:before, html #matches-container .matches .match:before, .clearfix:after, html #matches-container .matches .match:after {
+  content: " ";
+  display: table; }
+
+.clearfix:after, html #matches-container .matches .match:after {
+  clear: both; }
+
 html body {
   position: relative;
   background: #eee;
@@ -244,24 +251,20 @@ html #matches-container .matches {
   display: flex;
   flex-wrap: wrap; }
   html #matches-container .matches .match {
+    position: relative;
     margin-bottom: 32px;
     min-width: 400px;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    position: relative; }
+    justify-content: flex-end; }
     html #matches-container .matches .match.show-stats .match-stats-container,
     html #matches-container .matches .match.show-stats .stats-toggler {
       display: block; }
     html #matches-container .matches .match .match-stats-container {
+      max-height: 243px;
       display: none;
-      position: absolute;
       z-index: 500;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
       overflow-y: auto; }
       html #matches-container .matches .match .match-stats-container .sum-score {
         font-weight: bold; }
@@ -274,9 +277,10 @@ html #matches-container .matches {
       color: white;
       z-index: 400;
       transition: all .4s ease;
-      transform: translateY(-7px); }
+      transform: translateY(-7px);
+      border-radius: 4px 4px 0 0; }
       html #matches-container .matches .match .stats-toggler.active {
-        color: #FFAA57; }
+        background-color: #FFAA57; }
     html #matches-container .matches .match:hover .stats-toggler {
       transform: translateY(-32px); }
 

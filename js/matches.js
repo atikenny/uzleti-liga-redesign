@@ -437,6 +437,7 @@ const redesigner = (sidebarItems) => {
                     Number($cells.eq(3).html()) || 0,
                     Number($cells.eq(4).html()) || 0
                 ];
+                const sumScore = getSumScore(quarters);
                 const freeThrowCount = Number($cells.eq(5).html()) || 0;
                 const fieldGoalCount = Number($cells.eq(6).html()) || 0;
                 const threePointerCount = Number($cells.eq(7).html()) || 0;
@@ -445,6 +446,7 @@ const redesigner = (sidebarItems) => {
                 stats.push({
                     name: playerName.substr(0, playerName.indexOf('&')),
                     quarters: quarters,
+                    sumScore: sumScore,
                     fouls: fouls,
                     freeThrowCount: freeThrowCount,
                     fieldGoalCount: fieldGoalCount,
@@ -452,6 +454,10 @@ const redesigner = (sidebarItems) => {
                 });
 
                 return stats;
+            };
+
+            const getSumScore = (quarters) => {
+                return quarters.reduce((sum, score) => sum += score, 0);
             };
 
             return {
@@ -464,10 +470,24 @@ const redesigner = (sidebarItems) => {
             const $matchStatsContainer = $(`.match-stats-container[data-match-id="${matchId}"]`);
 
             if (matchStats.data) {
+                matchStats.data.homeStats.sort(matchStatsSorter);
+                matchStats.data.awayStats.sort(matchStatsSorter);
                 $matchStatsContainer.html(getMacthStatsHTML(matchStats.data));
             } else {
                 $matchStatsContainer.html('');
             }
+        };
+
+        const matchStatsSorter = (a, b) => {
+            if (a.sumScore > b.sumScore) {
+                return -1;
+            }
+
+            if (a.sumScore < b.sumScore) {
+                return 1;
+            }
+
+            return 0;
         };
 
         const getMacthStatsHTML = (matchStats) => {
@@ -510,7 +530,7 @@ const redesigner = (sidebarItems) => {
                     <tr>
                         <td class="player-name">${playerStat.name}</td>
                         ${getQuartersHTML(playerStat.quarters)}
-                        <td class="sum-score">${getSumScore(playerStat.quarters)}</td>
+                        <td class="sum-score">${playerStat.sumScore}</td>
                         <td>${playerStat.freeThrowCount}</td>
                         <td>${playerStat.fieldGoalCount}</td>
                         <td>${playerStat.threePointerCount}</td>
@@ -533,10 +553,6 @@ const redesigner = (sidebarItems) => {
                     <td class="quarter-score">${quarterScore}</td>
                 `);
             }, '');
-        };
-
-        const getSumScore = (quarters) => {
-            return quarters.reduce((sum, score) => sum += score, 0);
         };
 
         return {
