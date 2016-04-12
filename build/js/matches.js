@@ -369,7 +369,7 @@ const redesigner = (sidebarItems) => {
                             task: 'eventStats.get',
                             eventId: eventId
                         }, (response) => {
-                            if (response[eventId]) {
+                            if (response && response[eventId]) {
                                 resolve(response[eventId]);
                             } else {
                                 reject();
@@ -503,7 +503,7 @@ const redesigner = (sidebarItems) => {
                         task: 'matchStats.get',
                         matchId: matchId
                     }, (response) => {
-                        if (response[matchId]) {
+                        if (response && response[matchId]) {
                             resolve(response[matchId]);
                         } else {
                             reject();
