@@ -85,7 +85,7 @@ const redesigner = (sidebarItems) => {
                 if (menuItem.menuItems) {
                     sidebarHTML += `<span>${menuItem.itemValue[0]}</span>`;
                 } else {
-                    sidebarHTML += `<a href="${menuItem.itemValue[1]}">${menuItem.itemValue[0]}</a>`;
+                    sidebarHTML += `<a href="${menuItem.itemValue[1].replace('event', 'matches')}">${menuItem.itemValue[0]}</a>`;
                 }
             }
 
@@ -483,7 +483,7 @@ const redesigner = (sidebarItems) => {
                                 saveToStorage(processedResponse);
                                 resolve(processedResponseData);
                             }).fail(() => {
-                                collectMatchStats(matchId);
+                                collect(matchId);
                             });
                         });
                     })
