@@ -548,7 +548,7 @@ const redesigner = (sidebarItems) => {
                         ${getTeamStatsHTML(matchStats.homeTeamName, matchStats.homeStats)}
                     </div>
                     <div class="away-stats match-stats">
-                        ${getTeamStatsHTML(matchStats.awayTeamName, matchStats.homeStats)}
+                        ${getTeamStatsHTML(matchStats.awayTeamName, matchStats.awayStats)}
                     </div>
                 `);
 
