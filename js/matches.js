@@ -322,6 +322,12 @@ const redesigner = (sidebarItems) => {
                     return topScorerTables.reduce(reduceTopScorerTables, {});
                 };
 
+                const findPlayer = (topScorerTeam, playerName) => {
+                    return topScorerTeam.find((topScorer) => {
+                        return topScorer.name === playerName;
+                    });
+                };
+
                 const reduceTopScorerTables = (topScorers, table) => {
                     $(table).find('tr').each((index, tableRow) => {
                         const topScorerData = getTopScorerData(tableRow);
@@ -333,10 +339,12 @@ const redesigner = (sidebarItems) => {
                                     points: topScorerData.points
                                 }];
                             } else {
-                                topScorers[topScorerData.teamName].push({
-                                    name: topScorerData.name,
-                                    points: topScorerData.points
-                                });
+                                if (!findPlayer(topScorers[topScorerData.teamName], topScorerData.name)) {
+                                    topScorers[topScorerData.teamName].push({
+                                        name: topScorerData.name,
+                                        points: topScorerData.points
+                                    });
+                                }
                             }
                         }
                     });

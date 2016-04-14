@@ -7,7 +7,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         case 'eventStats.get':
             eventStats
                 .get(request.eventId)
-                .then(sendResponse);
+                .then(sendResponse)
+                .catch((error) => {
+                    sendResponse({
+                        error: 'chrome-storage-error',
+                        errorCode: 501,
+                        errorMessage: 'Chrome storage error!'
+                    });
+                });
 
             break;
         case 'matchStats.save':
@@ -44,7 +51,7 @@ const eventStats = (() => {
     const get = (eventId) => {
         return new Promise((resolve, reject) => {
             chrome.storage.sync.get(String(eventId), (teamNamesResponse) => {
-                if (teamNamesResponse) {
+                if (teamNamesResponse && teamNamesResponse[eventId]) {
                     const _eventId = Object.keys(teamNamesResponse)[0];
                     const bulkIds = teamNamesResponse[eventId].map((teamName) => _eventId + '.' + teamName);
                     
