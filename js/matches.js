@@ -853,11 +853,33 @@ const redesigner = (sidebarItems) => {
             }, []);
         };
 
-        const leagues = getLeagues(teams, matches);
-        const allTeamsLeague = [{
-            name: 'Selejtező',
-            teams: teams.map((team) => team.name)
-        }];
+        const getMatchesForDate = (fromDate, toDate, matches) => {
+            const fromDateString = fromDate || '0000-00-00';
+            const toDateString = toDate || '9999-99-99';
+            
+            return Object.keys(matches).reduce((filteredMatches, date) => {
+                if (fromDateString <= date && date <= toDateString) {
+                    filteredMatches[date] = matches[date];
+                }
+
+                return filteredMatches;
+            }, {});
+        };
+
+        const preliminaryMatches = getMatchesForDate(null, '2016-04-13', matches);
+        const finalMatches = getMatchesForDate('2016-04-14', null, matches);
+
+        const leagues = {
+            preliminary: getLeagues(teams, preliminaryMatches),
+            final: getLeagues(teams, finalMatches)
+        };
+
+        const allTeamsLeague = [
+            {
+                name: 'Selejtező',
+                teams: teams.map((team) => team.name)
+            }
+        ];
 
         const getLeagueStatsHTML = (leagues, matches, getRowGroupClass) => {
             const getTeamStatsHTML = (teamStats, getRowGroupClass) => {
@@ -996,11 +1018,14 @@ const redesigner = (sidebarItems) => {
                     <a href="#all-team-stats" for="all-team-stats">Liga statisztikák</a>
                 </nav>
                 <div id="team-stats" class="tab card active">
-                    ${getLeagueStatsHTML(leagues, matches)}
+                    <h3 class="stats-title">Selejtező</h3>
+                    ${getLeagueStatsHTML(leagues.preliminary, preliminaryMatches)}
+                    <h3 class="stats-title">Rájátszás</h3>
+                    ${getLeagueStatsHTML(leagues.final, finalMatches)}
                 </div>
                 <div id="individual-stats" class="tab card"></div>
                 <div id="all-team-stats" class="tab card">
-                    ${getLeagueStatsHTML(allTeamsLeague, matches, getOddRowBatchColorer(seasonLeagueTeamCount))}
+                    ${getLeagueStatsHTML(allTeamsLeague, preliminaryMatches, getOddRowBatchColorer(seasonLeagueTeamCount))}
                 </div>
             </div>
         `);
