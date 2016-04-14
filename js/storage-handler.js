@@ -7,14 +7,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         case 'eventStats.get':
             eventStats
                 .get(request.eventId)
-                .then(sendResponse)
-                .catch((error) => {
-                    sendResponse({
-                        error: 'chrome-storage-error',
-                        errorCode: 501,
-                        errorMessage: 'Chrome storage error!'
-                    });
-                });
+                .then(sendResponse);
 
             break;
         case 'matchStats.save':
@@ -34,47 +27,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 const eventStats = (() => {
     const save = (eventStats) => {
-        const eventId = Object.keys(eventStats)[0];
-        let bulkStats = {};
-
-        bulkStats[String(eventId)] = Object.keys(eventStats[eventId]);
-        chrome.storage.sync.set(bulkStats);
-
-        Object.keys(eventStats[eventId]).forEach((teamName) => {
-            let stats = {};
-
-            stats[eventId + '.' + teamName] = eventStats[eventId][teamName];
-            chrome.storage.sync.set(stats);
-        });
+        chrome.storage.local.set(eventStats);
     };
 
     const get = (eventId) => {
         return new Promise((resolve, reject) => {
-            chrome.storage.sync.get(String(eventId), (teamNamesResponse) => {
-                if (teamNamesResponse && teamNamesResponse[eventId]) {
-                    const _eventId = Object.keys(teamNamesResponse)[0];
-                    const bulkIds = teamNamesResponse[eventId].map((teamName) => _eventId + '.' + teamName);
-                    
-                    chrome.storage.sync.get(bulkIds, (bulkResponse) => {
-                        let finalResponse = {};
-                        let reducedObject;
-
-                        reducedObject = Object.keys(bulkResponse).reduce((response, teamNameWithEventId) => {
-                            const teamName = teamNameWithEventId.substr(teamNameWithEventId.indexOf('.') + 1);
-                            
-                            response[teamName] = bulkResponse[teamNameWithEventId];
-
-                            return response;
-                        }, {});
-
-                        finalResponse[_eventId] = reducedObject;
-
-                        resolve(finalResponse);
-                    });
-                } else {
-                    reject();
-                }
-            });
+            chrome.storage.local.get(String(eventId), resolve);
         });
     };
 
@@ -86,12 +44,12 @@ const eventStats = (() => {
 
 const matchStats = (() => {
     const save = (matchStats) => {
-        chrome.storage.sync.set(matchStats);
+        chrome.storage.local.set(matchStats);
     };
 
     const get = (matchId) => {
         return new Promise((resolve, reject) => {
-            chrome.storage.sync.get(String(matchId), resolve);
+            chrome.storage.local.get(String(matchId), resolve);
         });
     };
 
