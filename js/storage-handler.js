@@ -1,15 +1,5 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     switch (request.task) {
-        case 'eventStats.save':
-            eventStats.save(request.data);
-
-            break;
-        case 'eventStats.get':
-            eventStats
-                .get(request.eventId)
-                .then(sendResponse);
-
-            break;
         case 'matchStats.save':
             matchStats.save(request.data);
 
@@ -24,23 +14,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     return true;
 });
-
-const eventStats = (() => {
-    const save = (eventStats) => {
-        chrome.storage.local.set(eventStats);
-    };
-
-    const get = (eventId) => {
-        return new Promise((resolve, reject) => {
-            chrome.storage.local.get(String(eventId), resolve);
-        });
-    };
-
-    return {
-        save,
-        get
-    };
-})();
 
 const matchStats = (() => {
     const save = (matchStats) => {

@@ -364,42 +364,16 @@ const redesigner = (sidebarItems) => {
                     }
                 };
 
-                const saveToStorage = (eventStatsResponse) => {
-                    chrome.runtime.sendMessage({
-                        task: 'eventStats.save',
-                        data: eventStatsResponse
-                    });
-                };
+                promises.individualStats = new Promise((resolve, reject) => {
+                    $.get(topScorersPageUrl, (response) => {
+                        const processedResponseData = Object.assign(processResponse(response), { id: eventId });
+                        let processedResponse = {};
 
-                const loadFromStorage = (eventId) => {
-                    return new Promise((resolve, reject) => {
-                        chrome.runtime.sendMessage({
-                            task: 'eventStats.get',
-                            eventId: eventId
-                        }, (response) => {
-                            if (response && response[eventId]) {
-                                resolve(response[eventId]);
-                            } else {
-                                reject();
-                            }
-                        });
+                        processedResponse[String(eventId)] = processedResponseData;
+                        
+                        resolve(processedResponseData);
                     });
-                };
-
-                promises.individualStats = loadFromStorage(eventId)
-                    .catch(() => {
-                        return new Promise((resolve, reject) => {
-                            $.get(topScorersPageUrl, (response) => {
-                                const processedResponseData = Object.assign(processResponse(response), { id: eventId });
-                                let processedResponse = {};
-
-                                processedResponse[String(eventId)] = processedResponseData;
-                                
-                                saveToStorage(processedResponse);
-                                resolve(processedResponseData);
-                            });
-                        });
-                    });
+                });
             };
 
             return {
