@@ -1,3 +1,26 @@
+const obsi = (() => {
+    const getProto = (handlers) => {
+        return {
+            onChange(changeHandler) {
+                handlers.push(changeHandler);
+            },
+            change(newValue) {
+                handlers.forEach((handler) => {
+                    handler.call(null, newValue);
+                });
+            }
+        };
+    };
+
+    const create = () => {
+        return Object.create(getProto([]));
+    };
+
+    return {
+        create
+    };
+})();
+
 const redesigner = (sidebarItems) => {
     const activePageName = $('.lap').html();
     const activeLeagueName = $('.eventmenu_table h2').html();
@@ -25,6 +48,7 @@ const redesigner = (sidebarItems) => {
     let stats = {};
     let filteredStats = {};
     let matches = {};
+    let filter = obsi.create();
 
     const init = (sidebarItems) => {
         appendMetaTags();
@@ -43,6 +67,10 @@ const redesigner = (sidebarItems) => {
         });
         setActiveTeamIds();
         attachEventHandlers();
+    };
+
+    const logPlayers = (value) => {
+        console.log(value);
     };
 
     const appendMetaTags = () => {
