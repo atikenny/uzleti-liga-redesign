@@ -13,10 +13,6 @@ const redesigner = (sidebarItems) => {
     let $statsButton;
     let $filterButton;
     let $filter;
-    let $showFinishedButton;
-    let $showAllTeamsButton;
-    let $teamSelectors;
-    let $filteringButtons;
     let $tabs;
     let $stats;
     let $individualStats;
@@ -37,7 +33,6 @@ const redesigner = (sidebarItems) => {
         matches = collectMatches(statsCollector);
         appendMatches(matches);
         teams.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1);
-        appendFilter(teams);
         appendStats(teams, matches);
         statsCollector.promises.individualStats.then((data) => {
             delete data.id;
@@ -45,8 +40,8 @@ const redesigner = (sidebarItems) => {
             renderIndividualStats(individualStats);
         });
         setActiveTeamIds();
+        FilterComponent.init(filter, teams);
         attachEventHandlers();
-        FilterComponent.init(filter);
     };
 
     const logFilter = (value) => {
@@ -765,36 +760,6 @@ const redesigner = (sidebarItems) => {
         console.log(matches);
     };
 
-    const appendFilter = (teams) => {
-        const getTeamSelectorHTML = (teamSelectorsHTML, team) => {
-            return (`
-                ${teamSelectorsHTML}
-                <li>
-                    <button class="team-selector active" data-team-id="${team.id}">${team.name}</button>
-                </li>
-            `);
-        };
-
-        const filterHTML = (`
-            <div id="filter">
-                <div class="main-controls">
-                    <button class="show-finished-matches active">végetért meccsek</button>
-                    <button class="show-all-teams active">összes csapat</button>
-                </div>
-                <ul class="team-selector-container scroller">
-                    ${teams.reduce(getTeamSelectorHTML, '')}
-                </ul>
-            </div>
-        `);
-
-        $('body').append(filterHTML);
-        $filter = $('#filter');
-        $showFinishedButton = $('.show-finished-matches');
-        $showAllTeamsButton = $('.show-all-teams');
-        $teamSelectors = $('.team-selector');
-        $filteringButtons = $('#filter button');
-    };
-
     const colorOddRows = (index) => {
         return (index % 2) !== 0 ? 'darker' : '';
     };
@@ -1146,41 +1111,35 @@ const redesigner = (sidebarItems) => {
         activeTeamIds = $('.team-selector.active').map((index, element) => $(element).attr('data-team-id')).toArray();
     };
 
+    const toggleMatches = () => {
+        const getTeamIdsFromMatch = ($match) => {
+            return $match.find('.team').map((index, element) => $(element).attr('data-team-id')).toArray();
+        };
+
+        const filterMatch = (index, matchElement) => {
+            const $match = $(matchElement);
+            const matchTeamIds = getTeamIdsFromMatch($match);
+            const areTeamsFiltered = !(matchTeamIds.some((matchTeamId) => activeTeamIds.indexOf(matchTeamId) > -1));
+            const isTimeFiltered = $showFinishedButton.hasClass('active') ? false : $match.hasClass('finished');
+
+            $match.toggleClass('hidden', areTeamsFiltered || isTimeFiltered);
+        };
+
+        const hideEmptyDateContainers = () => {
+            $('.date-container')
+                .each(function () {
+                    const hasVisibleMatch = $(this).find('.match:not(.hidden)').length;
+                    
+                    $(this).toggleClass('hidden', !hasVisibleMatch);
+                });
+        };
+
+        $('.match').each(filterMatch);
+        
+        hideEmptyDateContainers();
+    };
+
     const attachEventHandlers = () => {
-        const toggleMatches = () => {
-            const getTeamIdsFromMatch = ($match) => {
-                return $match.find('.team').map((index, element) => $(element).attr('data-team-id')).toArray();
-            };
-
-            const filterMatch = (index, matchElement) => {
-                const $match = $(matchElement);
-                const matchTeamIds = getTeamIdsFromMatch($match);
-                const areTeamsFiltered = !(matchTeamIds.some((matchTeamId) => activeTeamIds.indexOf(matchTeamId) > -1));
-                const isTimeFiltered = $showFinishedButton.hasClass('active') ? false : $match.hasClass('finished');
-
-                $match.toggleClass('hidden', areTeamsFiltered || isTimeFiltered);
-            };
-
-            const hideEmptyDateContainers = () => {
-                $('.date-container')
-                    .each(function () {
-                        const hasVisibleMatch = $(this).find('.match:not(.hidden)').length;
-                        
-                        $(this).toggleClass('hidden', !hasVisibleMatch);
-                    });
-            };
-
-            $('.match').each(filterMatch);
-            
-            hideEmptyDateContainers();
-        };
-
-        const setFilterButtonState = () => {
-            const isFiltered = Boolean($('#filter button:not(.active)').length);
-            
-            $filterButton.toggleClass('filtered', isFiltered);
-        };
-
         $hamburgerMenu.on('click', function () {
             $('body').toggleClass('sidebarred');
             $(this).toggleClass('active');
@@ -1214,28 +1173,6 @@ const redesigner = (sidebarItems) => {
                     .animate({ scrollTop: todayOffset }, 1000);
             }
         });
-        $filterButton.on('click', function () {
-            $filter.toggleClass('open');
-            $(this).toggleClass('active');
-        });
-        $showFinishedButton.on('click', function () {
-            $(this).toggleClass('active');
-            toggleMatches();
-        });
-        $teamSelectors.on('click', function () {
-            $(this).toggleClass('active');
-            setActiveTeamIds();
-            toggleMatches();
-        });
-        $showAllTeamsButton.on('click', function () {
-            $(this).toggleClass('active');
-            $('.team-selector').toggleClass('active', $(this).hasClass('active'));
-            setActiveTeamIds();
-            toggleMatches();
-        });
-        $filteringButtons.on('click', function () {
-            setFilterButtonState();
-        });
         $('.sub-page').on('mousedown wheel DOMMouseScroll mousewheel keyup', () => {
             $('.sub-page.show').stop(true, true);
         });
@@ -1253,6 +1190,12 @@ const redesigner = (sidebarItems) => {
             showAllTeams: true,
             inactiveTeamIds: []
         };
+
+        let $filter;
+        let $showFinishedButton;
+        let $showAllTeamsButton;
+        let $teamSelectors;
+        let $filteringButtons;
 
         const load = () => {
             return new Promise((resolve, reject) => {
@@ -1292,16 +1235,80 @@ const redesigner = (sidebarItems) => {
             });
         };
 
-        const init = (filter) => {
+        const init = (filter, teams) => {
+            appendFilter();
             filter.onChange((newFilter) => {
                 save(newFilter);
-                render(newFilter);
+                render(newFilter, teams);
             });
             get(filter);
         };
 
-        const render = (filter) => {
-            console.log(filter);
+        const appendFilter = () => {
+            $('body').append('<div id="filter"></div>');
+            $filter = $('#filter');
+            $filterButton.on('click', function () {
+                $filter.toggleClass('open');
+                $(this).toggleClass('active');
+            });
+        };
+
+        const render = (filter, teams) => {
+            $filter.html(getFilterHTML(filter, teams));
+            $showFinishedButton = $('.show-finished-matches');
+            $showAllTeamsButton = $('.show-all-teams');
+            $teamSelectors = $('.team-selector');
+            $filteringButtons = $('#filter button');
+        };
+
+        const getFilterHTML = (filter, teams) => {
+            const finishedMatchesButtonClass = filter.showFinishedMatches ? 'active' : '';
+            const allTeamsButtonClass = filter.showAllTeams ? 'active' : '';
+
+            return (`
+                <div class="main-controls">
+                    <button class="show-finished-matches ${finishedMatchesButtonClass}">végetért meccsek</button>
+                    <button class="show-all-teams ${allTeamsButtonClass}">összes csapat</button>
+                </div>
+                <ul class="team-selector-container scroller">
+                    ${teams.reduce(getTeamSelectorHTML, '')}
+                </ul>
+            `);
+        };
+
+        const getTeamSelectorHTML = (teamSelectorsHTML, team) => {
+            return teamSelectorsHTML += (`
+                <li>
+                    <button class="team-selector active" data-team-id="${team.id}">${team.name}</button>
+                </li>
+            `);
+        };
+
+        const attachEventHandlers = () => {
+            const setFilterButtonState = () => {
+                const isFiltered = Boolean($('#filter button:not(.active)').length);
+                
+                $filterButton.toggleClass('filtered', isFiltered);
+            };
+
+            $showFinishedButton.on('click', function () {
+                $(this).toggleClass('active');
+                toggleMatches();
+            });
+            $teamSelectors.on('click', function () {
+                $(this).toggleClass('active');
+                setActiveTeamIds();
+                toggleMatches();
+            });
+            $showAllTeamsButton.on('click', function () {
+                $(this).toggleClass('active');
+                $('.team-selector').toggleClass('active', $(this).hasClass('active'));
+                setActiveTeamIds();
+                toggleMatches();
+            });
+            $filteringButtons.on('click', function () {
+                setFilterButtonState();
+            });
         };
 
         return {
