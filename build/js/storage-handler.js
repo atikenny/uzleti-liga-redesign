@@ -1,3 +1,7 @@
+const isEmptyObject = (object) => {
+    return !Boolean(Object.keys(object).length);
+};
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     switch (request.task) {
         case 'matchStats.save':
@@ -12,9 +16,19 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             break;
         case 'filter.get':
             filter
-                .get()
+                .get(request.eventId)
                 .then(sendResponse)
                 .catch(sendResponse);
+
+            break;
+        case 'filter.save':
+            let storageObject = {};
+
+            storageObject[`filter.${request.id}`] = request.data;
+
+            filter.save(storageObject);
+
+            break;
     }
 
     return true;
@@ -38,15 +52,30 @@ const matchStats = (() => {
 })();
 
 const filter = (() => {
-    const get = () => {
+    const get = (eventId) => {
+        const key = `filter.${eventId}`;
+        
         return new Promise((resolve, reject) => {
-            chrome.storage.local.get('filter', (response) => {
-                console.log(response);
+            chrome.storage.local.get(key, (response) => {
+                if(!isEmptyObject(response) && response[key]) {
+                    resolve(response[key]);
+                } else {
+                    reject({
+                        error: 'no-filter',
+                        errorCode: 404,
+                        errorMessage: `No saved filter for event: ${eventId}`
+                    });
+                }
             });
         });
     };
 
+    const save = (eventFilter) => {
+        chrome.storage.local.set(eventFilter);
+    };
+
     return {
-        get
+        get,
+        save
     };
 })();

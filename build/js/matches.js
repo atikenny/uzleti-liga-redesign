@@ -1,30 +1,9 @@
-const obsi = (() => {
-    const getProto = (handlers) => {
-        return {
-            onChange(changeHandler) {
-                handlers.push(changeHandler);
-            },
-            change(newValue) {
-                handlers.forEach((handler) => {
-                    handler.call(null, newValue);
-                });
-            }
-        };
-    };
-
-    const create = () => {
-        return Object.create(getProto([]));
-    };
-
-    return {
-        create
-    };
-})();
-
 const redesigner = (sidebarItems) => {
     const activePageName = $('.lap').html();
     const activeLeagueName = $('.eventmenu_table h2').html();
     const todayTimestamp = Date.parse((new Date()).toISOString().substr(0, 10));
+    const url = window.location;
+    const eventId = url.search.substring(url.search.indexOf('eid') + 4);
     
     let $hamburgerMenu;
     let $sidebar;
@@ -67,9 +46,10 @@ const redesigner = (sidebarItems) => {
         });
         setActiveTeamIds();
         attachEventHandlers();
+        FilterComponent.init(filter);
     };
 
-    const logPlayers = (value) => {
+    const logFilter = (value) => {
         console.log(value);
     };
 
@@ -336,8 +316,6 @@ const redesigner = (sidebarItems) => {
             individualStats: null
         };
 
-        const url = window.location;
-        const eventId = url.search.substring(url.search.indexOf('eid') + 4);
         const matchDetailsUrlBase = 'http://www.uzletiliga.hu/eredmenyek/match_details3.php?eid=' + eventId + '&mid=';
         
         const individualStatsCollector = (() => {
@@ -1268,6 +1246,68 @@ const redesigner = (sidebarItems) => {
             $button.parents('.match:first').toggleClass('show-stats');
         });
     };
+
+    const FilterComponent = (() => {
+        const defaultFilter = {
+            showFinishedMatches: true,
+            showAllTeams: true,
+            inactiveTeamIds: []
+        };
+
+        const load = () => {
+            return new Promise((resolve, reject) => {
+                chrome.runtime.sendMessage({
+                    task: 'filter.get',
+                    eventId: eventId
+                }, (response) => {
+                    if (response.error) {
+                        reject(response);
+                    } else {
+                        resolve(response);
+                    }
+                });
+            });
+        };
+
+        const handleLoadError = (filter, error) => {
+            switch (error.errorCode) {
+                case 404:
+                    filter.change(defaultFilter);
+
+                    break;
+            }
+        };
+
+        const get = (filter) => {
+            load()
+                .then(filter.change)
+                .catch(handleLoadError.bind(null, filter))
+        };
+
+        const save = (filter) => {
+            chrome.runtime.sendMessage({
+                task: 'filter.save',
+                id: eventId,
+                data: filter
+            });
+        };
+
+        const init = (filter) => {
+            filter.onChange((newFilter) => {
+                save(newFilter);
+                render(newFilter);
+            });
+            get(filter);
+        };
+
+        const render = (filter) => {
+            console.log(filter);
+        };
+
+        return {
+            init
+        };
+    })();
 
     init(sidebarItems);
 };
