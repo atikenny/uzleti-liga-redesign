@@ -14,6 +14,7 @@
             "matches": ["http://www.uzletiliga.hu/eredmenyek/matches*"],
             "css": ["css/matches.css"],
             "js": [
+                "js/script-loader.js",
                 "js/third-party/react.js",
                 "js/third-party/react-dom.js",
                 "js/third-party/jquery.js",

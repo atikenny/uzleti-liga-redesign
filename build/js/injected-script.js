@@ -1,40 +1,35 @@
-setTimeout(function() {
-    var menuItemRegExp = /Menu\d/;
+setTimeout(() => {
+    const menuItemRegExp = /Menu\d/;
 
-    function init(window) {
-        var menuItems = collectMenuItems(window);
+    const init = (window) => {
+        sendMenuItems(collectMenuItems(window));
+    };
 
-        sendMenuItems(menuItems);
-    }
-
-    function collectMenuItems(window) {
-        var menu;
-
-        menu = Object.keys(window)
+    const collectMenuItems = (window) => {
+        return Object.keys(window)
             .filter(filterMenuProperty)
             .map(flattenMenuItems)
             .reduce(unflattenMenuItems, {});
+    };
 
-        return menu;
-    }
-
-    function filterMenuProperty(windowProperty) {
+    const filterMenuProperty = (windowProperty) => {
         return menuItemRegExp.test(windowProperty);
-    }
+    };
 
-    function flattenMenuItems(windowProperty) {
+    const flattenMenuItems = (windowProperty) => {
         return {
             key: windowProperty,
             itemValue: window[windowProperty]
         };
-    }
+    };
 
-    function unflattenMenuItems(prev, current) {
-        var menuIndex = current.key.substr(4),
-            menuIndexArray = menuIndex.split('_'),
-            menuDepth = menuIndexArray.length,
-            currentDepth,
-            i = 0;
+    const unflattenMenuItems = (prev, current) => {
+        const menuIndex = current.key.substr(4);
+        const menuIndexArray = menuIndex.split('_');
+        const menuDepth = menuIndexArray.length;
+
+        let i;
+        let currentDepth;
 
         for (i = 0, currentDepth = prev; i < menuDepth; i++) {
             if (!currentDepth.menuItems) {
@@ -55,11 +50,11 @@ setTimeout(function() {
         return prev;
     }
 
-    function sendMenuItems(menuItems) {
+    const sendMenuItems = (menuItems) => {
         document.dispatchEvent(new CustomEvent('scriptInjected', {
             detail: menuItems
         }));
-    }
+    };
 
     init(window);
 }, 0);
