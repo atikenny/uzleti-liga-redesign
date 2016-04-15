@@ -2,6 +2,7 @@
  
 const gulp  = require('gulp');
 const sass  = require('gulp-sass');
+const gulpReact  = require('gulp-react');
 
 gulp.task('default', ['build'], function () {
     gulp.start('build:watch');
@@ -12,8 +13,14 @@ gulp.task('sass', function () {
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./css'));
 });
+
+gulp.task('transpile-js', function() {
+    return gulp.src('./js/components/**/*.jsx')
+        .pipe(gulpReact({ harmony: true }))
+        .pipe(gulp.dest('./js/components'))
+});
  
-gulp.task('build', ['sass'], function () {
+gulp.task('build', ['sass', 'transpile-js'], function () {
     gulp.src('./css/**/*.css')
         .pipe(gulp.dest('./build/css'));
 
@@ -26,7 +33,7 @@ gulp.task('build', ['sass'], function () {
     gulp.src('./img/**/*.*')
         .pipe(gulp.dest('./build/img'));
 
-    gulp.src('./js/**/*.*')
+    gulp.src('./js/**/*.js')
         .pipe(gulp.dest('./build/js'));
 });
 

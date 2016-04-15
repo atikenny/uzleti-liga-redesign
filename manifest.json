@@ -11,10 +11,17 @@
     },
     "content_scripts": [
         {
-          "matches": ["http://www.uzletiliga.hu/eredmenyek/matches*"],
-          "css": ["css/matches.css"],
-          "js": ["js/lib/obsi.js", "js/jquery.js", "js/d3.min.js", "js/matches.js"],
-          "run_at": "document_end"
+            "matches": ["http://www.uzletiliga.hu/eredmenyek/matches*"],
+            "css": ["css/matches.css"],
+            "js": [
+                "js/third-party/react.js",
+                "js/third-party/react-dom.js",
+                "js/third-party/jquery.js",
+                "js/third-party/d3.min.js",
+                "js/components/filter.js",
+                "js/matches.js"
+            ],
+            "run_at": "document_end"
         }
     ],
     "background": {

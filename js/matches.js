@@ -23,7 +23,6 @@ const redesigner = (sidebarItems) => {
     let stats = {};
     let filteredStats = {};
     let matches = {};
-    let filter = obsi.create();
 
     const init = (sidebarItems) => {
         appendMetaTags();
@@ -40,12 +39,8 @@ const redesigner = (sidebarItems) => {
             renderIndividualStats(individualStats);
         });
         setActiveTeamIds();
-        FilterComponent.init(filter, teams);
         attachEventHandlers();
-    };
-
-    const logFilter = (value) => {
-        console.log(value);
+        appendFilter();
     };
 
     const appendMetaTags = () => {
@@ -1182,6 +1177,15 @@ const redesigner = (sidebarItems) => {
             $button.toggleClass('active');
             $button.parents('.match:first').toggleClass('show-stats');
         });
+    };
+
+    const appendFilter = () => {
+        $('body').append('<div id="filter"></div>');
+        
+        ReactDOM.render(
+            React.createElement(Filter, null),
+            document.getElementById('filter')
+        );
     };
 
     const FilterComponent = (() => {
