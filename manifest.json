@@ -11,8 +11,8 @@
     },
     "content_scripts": [
         {
-            "matches": ["http://www.uzletiliga.hu/eredmenyek/matches*"],
-            "css": ["css/matches.css"],
+            "matches": ["http://www.uzletiliga.hu/*"],
+            "css": ["css/business-league.css"],
             "js": [
                 "js/script-loader.js",
                 "js/third-party/react.js",
@@ -20,7 +20,7 @@
                 "js/third-party/jquery.js",
                 "js/third-party/d3.min.js",
                 "js/components/filter.js",
-                "js/matches.js"
+                "js/business-league.js"
             ],
             "run_at": "document_end"
         }
