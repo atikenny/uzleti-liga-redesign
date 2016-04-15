@@ -15,9 +15,9 @@ gulp.task('sass', function () {
 });
 
 gulp.task('transpile-js', function() {
-    return gulp.src('./js/components/**/*.jsx')
+    return gulp.src('./js/**/*.jsx')
         .pipe(gulpReact({ harmony: true }))
-        .pipe(gulp.dest('./js/components'))
+        .pipe(gulp.dest('./js'))
 });
  
 gulp.task('build', ['sass', 'transpile-js'], function () {

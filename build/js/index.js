@@ -1,0 +1,2 @@
+mainApp.clean();
+mainApp.insertApp();

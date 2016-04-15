@@ -1,32 +1,36 @@
-const mainApp = (() => {
-    const init = () => {
-        clean();
-    };
+const mainApp = (function()  {
+    const clean = function()  {
+        const clearBody = function()  {
+            $('body').empty();
+        };
 
-    const clean = () => {
+        const removeStyles = function()  {
+            $('head link[rel="stylesheet"]').remove();
+        };
+
+        const removeScripts = function()  {
+            $('head script').remove();
+        };
+
+        const appendMainAppContainer = function()  {
+            $('body').append('<div id="business-league-app"></div>');
+        };
+
         clearBody();
         removeStyles();
         removeScripts();
         appendMainAppContainer();
     };
 
-    const clearBody = () => {
-        $('body').empty();
-    };
-
-    const removeStyles = () => {
-        $('head link[rel="stylesheet"]').remove();
-    };
-
-    const removeScripts = () => {
-        $('head script').remove();
-    };
-
-    const appendMainAppContainer = () => {
-        $('body').append('<div id="business-league-app"></div>');
+    const insertApp = function()  {
+        ReactDOM.render(
+            React.createElement(BusinessLeague, null),
+            document.getElementById('business-league-app')
+        );
     };
 
     return {
-        init
+        clean:clean,
+        insertApp:insertApp
     };
 })();

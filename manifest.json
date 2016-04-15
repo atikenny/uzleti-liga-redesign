@@ -17,9 +17,9 @@
                 "js/third-party/jquery.js",
                 "js/third-party/react.js",
                 "js/third-party/react-dom.js",
-                "js/main/components/filter.js",
+                "js/main/components/business-league.js",
                 "js/main/main-app.js",
-                "js/business-league.js"
+                "js/index.js"
             ],
             "run_at": "document_end"
         }
@@ -29,8 +29,7 @@
     },
     "web_accessible_resources": [
         "font/*.*",
-        "img/*.*",
-        "js/injected-script.js"
+        "img/*.*"
     ],
     "permissions": [
         "storage"

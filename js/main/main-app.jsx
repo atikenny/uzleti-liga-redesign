@@ -1,18 +1,18 @@
-const mainApp = (function()  {
-    const clean = function()  {
-        const clearBody = function()  {
+const mainApp = (() => {
+    const clean = () => {
+        const clearBody = () => {
             $('body').empty();
         };
 
-        const removeStyles = function()  {
+        const removeStyles = () => {
             $('head link[rel="stylesheet"]').remove();
         };
 
-        const removeScripts = function()  {
+        const removeScripts = () => {
             $('head script').remove();
         };
 
-        const appendMainAppContainer = function()  {
+        const appendMainAppContainer = () => {
             $('body').append('<div id="business-league-app"></div>');
         };
 
@@ -22,15 +22,15 @@ const mainApp = (function()  {
         appendMainAppContainer();
     };
 
-    const insertApp = function()  {
+    const insertApp = () => {
         ReactDOM.render(
-            React.createElement(BusinessLeague, null),
+            <BusinessLeague />,
             document.getElementById('business-league-app')
         );
     };
 
     return {
-        clean:clean,
-        insertApp:insertApp
+        clean,
+        insertApp
     };
 })();
