@@ -1,5 +1,9 @@
 const mainApp = (() => {
     const clean = () => {
+        const setTitle = () => {
+            document.title = 'Üzleti Liga';
+        };
+
         const clearBody = () => {
             $('body').empty();
         };
@@ -16,10 +20,16 @@ const mainApp = (() => {
             $('body').append('<div id="business-league-app"></div>');
         };
 
+        const appendMetaTags = () => {
+            $('head').append('<meta name="viewport" content="width=device-width, initial-scale=1">');
+        };
+
+        setTitle();
         clearBody();
         removeStyles();
         removeScripts();
         appendMainAppContainer();
+        appendMetaTags();
     };
 
     const insertApp = () => {

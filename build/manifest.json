@@ -12,12 +12,18 @@
     "content_scripts": [
         {
             "matches": ["http://www.uzletiliga.hu/*"],
-            "css": ["css/business-league.css"],
+            "css": [
+                "css/main/main-app.css",
+                "css/main/components/header.css",
+                "css/main/components/sidebar.css"
+            ],
             "js": [
                 "js/third-party/jquery.js",
                 "js/third-party/react.js",
                 "js/third-party/react-dom.js",
                 "js/main/components/business-league.js",
+                "js/main/components/header.js",
+                "js/main/components/sidebar.js",
                 "js/main/main-app.js",
                 "js/index.js"
             ],

@@ -1,0 +1,48 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 300px;
+  transform: translateX(-100%);
+  transition: all 0.3s cubic-bezier(0, 0, 0.2, 1); }
+  .sidebar span, .sidebar a {
+    display: block;
+    outline: none;
+    padding: 12px 12px 12px 20px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.87);
+    text-transform: capitalize;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: background-color 0.3s cubic-bezier(0, 0, 0.2, 1); }
+  .sidebar a {
+    color: #DA6D03; }
+    .sidebar a:hover {
+      background-color: rgba(255, 255, 255, 0.5); }
+  .sidebar ul, .sidebar li {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+  .sidebar > ul {
+    overflow-y: auto;
+    position: absolute;
+    top: 108px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 16px; }
+    .sidebar > ul ul {
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.03);
+      font-size: 90%; }
+      .sidebar > ul ul span, .sidebar > ul ul a {
+        padding-top: .5em;
+        padding-bottom: .5em; }
+      .sidebar > ul ul span {
+        color: rgba(0, 0, 0, 0.6); }
+      .sidebar > ul ul ul span, .sidebar > ul ul ul a {
+        padding-left: 32px; }
+  .sidebar.open {
+    transform: translateX(0); }

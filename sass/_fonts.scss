@@ -1,0 +1,30 @@
+$font: 'Open Sans', Arial, sans-serif;
+$fontCondensed: 'Open Sans Condensed', Arial, sans-serif;
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url(#{$root}/font/opensans-regular.ttf);
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url(#{$root}/font/opensans-bold.ttf);
+}
+
+@font-face {
+    font-family: 'Open Sans Condensed';
+    font-style: normal;
+    font-weight: 700;
+    src: url(#{$root}/font/opensans-condbold.ttf);
+}
+
+@font-face {
+  font-family: 'icon';
+  font-style: normal;
+  font-weight: 400;
+  src: url(#{$root}/font/icons.woff2) format('woff2');
+}
