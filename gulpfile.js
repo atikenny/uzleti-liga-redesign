@@ -14,10 +14,10 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('./css'));
 });
 
-gulp.task('transpile-js', function() {
+gulp.task('transpile-js', function () {
     return gulp.src('./js/**/*.jsx')
         .pipe(gulpReact({ harmony: true }))
-        .pipe(gulp.dest('./js'))
+        .pipe(gulp.dest('./build/js'))
 });
  
 gulp.task('build', ['sass', 'transpile-js'], function () {
