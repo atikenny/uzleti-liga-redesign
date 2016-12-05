@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function(event)  {
+document.addEventListener('DOMContentLoaded', function()  {
     ReactDOM.render(
         React.createElement(BusinessLeague, null),
         document.getElementById('business-league-app')
