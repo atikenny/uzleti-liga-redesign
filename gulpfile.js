@@ -1,51 +1,66 @@
-'use strict';
- 
-const gulp  = require('gulp');
-const sass  = require('gulp-sass');
-const gulpReact  = require('gulp-react');
+const gulp          = require('gulp');
+const sass          = require('gulp-sass');
+const react         = require('gulp-react');
+const sourcemaps    = require('gulp-sourcemaps');
+const concat        = require('gulp-concat');
+const exec          = require('child_process').exec;
 
-gulp.task('default', ['build'], function () {
+gulp.task('default', ['build'], () => {
     gulp.start('build:watch');
+    gulp.start('server');
 });
 
-gulp.task('sass', function () {
-    return gulp.src('./sass/**/*.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./css'));
-});
-
-gulp.task('transpile-js', function () {
-    return gulp.src('./js/**/*.jsx')
-        .pipe(gulpReact({ harmony: true }))
-        .pipe(gulp.dest('./build/js'))
-});
- 
-gulp.task('build', ['sass', 'transpile-js'], function () {
-    gulp.src('./css/**/*.css')
-        .pipe(gulp.dest('./build/css'));
-
-    gulp.src('./font/**/*.*')
-        .pipe(gulp.dest('./build/font'));
-
-    gulp.src('./manifest.json')
-        .pipe(gulp.dest('./build'));
-
-    gulp.src('./img/**/*.*')
-        .pipe(gulp.dest('./build/img'));
-
-    gulp.src('./js/**/*.js')
-        .pipe(gulp.dest('./build/js'));
-});
-
-gulp.task('build:watch', function () {
+gulp.task('build:watch', () => {
     const filePatterns = [
-        'css/**/*.css',
-        'font/**/*.*',
-        'manifest.json',
-        'img/**/*.*',
-        'js/**/*.*'
+        'app/css/**/*.css',
+        'app/font/**/*.*',
+        'app/img/**/*.*',
+        'app/js/**/*.*',
+        'app/**/*.html'
     ];
 
-    gulp.watch('./sass/**/*.scss', ['sass']);
+    gulp.watch('app/sass/**/*.scss', ['sass']);
     gulp.watch(filePatterns, ['build']);
+});
+ 
+gulp.task('build', ['html', 'sass', 'jsx'], () => {
+    gulp.src('./app/css/**/*.css')
+        .pipe(gulp.dest('./build/css'));
+
+    gulp.src('./app/font/**/*.*')
+        .pipe(gulp.dest('./build/font'));
+
+    gulp.src('./app/img/**/*.*')
+        .pipe(gulp.dest('./build/img'));
+});
+
+gulp.task('sass', () => {
+    return gulp.src('app/sass/**/*.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass().on('error', sass.logError))
+        .pipe(concat('main.css'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('build/css'));
+});
+
+gulp.task('jsx', () => {
+    return gulp.src('app/js/**/*.jsx')
+        .pipe(sourcemaps.init())
+        .pipe(react({ harmony: true }))
+        .pipe(concat('main.js'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('build/js'))
+});
+
+gulp.task('html', () => {
+    return gulp.src('app/**/*.html')
+        .pipe(gulp.dest('./build/'));
+});
+
+gulp.task('server', () => {
+    exec('node index.js', function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        callback(err);
+    });
 });

@@ -1,0 +1,192 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/font/opensans-regular.ttf); }
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url(/font/opensans-bold.ttf); }
+
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-style: normal;
+  font-weight: 700;
+  src: url(/font/opensans-condbold.ttf); }
+
+@font-face {
+  font-family: 'icon';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/font/icons.woff2) format("woff2"); }
+
+.sidebar > ul::-webkit-scrollbar {
+  overflow: visible;
+  width: 10px; }
+
+.sidebar > ul::-webkit-scrollbar-corner {
+  background: transparent; }
+
+.sidebar > ul::-webkit-scrollbar-thumb {
+  min-height: 28px;
+  padding: 100px 0 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 0;
+  cursor: pointer; }
+
+.sidebar > ul::-webkit-scrollbar-track {
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 0; }
+
+.hidden {
+  display: none; }
+
+#main-app-header .page-name {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; }
+
+.material-icons {
+  font-family: 'icon';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased; }
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table; }
+
+.clearfix:after {
+  clear: both; }
+
+body {
+  position: relative;
+  background: #eee;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 14px;
+  padding-top: 108px;
+  line-height: normal;
+  overflow: hidden;
+  padding: 0;
+  margin: 0; }
+
+button {
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  cursor: pointer; }
+
+.card {
+  margin: 12px;
+  background-color: white;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14); }
+
+#main-app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 64px;
+  margin: 0;
+  padding: 0 8px;
+  background: #DA6D03;
+  color: #fff;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3); }
+  #main-app-header button {
+    height: 48px;
+    margin: 0 12px;
+    color: inherit;
+    text-transform: uppercase; }
+  #main-app-header .hamburger-menu {
+    display: inline-block;
+    width: 48px; }
+    #main-app-header .hamburger-menu path {
+      fill: white; }
+  #main-app-header .logo {
+    margin-left: 12px;
+    background: url(/img/logo.png) no-repeat 50% 50%/contain;
+    display: inline-block;
+    width: 46px;
+    height: 80%; }
+  #main-app-header .page-name {
+    font-size: 20px;
+    font-weight: bold;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 0 24px;
+    padding-left: 24px; }
+  #main-app-header > button.active {
+    color: #FFAA57; }
+  #main-app-header .filter-button.filtered {
+    color: #3C92A6; }
+
+@media (max-width: 768px) {
+  #main-app-header {
+    height: 48px; } }
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 300px;
+  transform: translateX(-100%);
+  transition: all 0.3s cubic-bezier(0, 0, 0.2, 1); }
+  .sidebar span, .sidebar a {
+    display: block;
+    outline: none;
+    padding: 12px 12px 12px 20px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.87);
+    text-transform: capitalize;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: background-color 0.3s cubic-bezier(0, 0, 0.2, 1); }
+  .sidebar a {
+    color: #DA6D03; }
+    .sidebar a:hover {
+      background-color: rgba(255, 255, 255, 0.5); }
+  .sidebar ul, .sidebar li {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+  .sidebar > ul {
+    overflow-y: auto;
+    position: absolute;
+    top: 108px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 16px; }
+    .sidebar > ul ul {
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.03);
+      font-size: 90%; }
+      .sidebar > ul ul span, .sidebar > ul ul a {
+        padding-top: .5em;
+        padding-bottom: .5em; }
+      .sidebar > ul ul span {
+        color: rgba(0, 0, 0, 0.6); }
+      .sidebar > ul ul ul span, .sidebar > ul ul ul a {
+        padding-left: 32px; }
+  .sidebar.open {
+    transform: translateX(0); }
+
+/*# sourceMappingURL=main.css.map */
