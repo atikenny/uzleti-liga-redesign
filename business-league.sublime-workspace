@@ -381,7 +381,7 @@
 			],
 			[
 				"compo",
-				"component	React.PropTypes.component"
+				"component\tReact.PropTypes.component"
 			],
 			[
 				"valida",
@@ -433,7 +433,7 @@
 			],
 			[
 				"func",
-				"function	React.PropTypes.func"
+				"function\tReact.PropTypes.func"
 			],
 			[
 				"flo",
@@ -445,7 +445,7 @@
 			],
 			[
 				"com",
-				"component	React.PropTypes.component"
+				"component\tReact.PropTypes.component"
 			],
 			[
 				"isadmin",
@@ -519,14 +519,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "js/main/main-app.jsx",
-			"settings":
-			{
-				"buffer_size": 785,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -535,10 +527,22 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 334.0,
-		"last_filter": "inp",
+		"height": 191.0,
+		"last_filter": "jsx",
 		"selected_items":
 		[
+			[
+				"jsx",
+				"Set Syntax: JSX"
+			],
+			[
+				"syhtml",
+				"Set Syntax: HTML"
+			],
+			[
+				"syjsx",
+				"Set Syntax: JSX"
+			],
 			[
 				"inp",
 				"Package Control: Install Package"
@@ -585,14 +589,6 @@
 			],
 			[
 				"s",
-				"Set Syntax: JSX"
-			],
-			[
-				"syjsx",
-				"Set Syntax: JSX"
-			],
-			[
-				"jsx",
 				"Set Syntax: JSX"
 			],
 			[
@@ -712,7 +708,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 416.0
+		"width": 414.0
 	},
 	"console":
 	{
@@ -734,10 +730,37 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Attila/Code/uzleti-liga-redesign"
+		"/C/Source/uzleti-liga-redesign",
+		"/C/Source/uzleti-liga-redesign/app/js/main",
+		"/C/Source/uzleti-liga-redesign/server"
 	],
 	"file_history":
 	[
+		"/C/Source/uzleti-liga-redesign/gulpfile.js",
+		"/C/Source/uzleti-liga-redesign/app/index.html",
+		"/C/Source/uzleti-liga-redesign/server/event-collector.js",
+		"/C/Source/uzleti-liga-redesign/.gitignore",
+		"/C/Source/uzleti-liga-redesign/app/js/main/main-app.jsx",
+		"/C/Source/uzleti-liga-redesign/build/js/main.js",
+		"/C/Source/hotel-pwa/gulpfile.js",
+		"/C/Source/hotel-pwa/app/index.html",
+		"/C/Source/hotel-pwa/app/scripts/components/seacrh-container.jsx",
+		"/C/Source/uzleti-liga-redesign/app/sass/main/components/_header.scss",
+		"/C/Source/uzleti-liga-redesign/app/sass/_fonts.scss",
+		"/C/Source/uzleti-liga-redesign/app/sass/_colors.scss",
+		"/C/Source/uzleti-liga-redesign/app/sass/business-league.scss",
+		"/C/Source/uzleti-liga-redesign/app/sass/_variables.scss",
+		"/C/Source/uzleti-liga-redesign/package.json",
+		"/C/Source/uzleti-liga-redesign/index.js",
+		"/C/Source/hotel-pwa/resources/documentation/import-localhost-cert-for-windows.md",
+		"/C/Source/uzleti-liga-redesign/sass/business-league.scss",
+		"/C/Source/uzleti-liga-redesign/index.html",
+		"/C/Source/uzleti-liga-redesign/sass/main/_common.scss",
+		"/C/Source/uzleti-liga-redesign/sass/main/components/_header.scss",
+		"/C/Source/uzleti-liga-redesign/sass/main/components/_sidebar.scss",
+		"/C/Source/uzleti-liga-redesign/sass/main/components/header.scss",
+		"/C/Source/uzleti-liga-redesign/manifest.json",
+		"/C/Source/uzleti-liga-redesign/js/main/main-app.jsx",
 		"/C/Users/Attila/Code/uzleti-liga-redesign/gulpfile.js",
 		"/C/Users/Attila/Code/uzleti-liga-redesign/js/main/components/business-league.js",
 		"/C/Users/Attila/Code/uzleti-liga-redesign/js/matches.js",
@@ -840,32 +863,7 @@
 		"/C/Users/Attila/Code/chealt/code/client/components/layout/header.jsx",
 		"/C/Users/Attila/Code/chealt/code/packages/npm-container/.npm/package/node_modules/material-ui/src/svg-icons/hardware/router.jsx",
 		"/C/Users/Attila/Code/chealt/code/client/components/event-title.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/editable.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/styles/events.scss",
-		"/C/Users/Attila/Code/chealt/code/client/styles/3rd-party/datepicker.scss",
-		"/C/Users/Attila/Code/chealt/code/client/components/event-header.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/styles/editable.scss",
-		"/C/Users/Attila/Code/chealt/code/client/components/event-footer.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/header-profile.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/image-list.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/styles/image-list.scss",
-		"/C/Users/Attila/Code/chealt/code/client/components/icon-button.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/styles/header-profile.scss",
-		"/C/Users/Attila/Code/chealt/code/client/components/icon.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/main-button.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/load-more.jsx",
-		"/C/Users/Attila/AppData/Local/.meteor/packages/cfs_graphicsmagick/0.0.18/os/packages/cfs_graphicsmagick.js",
-		"/C/Users/Attila/Code/chealt/code/client/components/map.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/styles/tooltip.scss",
-		"/C/Users/Attila/Code/chealt/code/server/activities.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/styles/activity-list.scss",
-		"/C/Users/Attila/Code/chealt/code/client/styles/header.scss",
-		"/C/Users/Attila/Code/chealt/code/client/components/profile-list.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/profile-info.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/styles/card.scss",
-		"/C/Users/Attila/Code/chealt/code/client/components/tooltip.jsx",
-		"/C/Users/Attila/Code/chealt/code/server/geocoding.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/google-maps.js"
+		"/C/Users/Attila/Code/chealt/code/client/components/editable.jsx"
 	],
 	"find":
 	{
@@ -906,6 +904,14 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"#{$root}/",
+			"var",
+			"transpile-js",
+			"gulpReact",
+			"function () {",
+			"main-app",
+			"nowrap-text",
+			"collectMatches",
 			"evenSta",
 			"background-color",
 			"z-inde",
@@ -1025,15 +1031,7 @@
 			"   ,",
 			"    ,",
 			"    ",
-			"')",
-			"cursor",
-			"user.",
-			".profile-picture",
-			".func",
-			"this.isAttending()",
-			"\"",
-			".",
-			"}"
+			"')"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1054,39 +1052,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "js/main/main-app.jsx",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 785,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								470,
-								470
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JSX/JSX.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1142,6 +1109,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"gitig",
+				".gitignore"
+			],
+			[
+				"hescss",
+				"sass\\main\\components\\header.scss"
+			],
 			[
 				"main",
 				"js\\main\\main-app.jsx"
@@ -1645,14 +1620,6 @@
 			[
 				"guest",
 				"client\\components\\guests.jsx"
-			],
-			[
-				"card",
-				"client\\styles\\card.scss"
-			],
-			[
-				"var",
-				"client\\styles\\import\\_variables.scss"
 			]
 		],
 		"width": 0.0

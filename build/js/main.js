@@ -18,9 +18,10 @@ const BusinessLeague = React.createClass({displayName: "BusinessLeague",
     },
 	render:function() {
 		return (
-            React.createElement("div", null, 
+            React.createElement("div", {id: "wrapper"}, 
                 React.createElement(Header, {openSidebar: this.openSidebar}), 
-                React.createElement(Sidebar, {isOpen: this.state.isSidebarOpen})
+                React.createElement(Sidebar, {isOpen: this.state.isSidebarOpen}), 
+                React.createElement(Matches, null)
             )
 		);
 	}
@@ -58,6 +59,19 @@ const Header = React.createClass({displayName: "Header",
                 ), 
                 React.createElement("button", {className: "login-button"}, 
                     React.createElement("i", {className: "material-icons"}, "account_box")
+                )
+            )
+        );
+    }
+});
+const matches = [];
+
+const Matches = React.createClass({displayName: "Matches",
+    render:function() {
+        return (
+            React.createElement("div", {id: "matches-container", className: "sub-page show"}, 
+                matches.map(function(match)  
+                    {return React.createElement("div", {className: "date-container"});}
                 )
             )
         );

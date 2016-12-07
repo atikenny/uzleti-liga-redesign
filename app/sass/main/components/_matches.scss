@@ -1,0 +1,176 @@
+#matches-container {
+    .matches {
+        padding: 20px 0;
+        display: flex;
+        flex-wrap: wrap;
+
+        .match {
+            @extend %clearfix;
+            position: relative;
+            margin-bottom: 32px;
+            min-width: 400px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            
+            &.hidden {
+                @extend %hidden;
+            }
+
+            &.show-stats {
+                > * {
+                    @extend %hidden;
+                }
+
+                .match-stats-container,
+                .stats-toggler {
+                    display: block;
+                }
+            }
+
+            .match-stats-container {
+                @extend %scroller;
+                min-height: 219px;
+                flex: 1 0;
+                display: none;
+                z-index: 500;
+                overflow-y: auto;
+                background-color: white;
+
+                .sum-score {
+                    font-weight: bold;
+                }
+            }
+
+            .stats-toggler {
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 4px;
+                color: white;
+                z-index: 400;
+                transition: all .4s ease;
+                transform: translateY(-7px);
+                border-radius: 4px 4px 0 0;
+
+                &.loading,
+                &.inactive {
+                    background-color: $greyColor;
+                    pointer-events: none;
+                }
+
+                &.loaded {
+                    background-color: #3C92A6;
+                }
+
+                &.active {
+                    background-color: $mainColorLightest;
+                }
+            }
+
+            &:hover .stats-toggler {
+                transform: translateY(-32px);
+            }
+        }
+    }
+
+    .date-container {
+        &.past {
+            .date {
+                color: $mainColorDarker;
+                border-bottom: 1px solid $mainColorLightest;
+            }
+        }
+
+        &.today {
+            .date {
+                color: $inverseColor;
+                border-bottom: 1px solid $inverseColorLightest;
+            }
+        }
+    }
+
+    .date {
+        font-size: 20px;
+        font-weight: normal;
+        margin: 0 8px;
+        padding: 16px 8px;
+        color: $greyColor;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .teams,
+    .scores {
+        overflow: hidden;
+    }
+
+    .score,
+    .team {
+        box-sizing: border-box;
+        width: 50%;
+        float: left;
+        padding: 0 20px;
+    }
+
+    .teams {
+        position: relative;
+        z-index: 500;
+        background-color: white;
+        padding-top: 20px;
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+    }
+
+    .team {
+        font-size: 18px;
+
+        &.winner {
+            color: $inverseColorLightest;
+            font-weight: bold;
+        }
+    }
+
+    .score {
+        font-size: 32px;
+    }
+
+    .score.home,
+    .team.home {
+        text-align: right;
+    }
+
+    .quarters {
+        display: flex;
+        align-items: center;
+        background-color: #f7f7f7;
+        border: 1px solid #ebebeb;
+        border-width: 1px 0;
+        margin-top: 20px;
+
+        .result {
+            flex: 1;
+            margin: 0 12px;
+            text-align: center;
+            font-size: 16px;
+            padding: 12px;
+        }
+    }
+
+    .location-container {
+        text-align: center;
+        font-size: 14px;
+        margin: 20px 0;
+
+        .material-icons {
+            vertical-align: -0.15em;
+        }
+    }
+
+    .match-time-container {
+        padding: 12px;
+        font-size: 32px;
+        text-align: center;
+    }
+}

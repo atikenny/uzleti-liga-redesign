@@ -11,9 +11,10 @@ const BusinessLeague = React.createClass({
     },
 	render() {
 		return (
-            <div>
+            <div id='wrapper'>
                 <Header openSidebar={this.openSidebar} />
                 <Sidebar isOpen={this.state.isSidebarOpen} />
+                <Matches />
             </div>
 		);
 	}
