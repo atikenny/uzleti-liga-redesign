@@ -113,8 +113,14 @@ gulp.task('clean:js', () => {
     return del.sync([`${PATHS.distFolder}/**/*.js*`, '!vendor*']);
 });
 
+gulp.task('clean:css', () => {
+    return del.sync([`${PATHS.distFolder}/**/*.css*`]);
+});
+
 gulp.task('build:watch', () => {
-    gulp.watch('app/sass/**/*.scss', ['sass']);
+    gulp.watch('app/sass/**/*.scss', () => {
+        sequence('clean:css', 'sass')();
+    });
     gulp.watch('app/js/**/*.jsx', () => {
         sequence('clean:js', 'build:app')();
     });
