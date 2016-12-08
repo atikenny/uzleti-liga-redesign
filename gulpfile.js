@@ -28,9 +28,21 @@ const PATHS = {
 
 const THIRD_PARTY = _.keys(require('./package.json').dependencies);
 
-gulp.task('default', sequence('clean', ['build:app', 'build:vendor', 'copy-resource', 'html', 'sass'], 'revision', 'rev-replace', 'build:watch', 'server'));
+gulp.task('default', sequence(
+    'clean',
+    ['build:app', 'build:vendor', 'copy-resource', 'html', 'sass'],
+    'revision',
+    'rev-replace',
+    'build:watch',
+    'server'
+));
 
-gulp.task('build', sequence('clean', ['build:app', 'build:vendor', 'copy-resource', 'html', 'sass'], 'revision', 'rev-replace'));
+gulp.task('build', sequence(
+    'clean',
+    ['build:app', 'build:vendor', 'copy-resource', 'html', 'sass'],
+    'revision',
+    'rev-replace'
+));
 
 gulp.task('build:app', () => {
     let appBundler = browserify({
