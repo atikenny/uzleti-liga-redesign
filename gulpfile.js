@@ -50,7 +50,7 @@ gulp.task('build:app', () => {
     if (process.env.NODE_ENV.trim() === 'dev') {
         appBundler = appBundler
             .pipe(buffer())
-            .pipe(sourcemaps.init({loadMaps: true}))
+            .pipe(sourcemaps.init({ loadMaps: true }))
             .pipe(sourcemaps.write('./'));
     } else {
         appBundler = appBundler
