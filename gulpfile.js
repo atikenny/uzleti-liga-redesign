@@ -109,14 +109,20 @@ gulp.task('clean', () => {
     return del.sync([PATHS.distFolder, PATHS.tempFolder]);
 });
 
+gulp.task('clean:js', () => {
+    return del.sync([`${PATHS.distFolder}/**/*.js*`, '!vendor*']);
+});
+
 gulp.task('build:watch', () => {
     gulp.watch('app/sass/**/*.scss', ['sass']);
-    gulp.watch('app/js/**/*.jsx', ['build:app']);
-    gulp.watch('app/**/*.html', function () {
+    gulp.watch('app/js/**/*.jsx', () => {
+        sequence('clean:js', 'build:app')();
+    });
+    gulp.watch('app/**/*.html', () => {
         sequence('html', 'rev-replace')();
     });
-    gulp.watch(`${PATHS.tempFolder}/**/*.*`, function () {
-        sequence('revision', 'rev-replace')();
+    gulp.watch(`${PATHS.tempFolder}/**/*.*`, () => {
+        sequence('html', 'rev-replace')();
     });
     gulp.watch(`${PATHS.distFolder}/**/*.*`, _.debounce(browserSync.reload, 100));
 });
