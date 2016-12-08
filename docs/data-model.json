@@ -1,0 +1,50 @@
+{
+    "events": [
+        {
+            "id": 123, // eid
+            "sport": "basketball",
+            "league": "Üzleti Kosárliga",
+            "year": "2015-2016",
+            "season": "tavasz",
+            "matches": [
+                {
+                    "id": 1, // mid, unique
+                    "date": "2016-10-12:18:20:00",
+                    "location": {
+                        "id": 12, // hid, unique
+                        "name": "MOM Sport",
+                        "link": "http://momsport.hu"
+                    },
+                    "group": "C", // Csoport: C-csoport
+                    "round": "preliminary", // OSZTALYOZO
+                    "homeTeam": {
+                        "id": 123, // tid, unique
+                        "players": [
+                            {
+                                "id": 12387, // pid, unique
+                                "name": "Kobe Bryant",
+                                "stats": {
+                                    "fouls": 4,
+                                    "periods": [
+                                        {
+                                            "scores": [1, 2, 1, 3, 1, 1]
+                                        },
+                                        {
+                                            "scores": [1, 3, 1, 1]
+                                        },
+                                        {
+                                            "scores": [1]
+                                        },
+                                        {
+                                            "scores": []
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}
