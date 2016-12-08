@@ -1,8 +1,6 @@
 # uzleti-liga-redesign
-Redesign for Üzleti Liga pages as a chrome extension
+Redesign for Üzleti Liga pages as a new web page
 
-# chrome web store link
-https://chrome.google.com/webstore/detail/uzleti-liga-redesign/jokddkojlghkfaigklfcabfjgehfdedm
 
 # Screenshots
 ## Matches
@@ -15,11 +13,13 @@ https://chrome.google.com/webstore/detail/uzleti-liga-redesign/jokddkojlghkfaigk
 ![standings](/docs/screenshots/v1.2.4/screenshot-4.png)
 
 # How-To
-## Install
-Go to the chrome web store link and click "add to chrome"
+## Run
+```
+npm i
+npm start
+```
 
-## Use
-Go to the Üzleti Liga website: <a href="http://www.uzletiliga.hu/eredmenyek/matches.php?eid=243">Üzleti Liga</a> => receive magic
+This will start up a static file server that can be reach on this url: [https://localhost:3000](https://localhost:3000)
 
 ## Support
 Pull requests are welcome!
