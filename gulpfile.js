@@ -26,7 +26,7 @@ const PATHS = {
     }
 };
 
-const THIRD_PARTY = ['react', 'react-dom', 'redux', 'd3'];
+const THIRD_PARTY = _.keys(require('./package.json').dependencies);
 
 gulp.task('default', sequence('clean', ['build:app', 'build:vendor', 'copy-resource', 'html', 'sass'], 'revision', 'rev-replace', 'build:watch', 'server'));
 
