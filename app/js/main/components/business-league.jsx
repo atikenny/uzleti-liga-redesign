@@ -19,3 +19,5 @@ const BusinessLeague = React.createClass({
 		);
 	}
 });
+
+export default BusinessLeague;
