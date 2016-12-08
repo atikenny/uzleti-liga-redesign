@@ -13,6 +13,7 @@ const uglify        = require('gulp-uglify');
 const merge         = require('merge-stream');
 const sequence      = require('gulp-sequence');
 const filter        = require('gulp-filter');
+const minifycss     = require('gulp-clean-css');
 const _             = require('lodash');
 
 const PATHS = {
@@ -158,11 +159,19 @@ gulp.task('rev-replace', ['revision'], () => {
 });
 
 gulp.task('sass', () => {
-    return gulp.src('app/sass/**/*.scss')
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(`${PATHS.tempFolder}`));
+    var sassBundle = gulp.src('app/sass/**/*.scss');
+
+    if (process.env.NODE_ENV.trim() === 'dev') {
+        sassBundle = sassBundle
+            .pipe(sourcemaps.init())
+            .pipe(sass().on('error', sass.logError))
+            .pipe(sourcemaps.write('.'));
+    } else {
+        sassBundle = sassBundle.pipe(sass().on('error', sass.logError))
+            .pipe(minifycss());
+    }
+
+    return sassBundle.pipe(gulp.dest(`${PATHS.tempFolder}`));
 });
 
 gulp.task('html', () => {
