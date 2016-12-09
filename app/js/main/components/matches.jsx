@@ -1,3 +1,5 @@
+import React from 'react';
+
 const matches = [];
 
 const Matches = React.createClass({
@@ -11,3 +13,5 @@ const Matches = React.createClass({
         );
     }
 });
+
+export default Matches;
