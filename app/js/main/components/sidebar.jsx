@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Sidebar = React.createClass({
     render() {
         let sidebarClass = 'sidebar';
@@ -17,3 +19,5 @@ const Sidebar = React.createClass({
         );
     }
 });
+
+export default Sidebar;

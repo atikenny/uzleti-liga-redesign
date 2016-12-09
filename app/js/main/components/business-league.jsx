@@ -1,3 +1,9 @@
+import React from 'react';
+
+import Header from './header';
+import Sidebar from './sidebar';
+import Matches from './matches';
+
 const BusinessLeague = React.createClass({
     getInitialState() {
         return {
@@ -19,3 +25,5 @@ const BusinessLeague = React.createClass({
 		);
 	}
 });
+
+export default BusinessLeague;
