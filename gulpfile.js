@@ -75,7 +75,7 @@ gulp.task('build:app', () => {
 });
 
 gulp.task('build:vendor', () => {
-    var vendorBundle = browserify({
+    let vendorBundle = browserify({
         require: THIRD_PARTY,
         debug: process.env.NODE_ENV.trim() === 'dev'
     })
@@ -93,16 +93,11 @@ gulp.task('build:vendor', () => {
 });
 
 gulp.task('server', (done) => {
-    let { cert, key } = PATHS.https;
-
     browserSync.init({
         server: {
             baseDir: PATHS.distFolder
         },
-        https: {
-            key: key,
-            cert: cert
-        }
+        https: PATHS.https
     });
 
     done();
@@ -147,7 +142,7 @@ gulp.task('build:watch', () => {
 });
 
 gulp.task('revision', () => {
-    var filterServiceWorker = filter([
+    let filterServiceWorker = filter([
         `${PATHS.tempFolder}/**/*.*`,
         `!${PATHS.tempFolder}/service-worker.js`
     ], { restore: true });
@@ -171,7 +166,7 @@ gulp.task('rev-replace', ['revision'], () => {
 });
 
 gulp.task('sass', () => {
-    var sassBundle = gulp.src('app/sass/**/*.scss');
+    let sassBundle = gulp.src('app/sass/**/*.scss');
 
     if (process.env.NODE_ENV.trim() === 'dev') {
         sassBundle = sassBundle
