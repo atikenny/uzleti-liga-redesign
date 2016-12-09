@@ -23,10 +23,16 @@ const PATHS = {
     https: {
         cert: 'app/cert/localhost.crt',
         key: 'app/cert/localhost.key'
-    }
+    },
+    extensions: ['.js', '.json', '.jsx']
 };
 
 const THIRD_PARTY = _.keys(require('./package.json').dependencies);
+
+const ENVIRONMENT = {
+    isDev: process.env.NODE_ENV.trim() === 'dev',
+    isProd: process.env.NODE_ENV.trim() === 'prod'
+};
 
 gulp.task('default', sequence(
     'clean',
@@ -47,7 +53,8 @@ gulp.task('build', sequence(
 gulp.task('build:app', () => {
     let appBundler = browserify({
         entries: PATHS.appEntry,
-        debug: process.env.NODE_ENV.trim() === 'dev'
+        debug: ENVIRONMENT.isDev,
+        extensions: PATHS.extensions
     });
 
     THIRD_PARTY.forEach(lib => {
@@ -60,7 +67,7 @@ gulp.task('build:app', () => {
         .on('error', gutil.log)
         .pipe(source('app-bundle.js'));
 
-    if (process.env.NODE_ENV.trim() === 'dev') {
+    if (ENVIRONMENT.isDev) {
         appBundler = appBundler
             .pipe(buffer())
             .pipe(sourcemaps.init({ loadMaps: true }))
@@ -77,13 +84,13 @@ gulp.task('build:app', () => {
 gulp.task('build:vendor', () => {
     let vendorBundle = browserify({
         require: THIRD_PARTY,
-        debug: process.env.NODE_ENV.trim() === 'dev'
+        debug: ENVIRONMENT.isDev
     })
         .bundle()
         .on('error', gutil.log)
         .pipe(source('vendor-bundle.js'));
 
-    if (process.env.NODE_ENV.trim() === 'prod') {
+    if (ENVIRONMENT.isProd) {
         vendorBundle = vendorBundle
             .pipe(buffer())
             .pipe(uglify());
@@ -168,7 +175,7 @@ gulp.task('rev-replace', ['revision'], () => {
 gulp.task('sass', () => {
     let sassBundle = gulp.src('app/sass/**/*.scss');
 
-    if (process.env.NODE_ENV.trim() === 'dev') {
+    if (ENVIRONMENT.isDev) {
         sassBundle = sassBundle
             .pipe(sourcemaps.init())
             .pipe(sass().on('error', sass.logError))
