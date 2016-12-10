@@ -6,6 +6,18 @@
             "league": "Üzleti Kosárliga",
             "year": "2015-2016",
             "season": "tavasz",
+            "teams": [
+                {
+                    "id": 123,
+                    "name": "EPAM",
+                    "link": "http://www.uzleti-liga.hu"
+                },
+                {
+                    "id": 321,
+                    "name": "LogMeIn",
+                    "link": "http://www.uzleti-liga.hu"
+                }
+            ],
             "matches": [
                 {
                     "id": 1, // mid, unique
@@ -19,7 +31,6 @@
                     "round": "preliminary", // OSZTALYOZO
                     "homeTeam": {
                         "id": 123, // tid, unique
-                        "name": "EPAM Systems",
                         "players": [
                             {
                                 "id": 12387, // pid, unique
@@ -46,7 +57,6 @@
                     },
                     "awayTeam": {
                         "id": 321, // tid, unique
-                        "name": "LogMeIn",
                         "players": [
                             {
                                 "id": 12388, // pid, unique

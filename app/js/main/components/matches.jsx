@@ -1,12 +1,16 @@
-import React, { PropTypes }     from 'react';
+import React, { PropTypes } from 'react';
 
 const Matches = ({ matches }) => (
     <ul className='matches'>
         {matches.map((match) => (
             <li key={match.id} className='match card'>
             	<div className='teams'>
-            		<div className='home team'>{match.homeTeam.name}</div>
-            		<div className='away team'>{match.awayTeam.name}</div>
+            		<div className='home team'>
+                        <a href={match.homeTeam.link}>{match.homeTeam.name}</a>
+                    </div>
+            		<div className='away team'>
+                        <a href={match.awayTeam.link}>{match.awayTeam.name}</a>
+                    </div>
             	</div>
             </li>
         ))}
