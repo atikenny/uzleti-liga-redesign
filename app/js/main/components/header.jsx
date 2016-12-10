@@ -25,6 +25,12 @@ const Header = ({ toggleSidebar, pageName }) => (
     </header>
 );
 
+const mapState = ({ appData }) => {
+    return {
+        pageName: `${appData.data.league} ${appData.data.year} ${appData.data.season}`
+    };
+};
+
 const mapDispatch = (dispatch) => {
     return {
         toggleSidebar: () => {
@@ -33,7 +39,7 @@ const mapDispatch = (dispatch) => {
     };
 };
 
-export default connect(null, mapDispatch)(Header);
+export default connect(mapState, mapDispatch)(Header);
 
 Header.propTypes = {
     toggleSidebar: PropTypes.func.isRequired,
