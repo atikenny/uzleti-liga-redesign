@@ -1,4 +1,5 @@
-import * as dataModel from  '../../../../docs/data-model';
+import * as dataModel           from  '../../../../docs/data-model';
+import { mapMatchesToDates }    from '../transformers/matches';
 
 const fetchingData = () => {
     return {
@@ -18,6 +19,9 @@ export const fetchData = () => {
         dispatch(fetchingData());
 
         return Promise.resolve(dataModel.default.events[0]) // fetch data from server
+            .then(data => Object.assign({}, data, {
+                dates: mapMatchesToDates(data.matches)
+            }))
             .then(data => dispatch(receivedData(data)));
     };
 };

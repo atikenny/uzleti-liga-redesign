@@ -2,13 +2,13 @@ import React from 'react';
 
 import Header from './header';
 import Sidebar from './sidebar';
-import Matches from './matches';
+import Dates from './dates';
 
 const BusinessLeague = () => (
     <div id='wrapper'>
         <Header />
         <Sidebar />
-        <Matches />
+        <Dates />
     </div>
 );
 
