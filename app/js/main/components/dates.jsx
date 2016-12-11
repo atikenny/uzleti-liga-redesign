@@ -1,7 +1,7 @@
 import React, { PropTypes }     from 'react';
 import { connect }              from 'react-redux';
 
-import Matches                  from './matches';
+import { Matches }              from './matches/index';
 
 const renderMatches = (matches) => {
     if (matches) {

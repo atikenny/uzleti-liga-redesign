@@ -27,6 +27,7 @@
                         "name": "MOM Sport",
                         "link": "http://momsport.hu"
                     },
+                    "matchDetailsLink": "http://www.uzleti-liga.hu",
                     "group": "C", // Csoport: C-csoport
                     "round": "preliminary", // OSZTALYOZO
                     "homeTeam": {
@@ -78,6 +79,36 @@
                                         }
                                     ]
                                 }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": 1, // mid, unique
+                    "date": "2017-12-12:20:15:00",
+                    "location": {
+                        "id": 12, // hid, unique
+                        "name": "MOM Sport",
+                        "link": "http://momsport.hu"
+                    },
+                    "matchDetailsLink": "http://www.uzleti-liga.hu",
+                    "group": "C", // Csoport: C-csoport
+                    "round": "preliminary", // OSZTALYOZO
+                    "homeTeam": {
+                        "id": 123, // tid, unique
+                        "players": [
+                            {
+                                "id": 12387, // pid, unique
+                                "name": "Kobe Bryant"
+                            }
+                        ]
+                    },
+                    "awayTeam": {
+                        "id": 321, // tid, unique
+                        "players": [
+                            {
+                                "id": 12388, // pid, unique
+                                "name": "Logger Peter"
                             }
                         ]
                     }

@@ -87,7 +87,6 @@ body {
     font-size: 14px;
     padding-top: $menuHeight + $tabsHeight;
     line-height: normal;
-    overflow: hidden;
     padding: 0;
     margin: 0;
 }
@@ -111,6 +110,10 @@ button {
     outline: none;
     background: transparent;
     cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
 }
 
 .card {
