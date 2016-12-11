@@ -64,7 +64,7 @@ gulp.task('build:app', () => {
     appBundler = appBundler
         .transform('babelify', { presets: ['es2015', 'react'] })
         .bundle()
-        .on('error', gutil.log)
+        .on('error', handleError)
         .pipe(source('app-bundle.js'));
 
     if (ENVIRONMENT.isDev) {
@@ -87,7 +87,7 @@ gulp.task('build:vendor', () => {
         debug: ENVIRONMENT.isDev
     })
         .bundle()
-        .on('error', gutil.log)
+        .on('error', handleError)
         .pipe(source('vendor-bundle.js'));
 
     if (ENVIRONMENT.isProd) {
@@ -192,3 +192,8 @@ gulp.task('html', () => {
     return gulp.src('app/**/*.html')
         .pipe(gulp.dest(`${PATHS.distFolder}`));
 });
+
+function handleError(err) {
+    gutil.log(err.toString());
+    this.emit('end');
+}
