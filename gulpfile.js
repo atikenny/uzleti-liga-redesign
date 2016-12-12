@@ -15,6 +15,7 @@ const sequence      = require('gulp-sequence');
 const filter        = require('gulp-filter');
 const minifycss     = require('gulp-clean-css');
 const _             = require('lodash');
+const spawn          = require('child_process').spawn;
 
 const PATHS = {
     appEntry: 'app/js/main/main-app.jsx',
@@ -37,6 +38,7 @@ const ENVIRONMENT = {
 gulp.task('default', sequence(
     'clean',
     ['build:app', 'build:vendor', 'copy-resource', 'html', 'sass'],
+    'test',
     'revision',
     'rev-replace',
     'build:watch',
@@ -99,6 +101,15 @@ gulp.task('build:vendor', () => {
     return vendorBundle.pipe(gulp.dest(`${PATHS.tempFolder}`));
 });
 
+gulp.task('test', function(done) {
+    const jest = spawn('node', ['./node_modules/jest/bin/jest.js'], { stdio: 'inherit' });
+
+    return jest.on('close', (code) => {
+        gutil.log(`child process exited with code ${code}`);
+        done();
+    });
+});
+
 gulp.task('server', (done) => {
     browserSync.init({
         server: {
@@ -145,6 +156,7 @@ gulp.task('build:watch', () => {
     gulp.watch(`${PATHS.tempFolder}/**/*.*`, () => {
         sequence('html', 'rev-replace')();
     });
+    gulp.watch('app/js/**/*.test.js', ['test']);
     gulp.watch(`${PATHS.distFolder}/**/*.*`, _.debounce(browserSync.reload, 100));
 });
 
