@@ -62,7 +62,7 @@ gulp.task('build:app', () => {
     });
 
     appBundler = appBundler
-        .transform('babelify', { presets: ['es2015', 'react'] })
+        .transform('babelify', { presets: ['es2015', 'react'], sourceMap: true, sourceMapRelative: process.cwd()})
         .bundle()
         .on('error', handleError)
         .pipe(source('app-bundle.js'));
