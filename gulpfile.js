@@ -164,8 +164,12 @@ gulp.task('revision', () => {
 });
 
 gulp.task('rev-replace', ['revision'], () => {
-    let manifest = gulp.src(`${PATHS.distFolder}/rev-manifest.json`),
-        replaceTargets = [`${PATHS.distFolder}/index.html`, `${PATHS.tempFolder}/service-worker.js`];
+    let manifestFile = require(`./${PATHS.distFolder}/rev-manifest.json`),
+        manifest = gulp.src(`${PATHS.distFolder}/rev-manifest.json`),
+        replaceTargets = [
+            `${PATHS.distFolder}/index.html`,
+            `${PATHS.distFolder}/${manifestFile['business-league.css']}`,
+            `${PATHS.tempFolder}/service-worker.js`];
 
     return gulp.src(replaceTargets)
         .pipe(revReplace({ manifest: manifest }))
