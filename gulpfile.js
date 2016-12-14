@@ -62,7 +62,8 @@ gulp.task('build:app', () => {
     });
 
     appBundler = appBundler
-        .transform('babelify', { presets: ['es2015', 'react'], sourceMap: true, sourceMapRelative: process.cwd()})
+        .transform('babelify', { presets: ['es2015', 'react'] })
+        .transform('business-leagueify')
         .bundle()
         .on('error', handleError)
         .pipe(source('app-bundle.js'));
