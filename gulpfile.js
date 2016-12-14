@@ -182,7 +182,7 @@ gulp.task('sass', () => {
         sassBundle = sassBundle
             .pipe(sourcemaps.init())
             .pipe(sass().on('error', sass.logError))
-            .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: '../../app/sass' }));
+            .pipe(sourcemaps.write('.', { sourceRoot: '../../app/sass' }));
     } else {
         sassBundle = sassBundle.pipe(sass().on('error', sass.logError))
             .pipe(minifycss());
