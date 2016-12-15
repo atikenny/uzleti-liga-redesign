@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import store from '../test-helper';
 import sinon from 'sinon';
 
-import Header from './header';
+import { Header } from './header';
 
 const PAGE_NAME = 'test';
 
@@ -24,12 +24,12 @@ function setup() {
 
 describe('Header component', () => {
     describe('button with hamburger-menu class', () => {
-        it.skip('Should invoke toggleSidebar when clicked', () => {
+        it('Should invoke toggleSidebar when clicked', () => {
             const { enzymeWrapper, props } = setup();
 
             enzymeWrapper.find('button.hamburger-menu').simulate('click');
 
-            expect(props.toggleSidebar.calledOnce).toBe(1);
+            expect(props.toggleSidebar.calledOnce).toBe(true);
         });
     });
 
