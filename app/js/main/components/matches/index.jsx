@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 
+import MatchStatsButton     from './match-stats-button';
 import { MatchTeams }       from './match-teams';
-import { MatchScores }      from './match-scores';
+import MatchScores          from './match-scores';
 import { MatchTime }        from './match-time';
 import { MatchLocation }    from './match-location';
 
@@ -21,7 +22,8 @@ export const Matches = ({ matches }) => (
     <ul className='matches'>
         {matches.map((match) => (
             <li key={match.id} className='match card'>
-            	<MatchTeams match={match} />
+                <MatchStatsButton matchResults={match.results} />
+                <MatchTeams match={match} />
                 {renderScores(match)}
                 <MatchLocation location={match.location} />
             </li>
@@ -30,5 +32,5 @@ export const Matches = ({ matches }) => (
 );
 
 Matches.propTypes = {
-	matches: PropTypes.array.isRequired
+    matches: PropTypes.array.isRequired
 };

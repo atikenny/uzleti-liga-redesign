@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 
-export const MatchScores = ({ match }) => (
+const MatchScores = ({ match }) => (
     <div className='scores-container'>
-        <button className='stats-toggler loading'><i className='material-icons'>assessment</i></button>
         <a className='scores' href={match.matchDetailsLink}>
             <span className='home score'>{match.results.scores.home}</span>
             <span className='away score'>{match.results.scores.away}</span>
@@ -15,6 +14,8 @@ export const MatchScores = ({ match }) => (
         <div className='match-stats-container'></div>
     </div>
 );
+
+export default MatchScores;
 
 MatchScores.propTypes = {
     match: PropTypes.object.isRequired

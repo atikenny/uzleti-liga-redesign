@@ -4,20 +4,8 @@
 		"selected_items":
 		[
 			[
-				"Prop",
-				"PropTypes.array"
-			],
-			[
-				"match",
-				"matches"
-			],
-			[
-				"paddin",
-				"padding-top"
-			],
-			[
-				"Pr",
-				"PropTypes.array"
+				"Mastabutton",
+				"MatchStatsButton"
 			],
 			[
 				"reduce",
@@ -236,6 +224,10 @@
 				"margin: "
 			],
 			[
+				"match",
+				"matchesHTML"
+			],
+			[
 				"matche",
 				"matchesHTML"
 			],
@@ -298,6 +290,10 @@
 			[
 				"hamburg",
 				"hamburger-menu"
+			],
+			[
+				"paddin",
+				"padding-left: "
 			],
 			[
 				"mar",
@@ -514,6 +510,10 @@
 			[
 				"shared",
 				"sharedWithItem"
+			],
+			[
+				"shaw",
+				"sharedWithIndex"
 			]
 		]
 	},
@@ -523,55 +523,34 @@
 			"file": "docs/data-model.json",
 			"settings":
 			{
-				"buffer_size": 3122,
+				"buffer_size": 4667,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/js/main/components/dates.jsx",
+			"file": "app/js/main/components/matches/index.jsx",
 			"settings":
 			{
-				"buffer_size": 812,
+				"buffer_size": 1002,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/js/main/components/matches.jsx",
+			"file": "app/js/main/components/matches/match-stats-button.jsx",
 			"settings":
 			{
-				"buffer_size": 526,
-				"encoding": "UTF-8",
-				"line_ending": "Windows",
-				"name": "const Matches = ({ matches }) => ("
-			}
-		},
-		{
-			"file": "app/js/main/actions/app-data.js",
-			"settings":
-			{
-				"buffer_size": 694,
+				"buffer_size": 502,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "app/js/main/transformers/matches.js",
+			"file": "app/sass/main/components/_matches.scss",
 			"settings":
 			{
-				"buffer_size": 513,
-				"encoding": "UTF-8",
-				"line_ending": "Windows",
-				"name": "export const getDayFromDate = (date) => {"
-			}
-		},
-		{
-			"file": "app/js/old-redesigner.js",
-			"settings":
-			{
-				"buffer_size": 49236,
-				"encoding": "UTF-8",
+				"buffer_size": 3877,
 				"line_ending": "Windows"
 			}
 		}
@@ -583,10 +562,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 191.0,
-		"last_filter": "jsx",
+		"height": 147.0,
+		"last_filter": "sybabe",
 		"selected_items":
 		[
+			[
+				"sybabe",
+				"Set Syntax: JavaScript (Babel)"
+			],
 			[
 				"jsx",
 				"Set Syntax: JSX"
@@ -786,18 +769,24 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/barth/Code/uzleti-liga-redesign"
+		"/C/Source/uzleti-liga-redesign",
+		"/C/Source/uzleti-liga-redesign/app",
+		"/C/Source/uzleti-liga-redesign/app/js",
+		"/C/Source/uzleti-liga-redesign/app/js/main",
+		"/C/Source/uzleti-liga-redesign/app/js/main/components",
+		"/C/Source/uzleti-liga-redesign/app/js/main/components/matches",
+		"/C/Source/uzleti-liga-redesign/app/js/main/transformers",
+		"/C/Source/uzleti-liga-redesign/app/sass",
+		"/C/Source/uzleti-liga-redesign/app/sass/main",
+		"/C/Source/uzleti-liga-redesign/app/sass/main/components"
 	],
 	"file_history":
 	[
-		"/C/Users/barth/Code/uzleti-liga-redesign/app/js/main/components/business-league.jsx",
-		"/C/Users/barth/Code/uzleti-liga-redesign/app/sass/main/_common.scss",
-		"/C/Users/barth/Code/uzleti-liga-redesign/app/sass/_variables.scss",
-		"/C/Users/barth/Code/uzleti-liga-redesign/app/js/main/components/header.jsx",
-		"/C/Users/barth/Code/uzleti-liga-redesign/app/sass/business-league.scss",
-		"/C/Users/barth/Code/uzleti-liga-redesign/app/js/old-redesigner.js",
-		"/C/Users/barth/Code/uzleti-liga-redesign/app/sass/main/components/_matches.scss",
-		"/C/Users/barth/Code/uzleti-liga-redesign/business-league.sublime-project",
+		"/C/Source/uzleti-liga-redesign/app/js/main/components/matches/match-scores.jsx",
+		"/C/Source/uzleti-liga-redesign/app/sass/main/components/_matches.scss",
+		"/C/Source/uzleti-liga-redesign/app/sass/_variables.scss",
+		"/C/Source/uzleti-liga-redesign/app/js/main/components/dates.jsx",
+		"/C/Source/uzleti-liga-redesign/business-league.sublime-project",
 		"/C/Source/uzleti-liga-redesign/gulpfile.js",
 		"/C/Source/uzleti-liga-redesign/app/index.html",
 		"/C/Source/uzleti-liga-redesign/server/event-collector.js",
@@ -811,7 +800,6 @@
 		"/C/Source/uzleti-liga-redesign/app/sass/_fonts.scss",
 		"/C/Source/uzleti-liga-redesign/app/sass/_colors.scss",
 		"/C/Source/uzleti-liga-redesign/app/sass/business-league.scss",
-		"/C/Source/uzleti-liga-redesign/app/sass/_variables.scss",
 		"/C/Source/uzleti-liga-redesign/package.json",
 		"/C/Source/uzleti-liga-redesign/index.js",
 		"/C/Source/hotel-pwa/resources/documentation/import-localhost-cert-for-windows.md",
@@ -917,17 +905,22 @@
 		"/C/Users/Attila/Code/chealt/code/packages/npm-container/.npm/package/node_modules/material-ui/lib/tabs/tab.js",
 		"/C/Users/Attila/Code/chealt/code/lib/collections.jsx",
 		"/C/Users/Attila/Code/chealt/code/client/subscriptions.js",
-		"/C/Users/Attila/Code/chealt/code/client/routes.jsx"
+		"/C/Users/Attila/Code/chealt/code/client/routes.jsx",
+		"/C/Users/Attila/AppData/Roaming/Sublime Text 3/Packages/User/react.sublime-snippet",
+		"/C/Users/Attila/Code/chealt/code/client/components/drawer.jsx",
+		"/C/Users/Attila/AppData/Roaming/Sublime Text 3/Packages/User/JSX.sublime-settings",
+		"/C/Users/Attila/Code/chealt/code/client/styles/drawer.scss"
 	],
 	"find":
 	{
-		"height": 49.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
 		"height": 96.0,
 		"where_history":
 		[
+			"<project>,*.scss",
 			"<project>,*.*",
 			"<project>,*.jsx",
 			"<project>,*.*",
@@ -958,9 +951,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-			"getTeamsHTML",
-			"appendDateContainer",
-			"matches-con",
+			"scores-contain",
 			"#{$root}/",
 			"var",
 			"transpile-js",
@@ -1085,7 +1076,9 @@
 			"}",
 			" ,",
 			"  ,",
-			"   ,"
+			"   ,",
+			"    ,",
+			"    "
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1106,7 +1099,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -1115,139 +1108,22 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3122,
+						"buffer_size": 4667,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2879,
-								2879
+								199,
+								199
 							]
 						],
 						"settings":
 						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
 							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
 							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1269.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/js/main/components/dates.jsx",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 812,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								812,
-								812
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/js/main/components/matches.jsx",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 526,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								341,
-								341
-							]
-						],
-						"settings":
-						{
-							"auto_name": "const Matches = ({ matches }) => (",
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/js/main/actions/app-data.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 694,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								477,
-								477
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/js/main/transformers/matches.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 513,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								103,
-								103
-							]
-						],
-						"settings":
-						{
-							"auto_name": "export const getDayFromDate = (date) => {",
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -1258,37 +1134,94 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "app/js/old-redesigner.js",
+					"buffer": 1,
+					"file": "app/js/main/components/matches/index.jsx",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 49236,
+						"buffer_size": 1002,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								25604,
-								25604
-							],
-							[
-								26521,
-								26521
+								462,
+								462
 							]
 						],
 						"settings":
 						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 19433.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/js/main/components/matches/match-stats-button.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 502,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								414,
+								414
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/sass/main/components/_matches.scss",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 3877,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1471,
+								1471
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1346,46 +1279,6 @@
 		"last_filter": "",
 		"selected_items":
 		[
-			[
-				"appda",
-				"app\\js\\main\\actions\\app-data.js"
-			],
-			[
-				"businlejsx",
-				"app\\js\\main\\components\\business-league.jsx"
-			],
-			[
-				"varia",
-				"app\\sass\\_variables.scss"
-			],
-			[
-				"common",
-				"app\\sass\\main\\_common.scss"
-			],
-			[
-				"ol",
-				"app\\js\\old-redesigner.js"
-			],
-			[
-				"businscs",
-				"app\\sass\\business-league.scss"
-			],
-			[
-				"old",
-				"app\\js\\old-redesigner.js"
-			],
-			[
-				"header",
-				"app\\js\\main\\components\\header.jsx"
-			],
-			[
-				"matche",
-				"app\\js\\main\\components\\matches.jsx"
-			],
-			[
-				"mode",
-				"docs\\data-model.json"
-			],
 			[
 				"gitig",
 				".gitignore"
@@ -1695,6 +1588,10 @@
 				"client\\components\\header-profile.jsx"
 			],
 			[
+				"header",
+				"client\\components\\layout\\header.jsx"
+			],
+			[
 				"imaglis",
 				"client\\components\\image-list.jsx"
 			],
@@ -1857,6 +1754,42 @@
 			[
 				"too",
 				"client\\styles\\tooltip.scss"
+			],
+			[
+				"eventscs",
+				"client\\styles\\events.scss"
+			],
+			[
+				"layo",
+				"client\\components\\layout\\layout.jsx"
+			],
+			[
+				"head",
+				"client\\components\\layout\\header.jsx"
+			],
+			[
+				"activit",
+				"server\\activities.jsx"
+			],
+			[
+				"hea",
+				"client\\styles\\header.scss"
+			],
+			[
+				"vari",
+				"client\\styles\\import\\_variables.scss"
+			],
+			[
+				"prolist",
+				"client\\components\\profile-list.jsx"
+			],
+			[
+				"profili",
+				"client\\components\\profile-info.jsx"
+			],
+			[
+				"guest",
+				"client\\components\\guests.jsx"
 			]
 		],
 		"width": 0.0
@@ -1886,7 +1819,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 306.0,
 	"status_bar_visible": true,
 	"template_settings":
