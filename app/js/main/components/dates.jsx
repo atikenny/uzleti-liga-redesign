@@ -12,7 +12,7 @@ const renderMatches = (matches) => {
 }
 
 const Dates = ({ dates }) => (
-    <div id='matches-container' className='sub-page show'>
+    <div className='matches-container sub-page show'>
         {dates.map((date, index) => (
             <div key={index} className='date-container'>
                 <h3 className='date'>{date.day}</h3>

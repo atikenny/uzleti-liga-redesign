@@ -1,4 +1,4 @@
-#matches-container {
+.matches-container {
     .matches {
         padding: 20px 0;
         display: flex;
@@ -100,6 +100,10 @@
         border-bottom: 1px solid #ccc;
     }
 
+    .scores-container {
+        margin-top: $gutter-size;
+    }
+
     .teams,
     .scores {
         overflow: hidden;
@@ -130,6 +134,10 @@
             color: $inverseColorLightest;
             font-weight: bold;
         }
+    }
+
+    .scores {
+        display: block;
     }
 
     .score {
