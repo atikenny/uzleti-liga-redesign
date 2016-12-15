@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import store from '../test-helper';
 
-import Sidebar from './sidebar';
+import { Sidebar } from './sidebar';
 
 function setup(isOpen) {
     const props = {
@@ -27,7 +27,7 @@ describe('Sidebar component', () => {
         expect(actual).toBe(false);
     });
 
-    it.skip('Should have a div with classes: sidebar open', () => {
+    it('Should have a div with classes: sidebar open', () => {
         const { enzymeWrapper} = setup(true);
 
         const actual = enzymeWrapper.find('div.sidebar.open').length;
