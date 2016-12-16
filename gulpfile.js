@@ -63,15 +63,14 @@ gulp.task('build:app', () => {
 
     appBundler = appBundler
         .transform('babelify', { presets: ['es2015', 'react'] })
+        .transform('business-leagueify')
         .bundle()
         .on('error', handleError)
         .pipe(source('app-bundle.js'));
 
     if (ENVIRONMENT.isDev) {
         appBundler = appBundler
-            .pipe(buffer())
-            .pipe(sourcemaps.init({ loadMaps: true }))
-            .pipe(sourcemaps.write('./'));
+            .pipe(buffer());
     } else {
         appBundler = appBundler
             .pipe(buffer())
@@ -164,8 +163,12 @@ gulp.task('revision', () => {
 });
 
 gulp.task('rev-replace', ['revision'], () => {
-    let manifest = gulp.src(`${PATHS.distFolder}/rev-manifest.json`),
-        replaceTargets = [`${PATHS.distFolder}/index.html`, `${PATHS.tempFolder}/service-worker.js`];
+    let manifestFile = require(`./${PATHS.distFolder}/rev-manifest.json`),
+        manifest = gulp.src(`${PATHS.distFolder}/rev-manifest.json`),
+        replaceTargets = [
+            `${PATHS.distFolder}/index.html`,
+            `${PATHS.distFolder}/${manifestFile['business-league.css']}`,
+            `${PATHS.tempFolder}/service-worker.js`];
 
     return gulp.src(replaceTargets)
         .pipe(revReplace({ manifest: manifest }))
@@ -179,7 +182,7 @@ gulp.task('sass', () => {
         sassBundle = sassBundle
             .pipe(sourcemaps.init())
             .pipe(sass().on('error', sass.logError))
-            .pipe(sourcemaps.write('.'));
+            .pipe(sourcemaps.write('.', { sourceRoot: '../../app/sass' }));
     } else {
         sassBundle = sassBundle.pipe(sass().on('error', sass.logError))
             .pipe(minifycss());
