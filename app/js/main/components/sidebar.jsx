@@ -1,7 +1,7 @@
 import React, { PropTypes }     from 'react';
 import { connect }              from 'react-redux';
 
-const Sidebar = ({ isOpen }) => {
+export const Sidebar = ({ isOpen }) => {
     let sidebarClass = 'sidebar';
 
     if (isOpen) {
