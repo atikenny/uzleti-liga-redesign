@@ -11,7 +11,6 @@ const MatchScores = ({ match }) => (
                 <li key={index} className='result'>{periodScore.home}:{periodScore.away}</li>
             ))}
         </ul>
-        <div className='match-stats-container'></div>
     </div>
 );
 

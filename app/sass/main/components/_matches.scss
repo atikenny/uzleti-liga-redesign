@@ -13,6 +13,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            min-height: 100px;
             
             &.hidden {
                 @extend %hidden;
@@ -33,7 +34,6 @@
                 @extend %scroller;
                 min-height: 219px;
                 flex: 1 0;
-                display: none;
                 z-index: 500;
                 overflow-y: auto;
                 background-color: white;
@@ -73,6 +73,13 @@
                 transform: translateY(-32px);
             }
         }
+    }
+
+    .match-details,
+    .match-stats {
+        position: relative;
+        z-index: 500;
+        background-color: #fff;
     }
 
     .date-container {
@@ -119,8 +126,6 @@
 
     .teams {
         position: relative;
-        z-index: 500;
-        background-color: white;
         padding-top: 20px;
         display: flex;
         flex-grow: 1;

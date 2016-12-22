@@ -1,6 +1,9 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes }     from 'react';
+import { connect }              from 'react-redux';
 
-const MatchStatsButton = ({ matchResults }) => {
+import { toggleMatchStats }     from '../../actions/matches';
+
+const MatchStatsButton = ({ matchResults, toggleMatchStats }) => {
     let statsButtonClassName = 'stats-toggler';
 
     if (matchResults) {
@@ -10,12 +13,24 @@ const MatchStatsButton = ({ matchResults }) => {
     }
 
     return (
-        <button className={statsButtonClassName}><i className='material-icons'>assessment</i></button>
+        <button className={statsButtonClassName} onClick={toggleMatchStats}>
+            <i className='material-icons'>assessment</i>
+        </button>
     );
 };
 
-export default MatchStatsButton;
+const mapDispatch = (dispatch, ownProps) => {
+    return {
+        toggleMatchStats: () => {
+            dispatch(toggleMatchStats(ownProps.matchId));
+        }
+    };
+};
+
+export default connect(null, mapDispatch)(MatchStatsButton);
 
 MatchStatsButton.propTypes = {
-    matchResults: PropTypes.object
+    matchId: PropTypes.number.isRequired,
+    matchResults: PropTypes.object,
+    toggleMatchStats: PropTypes.func
 };

@@ -3,8 +3,8 @@ const mapMatchesToDates = ({ matches, teams }) => {
         const matchDay = getDayFromDate(match.date);
         const date = dates.find(date => date.day === matchDay);
         
-        Object.assign(match.homeTeam, getTeamDetails(match.homeTeam.id, teams));
-        Object.assign(match.awayTeam, getTeamDetails(match.awayTeam.id, teams));
+        Object.assign(match.homeTeam, getTeamDetails(match.homeTeam.id, teams), getPlayersStats(match.homeTeam.players));
+        Object.assign(match.awayTeam, getTeamDetails(match.awayTeam.id, teams), getPlayersStats(match.awayTeam.players));
 
         match.results = getMatchResults(match);
         match.time = getTimeFromDate(match.date);
@@ -33,6 +33,42 @@ const getTimeFromDate = (date) => {
 const getTeamDetails = (teamId, teams) => {
     return teams.find(team => teamId === team.id);
 };
+
+const getPlayersStats = (players) => {
+    return {
+        players: players.map(extendPlayerStats)
+    };
+};
+
+const extendPlayerStats = (player) => {
+    if (player.stats) {
+        return Object.assign({}, player, {
+            stats: Object.assign({}, player.stats, {
+                sumScore: player.stats.periods.reduce(toPlayerScoreSum, 0),
+                periods: player.stats.periods.map(extendPlayerPeriodStats),
+                freeThrowCount: player.stats.periods.reduce(toPlayerFreeThrowCount, 0),
+                fieldGoalCount: player.stats.periods.reduce(toPlayerFieldGoalCount, 0),
+                threePointerCount: player.stats.periods.reduce(toPlayerThreePointerCount, 0)
+            })
+        });
+    } else {
+        return player;
+    }
+};
+
+const extendPlayerPeriodStats = (periodStats) => {
+    return Object.assign({}, periodStats, {
+        scoreSum: periodStats.scores.reduce(toPlayerPeriodScoreSum, 0)
+    });
+};
+
+const toPlayerScoreCount = (scoreToCount, count, playerPeriod) => {
+    return count + playerPeriod.scores.filter(periodScore => periodScore === scoreToCount).length;
+};
+
+const toPlayerFreeThrowCount = toPlayerScoreCount.bind(null, 1);
+const toPlayerFieldGoalCount = toPlayerScoreCount.bind(null, 2);
+const toPlayerThreePointerCount = toPlayerScoreCount.bind(null, 3);
 
 const getMatchResults = (match) => {
     const hasResults = match.homeTeam.players.some(player => player.stats) || match.awayTeam.players.some(player => player.stats);
