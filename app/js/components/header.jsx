@@ -3,7 +3,9 @@ import { connect }              from 'react-redux';
 
 import { toggleSidebar }          from '../actions/sidebar';
 
-const Header = ({ toggleSidebar, pageName }) => (
+// For testing purposes we also export the unwrapped component
+// Reference: http://redux.js.org/docs/recipes/WritingTests.html
+export const Header = ({ toggleSidebar, pageName }) => (
     <header id="main-app-header">
         <button className="hamburger-menu" onClick={toggleSidebar}>
             <i className="material-icons">menu</i>
