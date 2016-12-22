@@ -15,7 +15,7 @@ const sequence      = require('gulp-sequence');
 const filter        = require('gulp-filter');
 const minifycss     = require('gulp-clean-css');
 const _             = require('lodash');
-const spawn          = require('child_process').spawn;
+const spawn         = require('child_process').spawn;
 
 const PATHS = {
     appEntry: 'app/js/main-app.jsx',

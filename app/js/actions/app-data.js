@@ -1,3 +1,5 @@
+import apigClientFactory    from 'aws-api-gateway-client';
+
 import * as dataModel       from  '../../../docs/data-model';
 import { mapEventData }     from '../transformers/matches';
 import { addMatch }         from './matches';
@@ -35,3 +37,15 @@ export const fetchData = () => {
             .then(data => dispatch(receivedData(data)));
     };
 };
+
+const awsClient = apigClientFactory.newClient({
+    invokeUrl: 'https://py9ko6e74d.execute-api.us-west-2.amazonaws.com'
+});
+
+awsClient.invokeApi({}, '/dev/dataEndpoint', 'GET')
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((result) => {
+        console.log(result);
+    });
