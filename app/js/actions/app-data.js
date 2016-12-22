@@ -1,4 +1,4 @@
-import * as dataModel       from  '../../../../docs/data-model';
+import * as dataModel       from  '../../../docs/data-model';
 import { mapEventData }     from '../transformers/matches';
 import { addMatch }         from './matches';
 

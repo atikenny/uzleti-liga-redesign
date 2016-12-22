@@ -17,7 +17,7 @@ const minifycss     = require('gulp-clean-css');
 const _             = require('lodash');
 
 const PATHS = {
-    appEntry: 'app/js/main/main-app.jsx',
+    appEntry: 'app/js/main-app.jsx',
     distFolder: 'build',
     tempFolder: 'temp',
     https: {
