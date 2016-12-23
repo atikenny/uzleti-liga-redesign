@@ -64,9 +64,22 @@
     "redux-thunk": "^2.1.0"
   },
   "jest": {
+    "testPathDirs": ["app/js"],
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/app/cert",
+      "<rootDir>/app/font",
+      "<rootDir>/app/img",
+      "<rootDir>/app/sass",
+      "<rootDir>/build",
+      "<rootDir>/desgin",
+      "<rootDir>/docs",
+      "<rootDir>/gulp-settings",
+      "<rootDir>/temp"
+    ],
     "unmockedModulePathPatterns": [
-      "node_modules/react/",
-      "node_modules/enzyme/"
+      "node_modules/react",
+      "node_modules/enzyme"
     ]
   }
 }
