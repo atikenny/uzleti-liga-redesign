@@ -149,8 +149,8 @@ gulp.task('build:watch', () => {
     gulp.watch('app/sass/**/*.scss', () => {
         sequence('clean:css', 'sass')();
     });
-    gulp.watch('app/js/**/*.*', () => {
-        sequence('clean:js', 'build:app')();
+    gulp.watch(['app/js/**/*.*', '!app/js/**/*.test.js'], () => {
+        sequence('clean:js', 'build:app', 'test')();
     });
     gulp.watch('app/**/*.html', () => {
         sequence('html', 'rev-replace')();
