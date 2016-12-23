@@ -18,7 +18,7 @@ const _             = require('lodash');
 const spawn          = require('child_process').spawn;
 
 const PATHS = {
-    appEntry: 'app/js/main/main-app.jsx',
+    appEntry: 'app/js/main-app.jsx',
     distFolder: 'build',
     tempFolder: 'temp',
     https: {
@@ -146,7 +146,7 @@ gulp.task('build:watch', () => {
     gulp.watch('app/sass/**/*.scss', () => {
         sequence('clean:css', 'sass')();
     });
-    gulp.watch('app/js/**/*.jsx', () => {
+    gulp.watch('app/js/**/*.*', () => {
         sequence('clean:js', 'build:app')();
     });
     gulp.watch('app/**/*.html', () => {

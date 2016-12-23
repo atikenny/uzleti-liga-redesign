@@ -1,4 +1,4 @@
-#matches-container {
+.matches-container {
     .matches {
         padding: 20px 0;
         display: flex;
@@ -13,6 +13,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            min-height: 100px;
             
             &.hidden {
                 @extend %hidden;
@@ -33,7 +34,6 @@
                 @extend %scroller;
                 min-height: 219px;
                 flex: 1 0;
-                display: none;
                 z-index: 500;
                 overflow-y: auto;
                 background-color: white;
@@ -75,6 +75,13 @@
         }
     }
 
+    .match-details,
+    .match-stats {
+        position: relative;
+        z-index: 500;
+        background-color: #fff;
+    }
+
     .date-container {
         &.past {
             .date {
@@ -100,6 +107,10 @@
         border-bottom: 1px solid #ccc;
     }
 
+    .scores-container {
+        margin-top: $gutter-size;
+    }
+
     .teams,
     .scores {
         overflow: hidden;
@@ -115,8 +126,6 @@
 
     .teams {
         position: relative;
-        z-index: 500;
-        background-color: white;
         padding-top: 20px;
         display: flex;
         flex-grow: 1;
@@ -130,6 +139,10 @@
             color: $inverseColorLightest;
             font-weight: bold;
         }
+    }
+
+    .scores {
+        display: block;
     }
 
     .score {

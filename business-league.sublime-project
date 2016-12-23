@@ -6,11 +6,10 @@
             "folder_exclude_patterns": [
                 "build",
                 "design",
-                "css",
-                "docs",
                 "font",
                 "img",
-                "node_modules"
+                "node_modules",
+                "temp"
             ]
 		}
 	]
