@@ -104,7 +104,7 @@ gulp.task('build:vendor', () => {
 });
 
 gulp.task('test', function(done) {
-    const jest = spawn('node', ['./node_modules/jest/bin/jest.js'], { stdio: 'inherit' });
+    const jest = spawn('node', ['./node_modules/jest/bin/jest.js', '-i'], { stdio: 'inherit' });
 
     return jest.on('close', (code) => {
         gutil.log(`child process exited with code ${code}`);
