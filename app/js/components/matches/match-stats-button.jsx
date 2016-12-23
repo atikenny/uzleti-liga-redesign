@@ -3,7 +3,7 @@ import { connect }              from 'react-redux';
 
 import { toggleMatchStats }     from '../../actions/matches';
 
-// For testing purposes we are exporting the "raw"
+// For testing purposes we are exporting the unwrapped component
 export const MatchStatsButton = ({ matchResults, toggleMatchStats }) => {
     let statsButtonClassName = 'stats-toggler';
 
