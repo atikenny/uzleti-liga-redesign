@@ -158,7 +158,7 @@ gulp.task('build:watch', () => {
     gulp.watch(`${PATHS.tempFolder}/**/*.*`, () => {
         sequence('html', 'rev-replace')();
     });
-    gulp.watch('app/js/**/*.test.js', ['test']);
+    gulp.watch('app/js/**/*.test.js').on('change', runSingleTest);
     gulp.watch(`${PATHS.distFolder}/**/*.*`, _.debounce(browserSync.reload, 100));
 });
 
