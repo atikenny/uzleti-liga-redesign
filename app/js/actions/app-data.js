@@ -39,10 +39,10 @@ export const fetchData = () => {
 };
 
 const awsClient = apigClientFactory.newClient({
-    invokeUrl: 'https://py9ko6e74d.execute-api.us-west-2.amazonaws.com'
+    invokeUrl: 'https://4ks5nf7ul7.execute-api.eu-central-1.amazonaws.com'
 });
 
-awsClient.invokeApi({}, '/dev/dataEndpoint', 'GET')
+awsClient.invokeApi({}, '/dev/geteventdata', 'GET')
     .then((result) => {
         console.log(result);
     })
