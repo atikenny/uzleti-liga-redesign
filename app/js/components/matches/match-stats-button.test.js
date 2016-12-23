@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import store from '../../test-helper';
-import  sinon  from 'sinon';
+import sinon  from 'sinon';
 
 import { MatchStatsButton } from './match-stats-button';
 
@@ -24,7 +24,7 @@ describe('MatchStatsButton', () => {
     it('should have a button HTMLElement with classes: \'stats-toggler loaded\'', () => {
         const { enzymeWrapper } = setUp(true);
 
-        const actual = enzymeWrapper.find('.stats-toggler.loaded').length
+        const actual = enzymeWrapper.find('.stats-toggler.loaded').length;
 
         expect(actual).toBe(1);
     });
@@ -32,7 +32,7 @@ describe('MatchStatsButton', () => {
     it('should have a button HTMLElement with classes: \'stats-toggler loading\'', () => {
         const { enzymeWrapper } = setUp();
 
-        const actual = enzymeWrapper.find('.stats-toggler.loading').length
+        const actual = enzymeWrapper.find('.stats-toggler.loading').length;
 
         expect(actual).toBe(1);
     });
