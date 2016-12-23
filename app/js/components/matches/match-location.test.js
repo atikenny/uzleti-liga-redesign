@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import store from '../../test-helper';
-import sinon from 'sinon';
 
 import { MatchLocation } from './match-location';
 
@@ -13,8 +12,7 @@ function setup() {
 
     const props = {
         store: store,
-        location: location,
-        toggleSidebar: sinon.spy()
+        location: location
     };
 
     const enzymeWrapper = mount(<MatchLocation {...props}/>);
