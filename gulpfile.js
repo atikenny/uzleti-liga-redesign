@@ -1,3 +1,4 @@
+const HELPERS       = require('./gulp-settings/helpers')(module);
 const gulp          = require('gulp');
 const sass          = require('gulp-sass');
 const source        = require('vinyl-source-stream');
@@ -15,7 +16,9 @@ const sequence      = require('gulp-sequence');
 const filter        = require('gulp-filter');
 const minifycss     = require('gulp-clean-css');
 const _             = require('lodash');
-const spawn          = require('child_process').spawn;
+const spawn         = require('child_process').spawn;
+const handleError   = HELPERS.handleError;
+const runSingleTest = HELPERS.runSingleTest;
 
 const PATHS = {
     appEntry: 'app/js/main-app.jsx',
@@ -207,8 +210,3 @@ gulp.task('html', () => {
     return gulp.src('app/**/*.html')
         .pipe(gulp.dest(`${PATHS.distFolder}`));
 });
-
-function handleError(err) {
-    gutil.log(err.toString());
-    this.emit('end');
-}
