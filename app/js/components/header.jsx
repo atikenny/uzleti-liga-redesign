@@ -28,8 +28,10 @@ export const Header = ({ toggleSidebar, pageName }) => (
 );
 
 const mapState = ({ appData }) => {
+    const pageName = appData.data ? `${appData.data.league} ${appData.data.year} ${appData.data.season}` : '';
+
     return {
-        pageName: `${appData.data.league} ${appData.data.year} ${appData.data.season}`
+        pageName
     };
 };
 

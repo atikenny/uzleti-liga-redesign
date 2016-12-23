@@ -24,12 +24,12 @@ const Dates = ({ dates }) => (
 
 const mapState = ({ appData }) => {
     return {
-        dates: appData.data.dates
+        dates: appData.data.dates || []
     };
 };
 
 export default connect(mapState)(Dates);
 
 Dates.propTypes = {
-    dates: PropTypes.array.isRequired
+    dates: PropTypes.array
 };
