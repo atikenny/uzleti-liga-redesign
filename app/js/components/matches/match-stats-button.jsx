@@ -3,7 +3,8 @@ import { connect }              from 'react-redux';
 
 import { toggleMatchStats }     from '../../actions/matches';
 
-const MatchStatsButton = ({ matchResults, toggleMatchStats }) => {
+// For testing purposes we are exporting the "raw"
+export const MatchStatsButton = ({ matchResults, toggleMatchStats }) => {
     let statsButtonClassName = 'stats-toggler';
 
     if (matchResults) {
