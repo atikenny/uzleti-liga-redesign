@@ -27,25 +27,26 @@ const parseMatchesPage = (html) => {
         return Number(matchDetailsLink.substr(matchDetailsLink.indexOf('mid=') + 4));
     };
 
-    const getMatchDetails = ($matchRow) => {
-        const $resultCell = $matchRow.eq(3);
-        
-        return getMatchId($resultCell);
-    };
-
-    const matchIds = $('.matches_table tr').toArray().reduce((matches, row) => {
+    const matches = $('.matches_table tr').toArray().reduce((matches, row) => {
         const isGameRow = $(row).children('td').length === 4;
 
         if (isGameRow) {
-            const matchDetails = getMatchDetails($(row).children('td'));
-
-            matches.push(matchDetails);
+            matches.push({
+                id: getMatchId($(row).children('td').eq(3))
+            });
         }
 
         return matches;
     }, []);
 
-    return matchIds;
+    const league = $('.eventmenu_table h2').html();
+    const year = $('.idenyaktiv').html();
+
+    return {
+        league,
+        year,
+        matches
+    };
 };
 
 exports.handler = (event, context, callback) => {
