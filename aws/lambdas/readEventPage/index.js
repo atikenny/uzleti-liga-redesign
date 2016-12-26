@@ -21,7 +21,31 @@ const addQueryParams = (queryParams, requestOptions) => {
 const parseMatchesPage = (html) => {
     $ = cheerio.load(html);
 
-    return $('.matches_table').html();
+    const getMatchId = ($resultCell) => {
+        const matchDetailsLink = $resultCell.find('a').attr('href');
+
+        return Number(matchDetailsLink.substr(matchDetailsLink.indexOf('mid=') + 4));
+    };
+
+    const getMatchDetails = ($matchRow) => {
+        const $resultCell = $matchRow.eq(3);
+        
+        return getMatchId($resultCell);
+    };
+
+    const matchIds = $('.matches_table tr').toArray().reduce((matches, row) => {
+        const isGameRow = $(row).children('td').length === 4;
+
+        if (isGameRow) {
+            const matchDetails = getMatchDetails($(row).children('td'));
+
+            matches.push(matchDetails);
+        }
+
+        return matches;
+    }, []);
+
+    return matchIds;
 };
 
 exports.handler = (event, context, callback) => {
