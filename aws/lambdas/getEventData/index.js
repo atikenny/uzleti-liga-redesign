@@ -1,12 +1,12 @@
 'use strict';
 
-console.log('Loading function');
-
 const doc = require('dynamodb-doc');
 
 const dynamo = new doc.DynamoDB();
 
 exports.handler = (event, context, callback) => {
+    const eventId = event.queryStringParameters.eventId;
+
     const done = (err, res) => callback(null, {
         statusCode: err ? '400' : '200',
         body: err ? err.message : JSON.stringify(res.Items[0]),
@@ -25,7 +25,7 @@ exports.handler = (event, context, callback) => {
                     "#id": "id"
                 },
                 ExpressionAttributeValues: {
-                    ":id": "1"
+                    ":id": eventId
                 }
             }, done);
             break;
