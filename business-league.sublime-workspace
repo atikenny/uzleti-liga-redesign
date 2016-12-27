@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"toplay",
+				"toPlayerThreePointerCount"
+			],
+			[
+				"toPlayee",
+				"toPlayerFreeThrowCount"
+			],
+			[
+				"periodS",
+				"periodStats"
+			],
+			[
+				"extend",
+				"extendPlayerPeriodStats"
+			],
+			[
+				"getTem",
+				"getTeamStats"
+			],
+			[
+				"player",
+				"playerStat"
+			],
+			[
+				"Prop",
+				"PropTypes.object"
+			],
+			[
+				"Matstat",
+				"MatchStats"
+			],
+			[
+				"match",
+				"matches"
+			],
+			[
+				"Propt",
+				"PropTypes.func"
+			],
+			[
 				"Mastabutton",
 				"MatchStatsButton"
 			],
@@ -222,10 +262,6 @@
 			[
 				"margin",
 				"margin: "
-			],
-			[
-				"match",
-				"matchesHTML"
 			],
 			[
 				"matche",
@@ -478,82 +514,11 @@
 			[
 				"remve",
 				"removeImage"
-			],
-			[
-				"image",
-				"imageId"
-			],
-			[
-				"classN",
-				"className"
-			],
-			[
-				"im",
-				"imageFile"
-			],
-			[
-				"file",
-				"fileObj"
-			],
-			[
-				"item",
-				"itemType"
-			],
-			[
-				"prop",
-				"props"
-			],
-			[
-				"funcion",
-				"function"
-			],
-			[
-				"shared",
-				"sharedWithItem"
-			],
-			[
-				"shaw",
-				"sharedWithIndex"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "docs/data-model.json",
-			"settings":
-			{
-				"buffer_size": 4667,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/js/main/components/matches/index.jsx",
-			"settings":
-			{
-				"buffer_size": 1002,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/js/main/components/matches/match-stats-button.jsx",
-			"settings":
-			{
-				"buffer_size": 502,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/sass/main/components/_matches.scss",
-			"settings":
-			{
-				"buffer_size": 3877,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -562,10 +527,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 147.0,
-		"last_filter": "sybabe",
+		"height": 191.0,
+		"last_filter": "mardo",
 		"selected_items":
 		[
+			[
+				"mardo",
+				"Set Syntax: Markdown"
+			],
 			[
 				"sybabe",
 				"Set Syntax: JavaScript (Babel)"
@@ -771,23 +740,51 @@
 	[
 		"/C/Source/uzleti-liga-redesign",
 		"/C/Source/uzleti-liga-redesign/app",
-		"/C/Source/uzleti-liga-redesign/app/js",
-		"/C/Source/uzleti-liga-redesign/app/js/main",
-		"/C/Source/uzleti-liga-redesign/app/js/main/components",
-		"/C/Source/uzleti-liga-redesign/app/js/main/components/matches",
-		"/C/Source/uzleti-liga-redesign/app/js/main/transformers",
-		"/C/Source/uzleti-liga-redesign/app/sass",
-		"/C/Source/uzleti-liga-redesign/app/sass/main",
-		"/C/Source/uzleti-liga-redesign/app/sass/main/components"
+		"/C/Source/uzleti-liga-redesign/app/js/actions",
+		"/C/Source/uzleti-liga-redesign/aws",
+		"/C/Source/uzleti-liga-redesign/aws/lambdas",
+		"/C/Source/uzleti-liga-redesign/aws/lambdas/getEventData",
+		"/C/Source/uzleti-liga-redesign/aws/lambdas/readEventPage"
 	],
 	"file_history":
 	[
-		"/C/Source/uzleti-liga-redesign/app/js/main/components/matches/match-scores.jsx",
-		"/C/Source/uzleti-liga-redesign/app/sass/main/components/_matches.scss",
-		"/C/Source/uzleti-liga-redesign/app/sass/_variables.scss",
-		"/C/Source/uzleti-liga-redesign/app/js/main/components/dates.jsx",
-		"/C/Source/uzleti-liga-redesign/business-league.sublime-project",
+		"/C/Source/uzleti-liga-redesign/aws/lambdas/readEventPage/index.js",
+		"/C/Source/uzleti-liga-redesign/app/js/aws-client.js",
+		"/C/Source/uzleti-liga-redesign/app/js/actions/app-data.js",
 		"/C/Source/uzleti-liga-redesign/gulpfile.js",
+		"/C/Source/uzleti-liga-redesign/aws/lambdas/getEventData/index.js",
+		"/C/Source/uzleti-liga-redesign/app/js/components/dates.jsx",
+		"/C/Source/uzleti-liga-redesign/app/js/components/matches/match-scores.test.js",
+		"/C/Source/uzleti-liga-redesign/docs/data-model.json",
+		"/C/Source/uzleti-liga-redesign/business-league.sublime-project",
+		"/C/Source/uzleti-liga-redesign/aws/lambdas/readEventPage/node_modules/cheerio/package.json",
+		"/C/Source/uzleti-liga-redesign/aws/lambdas/readme.MD",
+		"/C/Source/uzleti-liga-redesign/package.json",
+		"/C/Source/uzleti-liga-redesign/aws/lambdas/readEventPage/node_modules/jquery/package.json",
+		"/C/Source/uzleti-liga-redesign/app/js/components/header.jsx",
+		"/C/Source/uzleti-liga-redesign/app/js/reducers/app-data.js",
+		"/C/Source/uzleti-liga-redesign/app/js/transformers/matches.js",
+		"/C/Source/uzleti-liga-redesign/aws/apiGateway-js-sdk/README.md",
+		"/C/Source/uzleti-liga-redesign/app/js/main/components/header.test.js",
+		"/C/Source/uzleti-liga-redesign/app/js/main/components/header.jsx",
+		"/C/Source/uzleti-liga-redesign/app/js/main/components/sidebar.test.js",
+		"/C/Source/uzleti-liga-redesign/app/js/main/transformers/matches.js",
+		"/C/Source/uzleti-liga-redesign/app/js/main/components/matches/match-stats.jsx",
+		"/C/Source/uzleti-liga-redesign/app/js/injected-script.js",
+		"/C/Source/uzleti-liga-redesign/app/sass/main/components/_matches.scss",
+		"/C/Source/uzleti-liga-redesign/app/sass/main/_common.scss",
+		"/C/Source/uzleti-liga-redesign/app/js/main/components/matches/index.jsx",
+		"/C/Source/uzleti-liga-redesign/app/js/main/components/matches/match-scores.jsx",
+		"/C/Source/uzleti-liga-redesign/app/js/old-redesigner.js",
+		"/C/Source/uzleti-liga-redesign/app/js/main/actions/app-data.js",
+		"/C/Source/uzleti-liga-redesign/app/js/main/reducers/app-data.js",
+		"/C/Source/uzleti-liga-redesign/app/js/main/actions/matches.js",
+		"/C/Source/uzleti-liga-redesign/app/js/main/components/matches/match-stats-button.jsx",
+		"/C/Source/uzleti-liga-redesign/app/js/main/components/dates.jsx",
+		"/C/Source/uzleti-liga-redesign/app/js/main/actions/match-stats.js",
+		"/C/Source/uzleti-liga-redesign/app/js/main/reducers/matches.js",
+		"/C/Source/uzleti-liga-redesign/app/js/main/reducers/index.js",
+		"/C/Source/uzleti-liga-redesign/app/sass/_variables.scss",
 		"/C/Source/uzleti-liga-redesign/app/index.html",
 		"/C/Source/uzleti-liga-redesign/server/event-collector.js",
 		"/C/Source/uzleti-liga-redesign/.gitignore",
@@ -800,7 +797,6 @@
 		"/C/Source/uzleti-liga-redesign/app/sass/_fonts.scss",
 		"/C/Source/uzleti-liga-redesign/app/sass/_colors.scss",
 		"/C/Source/uzleti-liga-redesign/app/sass/business-league.scss",
-		"/C/Source/uzleti-liga-redesign/package.json",
 		"/C/Source/uzleti-liga-redesign/index.js",
 		"/C/Source/hotel-pwa/resources/documentation/import-localhost-cert-for-windows.md",
 		"/C/Source/uzleti-liga-redesign/sass/business-league.scss",
@@ -879,37 +875,7 @@
 		"/C/Users/Attila/Code/chealt/code/client/components/rigth-icon-menu.jsx",
 		"/C/Users/Attila/Code/chealt/code/client/components/invite-friend.jsx",
 		"/C/Users/Attila/Code/chealt/code/client/components/activity-list.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/comments-list.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/guests.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/event.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/home.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/profile.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/profile-picture.jsx",
-		"/C/Users/Attila/Code/chealt/code/server/publications.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/styles/invite-friend.scss",
-		"/C/Users/Attila/Code/chealt/code/client/components/image-uploader.jsx",
-		"/C/Users/Attila/Code/chealt/code/packages/npm-container/.npm/package/node_modules/material-ui/src/text-field.jsx",
-		"/C/Users/Attila/Code/chealt/code/server/profile.jsx",
-		"/C/Users/Attila/Code/chealt/code/lib/routes.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/layout/layout.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/layout/main.html",
-		"/C/Users/Attila/Code/chealt/code/client/components/layout/wrapper.jsx",
-		"/C/Users/Attila/Code/chealt/code/packages/npm-container/.npm/package/node_modules/material-ui/src/tabs/tab.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/styles/core/common.scss",
-		"/C/Users/Attila/Code/chealt/code/client/styles/core/elements.scss",
-		"/C/Users/Attila/Code/chealt/code/client/styles/home.scss",
-		"/C/Users/Attila/Code/chealt/code/.meteor/versions",
-		"/C/Users/Attila/AppData/Local/Temp/Rar$DIa0.604/tab.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/styles/profile-page.scss",
-		"/C/Users/Attila/Code/chealt/code/client/styles/core/normalize.scss",
-		"/C/Users/Attila/Code/chealt/code/packages/npm-container/.npm/package/node_modules/material-ui/lib/tabs/tab.js",
-		"/C/Users/Attila/Code/chealt/code/lib/collections.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/subscriptions.js",
-		"/C/Users/Attila/Code/chealt/code/client/routes.jsx",
-		"/C/Users/Attila/AppData/Roaming/Sublime Text 3/Packages/User/react.sublime-snippet",
-		"/C/Users/Attila/Code/chealt/code/client/components/drawer.jsx",
-		"/C/Users/Attila/AppData/Roaming/Sublime Text 3/Packages/User/JSX.sublime-settings",
-		"/C/Users/Attila/Code/chealt/code/client/styles/drawer.scss"
+		"/C/Users/Attila/Code/chealt/code/client/components/comments-list.jsx"
 	],
 	"find":
 	{
@@ -920,6 +886,7 @@
 		"height": 96.0,
 		"where_history":
 		[
+			"<project>,*.*",
 			"<project>,*.scss",
 			"<project>,*.*",
 			"<project>,*.jsx",
@@ -951,6 +918,20 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"appData",
+			"data",
+			"mapMatchesToDates",
+			"<td>{player.stats.",
+			"quarter-score",
+			"getPlayerStats",
+			"playerStats",
+			"match-s",
+			".table",
+			"${",
+			"\"",
+			"class=",
+			"match-stats-container",
+			"renderIndividualStats",
 			"scores-contain",
 			"#{$root}/",
 			"var",
@@ -1064,21 +1045,7 @@
 			"}",
 			"\"",
 			"flaticon",
-			"}",
-			"flaticon",
-			"Flaticon",
-			"\"",
-			"rowing",
-			"H",
-			"B",
-			"activities",
-			"Events",
-			"}",
-			" ,",
-			"  ,",
-			"   ,",
-			"    ,",
-			"    "
+			"}"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1099,131 +1066,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "docs/data-model.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4667,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								199,
-								199
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/js/main/components/matches/index.jsx",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1002,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								462,
-								462
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/js/main/components/matches/match-stats-button.jsx",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 502,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								414,
-								414
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/sass/main/components/_matches.scss",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 3877,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1471,
-								1471
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
-							"syntax": "Packages/SCSS/SCSS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 720.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1279,6 +1123,42 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"dates",
+				"app\\js\\components\\dates.jsx"
+			],
+			[
+				"appda",
+				"app\\js\\reducers\\app-data.js"
+			],
+			[
+				"heade",
+				"app\\js\\components\\header.jsx"
+			],
+			[
+				"majs",
+				"app\\js\\transformers\\matches.js"
+			],
+			[
+				"da",
+				"docs\\data-model.json"
+			],
+			[
+				"a",
+				"app\\js\\actions\\app-data.js"
+			],
+			[
+				"mascs",
+				"app\\sass\\main\\components\\_matches.scss"
+			],
+			[
+				"oldrede",
+				"app\\js\\old-redesigner.js"
+			],
+			[
+				"matscs",
+				"app\\sass\\main\\components\\_matches.scss"
+			],
 			[
 				"gitig",
 				".gitignore"
@@ -1544,10 +1424,6 @@
 				"client\\components\\drawer.jsx"
 			],
 			[
-				"heade",
-				"client\\components\\layout\\header.jsx"
-			],
-			[
 				"profile",
 				"client\\components\\profile.jsx"
 			],
@@ -1758,38 +1634,6 @@
 			[
 				"eventscs",
 				"client\\styles\\events.scss"
-			],
-			[
-				"layo",
-				"client\\components\\layout\\layout.jsx"
-			],
-			[
-				"head",
-				"client\\components\\layout\\header.jsx"
-			],
-			[
-				"activit",
-				"server\\activities.jsx"
-			],
-			[
-				"hea",
-				"client\\styles\\header.scss"
-			],
-			[
-				"vari",
-				"client\\styles\\import\\_variables.scss"
-			],
-			[
-				"prolist",
-				"client\\components\\profile-list.jsx"
-			],
-			[
-				"profili",
-				"client\\components\\profile-info.jsx"
-			],
-			[
-				"guest",
-				"client\\components\\guests.jsx"
 			]
 		],
 		"width": 0.0

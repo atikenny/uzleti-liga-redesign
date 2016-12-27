@@ -129,6 +129,6 @@ const toPeriodScores = (periodScores, player) => {
 
 export const mapEventData = (eventData) => {
     return Object.assign({}, eventData, {
-        dates: mapMatchesToDates(eventData)
+        dates: eventData.matches ? mapMatchesToDates(eventData) : []
     });
 };

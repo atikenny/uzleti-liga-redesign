@@ -1,6 +1,8 @@
 const defaultState = {
     isFetching: false,
-    data: null
+    data: {
+        dates: []
+    }
 };
 
 const appData = (state = defaultState, action) => {

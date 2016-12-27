@@ -1,6 +1,6 @@
-import * as dataModel       from  '../../../docs/data-model';
-import { mapEventData }     from '../transformers/matches';
 import { addMatch }         from './matches';
+import { mapEventData }     from '../transformers/matches';
+import { getEventData }     from '../aws-client';
 
 const fetchingData = () => {
     return {
@@ -11,7 +11,7 @@ const fetchingData = () => {
 const receivedData = (data) => {
     return {
         type: 'RECEIVED_DATA',
-        data: data
+        data
     };
 };
 
@@ -29,9 +29,9 @@ export const fetchData = () => {
     return (dispatch) => {
         dispatch(fetchingData());
 
-        return Promise.resolve(dataModel.default.events[0]) // fetch data from server
+        return getEventData(1)
             .then(mapEventData)
-            .then(data => addMatchesState(data, dispatch))
-            .then(data => dispatch(receivedData(data)));
+            .then(response => addMatchesState(response, dispatch))
+            .then(response => dispatch(receivedData(response.data)));
     };
 };
