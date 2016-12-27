@@ -11,9 +11,15 @@ const requestOptions = {
 };
 
 const addQueryParams = (queryParams, requestOptions) => {
-    requestOptions.path += Object.keys(queryParams).reduce((queryParamsString, paramKey) => {
+    requestOptions.path += Object.keys(queryParams).reduce((queryParamsString, paramKey, paramIndex) => {
+        if (paramIndex === 0) {
+            queryParamsString += '?';
+        } else {
+            queryParamsString += '&';
+        }
+
         return queryParamsString += `${paramKey}=${queryParams[paramKey]}`;
-    }, '?');
+    }, '');
     
     return requestOptions;
 };
