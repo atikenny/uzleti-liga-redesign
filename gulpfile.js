@@ -1,3 +1,4 @@
+const HELPERS       = require('./gulp-settings/helpers')(module);
 const gulp          = require('gulp');
 const sass          = require('gulp-sass');
 const source        = require('vinyl-source-stream');
@@ -15,7 +16,9 @@ const sequence      = require('gulp-sequence');
 const filter        = require('gulp-filter');
 const minifycss     = require('gulp-clean-css');
 const _             = require('lodash');
-const spawn          = require('child_process').spawn;
+const spawn         = require('child_process').spawn;
+const handleError   = HELPERS.handleError;
+const runSingleTest = HELPERS.runSingleTest;
 
 const PATHS = {
     appEntry: 'app/js/main-app.jsx',
@@ -101,7 +104,7 @@ gulp.task('build:vendor', () => {
 });
 
 gulp.task('test', function(done) {
-    const jest = spawn('node', ['./node_modules/jest/bin/jest.js'], { stdio: 'inherit' });
+    const jest = spawn('node', ['./node_modules/jest/bin/jest.js', '-i'], { stdio: 'inherit' });
 
     return jest.on('close', (code) => {
         gutil.log(`child process exited with code ${code}`);
@@ -146,8 +149,8 @@ gulp.task('build:watch', () => {
     gulp.watch('app/sass/**/*.scss', () => {
         sequence('clean:css', 'sass')();
     });
-    gulp.watch('app/js/**/*.*', () => {
-        sequence('clean:js', 'build:app')();
+    gulp.watch(['app/js/**/*.*', '!app/js/**/*.test.js'], () => {
+        sequence('clean:js', 'build:app', 'test')();
     });
     gulp.watch('app/**/*.html', () => {
         sequence('html', 'rev-replace')();
@@ -155,7 +158,7 @@ gulp.task('build:watch', () => {
     gulp.watch(`${PATHS.tempFolder}/**/*.*`, () => {
         sequence('html', 'rev-replace')();
     });
-    gulp.watch('app/js/**/*.test.js', ['test']);
+    gulp.watch('app/js/**/*.test.js').on('change', runSingleTest);
     gulp.watch(`${PATHS.distFolder}/**/*.*`, _.debounce(browserSync.reload, 100));
 });
 
@@ -207,8 +210,3 @@ gulp.task('html', () => {
     return gulp.src('app/**/*.html')
         .pipe(gulp.dest(`${PATHS.distFolder}`));
 });
-
-function handleError(err) {
-    gutil.log(err.toString());
-    this.emit('end');
-}
