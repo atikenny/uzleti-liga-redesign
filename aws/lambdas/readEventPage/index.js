@@ -18,7 +18,7 @@ const addQueryParams = (queryParams, requestOptions) => {
     return requestOptions;
 };
 
-const parseMatchesPage = (html) => {
+const parseMatchesPage = (eventId, html) => {
     $ = cheerio.load(html);
 
     const getMatchId = ($resultCell) => {
@@ -43,6 +43,7 @@ const parseMatchesPage = (html) => {
     const year = $('.idenyaktiv').html();
 
     return {
+        eventId,
         league,
         year,
         matches
@@ -58,7 +59,7 @@ exports.handler = (event, context, callback) => {
         res.setEncoding('utf8');
         res.on('data', (chunk) => body += chunk);
         res.on('end', () => {
-            callback(null, parseMatchesPage(body));
+            callback(null, parseMatchesPage(eventId, body));
         });
     });
 
