@@ -113,7 +113,8 @@ gulp.task('upload', () => {
             if (_.isArray(commandLineLambdas)) {
                 promises = commandLineLambdas.map(lambdaUploader);
             } else {
-                promises = [lambdaUploader(commandLineLambdas)];
+                return lambdaUploader(commandLineLambdas)
+                    .then(resolve);
             }
         }
 
