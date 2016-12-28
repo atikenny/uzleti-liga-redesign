@@ -118,6 +118,7 @@ gulp.task('upload', () => {
         }
 
         return Promise.all(promises)
-            .then(resolve);
+            .then(resolve)
+            .catch(reject);
     });
 });
