@@ -9,6 +9,7 @@ const path          = require('path');
 const merge         = require('merge-stream');
 const sequence      = require('gulp-sequence');
 const changeCase    = require('change-case');
+const minimist      = require('minimist');
 
 const LAMBDA_RELATIVE_DIR = './aws/lambdas';
 const LAMBDA_ABOSULTE_DIR = path.join(path.resolve(), LAMBDA_RELATIVE_DIR);
@@ -41,7 +42,7 @@ gulp.task('clean:lambda:zip', () => {
 
 gulp.task('npm-dependencies', () => { 
     const gulpSources = lambdas.map(lambda => {
-        return gulp.src(path.join(LAMBDA_ABOSULTE_DIR, `${lambda}/package.json`))
+        return gulp.src(path.join(LAMBDA_ABOSULTE_DIR, lambda , 'package.json'))
             .pipe(gulp.dest(`${LAMBDA_RELATIVE_DIR}/${lambda}`))
             .pipe(install({ production: true }));
     });
