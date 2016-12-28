@@ -23,6 +23,18 @@ npm start
 
 This will start up a static file server that can be reach on this url: [https://localhost:3000](https://localhost:3000)
 
+## Deploy lambda functions
+```
+// All lambda functions
+npm run deploy:lambda
+
+// A specific lambda function
+npm run deploy:lambda -- --src lambdaFunctionName
+
+// Multiple specific lambda functions
+npm run deploy:lambda -- --src lambdaFunctionName --src otherLambda
+```
+
 ## Support
 Pull requests are welcome!
 
