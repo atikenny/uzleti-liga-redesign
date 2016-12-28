@@ -13,5 +13,16 @@
 * Create zip file with the updated node modules and the index.js and name it build.zip (the name that is ignored in .gitignore)
 * Run "aws lambda update-function-code --function-name <function-name> --zip-file fileb://build.zip"
 
+```
+// All lambda functions
+npm run deploy:lambda
+
+// A specific lambda function
+npm run deploy:lambda -- --src <lambdaFunctionFolder>
+
+// Multiple specific lambda functions
+npm run deploy:lambda -- --src <lambdaFunctionFolder> --src <otherLambdaFolder>
+```
+
 ## Future improvements
 - [x] Add gulp task for zip and deploy
