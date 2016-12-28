@@ -105,21 +105,19 @@ gulp.task('upload', () => {
 
         AWS.config.region = 'eu-central-1';
 
-        let promises = [];
-
         if (commandLineLambdas === 'all') {
-            promises = lambdaFolders.map(lambdaUploader);
+            return Promise.all(lambdaFolders.map(lambdaUploader))
+                .then(resolve)
+                .catch(reject);
         } else {
             if (_.isArray(commandLineLambdas)) {
-                promises = commandLineLambdas.map(lambdaUploader);
+                return Promise.all(commandLineLambdas.map(lambdaUploader))
+                    .then(resolve)
+                    .catch(reject);
             } else {
                 return lambdaUploader(commandLineLambdas)
                     .then(resolve);
             }
         }
-
-        return Promise.all(promises)
-            .then(resolve)
-            .catch(reject);
     });
 });
