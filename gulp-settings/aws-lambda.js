@@ -10,6 +10,7 @@ const merge         = require('merge-stream');
 const sequence      = require('gulp-sequence');
 const changeCase    = require('change-case');
 const minimist      = require('minimist');
+const _             = require('lodash');
 
 const LAMBDA_RELATIVE_DIR = './aws/lambdas';
 const LAMBDA_ABOSULTE_DIR = path.join(path.resolve(), LAMBDA_RELATIVE_DIR);
