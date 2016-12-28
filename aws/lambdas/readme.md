@@ -14,4 +14,4 @@
 * Run "aws lambda update-function-code --function-name <function-name> --zip-file fileb://build.zip"
 
 ## Future improvements
-[x] Add gulp task for zip and deploy
+- [x] Add gulp task for zip and deploy
