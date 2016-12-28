@@ -13,9 +13,7 @@ const minimist      = require('minimist');
 
 const LAMBDA_RELATIVE_DIR = './aws/lambdas';
 const LAMBDA_ABOSULTE_DIR = path.join(path.resolve(), LAMBDA_RELATIVE_DIR);
-const lambdas = getDirectories(LAMBDA_RELATIVE_DIR).map(lambdaFolder => {
-    return changeCase.camelCase(require(`${path.join(LAMBDA_ABOSULTE_DIR, lambdaFolder, 'package.json')}`).name);
-});
+const lambdaFolders = getDirectories(LAMBDA_RELATIVE_DIR);
 
 const { src: commandLineLambdas = 'all' } = minimist(process.argv.slice(2));
 
@@ -33,7 +31,7 @@ gulp.task('aws-lambda', sequence(
 ));
 
 gulp.task('clean:lambda:zip', () => {
-    const zipFiles = lambdas.map(lambda => {
+    const zipFiles = lambdaFolders.map(lambda => {
         return path.join(LAMBDA_ABOSULTE_DIR, lambda, 'build.zip');
     });
 
@@ -41,7 +39,7 @@ gulp.task('clean:lambda:zip', () => {
 });
 
 gulp.task('npm-dependencies', () => { 
-    const gulpSources = lambdas.map(lambda => {
+    const gulpSources = lambdaFolders.map(lambda => {
         return gulp.src(path.join(LAMBDA_ABOSULTE_DIR, lambda , 'package.json'))
             .pipe(gulp.dest(`${LAMBDA_RELATIVE_DIR}/${lambda}`))
             .pipe(install({ production: true }));
@@ -51,7 +49,7 @@ gulp.task('npm-dependencies', () => {
 });
 
 gulp.task('zip', () => {
-    const gulpSources = lambdas.map(lambda => {
+    const gulpSources = lambdaFolders.map(lambda => {
         const source = [
             path.join(LAMBDA_ABOSULTE_DIR, lambda, '**/*'),
             `!${path.join(LAMBDA_ABOSULTE_DIR, lambda, 'package.json')}`,
@@ -82,7 +80,7 @@ const lambdaUploader = (lambdaFolder) => {
                 }
                 reject(err);
             } else {
-                fs.readFile(path.join(LAMBDA_ABOSULTE_DIR, lambda, 'build.zip'), (err, data) => {
+                fs.readFile(path.join(LAMBDA_ABOSULTE_DIR, lambdaFolder, 'build.zip'), (err, data) => {
                     const params = {
                         FunctionName: lambda,
                         ZipFile: data
@@ -109,7 +107,7 @@ gulp.task('upload', () => {
         let promises = [];
 
         if (commandLineLambdas === 'all') {
-            promises = lambdas.map(lambdaUploader);
+            promises = lambdaFolders.map(lambdaUploader);
         } else {
             if (_.isArray(commandLineLambdas)) {
                 promises = commandLineLambdas.map(lambdaUploader);

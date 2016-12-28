@@ -29,10 +29,10 @@ This will start up a static file server that can be reach on this url: [https://
 npm run deploy:lambda
 
 // A specific lambda function
-npm run deploy:lambda -- --src lambdaFunctionName
+npm run deploy:lambda -- --src <lambdaFunctionFolder>
 
 // Multiple specific lambda functions
-npm run deploy:lambda -- --src lambdaFunctionName --src otherLambda
+npm run deploy:lambda -- --src <lambdaFunctionFolder> --src <otherLambdaFolder>
 ```
 
 ## Support
