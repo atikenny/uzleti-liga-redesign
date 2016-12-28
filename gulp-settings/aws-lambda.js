@@ -116,7 +116,8 @@ gulp.task('upload', () => {
                     .catch(reject);
             } else {
                 return lambdaUploader(commandLineLambdas)
-                    .then(resolve);
+                    .then(resolve)
+                    .catch(reject);
             }
         }
     });
