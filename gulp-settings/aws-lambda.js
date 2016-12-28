@@ -8,6 +8,7 @@ const fs            = require('fs');
 const path          = require('path');
 const merge         = require('merge-stream');
 const sequence      = require('gulp-sequence');
+const changeCase    = require('change-case');
 
 const LAMBDA_RELATIVE_DIR = './aws/lambdas';
 const LAMBDA_ABOSULTE_DIR = path.join(path.resolve(), LAMBDA_RELATIVE_DIR);
@@ -39,7 +40,7 @@ gulp.task('npm-dependencies', () => {
     const gulpSources = lambdas.map(lambda => {
         const source = [
             path.join(LAMBDA_ABOSULTE_DIR, lambda, '**/*'),
-            `!${path.join(LAMBDA_ABOSULTE_DIR, `${lambda}/package.json`)}`,
+            `!${path.join(LAMBDA_ABOSULTE_DIR, lambda, 'package.json')}`,
             path.join(LAMBDA_ABOSULTE_DIR, lambda, '/.*')
         ];
         return gulp.src(path.join(LAMBDA_ABOSULTE_DIR, `${lambda}/package.json`))
@@ -54,7 +55,7 @@ gulp.task('zip', () => {
     const gulpSources = lambdas.map(lambda => {
         const source = [
             path.join(LAMBDA_ABOSULTE_DIR, lambda, '**/*'),
-            `!${path.join(LAMBDA_ABOSULTE_DIR, `${lambda}/package.json`)}`,
+            `!${path.join(LAMBDA_ABOSULTE_DIR, lambda, 'package.json')}`,
             path.join(LAMBDA_ABOSULTE_DIR, lambda, '/.*')
         ];
 
@@ -74,8 +75,9 @@ gulp.task('upload', () => {
 
         let promises = [];
 
-        lambdas.forEach(lambda => {
+        lambdas.forEach(lambdaFolder => {
             const awsLambda = new AWS.Lambda();
+            const lambda = changeCase.camelCase(require(`${path.join(LAMBDA_ABOSULTE_DIR, lambdaFolder, 'package.json')}`).name);
 
             promises.push(new Promise((resolve, reject) => {
                 awsLambda.getFunction({ FunctionName: lambda }, (err, data) => {
