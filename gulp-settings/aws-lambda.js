@@ -68,7 +68,7 @@ gulp.task('lambda-builds', () => {
 
 const lambdaUploader = (lambdaFolder) => {
     const awsLambda = new AWS.Lambda();
-    const lambda = changeCase.camelCase(require(`${path.join(LAMBDA_ABOSULTE_DIR, lambdaFolder, 'package.json')}`).name);
+    const lambda = changeCase.camelCase(require(path.join(LAMBDA_ABOSULTE_DIR, lambdaFolder, 'package.json')).name);
 
     return new Promise((resolve, reject) => {
         awsLambda.getFunction({ FunctionName: lambda }, (err, data) => {
