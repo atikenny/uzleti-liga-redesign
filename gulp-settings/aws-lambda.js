@@ -11,6 +11,7 @@ const sequence      = require('gulp-sequence');
 const changeCase    = require('change-case');
 const minimist      = require('minimist');
 const _             = require('lodash');
+const chalk         = require('chalk');
 
 const LAMBDA_RELATIVE_DIR = './aws/lambdas';
 const LAMBDA_ABOSULTE_DIR = path.join(path.resolve(), LAMBDA_RELATIVE_DIR);
@@ -92,6 +93,7 @@ const lambdaUploader = (lambdaFolder) => {
                             gutil.log('Package upload failed. Check your iam:PassRole permission');
                             reject(err);
                         }
+                        gutil.log(`Successfully uploaded: ${chalk.green(lambda)}`);
                         resolve('success');
                     });
                 });
