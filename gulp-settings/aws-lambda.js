@@ -27,7 +27,7 @@ function getDirectories(sourcePath) {
 gulp.task('aws-lambda', sequence(
     'clean:lambda:zip',
     'npm-dependencies',
-    'zip',
+    'lambda-builds',
     'upload'
 ));
 
@@ -49,7 +49,7 @@ gulp.task('npm-dependencies', () => {
     return merge.apply(null, gulpSources);
 });
 
-gulp.task('zip', () => {
+gulp.task('lambda-builds', () => {
     const gulpSources = lambdaFolders.map(lambda => {
         const source = [
             path.join(LAMBDA_ABOSULTE_DIR, lambda, '**/*'),
