@@ -1,0 +1,3649 @@
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>BT Baskets - ITSH Kft mérkőzés, Üzleti Kosárliga 2016-2017</title>
+<meta name="keywords" content="hazai, vendég, csapatok, játékosok, helyszín, Szurkolj">
+<meta name="description" content="Esemény: Üzleti Kosárliga, Sport: Kosárlabda, Helyszín:	Zsíros Tibor Kosárlabda Csarnok, Dátum: 2016-09-19 20:40:00" />
+
+<link rel="image_src" href="../image/uzleti_liga_logo.jpg" /> 
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="css/rating.css" type="text/css">
+<style type="text/css">
+
+#hintbox{ /*CSS for pop up hint box */
+position:absolute;
+top: 0;
+background-color: lightyellow;
+width: 150px; /*Default width of hint.*/ 
+padding: 3px;
+border:1px solid black;
+font:normal 11px Verdana;
+line-height:18px;
+z-index:100;
+border-right: 3px solid black;
+border-bottom: 3px solid black;
+visibility: hidden;
+}
+
+.hintanchor{ /*CSS for link that shows hint onmouseover*/
+font-weight: bold;
+color: navy;
+margin: 3px 8px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+/***********************************************
+* Show Hint script- © Dynamic Drive (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit http://www.dynamicdrive.com/ for this script and 100s more.
+***********************************************/
+		
+var horizontal_offset="9px" //horizontal offset of hint box from anchor link
+
+/////No further editting needed
+
+var vertical_offset="0" //horizontal offset of hint box from anchor link. No need to change.
+var ie=document.all
+var ns6=document.getElementById&&!document.all
+
+function getposOffset(what, offsettype){
+var totaloffset=(offsettype=="left")? what.offsetLeft : what.offsetTop;
+var parentEl=what.offsetParent;
+while (parentEl!=null){
+totaloffset=(offsettype=="left")? totaloffset+parentEl.offsetLeft : totaloffset+parentEl.offsetTop;
+parentEl=parentEl.offsetParent;
+}
+return totaloffset;
+}
+
+function iecompattest(){
+return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+}
+
+function clearbrowseredge(obj, whichedge){
+var edgeoffset=(whichedge=="rightedge")? parseInt(horizontal_offset)*-1 : parseInt(vertical_offset)*-1
+if (whichedge=="rightedge"){
+var windowedge=ie && !window.opera? iecompattest().scrollLeft+iecompattest().clientWidth-30 : window.pageXOffset+window.innerWidth-40
+dropmenuobj.contentmeasure=dropmenuobj.offsetWidth
+if (windowedge-dropmenuobj.x < dropmenuobj.contentmeasure)
+edgeoffset=dropmenuobj.contentmeasure+obj.offsetWidth+parseInt(horizontal_offset)
+}
+else{
+var windowedge=ie && !window.opera? iecompattest().scrollTop+iecompattest().clientHeight-15 : window.pageYOffset+window.innerHeight-18
+dropmenuobj.contentmeasure=dropmenuobj.offsetHeight
+if (windowedge-dropmenuobj.y < dropmenuobj.contentmeasure)
+edgeoffset=dropmenuobj.contentmeasure-obj.offsetHeight
+}
+return edgeoffset
+}
+
+function showhint(menucontents, obj, e, tipwidth){
+if ((ie||ns6) && document.getElementById("hintbox")){
+dropmenuobj=document.getElementById("hintbox")
+dropmenuobj.innerHTML=menucontents
+dropmenuobj.style.left=dropmenuobj.style.top=-500
+if (tipwidth!=""){
+dropmenuobj.widthobj=dropmenuobj.style
+dropmenuobj.widthobj.width=tipwidth
+}
+dropmenuobj.x=getposOffset(obj, "left")
+dropmenuobj.y=getposOffset(obj, "top")
+dropmenuobj.style.left=dropmenuobj.x-clearbrowseredge(obj, "rightedge")+obj.offsetWidth+"px"
+dropmenuobj.style.top=dropmenuobj.y-clearbrowseredge(obj, "bottomedge")+"px"
+dropmenuobj.style.visibility="visible"
+obj.onmouseout=hidetip
+}
+}
+
+function hidetip(e){
+dropmenuobj.style.visibility="hidden"
+dropmenuobj.style.left="-500px"
+}
+
+function createhintbox(){
+var divblock=document.createElement("div")
+divblock.setAttribute("id", "hintbox")
+document.body.appendChild(divblock)
+}
+
+if (window.addEventListener)
+window.addEventListener("load", createhintbox, false)
+else if (window.attachEvent)
+window.attachEvent("onload", createhintbox)
+else if (document.getElementById)
+window.onload=createhintbox
+
+</script><script type='text/javascript' src='inc/swfobject.js'></script>                                                                              
+<script type='text/javascript' src='inc/querystring.js'></script>
+<script type='text/javascript' src='inc/rating_ajax.js'></script>
+
+<script type='text/javascript' src='jquery/jquery-1.4.2.js'></script>
+<script type='text/javascript' src='jquery/jquery.corner.js'></script>
+<script type='text/javascript' src='jquery/jquery.watermark.js'></script>
+
+
+  <script type="text/javascript">
+  function linkpopup(id,width,height,top,left) {
+	  prop = "width="+width;
+	  prop=prop+",height="+height;
+	  prop=prop+",left="+left;
+	  prop=prop+",top="+top;
+	  prop=prop+",toolbar=yes,location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes";
+	  url="http://uzletiliga.hu/eredmenyek/link.php?uid="+id;
+	  window.open(url,'',prop);
+	}
+
+	//Finds y value of given object
+  function findPos(obj) {
+    var curtop = 0;
+    if (obj.offsetParent) {
+      do {
+        curtop += obj.offsetTop;
+      } while (obj = obj.offsetParent);
+      return [curtop];
+    }
+  }
+  
+  function scrollToElement(objid) {
+    //Get object
+    var obj = document.getElementById(objid);
+    //Scroll to location
+    // workaround for IE6
+    if(obj)
+      setTimeout('window.scrollTo(0,'+findPos(obj)+')',1);
+  }
+  
+  function ParseQueryStringAndScroll() {
+    var qs = new Querystring();
+    var v = qs.get("anchor","");
+    if(v!="") scrollToElement(v);
+  }
+  
+  function galery(url) {
+    var w = 1020;
+    var h = 750;
+    bal = (screen.width-w)/2;
+    url = "galery/album.php?a=" + url + "&n=1";
+    prop = "width=" + w + ",height=" + h + ",left=20,top=5,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes";
+    window.open(url,'',prop);
+  }
+  
+  function login_ajax() {
+			var o = new Object();
+	    o.login_username = $("#login_username").val();
+	    o.login_password = $("#login_password").val();
+	    //var SendData = JSON.stringify(o);
+			$.post("login_ajax.php",
+				o,
+	   		function(data){ $("#login").html(data); if(data.indexOf('login_username')==-1)  location.reload(); }
+	   	);
+  }
+  
+  
+  </script>
+
+</head>
+<body onload='ParseQueryStringAndScroll();'>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/hu_HU/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="page" id="pageid"> 
+  <div class="header" id="headerid">
+
+
+
+<div class="center">  
+  
+  <div style="position: relative; width: 990px; height: 200px; border: 0px dashed;">
+    <div id='indoor_2017' style="width: 990px; height: 200px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 20;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 30; border: 0px dashed;">
+      <a href="indoor_uzleti_liga_2017" onclick="linkpopup('112','1100','800','0','00'); return(false);">
+      <img src="../../image/transparent_990x200.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/indoor_uzleti_liga_2017.swf','indoor_uzleti_liga_2017','990','200','8','#ffffff');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('indoor_2017');
+  </script>
+    
+</div>
+
+
+
+ <table width="990" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+	  	<td height="38" background="../../image/nevnap_background.png">
+		 <div class="nevnap">Ma 2016. 12. 29. csütörtök, Tamás napja van. Holnap Dávid napja lesz.</div>
+   </td>
+   </tr>
+   </table>
+	
+	
+	 <table style="padding-top:1px" width="990" height="102" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+	  	<td height="102"  background="../../image/header_background_v2.2.png" style="background-repeat:no-repeat">
+		
+		<table width="990" height="100" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="100" width="5">&nbsp;</td>
+		<td height="100" width="184" align="center" valign="top">
+		
+		<table width="184" border="0" cellspacing="0" cellpadding="5">
+      		<tr>
+	  			<td height="100"><img style="position:relative; z-index:200" src="../../image/uzleti_liga_weblogo.png">
+				</td>
+		 	</tr>
+	   </table>
+		</td>
+	     <td height="100" width="201">&nbsp;</td>
+		<td height="100" width="600">
+<!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 600px; height: 100px; border: 0px dashed;">
+    <div id='hajterapias_sapka' style="width: 600px; height: 100px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 10;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 20; border: 0px dashed;">
+      <a href="hajterapia" onclick="linkpopup('108','1024','768','0','0'); return(false);">
+      <img src="../../image/transparent_600x100.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/hajterapias_sapka.swf','hajterapia','600','100','8','#ffffff');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('hajterapias_sapka');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->
+	  </td>
+      </tr>
+   </table>
+   </td>
+   </tr>
+   </table>
+        		
+      </div>
+  <div class="big" width=100%>
+  <div class="menu">
+  
+  </div>  <script type="text/javascript" src="jquery/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="jquery/jquery.blockUI.js"></script>
+  
+  <div class="content">
+        <table class='eventmenu_table'><tr><td colspan=8><h2 style='margin-bottom: 0px;'>Üzleti Kosárliga</h2></td></tr><tr><th style='width:60px;'><font size=-2 color=#666666>Idényválasztás:</font></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=17'>2007-2008</a></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=48'>2008-2009</a></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=72'>2009-2010</a></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=103'>2010-2011</a></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=130'>2011-2012</a></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=156'>2012-2013</a></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=180'>2013-2014</a></th></tr><tr><th style='width:60px;'>&nbsp;</th><th style='width:110px;'><a class='idenylink' href='event.php?eid=213'>2014-2015</a></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=243'>2015-2016</a></th><th style='width:110px;'><span class='idenyaktiv'>2016-2017</span></th><th style='width:110px;'>&nbsp;</th><th style='width:110px;'>&nbsp;</th><th style='width:110px;'>&nbsp;</th><th style='width:110px;'>&nbsp;</th></tr></table><table class='eventmenu_table'><tr><td colspan=7></td></tr><tr><th style='width:100px;'><a href='teams.php?eid=275'>Csapatok</a></th><th style='width:100px;'><a href='matches.php?eid=275'>Mérkőzések</a></th><th style='width:100px;'><a href='table3.php?eid=275'>Tabella</a></th><th style='width:100px;'><a href='goals3.php?eid=275'>Dobólista</a></th><th style='width:100px;'><a href='cards3.php?eid=275'>Hibák/büntetések</a></th><th style='width:100px;'><a href='locations.php?eid=275'>Helyszínek</a></th><th style='width:100px;'><a href='fans.php?eid=275'>Szurkolók</a></th></tr></table>   <p>
+	<div class="lap">Mérkőzés adatai</div>
+   	<p>
+    <br><table class='match_details_table' align=center border=5>
+<tr>
+<th colspan=2><h6>Meccslap</h6></th></tr>
+<tr>
+<td style='width:250px;'>Esemény</td><td style='width:250px;'>Üzleti Kosárliga</td></tr>
+<tr>
+<td>Sport</td><td>Kosárlabda</td></tr>
+<tr>
+<td>Helyszín</td><td>Zsíros Tibor Kosárlabda Csarnok</td></tr>
+<tr>
+<td>Dátum</td><td>2016-09-19 20:40:00</td></tr>
+<tr>
+<td>Mérkőzés időtartama</td><td>40 perc</td></tr>
+<tr>
+<td>Szakasz</td><td>OSZTALYOZO</td></tr>
+<tr>
+<td>Csoport</td><td>A-csoport</td></tr>
+<tr>
+<td>Játékvezető #1</td><td>Mocsai László</td></tr>
+<tr>
+<td>Tudósító</td><td>Rácz Bálint</td></tr>
+<tr>
+<td>Jegyzőkönyvvezető</td><td>Rácz Bálint</td></tr>
+<tr>
+<th>Hazai</th><th>Vendég</th></tr>
+<tr>
+<th><a href='team_details.php?tid=4038&eid=275'>BT Baskets</a></th><th><a href='team_details.php?tid=4051&eid=275'>ITSH Kft</a></th></tr>
+<tr>
+<td><a href='player_details.php?pid=12928&eid=275&tid=4038'><b>Horváth Soma&nbsp;(31)</b></a><font color=green>&nbsp;&nbsp;OK</font></td><td><a href='player_details.php?pid=14296&eid=275&tid=4051'><b>Bagita Ákos&nbsp;(18)</b></a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+<tr>
+<td><a href='player_details.php?pid=12934&eid=275&tid=4038'><b>Mihaly Mikesy&nbsp;(13)</b></a><font color=green>&nbsp;&nbsp;OK</font></td><td><a href='player_details.php?pid=14572&eid=275&tid=4051'><b>Hevesi Ferenc&nbsp;(4)</b></a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+<tr>
+<td><a href='player_details.php?pid=12903&eid=275&tid=4038'><b>Pascal Wahlen&nbsp;(9)</b></a><font color=green>&nbsp;&nbsp;OK</font></td><td><a href='player_details.php?pid=9834&eid=275&tid=4051'>Horváth Orsolya&nbsp;(6)</a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+<tr>
+<td><a href='player_details.php?pid=14561&eid=275&tid=4038'><b>Peter Bertok&nbsp;(32)</b></a><font color=green>&nbsp;&nbsp;OK</font></td><td><a href='player_details.php?pid=14145&eid=275&tid=4051'><b>Joó Máté&nbsp;(8)</b></a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+<tr>
+<td><a href='player_details.php?pid=14091&eid=275&tid=4038'><b>Pleszel András&nbsp;(3)</b></a><font color=green>&nbsp;&nbsp;OK</font></td><td><a href='player_details.php?pid=12104&eid=275&tid=4051'><b>Juhász Bence&nbsp;(32)</b></a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+<tr>
+<td>&nbsp;</td><td><a href='player_details.php?pid=13441&eid=275&tid=4051'>Kránicz András&nbsp;(34)</a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+<tr>
+<td>&nbsp;</td><td><a href='player_details.php?pid=11369&eid=275&tid=4051'>Molnár Márton&nbsp;(10)</a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+<tr>
+<td>&nbsp;</td><td><a href='player_details.php?pid=13359&eid=275&tid=4051'><b>Orbán Krisztián&nbsp;(24)</b></a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+</table>
+<br><hr width=30%><br>
+<table class='match_details_table' align=center border=5>
+	<tr>
+		<th colspan=6>
+			<h6>Meccs kronológia</h6>
+			</th>
+	</tr>
+	<tr>
+		<th colspan=2 style="width:150px">
+			<img src="../tm/pics/150px.gif">
+		</th>
+		<th colspan=2 style="width:200px"><img src="../tm/pics/200px.gif"><br>Hazai</th><th colspan=2 style="width:200px"><img src="../tm/pics/200px.gif"><br>Vendég</th></tr>
+	<tr>
+		<th colspan=2>&nbsp;</th>
+		<th colspan=2>
+			<a href='team_details.php?tid=4038&eid=275'>BT Baskets</a>
+		</th>
+		<th colspan=2>
+				<a href='team_details.php?tid=4051&eid=275'>ITSH Kft</a>
+		</th>
+	</tr>
+	<tr>
+		<th colspan=2>Mezszín</th>
+		<th colspan=2>kék</th>
+		<th colspan=2>fehér</th>
+	</tr>
+	<tr>
+		<th colspan=2>Végeredmény:</th>
+		<th colspan=4>31:32 (13:11,5:9,9:0,4:12)</th>
+	</tr>
+	<tr>
+		<th colspan=6>Részletek</th>
+	</tr>
+	<tr>
+		<td rowspan=2>1. negyed</td>
+		<td>Dobók</td>
+		<td colspan=2>
+			<table border=0>
+				<tr>
+					<td width=120px>
+						<a href='player_details.php?pid=12903&eid=275&tid=4051'>Pascal Wahlen&nbsp;(9):</a>
+					</td>
+					<td> 2,2</td>
+				</tr>
+				<tr>
+					<td width=120px>
+						<a href='player_details.php?pid=12928&eid=275&tid=4051'>Horváth Soma&nbsp;(31):</a>
+					</td>
+					<td> 2</td>
+				</tr>
+				<tr>
+					<td width=120px>
+						<a href='player_details.php?pid=14091&eid=275&tid=4051'>Pleszel András&nbsp;(3):</a>
+					</td>
+					<td> 2,1,2,2</td>
+				</tr>
+			</table>
+		</td>
+		<td colspan=2>
+			<table border=0>
+				<tr>
+					<td width=120px>
+						<a href='player_details.php?pid=13359&eid=275&tid=4051'>Orbán Krisztián&nbsp;(24):</a>
+					</td>
+					<td> 3</td>
+				</tr>
+				<tr>
+					<td width=120px>
+						<a href='player_details.php?pid=13441&eid=275&tid=4051'>Kránicz András&nbsp;(34):</a>
+					</td>
+					<td> 3,3</td>
+				</tr>
+				<tr>
+					<td width=120px>
+						<a href='player_details.php?pid=14296&eid=275&tid=4051'>Bagita Ákos&nbsp;(18):</a>
+					</td>
+					<td> 2</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>Eredmény</td>
+			<th colspan=2>13</th>
+			<th colspan=2>11</th>
+		</tr>
+		<tr>
+			<td rowspan=2>2. negyed</td>
+			<td>Dobók</td>
+			<td colspan=2>
+				<table border=0>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=12928&eid=275&tid=4051'>Horváth Soma&nbsp;(31):</a>
+						</td>
+						<td> 3</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=14561&eid=275&tid=4051'>Peter Bertok&nbsp;(32):</a>
+						</td>
+						<td> 2</td>
+					</tr>
+				</table>
+			</td>
+			<td colspan=2>
+				<table border=0>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=11369&eid=275&tid=4051'>Molnár Márton&nbsp;(10):</a>
+						</td>
+						<td> 3,2</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=13441&eid=275&tid=4051'>Kránicz András&nbsp;(34):</a>
+						</td>
+						<td> 2</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=14296&eid=275&tid=4051'>Bagita Ákos&nbsp;(18):</a>
+						</td>
+						<td> 2</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>Eredmény</td>
+			<th colspan=2>5</th>
+			<th colspan=2>9</th>
+		</tr>
+		<tr>
+			<td rowspan=2>3. negyed</td>
+			<td>Dobók</td>
+			<td colspan=2>
+				<table border=0>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=12928&eid=275&tid=4038'>Horváth Soma&nbsp;(31):</a>
+						</td>
+						<td> 2</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=14561&eid=275&tid=4038'>Peter Bertok&nbsp;(32):</a>
+						</td>
+						<td> 2,2,1,2</td>
+					</tr>
+				</table>
+			</td>
+			<td colspan=2>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>Eredmény</td>
+			<th colspan=2>9</th>
+			<th colspan=2>0</th>
+		</tr>
+		<tr>
+			<td rowspan=2>4. negyed</td>
+			<td>Dobók</td>
+			<td colspan=2>
+				<table border=0>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=12934&eid=275&tid=4051'>Mihaly Mikesy&nbsp;(13):</a>
+						</td>
+						<td> 2</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=14091&eid=275&tid=4051'>Pleszel András&nbsp;(3):</a>
+						</td>
+						<td> 2</td>
+					</tr>
+				</table>
+			</td>
+			<td colspan=2>
+				<table border=0>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=12104&eid=275&tid=4051'>Juhász Bence&nbsp;(32):</a>
+						</td>
+						<td> 2</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=13359&eid=275&tid=4051'>Orbán Krisztián&nbsp;(24):</a>
+						</td>
+						<td> 3,3</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=13441&eid=275&tid=4051'>Kránicz András&nbsp;(34):</a>
+						</td>
+						<td> 2,2</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>Eredmény</td>
+			<th colspan=2>4</th>
+			<th colspan=2>12</th>
+		</tr>
+		<tr>
+			<td colspan=2>Hibapontok</td>
+			<td colspan=2>
+				<table border=0>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=12903&eid=275&tid=4038'>Pascal Wahlen&nbsp;(9):</a>
+						</td>
+						<td>3 hibapont</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=12928&eid=275&tid=4038'>Horváth Soma&nbsp;(31):</a>
+						</td>
+						<td>2 hibapont</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=12934&eid=275&tid=4038'>Mihaly Mikesy&nbsp;(13):</a>
+						</td>
+						<td>1 hibapont</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=14091&eid=275&tid=4038'>Pleszel András&nbsp;(3):</a>
+						</td>
+						<td>4 hibapont</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=14561&eid=275&tid=4038'>Peter Bertok&nbsp;(32):</a>
+						</td>
+						<td>2 hibapont</td>
+					</tr>
+				</table>
+			</td>
+			<td colspan=2>
+				<table border=0>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=9834&eid=275&tid=4051'>Horváth Orsolya&nbsp;(6):</a>
+						</td>
+						<td>1 hibapont</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=11369&eid=275&tid=4051'>Molnár Márton&nbsp;(10):</a>
+						</td>
+						<td>2 hibapont</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=12104&eid=275&tid=4051'>Juhász Bence&nbsp;(32):</a>
+						</td>
+						<td>4 hibapont</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=13359&eid=275&tid=4051'>Orbán Krisztián&nbsp;(24):</a>
+						</td>
+						<td>1 hibapont</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=13441&eid=275&tid=4051'>Kránicz András&nbsp;(34):</a>
+						</td>
+						<td>1 hibapont</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=14145&eid=275&tid=4051'>Joó Máté&nbsp;(8):</a>
+						</td>
+						<td>1 hibapont</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=14296&eid=275&tid=4051'>Bagita Ákos&nbsp;(18):</a>
+						</td>
+						<td>2 hibapont</td>
+					</tr>
+					<tr>
+						<td width=120px>
+							<a href='player_details.php?pid=14572&eid=275&tid=4051'>Hevesi Ferenc&nbsp;(4):</a>
+						</td>
+						<td>1 hibapont</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+<br><hr width=30%><br><table class='match_details_table' align=center border=5>
+<tr><th colspan=12 style='width:700px'><h6>Hazai csapat: <a href='team_details.php?tid=4038&eid=275'>BT Baskets</a></h6></th></tr><tr>
+<th rowspan=3>Név (mezszám)</th><th colspan=8>Dobott pontok</th><th rowspan=3>Hibák</th><th rowspan=3>Kipont.</th><th rowspan=3>Kiáll.</th></tr>
+<tr>
+<th colspan=4>Negyedenként</th><th colspan=3>Érték szerint</th><th rowspan=2>Össz.</th></tr>
+<tr>
+<th>1.</th><th>2.</th><th>3.</th><th>4.</th><th>1 (db)</th><th>2 (db)</th><th>3 (db)</th></tr>
+<tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4038'>Horváth Soma&nbsp;(31)</a></td><td align=center>2</td><td align=center>3</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>1</td><td align=center>7</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4038'>Mihaly Mikesy&nbsp;(13)</a></td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4038'>Pascal Wahlen&nbsp;(9)</a></td><td align=center>4</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>4</td><td align=center>3</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4038'>Peter Bertok&nbsp;(32)</a></td><td align=center>&mdash;</td><td align=center>2</td><td align=center>7</td><td align=center>&mdash;</td><td align=center>1</td><td align=center>4</td><td align=center>&mdash;</td><td align=center>9</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4038'>Pleszel András&nbsp;(3)</a></td><td align=center>7</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>1</td><td align=center>4</td><td align=center>&mdash;</td><td align=center>9</td><td align=center>4</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr></table><br><hr width=30%><br><table class='match_details_table' align=center border=5>
+<tr><th colspan=12 style='width:700px'><h6>Vendég csapat: <a href='team_details.php?tid=4051&eid=275'>ITSH Kft</a></h6></th></tr><tr>
+<th rowspan=3>Név (mezszám)</th><th colspan=8>Dobott pontok</th><th rowspan=3>Hibák</th><th rowspan=3>Kipont.</th><th rowspan=3>Kiáll.</th></tr>
+<tr>
+<th colspan=4>Negyedenként</th><th colspan=3>Érték szerint</th><th rowspan=2>Össz.</th></tr>
+<tr>
+<th>1.</th><th>2.</th><th>3.</th><th>4.</th><th>1 (db)</th><th>2 (db)</th><th>3 (db)</th></tr>
+<tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Bagita Ákos&nbsp;(18)</a></td><td align=center>2</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>4</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Hevesi Ferenc&nbsp;(4)</a></td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>0</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Horváth Orsolya&nbsp;(6)</a></td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>0</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Joó Máté&nbsp;(8)</a></td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>0</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Juhász Bence&nbsp;(32)</a></td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>4</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Kránicz András&nbsp;(34)</a></td><td align=center>6</td><td align=center>2</td><td align=center>&mdmdash;</td><td align=center>4</td><td align=center>&mdash;</td><td align=center>3</td><td align=center>2</td><td align=center>12</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Molnár Márton&nbsp;(10)</a></td><td align=center>&mdash;</td><td align=center>5</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>1</td><td align=center>1</td><td align=center>5</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Orbán Krisztián&nbsp;(24)</a></td><td align=center>3</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>6</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>3</td><td align=center>9</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr></table><br><hr width=30%><br><table class='match_details_table' style='width:600px; max-width: 600px; overflow:hidden;' align=center border=5>
+<tr>
+<th colspan=2><h6>Kezdőcsapatok</h6></th></tr>
+<tr>
+<td colspan=2><b>Hazai: </b>Horváth Soma, Mihaly Mikesy, Pascal Wahlen, Peter Bertok, Pleszel András<br><b>Vendég: </b>Bagita Ákos, Hevesi Ferenc, Joó Máté, Juhász Bence, Orbán Krisztián</th></tr>
+<tr>
+<th colspan=2><h6>Tudósítás</h6></th></tr>
+<tr>
+<td colspan=2><p>Megkezdődött az újabb idény az Üzleti Kosárliga keretein belül. A Zsíros Tibor csarnok első mérkőzésén a kék mezes BT Baskets csapott össze a fehér színben pályára lépő ITSH csapata ellen.</p>
+<p>Orbán triplája nyitotta a mérkőzést, viszont ezt követően sokáig nem tudott betalálni az ITSH együttese, hiszen a BT Baskets erre egy 9 pontos futással válaszolt. (Wahlen 4, Pleszel 3, Horváth 2) A kezdeti előny így a hazaiaknál volt, azonban Kránicz két hárompontossal gyorsan visszarázta a fehérmezeseket, Pleszel kosarával viszont a BT zárta előnyben az első játékrészt.(13-11)</p>
+<p>A második negyededet már sokkal csekélyebbre vették a csapatok. A BT például az előző 13 ponthoz képest ezúttal csak 5-öt tudott összezsákolni, míg az ITSH viszont csak kettővel múlta alul az előző negyedet. Így tehát a vendégek meg tudták fordítani a találkozó addigi állását, amihez nagyban közrejátszott Molnár 5 pontos menetelése, viszont az esetek többségében minden felé pattant a labda csak a gyűrűbe nem, vagy nem is érte el egyáltalán. Ehhez képest a második negyed is hasonlóan szorosan zárult, mint az előző. (18-20)</p>
+<p>Nehéz bármit is megemlíteni a harmadik játékrész öt és fél percéről, hiszen nem történt semmi. Pontosabban egyetlen pontot nem dobtak a csapatok, csupán elrontott kísérletek, kihagyott büntetők és pontatlan támadások jellemezték ezeket a perceket. Körülbelül 5:37-nél megtört a jég, Bertók dobott egy duplát, majd a negyed során még további 5 ponttal gyarapította eddigi számláját. Az ITSH egyszer sem talált be, így az előny ismét a BT Baskets kezében volt.(27-20)</p>
+<p>Erős védékezésre volt szüksége a BT-nek, azonban a zárónegyed nem épp úgy alakult, ahogy azt eltervezték. Összesen négy pontig jutottak Mikesy és Pleszel részéről (2,2). A vendégek viszont kihasználták az adódó lehetőséget és eddigi legjobb teljesítményükkel, azaz 12 ponttal behúzták a győzelmet az addig előnyben lévő BT-től, amihez nagymértékben szükség volt Orbán két triplájára. A végeredmény tehát: 31-32</p></td></tr>
+<tr>
+<th colspan=2><h6>Nyilatkozatok</h6></th></tr>
+<tr>
+<th style="width:300px">Hazai</th><th style="width:300px">Vendég</th></tr>
+<tr>
+<th><a href='team_details.php?tid=4038&eid=275'>BT Baskets</a></th><th><a href='team_details.php?tid=4051&eid=275'>ITSH Kft</a></th></tr>
+<tr>
+<th>ismeretlen</th><th>ismeretlen</th></tr>
+<tr>
+<td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td align='center' colspan=2>Tudósító: Rácz Bálint</td></tr><tr><td align='center' colspan=2>Jegyzőkönyvvezető: Rácz Bálint</td></tr></table>
+	 <div align="center">
+	 <br />
+	 <span class="megosztas">Oszd meg a mérkőzés tudósítását ismerőseiddel!</span><br /><br />
+	<a target="_blank" title="Megosztás Facebookon" href="http://www.facebook.com/sharer.php"><img style="margin-right:5px" src="../image/facebook.jpg" /></a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script> 
+
+</div>
+	  ﻿<div id='rate'><br><hr width=30%><br><table class='ertekeles_match_details_table' align=center border=5>
+<tr>
+<th colspan=2><h6>Értékeld Te is a tudósítás és a játékvezetés színvonalát!</h6></th></tr>
+<tr>
+<th style="width:250px" width="250">Hazai</th><th style="width:250px" width="250">Vendég</th></tr>
+<tr>
+<th><a href='team_details.php?tid=4038&eid=275'>BT Baskets</a></th><th><a href='team_details.php?tid=4051&eid=275'>ITSH Kft</a></th></tr>
+<tr>
+<th colspan=2>Tudósítás értékelése (1-5)</th></tr>
+<tr>
+<td align='center'><div style='margin-top: 5px;'><b>Nincs értékelve</b></div><br /><div style='margin-bottom: 5px;'><a href='#' onclick='window.scrollTo(0, 0);'>Értékeléshez jelentkezz be!</a></div></td><td align='center'><div style='margin-top: 5px;'><b>Nincs értékelve</b></div><br /><div style='margin-bottom: 5px;'><a href='#' onclick='window.scrollTo(0, 0);'>Értékeléshez jelentkezz be!</a></div></td></tr>
+<tr>
+<th colspan=2>Bíró értékelése (1-5)</th></tr>
+<tr>
+<td align='center'><div style='margin-top: 5px;'><b>Nincs értékelve</b></div><br /><div style='margin-bottom: 5px;'><a href='#' onclick='window.scrollTo(0, 0);'>Értékeléshez jelentkezz be!</a></div></td><td align='center'><div style='margin-top: 5px;'><b>Nincs értékelve</b></div><br /><div style='margin-bottom: 5px;'><a href='#' onclick='window.scrollTo(0, 0);'>Értékeléshez jelentkezz be!</a></div></td></tr>
+</table>
+</div>
+<br><hr width=30%><br><table class='match_details_table' align=center border=5>
+<tr>
+<th colspan=2><h6>Szurkolói csapatkövetés - meccsfigyelés</h6></th></tr>
+<tr>
+<th style='width:250px;'>Hazai</th><th style='width:250px;'>Vendég</th></tr>
+<tr>
+<th><a href='team_details.php?tid=4038&eid='>BT Baskets</a></th><th><a href='team_details.php?tid=4051&eid='>ITSH Kft</a></th></tr>
+<tr><td align=center>Csapatkövetéshez be kell jelentkezned!</td><td align=center>Csapatkövetéshez be kell jelentkezned!</td></tr>
+</table>
+<br><hr width=30%><br><table class='fanmatch_table' align=center border=5>
+<tr>
+<th colspan=6><h6>Szurkolj kedvenc csapatodnak!</h6></th></tr>
+<tr>
+<th colspan=2 style="width:200px">&nbsp;</th><th colspan=2 style="width:200px">Hazai</th><th colspan=2 style="width:200px">Vendég</th></tr>
+<tr>
+<th colspan=2>&nbsp;</th><th colspan=2><a href='team_details.php?tid=4038&eid=275'>BT Baskets</a></th><th colspan=2><a href='team_details.php?tid=4051&eid=275'>ITSH Kft</a></th></tr>
+<tr>
+<th colspan=2>Szurkolók száma</th><th colspan=2>0</th><th colspan=2>0</th></tr>
+<tr>
+<th colspan=2>Szurkolás</th><th colspan=2>A szurkolás lezárult</th><th colspan=2>A szurkolás lezárult</th></tr>
+</table>
+		<table width="600" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="310" height="25">&nbsp;</td>
+    <td width="10" height="25">&nbsp;</td>
+    <td width="280" height="25"></td>
+  </tr>
+  <tr>
+    <td width="310" height="190"  align="left" valign="middle"  bgcolor="#FFFF99">
+	<table width="310" height="190" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+       <td align="left" valign="middle">
+	   
+	<div style="position: relative; width: 310px; height: 190px; border: 0px dashed;">
+    <div id='szurkolasi_nyeremenyjatek_2011-2012' style="width: 310px; height: 190px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 200;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 1000; border: 0px dashed;">
+      <a href="szurkolas_2011-2012" onclick="linkpopup('68','1024','768','0','0'); return(false);">
+      <img src="../../image/transparent_310x190.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../reklam/szurkolasi_nyeremenyjatek_2011-2012.swf','szurkolas_2011-2012','310','190','8','#ffffff');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('szurkolasi_nyeremenyjatek_2011-2012');
+  </script>
+	   
+	   </td>
+      </tr>
+    </table>
+	</td>
+    <td width="10" height="188" bgcolor="#FFFF99">&nbsp;</td>
+    <td  align="center" width="280" height="190" bgcolor="#FFFF99" valign="top">
+	<table width="280" height="100" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="bottom" align="center" bgcolor="#FFFF99">
+      <div class="content_felhivas">Szurkolj kedvenc csapatodnak<br />és NYERJ!</div><br>
+	  </td>
+  </tr>
+</table>
+
+        <br>Legyen népszerű csapatod kollégáid, barátaid, családod körében! 
+        <a href="szurkolas.php">Kattints  ide a szurkoláshoz! </a><br /><br />
+		Nézd meg az Üzleti Liga 2011-2012 szurkolási játék nyereményeit! 
+ <a href="nyeremenyek_uzleti_liga_2011-2012.php">Kattints ide!</a>
+	</td>
+  </tr>
+  <tr>
+    <td width="310" height="15">&nbsp;</td>
+    <td width="10" height="15">&nbsp;</td>
+    <td width="280" height="15">&nbsp;</td>
+  </tr>
+</table>
+  
+  
+ 
+    <br><hr width=30%><br><table class='matches_table' align=center border=5>
+<tr><th colspan=5><h6>Két csapat eddigi mérkőzései egymás ellen</h6></th></tr><tr>
+<th style="width:100px">Bajnokság</th><th style="width:70px">Szezon</th><th style="width:120px">Dátum</th><th style="width:180px">Meccs</th><th style="width:80px">Eredmény</th></tr>
+<tr>
+<td><a href='event_details.php?eid=275'>Üzleti Kosárliga</a></td><td>2016-2017</td><td>2016-09-19 20:40:00</td><td><a href='team_details.php?eid=275&tid=4038'>BT Baskets</a> - <a href='team_details.php?eid=275&tid=4051'>ITSH Kft</a></td><td><a href='match_details3.php?eid=275&mid=22599'><b>31:32</b> <font style='font-size:10px'>(13:11,5:9,9:0,4:12)</font></a></td></tr>
+<tr>
+<td><a href='event_details.php?eid=243'>Üzleti Kosárliga</a></td><td>2015-2016</td><td>2015-10-05 18:35:00</td><td><a href='team_details.php?eid=243&tid=3573'>ITSH Kft</a> - <a href='team_details.php?eid=243&tid=3585'>BT Baskets</a></td><td><a href='match_details3.php?eid=243&mid=20052'><b>52:23</b> <font style='font-size:10px'>(13:4,13:6,17:5,9:8)</font></a></td></tr>
+<tr><td colspan=5>Meccsek száma: 2</td></tr>
+</table>
+<br><br>  </div>
+<div class="content2"> 
+  
+  
+     
+    <div id="login">
+			<h3 style='margin: 0px;'>Bejelentkezés az Üzleti Liga Eredmények oldalra</h3><input tabindex=1 type='text' id='login_username'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a tabindex=-1 href='fanreg.php?redirect=match_details3.php?eid=275&mid=22599'>Regisztráció</a><br><input tabindex=2 type='password' id='login_password'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a tabindex=-1 href='fan_do_login.php'>Elfelejtett jelszó</a><br><input tabindex=3 type='button' id='login_gomb' value='Bejelentkezés' onclick='login_ajax();'><br><br><table border=0><tr><td><a href='uzleti_liga_meccsfigyelo_szolgaltatas.php' style='margin-left: 0px;'>Meccsfigyelés / Eredménykövetés</a></td><td>&nbsp;&nbsp;<a href='uzleti_liga_merkozes_eloregisztracio.php' style='margin-left: 0px;'>Mérkőzés előregisztráció</a></td></tr><tr><td><a href='szurkolas.php' style='margin-left: 0px;'>Online szurkolás + nyeremények</a></td><td>&nbsp;&nbsp;<a href='ertekeles.php' style='margin-left: 0px;'>Bíró és tudósítás értékelés</a></td></tr></table><script type='text/javascript'>$('#login').corner();$('#login_username').watermark('email cím');$('#login_password').watermark('jelszó');</script>		</div>
+  
+  	<table width="370" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="5" height="22" background="../../image/content2_background_top_edge.png">&nbsp;</td>
+        <td width="365" background="../../image/content2_background_top.png">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="5" height="560" background="../../image/content2_background_left.png">&nbsp;</td>
+        <td width="365"  bgcolor="#CCFF66">
+
+<noscript>
+
+<!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 360px; height: 200px; border: 0px dashed;">
+    <div id='uzleti_liga_mufu_2013' style="width: 360px; height: 200px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 10;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 20; border: 0px dashed;">
+      <a href="mufu_2013" onclick="linkpopup('105','1024','768','0','0'); return(false);">
+      <img src="../../image/transparent_360x200.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/mufu_2013.swf','mufu_2013','360','200','8','#ccff66');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('uzleti_liga_mufu_2013');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->	
+    <table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>
+			
+
+
+<!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 360px; height: 200px; border: 0px dashed;">
+    <div id='indoor_uzleti_liga_2014' style="width: 360px; height: 200px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 10;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 20; border: 0px dashed;">
+      <a href="indoor_2014" onclick="linkpopup('100','1024','768','0','0'); return(false);">
+       <img src="../../image/transparent_360x200.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/indoor_uzleti_liga_2012.swf','indoor_2014','360','200','8','#CCFF66');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('indoor_uzleti_liga_2014');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->				
+	
+
+	<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>
+
+
+
+
+<!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 360px; height: 200px; border: 0px dashed;">
+    <div id='orszagos_ceges_focikupa_2013' style="width: 360px; height: 200px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 10;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 20; border: 0px dashed;">
+      <a href="orszagos_kupa_2013" onclick="linkpopup('107','1024','768','0','0'); return(false);">
+       <img src="../../image/transparent_360x200.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/orszagos_ceges_focikupa_v2.swf','orszagos_kupa_2013','360','200','8','#CCFF66');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('orszagos_ceges_focikupa_2013');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->				
+	
+
+	<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>
+		
+</noscript>
+
+	<img class='pracli' onclick="linkpopup('82','1024','768','0','0'); return(false);" src="../reklam/macskaalom_banner_2011.jpg" width="360" height="150" />	
+
+<noscript>	
+
+		<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>	
+		
+	
+  
+  <!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 360px; height: 100px; border: 0px dashed;">
+    <div id='uzleti_fallabdaliga' style="width: 360px; height: 100px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 10;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 20; border: 0px dashed;">
+      <a href="fallabda" onclick="linkpopup('93','1024','768','0','0'); return(false);">
+       <img src="../../image/transparent_360x100.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/uzleti_fallabdaliga.swf','fallabda','360','100','8','#CCFF66');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('uzleti_fallabdaliga');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->			
+
+        
+
+        
+	
+		<!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 180px; height: 180px; border: 0px dashed;">
+    <div id='indoor_uzleti_kupa_2012_osz' style="width: 180px; height: 180px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 10;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 20; border: 0px dashed;">
+      <a href="indoor2012osz" onclick="linkpopup('99','1024','768','0','0'); return(false);">
+      <img src="../../image/transparent_180x180.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/indoor_uzleti_kupa_osz_2012.swf','indoor2012osz','180','180','8','#ffffff');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('indoor_uzleti_kupa_2012_osz');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->			
+				
+			<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>		
+
+	
+			
+		<img class='pracli' onclick="linkpopup('76','1024','768','0','0'); return(false);" src="kep/uzleti_ligara.jpg" width="360" height="150" />	
+		
+	
+		
+		
+		<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+           
+		   <td width="178" height="125" align="left" valign="middle">
+		
+		
+			</td>
+            <td width="4" height="125">&nbsp;</td>
+			<td width="178" height="125" align="center" valign="middle">
+			
+			</td>
+            <td width="5" height="125">&nbsp;</td>
+			
+          </tr>
+        </table>
+		
+	
+		
+		
+		<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>
+		
+</noscript>				
+						
+		
+	
+		
+	<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>		
+		
+
+<!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 360px; height: 130px; border: 0px dashed;">
+    <div id='biro_tudosito_ertekeles' style="width: 360px; height: 130px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 10;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 20; border: 0px dashed;">
+      <a href="ertekeles" onclick="linkpopup('87','1024','768','0','0'); return(false);">
+      <img src="../../image/transparent_360x130.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/biro_tudosito_ertekeles.swf','ertekeles','360','130','8','#ccff66');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('biro_tudosito_ertekeles');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->			        
+        
+    <table width="365" border="0" cellpadding="0" cellspacing="0">
+    <tr><td width="360" height="50">
+		﻿<table class='results_table' border=0>
+<tr><th colspan=5>Legjobb tudósítók, 2016-2017 őszi-téli idény</th></tr><tr>
+<td style="width: 30px">&nbsp;</td><td style="font-weight:bold; text-align:center; width: 100px">Név</td><td style="font-weight:bold; text-align:center; width: 80px;">Város</td><td style="font-weight:bold; text-align:center; width: 100px;">Értékelések száma</td><td style="font-weight:bold; text-align:center; width: 70px">Átlag</td></tr>
+<tr>
+<td>1.</td><td>Korom Milán Zoltán</td><td>Budapest</td><td align='center' style='text-align: center'>8</td><td align='center' style='text-align: center'>5.00</td></tr>
+<tr>
+<td>2.</td><td>Nestor Tamás</td><td>Budapest</td><td align='center' style='text-align: center'>33</td><td align='center' style='text-align: center'>4.94</td></tr>
+<tr>
+<td>3.</td><td>Kunvári Krisztián</td><td>Budapest</td><td align='center' style='text-align: center'>82</td><td align='center' style='text-align: center'>4.83</td></tr>
+<tr>
+<td>4.</td><td>Blahó Dávid</td><td>Budapest</td><td align='center' style='text-align: center'>17</td><td align='center' style='text-align: center'>4.65</td></tr>
+<tr>
+<td>5.</td><td>Rácz Bálint</td><td>Budapest</td><td align='center' style='text-align: center'>25</td><td align='center' style='text-align: center'>4.52</td></tr>
+<tr><td colspan=5>&nbsp;</td></tr></table></br>
+		</td></tr>
+    </table>
+   
+   	<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>		
+        
+	<!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 360px; height: 200px; border: 0px dashed;">
+    <div id='szardinia-szallas' style="width: 360px; height: 200px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 200;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 1000; border: 0px dashed;">
+      <a href="szardinia" onclick="linkpopup('24','1024','768','0','0'); return(false);">
+      <img src="../../image/transparent_360x200.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/szardinia-szallas.swf','szardinia','360','200','8','#ffffff');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('szardinia-szallas');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->		
+		
+		<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="15" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>
+		
+		 <table width="365" border="0" cellpadding="0" cellspacing="0">
+         <tr>
+            <td width="360" align="top" height="40">
+			Ismerd meg Te is a Földközi-tenger e csodálatos szigetét az ott élő, és magyarok számára utazási irodát működtető Petrei Emese segítségével...<br>         
+        <a href="hirek_sardynia_travel.php">Tovább</a>
+			</td>
+		 	<td width="5" height="50">&nbsp;</td>
+          </tr>
+        </table>
+		
+
+					
+		<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>
+		
+	
+		
+	
+		
+		
+		<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+           
+		    <td width="178" height="620" align="left" valign="middle">
+			
+			<script type="text/javascript"><!--
+google_ad_client = "pub-8329188041768665";
+/* 160x600, Üzleti Liga hirdetések */
+google_ad_slot = "6406822192";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+			</td>
+            <td width="4" height="600">&nbsp;</td>
+			<td width="178" height="620">
+			
+			
+<noscript>			
+				
+		   <div align="center" style="position: relative; width: 178px; height: 240px; border: 0px dashed;">
+    <div id='uzleti_kosarliga_2' style="width: 178px; height: 240px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 200;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 1000; border: 0px dashed;">
+      <a href="Uzleti_Kosarliga_2_banner" onclick="linkpopup('65','1024','768','20','20'); return(false);">
+      <img src="../../image/transparent_178x240.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/uzleti_kosarliga_2.swf','Uzleti_Kosarliga_2_banner','178','240','8','#ffffff');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('uzleti_kosarliga_2');
+  </script>		
+		 
+</noscript
+
+			
+		<div align=left>
+				
+		</div>
+		
+			
+	 <br /><br /><br /><br />	
+		
+	 
+	 <div align=left>
+			<img style="margin-left:29px" class='pracli' onclick="linkpopup('86','1024','768','0','0'); return(false);" src="../../reklam/autoberlesonline-120x240.gif" width="120" height="240" />	
+		</div>
+
+<noscript> 
+		<div align=center>
+			<img class='pracli' onclick="linkpopup('61','1024','768','0','0'); return(false);" src="../../reklam/uzleti_tervek_125x125.jpg" width="125" height="125" />	
+			</div>
+</noscript>
+		  
+		  </td>
+            <td width="5" height="620">&nbsp;</td>
+			
+          </tr>
+        </table>
+		
+			<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>
+		
+				
+
+		
+		 <table width="365" border="0" cellpadding="0" cellspacing="0">
+         <tr>
+           
+		    <td bgcolor="#CCFF66" width="360" height="270" align="center" valign="middle">
+						
+			<iframe name="childframe" width="360" height="260" style="width:360px;height:270px;" src="http://www.hrportal.hu/dinamicbox2/tertlist2.php?go=yes&a1=yes&a2=yes&a4=yes&a9=yes&a12=yes&a29=yes&a30=yes&a31=yes&a33=yes&a37=yes&a39=yes&a40=yes&a44=yes&a46=yes&a47=yes&a49=yes&a50=yes&a51=yes&a52=yes&a53=yes&a55=yes&a56=yes&a57=yes&a60=yes&a64=yes&a69=yes&a70=yes&a72=yes&a73=yes&a75=yes&a76=yes&cikknum=5&szeles=360&magas=260&szerkezet=withoutbody&logo=sotet&fejlmagas=30&margin=18&fontf=platino&fonts=9&fontc=0A1A48&bgc=ccff66&keret=bigborder&borderc=6E7A57&borderw=1&sormag=14&cstav=12&hfonts=11&hfontc=132558&hfontcu=564845&hfontcb=normal&hfontdec=underline" scrolling="no" frameborder="0" allowtransparency="1"> </iframe>
+		</td>
+		 	<td width="5" height="270">&nbsp;</td>
+          </tr>
+        </table>
+		
+			
+		
+		</td>
+      </tr>
+      <tr>
+        <td width="5" height="22" background="../../image/content2_background_bottom_edge.png">&nbsp;</td>
+        <td width="365" background="../../image/content2_background_bottom.png">&nbsp;</td>
+      </tr>
+    </table>
+	
+	
+  </div>
+  
+	﻿  </div>
+  <div class="footer">
+  <table align="center" width="472" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="472" height="12"><div class="hirdetes"></div></td>
+      </tr>
+	 
+      <tr>
+        <td width="472" height="24">&nbsp;</td>
+      </tr>
+	  </table>
+<a href="http://www.uzletiliga.hu/eredmenyek">Üzleti Liga Eredmények kezdőlap</a>
+<span class="bordo"> | </span>
+<a href="http://www.uzletiliga.hu/eredmenyek/szurkolas.php">Szurkolás</a>
+<span class="bordo"> | </span>
+<a href="http://www.uzletiliga.hu/eredmenyek/archivum.php">Archívum</a>
+<span class="bordo"> | </span>
+<a href="http://uzletiliga.hu/eredmenyek/mediaajanlat.php">Médiaajánlat</a>
+<span class="bordo"> | </span>
+<a href="http://uzletiliga.hu/eredmenyek/impresszum.php">Impresszum</a>
+<br /><br />
+<a href="http://www.uzletiliga.hu">Üzleti Liga főoldal</a>
+<span class="bordo"> | </span>
+<a href="http://www.uzletiliga.hu/tm">Team menedzsment</a>
+<span class="bordo"> | </span>
+<a href="http://www.uzletiliga.hu/rendezvenyszervezes.php">Rendezvényszervezés</a>
+
+<br /><br /><br /><br />
+
+<a href="http://www.uzletiliga.hu">Bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_gyor_tel.php">Győr</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_gyor_tavasz.php">Győr foci</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_gyor_tavasz_nyilt_ajanlat.php">győri kispályás bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_gyor_tel_nyilt_ajanlat.php">győri városi bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_szekesfehervar_tel.php">Székesfehérvár</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_szekesfehervar_tavasz.php">Székesfehérvár foci</a>
+
+<span class="bordo"> | </span>
+<a href="../uzleti_kosarliga_2.php">Kosárlabda</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_kosarliga_nyilt_ajanlat.php">Kosárlabda bajnokság</a>
+
+<br /><br />
+<a href="../agazati_liga.php">Teremfoci</a>
+<span class="bordo"> | </span>
+<a href="../indoor_uzleti_liga.php">Teremfoci bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../agazati_liga_nyilt_ajanlat.php">Teremfoci Budapest</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_varosmajor.php">Focibajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_angyalfold.php">Műfüves foci</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_pest.php">Műfüves bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_angyalfold_nyilt_ajanlat.php">Labdarúgó bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_varosmajor_nyilt_ajanlat.php">Kispályás bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_pest_nyilt_ajanlat.php">Labdarúgás</a>
+<br /><br />
+<a href="../indoor_uzleti_liga_nyilt_ajanlat.php">Teremlabdarúgó bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_szekesfehervar_tel_nyilt_ajanlat.php">székesfehérvári városi kispályás bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../indoor_uzleti_kupa_tel_nyilt_ajanlat.php">Focikupa</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_kosarliga_2_nyilt_ajanlat.php">Kosárlabda csapat</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_bowlingliga_2_nyilt_ajanlat.php">Céges bowlingbajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_fallabdaliga.php">Fallabda bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_fallabdaliga_nyilt_ajanlat.php">Fallabda</a>
+<br /><br />
+<a href="../noi_uzleti_liga.php">Női foci</a>
+<span class="bordo"> | </span>
+<a href="../noi_uzleti_liga_nyilt_ajanlat.php">Női labdarúgás</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_roplabdaliga_nyilt_ajanlat.php">Röplabda</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_roplabdaliga.php">Röplabda bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_bowlingliga.php">Bowlingcentrum</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_bowlingliga_2.php">Bowling Budapest</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_bowlingliga_nyilt_ajanlat.php">Bowling verseny</a>
+<span class="bordo"> | </span>
+<a href="../bowling_tippek.php">Bowling tippek</a>
+<span class="bordo"> | </span>
+<a href="../foci_vb_2010.php">Foci VB 2010</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_orszagos_teremlabdarugo_bajnoksag_agazat_valasztas.php">Ágazat</a>
+<br /><br />
+<a href="../uzleti_kezilabdaliga_nyilt_ajanlat.php">Kézilabda</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_kezilabdaliga.php">Kézilabda bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_hosszuret_nyilt_ajanlat.php">Kispályás foci</a>
+<span class="bordo"> | </span>
+<a href="../footgolf.php">Footgolf</a>
+<span class="bordo"> | </span>
+<a target="_blank" href="../mufuves_labdarugo_bajnoksag.php">Műfüves labdarúgó bajnokság</a>
+<br /><br />
+
+<div class="copyright">
+    <br>Page generation time: 0,192 sec<br><br />
+&copy; 2006-2016 Dynamic Team</div>
+<br />
+  </div>
+</div>
+﻿<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+  ga('create', 'UA-43474209-1', 'uzletiliga.hu');
+  ga('send', 'pageview');
+</script></body>
+</html>
+
+
+﻿<script type='text/javascript'>
+
+function Go(){return}
+
+/***********************************************************************
+    YOU CAN MANUALLY CHANGE THE MENU HERE, BUT BE VERY CAREFUL !
+***********************************************************************/
+
+Menu1=new Array('Bowling','','',2,26,150);
+  Menu1_1=new Array('Budapest','','',2,26,150);
+    Menu1_1_1=new Array('Üzleti Bowlingliga','event.php?eid=276','',0,26,200);
+    Menu1_1_2=new Array('Üzleti Bowlingliga 2','event.php?eid=228','',0,26,200);
+  Menu1_2=new Array('országos','','',1,26,150);
+    Menu1_2_1=new Array('Üzleti Bowlingliga','event.php?eid=108','',0,26,200);
+Menu2=new Array('Kézilabda','','',1,26,150);
+  Menu2_1=new Array('Budapest','','',1,26,150);
+    Menu2_1_1=new Array('Üzleti Kézilabdaliga','event.php?eid=278','',0,26,200);
+Menu3=new Array('Kosárlabda','','',1,26,150);
+  Menu3_1=new Array('Budapest','','',3,26,150);
+    Menu3_1_1=new Array('Üzleti Kosárliga','event.php?eid=275','',0,26,200);
+    Menu3_1_2=new Array('Üzleti Kosárliga 2','event.php?eid=261','',0,26,200);
+    Menu3_1_3=new Array('Üzleti Kosárliga tavasz','event.php?eid=171','',0,26,200);
+Menu4=new Array('Labdarúgás','','',3,26,150);
+  Menu4_1=new Array('Budapest','','',14,26,150);
+    Menu4_1_1=new Array('Ágazati Liga','event.php?eid=272','',0,26,200);
+    Menu4_1_2=new Array('Építőipar Liga','event.php?eid=41','',0,26,200);
+    Menu4_1_3=new Array('Indoor Üzleti Liga','event.php?eid=256','',0,26,200);
+    Menu4_1_4=new Array('Indoor Üzleti Liga Felkészítő','event.php?eid=280','',0,26,200);
+    Menu4_1_5=new Array('Informatika Liga','event.php?eid=269','',0,26,200);
+    Menu4_1_6=new Array('Jármű Liga','event.php?eid=70','',0,26,200);
+    Menu4_1_7=new Array('Női Üzleti Liga','event.php?eid=195','',0,26,200);
+    Menu4_1_8=new Array('Pénzügy Liga','event.php?eid=270','',0,26,200);
+    Menu4_1_9=new Array('Telecom és Média Liga','event.php?eid=271','',0,26,200);
+    Menu4_1_10=new Array('Üzleti Liga Angyalföld','event.php?eid=262','',0,26,200);
+    Menu4_1_11=new Array('Üzleti Liga Buda','event.php?eid=264','',0,26,200);
+    Menu4_1_12=new Array('Üzleti Liga Felkészítő','event.php?eid=260','',0,26,200);
+    Menu4_1_13=new Array('Üzleti Liga Pest','event.php?eid=263','',0,26,200);
+    Menu4_1_14=new Array('Üzleti Liga Városmajor','event.php?eid=237','',0,26,200);
+  Menu4_2=new Array('Győr','','',3,26,150);
+    Menu4_2_1=new Array('Üzleti Liga Győr - ősz','event.php?eid=273','',0,26,200);
+    Menu4_2_2=new Array('Üzleti Liga Győr - tavasz','event.php?eid=35','',0,26,200);
+    Menu4_2_3=new Array('Üzleti Liga Győr - tél','event.php?eid=258','',0,26,200);
+  Menu4_3=new Array('Székesfehérvár','','',2,26,150);
+    Menu4_3_1=new Array('Üzleti Liga Sz.fehérvár - ősz','event.php?eid=274','',0,26,200);
+    Menu4_3_2=new Array('Üzleti Liga Sz.fehérvár - tél','event.php?eid=257','',0,26,200);
+Menu5=new Array('Labdarúgókupa','','',4,26,150);
+  Menu5_1=new Array('Budapest','','',4,26,150);
+    Menu5_1_1=new Array('Ágazati Bajnokok Ligája','event.php?eid=267','',0,26,200);
+    Menu5_1_2=new Array('Ágazati Kupa','event.php?eid=197','',0,26,200);
+    Menu5_1_3=new Array('Év céges csapata műfüvön','event.php?eid=281','',0,26,200);
+    Menu5_1_4=new Array('Informatika Kupa','event.php?eid=162','',0,26,200);
+  Menu5_2=new Array('Győr','','',1,26,150);
+    Menu5_2_1=new Array('Üzleti Kupa Győr','event.php?eid=282','',0,26,200);
+  Menu5_3=new Array('Székesfehérvár','','',1,26,150);
+    Menu5_3_1=new Array('Üzleti Kupa Székesfehérvár','event.php?eid=161','',0,26,200);
+  Menu5_4=new Array('országos','','',6,26,150);
+    Menu5_4_1=new Array('Győr VS Székesfehérvár','event.php?eid=177','',0,26,200);
+    Menu5_4_2=new Array('Indoor Üzleti Kupa - ősz','event.php?eid=283','',0,26,200);
+    Menu5_4_3=new Array('Indoor Üzleti Kupa - tavasz','event.php?eid=29','',0,26,200);
+    Menu5_4_4=new Array('Indoor Üzleti Kupa - tél','event.php?eid=259','',0,26,200);
+    Menu5_4_5=new Array('Országos Céges Focikupa','event.php?eid=265','',0,26,200);
+    Menu5_4_6=new Array('Országos Teremfoci Döntő','event.php?eid=268','',0,26,200);
+Menu6=new Array('Röplabda','','',1,26,150);
+  Menu6_1=new Array('Budapest','','',1,26,150);
+    Menu6_1_1=new Array('Üzleti Röplabdaliga','event.php?eid=279','',0,26,200);
+var NoOffFirstLineMenus=6;	// Number of first level items
+var LowBgColor='660000';		// Background color when mouse is not over
+var LowSubBgColor='660000';	// Background color when mouse is not over on subs
+var HighBgColor='660000';	// Background color when mouse is over
+var HighSubBgColor='A0080E';	// Background color when mouse is over on subs
+var FontLowColor='FFFFFF';	// Font color when mouse is not over
+var FontSubLowColor='FFFFFF';	// Font color subs when mouse is not over
+var FontHighColor='F9E486';	// Font color when mouse is over
+var FontSubHighColor='F9E486';	// Font color subs when mouse is over
+var BorderColor='808080';	// Border color
+var BorderSubColor='808080';	// Border color for subs
+var BorderWidth=0;		// Border width
+var BorderBtwnElmnts=1;		// Border between elements 1 or 0
+var FontFamily="Tahoma, Verdana, Arial"	        // Font family menu items
+var FontSize=10;			// Font size menu items
+var FontBold=1;			// Bold menu items 1 or 0
+var FontItalic=0;		// Italic menu items 1 or 0
+var MenuTextCentered='left';	// Item text position 'left', 'center' or 'right'
+var MenuCentered='left';	// Menu horizontal position 'left', 'center' or 'right'
+var MenuVerticalCentered='top';	// Menu vertical position 'top', 'middle','bottom' or static
+var ChildOverlap=.2;		// horizontal overlap child/ parent
+var ChildVerticalOverlap=.2;	// vertical overlap child/ parent
+
+var header_top = document.getElementById('headerid').offsetHeight;
+var page_left = document.getElementById('pageid').offsetLeft;
+
+var StartTop=header_top;		// Menu offset x coordinate
+var StartLeft=page_left;		// Menu offset y coordinate
+var VerCorrect=0;		// Multiple frames y correction
+var HorCorrect=0;		// Multiple frames x correction
+var LeftPaddng=4;		// Left padding
+var TopPaddng=5;		// Top padding
+var FirstLineHorizontal=1;	// SET TO 1 FOR HORIZONTAL MENU, 0 FOR VERTICAL
+var MenuFramesVertical=1;	// Frames in cols or rows 1 or 0
+var DissapearDelay=1000;	// delay before menu folds in
+var TakeOverBgColor=1;		// Menu frame takes over background color subitem frame
+var FirstLineFrame='navig';	// Frame where first level appears
+var SecLineFrame='space';	// Frame where sub levels appear
+var DocTargetFrame='space';	// Frame where target documents appear
+var TargetLoc='';		// span id for relative positioning
+var HideTop=0;			// Hide first level when loading new document 1 or 0
+var MenuWrap=1;			// enables/ disables menu wrap 1 or 0
+var RightToLeft=0;		// enables/ disables right to left unfold 1 or 0
+var UnfoldsOnClick=0;		// Level 1 unfolds onclick/ onmouseover
+var WebMasterCheck=0;		// menu tree checking on or off 1 or 0
+var ShowArrow=0;		// Uses arrow gifs when 1
+var KeepHilite=1;		// Keep selected path highligthed
+var Arrws=['tri.gif',5,10,'tridown.gif',10,5,'trileft.gif',5,10];	// Arrow source, width and height
+
+
+/***********************************************************************
+   DO NOT EDIT ANYTHING BELOW THIS LINE - IT WILL BREAK THE SCRIPT !
+***********************************************************************/
+
+var AgntUsr=navigator.userAgent.toLowerCase();
+var DomYes=document.getElementById?1:0;
+var NavYes=AgntUsr.indexOf('mozilla')!=-1&&AgntUsr.indexOf('compatible')==-1?1:0;
+var ExpYes=AgntUsr.indexOf('msie')!=-1?1:0;
+var Opr=AgntUsr.indexOf('opera')!=-1?1:0;
+var Opr6orless=window.opera && navigator.userAgent.search(/opera.[1-6]/i)!=-1 //DynamicDrive.com added code
+if ( Opr6orless!=1 ) { ExpYes = 1 }
+var DomNav=DomYes&&NavYes?1:0;
+var DomExp=DomYes&&ExpYes?1:0;
+var Nav4=NavYes&&!DomYes&&document.layers?1:0;
+var Exp4=ExpYes&&!DomYes&&document.all?1:0;
+var PosStrt=(NavYes||ExpYes)&&!Opr6orless?1:0;
+var FrstLoc,ScLoc,DcLoc;
+var ScWinWdth,ScWinHght,FrstWinWdth,FrstWinHght;
+var ScLdAgainWin;
+var FirstColPos,SecColPos,DocColPos;
+var RcrsLvl=0;
+var FrstCreat=1,Loadd=0,Creatd=0,IniFlg,AcrssFrms=1;
+var FrstCntnr=null,CurrntOvr=null,CloseTmr=null;
+var CntrTxt,TxtClose,ImgStr;
+var Ztop=100;
+var ShwFlg=0;
+var M_StrtTp=StartTop,M_StrtLft=StartLeft;
+var StaticPos=0;
+var LftXtra=DomNav&&!Opr?LeftPaddng:0; //Changed for Opera
+var TpXtra=DomNav?TopPaddng:0;
+var M_Hide=Nav4?'hide':'hidden';
+var M_Show=Nav4?'show':'visible';
+var Par=parent.frames[0]&&FirstLineFrame!=SecLineFrame?parent:window;
+var Doc=Par.document;
+var Bod=Doc.body;
+var Trigger=NavYes&&!Opr?Par:Bod; //Changed for Opera
+
+MenuTextCentered=MenuTextCentered==1||MenuTextCentered=='center'?'center':MenuTextCentered==0||MenuTextCentered!='right'?'left':'right';
+WbMstrAlrts=["Item not defined: ","Item needs height: ","Item needs width: "];
+
+if(Trigger.onload)Dummy=Trigger.onload;
+if(DomNav||Opr)Trigger.addEventListener('load',Go,false); //Changed for Opera
+else Trigger.onload=Go;
+
+function Dummy(){return}
+
+function CnclSlct(){return false}
+
+function RePos(){
+	FrstWinWdth=ExpYes?FrstLoc.document.body.clientWidth:FrstLoc.innerWidth;
+	FrstWinHght=ExpYes?FrstLoc.document.body.clientHeight:FrstLoc.innerHeight;
+	ScWinWdth=ExpYes?ScLoc.document.body.clientWidth:ScLoc.innerWidth;
+	ScWinHght=ExpYes?ScLoc.document.body.clientHeight:ScLoc.innerHeight;
+	if(MenuCentered=='justify'&&FirstLineHorizontal){
+		FrstCntnr.style.width=FrstWinWdth;
+		ClcJus();
+		var P=FrstCntnr.FrstMbr,W=Menu1[5],i;
+		for(i=0;i<NoOffFirstLineMenus;i++){P.style.width=W;P=P.PrvMbr}}
+	StaticPos=-1;
+	if(TargetLoc)ClcTrgt();
+	if(MenuCentered)ClcLft();
+	if(MenuVerticalCentered)ClcTp();
+	PosMenu(FrstCntnr,StartTop,StartLeft)}
+
+function UnLoaded(){
+	if(CloseTmr)clearTimeout(CloseTmr);
+	Loadd=0; Creatd=0;
+	if(HideTop){
+		var FCStyle=Nav4?FrstCntnr:FrstCntnr.style;
+		FCStyle.visibility=M_Hide}}
+
+function ReDoWhole(){
+	if(ScWinWdth!=ScLoc.innerWidth||ScWinHght!=ScLoc.innerHeight||FrstWinWdth!=FrstLoc.innerWidth||FrstWinHght!=FrstLoc.innerHeight)Doc.location.reload()}
+
+function Check(WMnu,NoOf){
+	var i,array,ArrayLoc;
+	ArrayLoc=parent.frames[0]?parent.frames[FirstLineFrame]:self;
+	for(i=0;i<NoOf;i++){
+		array=WMnu+eval(i+1);
+		if(!ArrayLoc[array]){WbMstrAlrt(0,array); return false}
+		if(i==0){	if(!ArrayLoc[array][4]){WbMstrAlrt(1,array); return false}
+			if(!ArrayLoc[array][5]){WbMstrAlrt(2,array); return false}}
+		if(ArrayLoc[array][3])if(!Check(array+'_',ArrayLoc[array][3])) return false}
+	return true}
+
+function WbMstrAlrt(No,Xtra){
+	return confirm(WbMstrAlrts[No]+Xtra+'   ')}
+
+function Go(){
+	Dummy();
+	if(Loadd||!PosStrt)return;
+	BeforeStart();
+	Creatd=0; Loadd=1;
+	status='Building menu';
+	if(FrstCreat){
+		if(FirstLineFrame =="" || !parent.frames[FirstLineFrame]){
+			FirstLineFrame=SecLineFrame;
+			if(FirstLineFrame =="" || !parent.frames[FirstLineFrame]){
+				FirstLineFrame=SecLineFrame=DocTargetFrame;
+				if(FirstLineFrame =="" || !parent.frames[FirstLineFrame])FirstLineFrame=SecLineFrame=DocTargetFrame=''}}
+		if(SecLineFrame =="" || !parent.frames[SecLineFrame]){
+			SecLineFrame=DocTargetFrame;
+			if(SecLineFrame =="" || !parent.frames[SecLineFrame])SecLineFrame=DocTargetFrame=FirstLineFrame}
+		if(DocTargetFrame =="" || !parent.frames[DocTargetFrame])DocTargetFrame=SecLineFrame;
+		if(WebMasterCheck){	if(!Check('Menu',NoOffFirstLineMenus)){status='build aborted';return}}
+		FrstLoc=FirstLineFrame!=""?parent.frames[FirstLineFrame]:window;
+		ScLoc=SecLineFrame!=""?parent.frames[SecLineFrame]:window;
+		DcLoc=DocTargetFrame!=""?parent.frames[DocTargetFrame]:window;
+		if (FrstLoc==ScLoc) AcrssFrms=0;
+		if (AcrssFrms)FirstLineHorizontal=MenuFramesVertical?0:1;
+		FrstWinWdth=ExpYes?FrstLoc.document.body.clientWidth:FrstLoc.innerWidth;
+		FrstWinHght=ExpYes?FrstLoc.document.body.clientHeight:FrstLoc.innerHeight;
+		ScWinWdth=ExpYes?ScLoc.document.body.clientWidth:ScLoc.innerWidth;
+		ScWinHght=ExpYes?ScLoc.document.body.clientHeight:ScLoc.innerHeight;
+		if(Nav4){	CntrTxt=MenuTextCentered!='left'?"<div align='"+MenuTextCentered+"'>":"";
+			TxtClose="</font>"+MenuTextCentered!='left'?"</div>":""}}
+	FirstColPos=Nav4?FrstLoc.document:FrstLoc.document.body;
+	SecColPos=Nav4?ScLoc.document:ScLoc.document.body;
+	DocColPos=Nav4?DcLoc.document:ScLoc.document.body;
+	if (TakeOverBgColor)FirstColPos.bgColor=AcrssFrms?SecColPos.bgColor:DocColPos.bgColor;
+	if(MenuCentered=='justify'&&FirstLineHorizontal)ClcJus();
+	if(FrstCreat){
+		FrstCntnr=CreateMenuStructure('Menu',NoOffFirstLineMenus);
+		FrstCreat=AcrssFrms?0:1}
+	else CreateMenuStructureAgain('Menu',NoOffFirstLineMenus);
+	if(TargetLoc)ClcTrgt();
+	if(MenuCentered)ClcLft();
+	if(MenuVerticalCentered)ClcTp();
+	PosMenu(FrstCntnr,StartTop,StartLeft);
+	IniFlg=1;
+	Initiate();
+	Creatd=1;
+	if (AcrssFrms) 	//Added for Opera
+		{	 //Added for Opera
+		ScLdAgainWin=ExpYes?ScLoc.document.body:ScLoc;
+		ScLdAgainWin.onunload=UnLoaded;
+		}	 //Added for Opera
+	Trigger.onresize=Nav4?ReDoWhole:RePos;
+	AfterBuild();
+	if(MenuVerticalCentered=='static'&&!AcrssFrms)setInterval('KeepPos()',250);
+	status='Menu ready for use'}
+
+function KeepPos(){
+	var TS=ExpYes?FrstLoc.document.body.scrollTop:FrstLoc.pageYOffset;
+	if(TS!=StaticPos){
+		var FCStyle=Nav4?FrstCntnr:FrstCntnr.style;
+		FCStyle.top=FrstCntnr.OrgTop=StartTop+TS;StaticPos=TS}}
+
+function ClcJus(){
+	var a=BorderBtwnElmnts?1:2,b=BorderBtwnElmnts?BorderWidth:0;
+	var Size=Math.round(((FrstWinWdth-a*BorderWidth)/NoOffFirstLineMenus)-b),i,j;
+	for(i=1;i<NoOffFirstLineMenus+1;i++){j=eval('Menu'+i);j[5]=Size}
+	StartLeft=0}
+
+function ClcTrgt(){
+	var TLoc=Nav4?FrstLoc.document.layers[TargetLoc]:DomYes?FrstLoc.document.getElementById(TargetLoc):FrstLoc.document.all[TargetLoc];
+	StartTop=M_StrtTp;
+	StartLeft=M_StrtLft;
+	if(DomYes){
+		while(TLoc){StartTop+=TLoc.offsetTop;StartLeft+=TLoc.offsetLeft;TLoc=TLoc.offsetParent}}
+	else{	StartTop+=Nav4?TLoc.pageY:TLoc.offsetTop;StartLeft+=Nav4?TLoc.pageX:TLoc.offsetLeft}}
+
+function ClcLft(){
+	if(MenuCentered!='left'&&MenuCentered!='justify'){
+		var Size=FrstWinWdth-(!Nav4?parseInt(FrstCntnr.style.width):FrstCntnr.clip.width);
+		StartLeft=M_StrtLft;
+		StartLeft+=MenuCentered=='right'?Size:Size/2}}
+
+function ClcTp(){
+	if(MenuVerticalCentered!='top'&&MenuVerticalCentered!='static'){
+		var Size=FrstWinHght-(!Nav4?parseInt(FrstCntnr.style.height):FrstCntnr.clip.height);
+		StartTop=M_StrtTp;
+		StartTop+=MenuVerticalCentered=='bottom'?Size:Size/2}}
+
+function PosMenu(CntnrPntr,Tp,Lt){
+	var Topi,Lefti,Hori;
+	var Cntnr=CntnrPntr;
+	var Mmbr=Cntnr.FrstMbr;
+	var CntnrStyle=!Nav4?Cntnr.style:Cntnr;
+	var MmbrStyle=!Nav4?Mmbr.style:Mmbr;
+	var PadL=Mmbr.value.indexOf('<')==-1?LftXtra:0;
+	var PadT=Mmbr.value.indexOf('<')==-1?TpXtra:0;
+	var MmbrWt=!Nav4?parseInt(MmbrStyle.width)+PadL:MmbrStyle.clip.width;
+	var MmbrHt=!Nav4?parseInt(MmbrStyle.height)+PadT:MmbrStyle.clip.height;
+	var CntnrWt=!Nav4?parseInt(CntnrStyle.width):CntnrStyle.clip.width;
+	var CntnrHt=!Nav4?parseInt(CntnrStyle.height):CntnrStyle.clip.height;
+	var SubTp,SubLt;
+	RcrsLvl++;
+	if (RcrsLvl==1 && AcrssFrms)!MenuFramesVertical?Tp=FrstWinHght-CntnrHt+(Nav4?4:0):Lt=RightToLeft?0:FrstWinWdth-CntnrWt+(Nav4?4:0);
+	if (RcrsLvl==2 && AcrssFrms)!MenuFramesVertical?Tp=0:Lt=RightToLeft?ScWinWdth-CntnrWt:0;
+	if (RcrsLvl==2 && AcrssFrms){Tp+=VerCorrect;Lt+=HorCorrect}
+	CntnrStyle.top=RcrsLvl==1?Tp:0;
+	Cntnr.OrgTop=Tp;
+	CntnrStyle.left=RcrsLvl==1?Lt:0;
+	Cntnr.OrgLeft=Lt;
+	if (RcrsLvl==1 && FirstLineHorizontal){
+		Hori=1;Lefti=CntnrWt-MmbrWt-2*BorderWidth;Topi=0}
+	else{	Hori=Lefti=0;Topi=CntnrHt-MmbrHt-2*BorderWidth}
+	while(Mmbr!=null){
+		MmbrStyle.left=Lefti+BorderWidth;
+		MmbrStyle.top=Topi+BorderWidth;
+		if(Nav4)Mmbr.CmdLyr.moveTo(Lefti+BorderWidth,Topi+BorderWidth);
+		if(Mmbr.ChildCntnr){
+			if(RightToLeft)ChldCntnrWdth=Nav4?Mmbr.ChildCntnr.clip.width:parseInt(Mmbr.ChildCntnr.style.width);
+			if(Hori){	SubTp=Topi+MmbrHt+2*BorderWidth;
+				SubLt=RightToLeft?Lefti+MmbrWt-ChldCntnrWdth:Lefti}
+			else{	SubLt=RightToLeft?Lefti-ChldCntnrWdth+ChildOverlap*MmbrWt+BorderWidth:Lefti+(1-ChildOverlap)*MmbrWt+BorderWidth;
+				SubTp=RcrsLvl==1&&AcrssFrms?Topi:Topi+ChildVerticalOverlap*MmbrHt}
+			PosMenu(Mmbr.ChildCntnr,SubTp,SubLt)}
+		Mmbr=Mmbr.PrvMbr;
+		if(Mmbr){	MmbrStyle=!Nav4?Mmbr.style:Mmbr;
+			PadL=Mmbr.value.indexOf('<')==-1?LftXtra:0;
+			PadT=Mmbr.value.indexOf('<')==-1?TpXtra:0;
+			MmbrWt=!Nav4?parseInt(MmbrStyle.width)+PadL:MmbrStyle.clip.width;
+			MmbrHt=!Nav4?parseInt(MmbrStyle.height)+PadT:MmbrStyle.clip.height;
+			Hori?Lefti-=BorderBtwnElmnts?(MmbrWt+BorderWidth):(MmbrWt):Topi-=BorderBtwnElmnts?(MmbrHt+BorderWidth):(MmbrHt)}}
+	RcrsLvl--}
+
+function Initiate(){
+	if(IniFlg){	Init(FrstCntnr);IniFlg=0;
+		if(ShwFlg)AfterCloseAll();ShwFlg=0}}
+
+function Init(CntnrPntr){
+	var Mmbr=CntnrPntr.FrstMbr;
+	var MCStyle=Nav4?CntnrPntr:CntnrPntr.style;
+	RcrsLvl++;
+	MCStyle.visibility=RcrsLvl==1?M_Show:M_Hide;
+	while(Mmbr!=null){
+		if(Mmbr.Hilite){Mmbr.Hilite=0;if(KeepHilite)LowItem(Mmbr)}
+		if(Mmbr.ChildCntnr) Init(Mmbr.ChildCntnr);
+		Mmbr=Mmbr.PrvMbr}
+	RcrsLvl--}
+
+function ClearAllChilds(Pntr){
+	var CPCCStyle;
+	while (Pntr){
+		if(Pntr.Hilite){
+			Pntr.Hilite=0;
+			if(KeepHilite)LowItem(Pntr);
+			if(Pntr.ChildCntnr){
+				CPCCStyle=Nav4?Pntr.ChildCntnr:Pntr.ChildCntnr.style;
+				CPCCStyle.visibility=M_Hide;
+				ClearAllChilds(Pntr.ChildCntnr.FrstMbr)}
+			break}
+		Pntr=Pntr.PrvMbr}}
+
+function GoTo(){
+	if(this.LinkTxt){
+		status='';
+		var HP=Nav4?this.LowLyr:this;
+		LowItem(HP);
+		this.LinkTxt.indexOf('javascript:')!=-1?eval(this.LinkTxt):DcLoc.location.href=this.LinkTxt}}
+
+function HiliteItem(P){
+	if(Nav4){
+		if(P.ro)P.document.images[P.rid].src=P.ri2;
+		else{	if(P.HiBck)P.bgColor=P.HiBck;
+			if(P.value.indexOf('<img')==-1){
+				P.document.write(P.Ovalue);
+				P.document.close()}}}
+	else{	if(P.ro){	var Lc=P.Level==1?FrstLoc:ScLoc;
+			Lc.document.images[P.rid].src=P.ri2}
+		else{	if(P.HiBck)P.style.backgroundColor=P.HiBck;
+			if(P.HiFntClr)P.style.color=P.HiFntClr}}
+	P.Hilite=1}
+
+function LowItem(P){
+	if(P.ro){	if(Nav4)P.document.images[P.rid].src=P.ri1;
+		else{	var Lc=P.Level==1?FrstLoc:ScLoc;
+			Lc.document.images[P.rid].src=P.ri1}}
+	else{	if(Nav4){	if(P.LoBck)P.bgColor=P.LoBck;
+			if(P.value.indexOf('<img')==-1){
+				P.document.write(P.value);
+				P.document.close()}}
+		else{	if(P.LoBck)P.style.backgroundColor=P.LoBck;
+			if(P.LwFntClr)P.style.color=P.LwFntClr}}}
+
+function OpenMenu(){
+	if(!Loadd||!Creatd) return;
+	var TpScrlld=ExpYes?ScLoc.document.body.scrollTop:ScLoc.pageYOffset;
+	var LScrlld=ExpYes?ScLoc.document.body.scrollLeft:ScLoc.pageXOffset;
+	var CCnt=Nav4?this.LowLyr.ChildCntnr:this.ChildCntnr;
+	var ThisHt=Nav4?this.clip.height:parseInt(this.style.height);
+	var ThisWt=Nav4?this.clip.width:parseInt(this.style.width);
+	var ThisLft=AcrssFrms&&this.Level==1&&!FirstLineHorizontal?0:Nav4?this.Container.left:parseInt(this.Container.style.left);
+	var ThisTp=AcrssFrms&&this.Level==1&&FirstLineHorizontal?0:Nav4?this.Container.top:parseInt(this.Container.style.top);
+	var HP=Nav4?this.LowLyr:this;
+	CurrntOvr=this;
+	IniFlg=0;
+	ClearAllChilds(this.Container.FrstMbr);
+	HiliteItem(HP);
+	if(CCnt!=null){
+		if(!ShwFlg){ShwFlg=1;	BeforeFirstOpen()}
+		var CCW=Nav4?this.LowLyr.ChildCntnr.clip.width:parseInt(this.ChildCntnr.style.width);
+		var CCH=Nav4?this.LowLyr.ChildCntnr.clip.height:parseInt(this.ChildCntnr.style.height);
+		var ChCntTL=Nav4?this.LowLyr.ChildCntnr:this.ChildCntnr.style;
+		var SubLt=AcrssFrms&&this.Level==1?CCnt.OrgLeft+ThisLft+LScrlld:CCnt.OrgLeft+ThisLft;
+		var SubTp=AcrssFrms&&this.Level==1?CCnt.OrgTop+ThisTp+TpScrlld:CCnt.OrgTop+ThisTp;
+		if(MenuWrap){
+			if(RightToLeft){
+				if(SubLt<LScrlld)SubLt=this.Level==1?LScrlld:SubLt+(CCW+(1-2*ChildOverlap)*ThisWt);
+				if(SubLt+CCW>ScWinWdth+LScrlld)SubLt=ScWinWdth+LScrlld-CCW}
+			else{	if(SubLt+CCW>ScWinWdth+LScrlld)SubLt=this.Level==1?ScWinWdth+LScrlld-CCW:SubLt-(CCW+(1-2*ChildOverlap)*ThisWt);
+				if(SubLt<LScrlld)SubLt=LScrlld}
+			if(SubTp+CCH>TpScrlld+ScWinHght)SubTp=this.Level==1?SubTp=TpScrlld+ScWinHght-CCH:SubTp-CCH+(1-2*ChildVerticalOverlap)*ThisHt;
+			if(SubTp<TpScrlld)SubTp=TpScrlld}
+		ChCntTL.top=SubTp;ChCntTL.left=SubLt;ChCntTL.visibility=M_Show}
+	status=this.LinkTxt}
+
+function OpenMenuClick(){
+	if(!Loadd||!Creatd) return;
+	var HP=Nav4?this.LowLyr:this;
+	CurrntOvr=this;
+	IniFlg=0;
+	ClearAllChilds(this.Container.FrstMbr);
+	HiliteItem(HP);
+	status=this.LinkTxt}
+
+function CloseMenu(){
+	if(!Loadd||!Creatd) return;
+	if(!KeepHilite){
+		var HP=Nav4?this.LowLyr:this;
+		LowItem(HP)}
+	status='';
+	if(this==CurrntOvr){
+		IniFlg=1;
+		if(CloseTmr)clearTimeout(CloseTmr);
+		CloseTmr=setTimeout('Initiate(CurrntOvr)',DissapearDelay)}}
+
+function CntnrSetUp(Wdth,Hght,NoOff){
+	var x=RcrsLvl==1?BorderColor:BorderSubColor;
+	this.FrstMbr=null;
+	this.OrgLeft=this.OrgTop=0;
+	if(x)this.bgColor=x;
+	if(Nav4){	this.visibility='hide';
+		this.resizeTo(Wdth,Hght)}
+	else{	if(x)this.style.backgroundColor=x;
+		this.style.width=Wdth;
+		this.style.height=Hght;
+		this.style.fontFamily=FontFamily;
+		this.style.fontWeight=FontBold?'bold':'normal';
+		this.style.fontStyle=FontItalic?'italic':'normal';
+		this.style.fontSize=FontSize+'pt';
+		this.style.zIndex=RcrsLvl+Ztop}}
+
+function MbrSetUp(MmbrCntnr,PrMmbr,WhatMenu,Wdth,Hght){
+	var Location=RcrsLvl==1?FrstLoc:ScLoc;
+	var MemVal=eval(WhatMenu+'[0]');
+	var t,T,L,W,H,S;
+	var a,b,c,d;
+	this.PrvMbr=PrMmbr;
+	this.Level=RcrsLvl;
+	this.LinkTxt=eval(WhatMenu+'[1]');
+	this.Container=MmbrCntnr;
+	this.ChildCntnr=null;
+	this.Hilite=0;
+	this.style.overflow='hidden';
+	this.style.cursor=ExpYes&&(this.LinkTxt||(RcrsLvl==1&&UnfoldsOnClick))?'hand':'default';
+	this.ro=0;
+	if(MemVal.indexOf('rollover')!=-1){
+		this.ro=1;
+		this.ri1=MemVal.substring(MemVal.indexOf(':')+1,MemVal.lastIndexOf(':'));
+		this.ri2=MemVal.substring(MemVal.lastIndexOf(':')+1,MemVal.length);
+		this.rid=WhatMenu+'i';MemVal="<img src='"+this.ri1+"' name='"+this.rid+"'>"}
+	this.value=MemVal;
+	if(RcrsLvl==1){
+		a=LowBgColor;
+		b=HighBgColor;
+		c=FontLowColor;
+		d=FontHighColor}
+	else{	a=LowSubBgColor;
+		b=HighSubBgColor;
+		c=FontSubLowColor;
+		d=FontSubHighColor}
+	this.LoBck=a;
+	this.LwFntClr=c;
+	this.HiBck=b;
+	this.HiFntClr=d;
+	this.style.color=this.LwFntClr;
+	if(this.LoBck)this.style.backgroundColor=this.LoBck;
+	this.style.textAlign=MenuTextCentered;
+	if(eval(WhatMenu+'[2]'))this.style.backgroundImage="url(\'"+eval(WhatMenu+'[2]')+"\')";
+	if(MemVal.indexOf('<')==-1){
+		this.style.width=Wdth-LftXtra;
+		this.style.height=Hght-TpXtra;
+		this.style.paddingLeft=LeftPaddng;
+		this.style.paddingTop=TopPaddng}
+	else{	this.style.width=Wdth;
+		this.style.height=Hght}
+	if(MemVal.indexOf('<')==-1&&DomYes){
+		t=Location.document.createTextNode(MemVal);
+		this.appendChild(t)}
+	else this.innerHTML=MemVal;
+	if(eval(WhatMenu+'[3]')&&ShowArrow){
+		a=RcrsLvl==1&&FirstLineHorizontal?3:RightToLeft?6:0;
+		S=Arrws[a];
+		W=Arrws[a+1];
+		H=Arrws[a+2];
+		T=RcrsLvl==1&&FirstLineHorizontal?Hght-H-2:(Hght-H)/2;
+		L=RightToLeft?2:Wdth-W-2;
+		if(DomYes){
+
+			t=Location.document.createElement('img');
+			this.appendChild(t);
+			t.style.position='absolute';
+			t.src=S;
+
+			t.style.width=W;
+			t.style.height=H;
+			t.style.top=T;
+			t.style.left=L}
+		else{	MemVal+="<div style='position:absolute; top:"+T+"; left:"+L+"; width:"+W+"; height:"+H+";visibility:inherit'><img src='"+S+"'></div>";
+			this.innerHTML=MemVal}}
+	if(ExpYes){this.onselectstart=CnclSlct;
+		this.onmouseover=RcrsLvl==1&&UnfoldsOnClick?OpenMenuClick:OpenMenu;
+		this.onmouseout=CloseMenu;
+		this.onclick=RcrsLvl==1&&UnfoldsOnClick&&eval(WhatMenu+'[3]')?OpenMenu:GoTo	}
+	else{	RcrsLvl==1&&UnfoldsOnClick?this.addEventListener('mouseover',OpenMenuClick,false):this.addEventListener('mouseover',OpenMenu,false);
+		this.addEventListener('mouseout',CloseMenu,false);
+		RcrsLvl==1&&UnfoldsOnClick&&eval(WhatMenu+'[3]')?this.addEventListener('click',OpenMenu,false):this.addEventListener('click',GoTo,false)}}
+
+function NavMbrSetUp(MmbrCntnr,PrMmbr,WhatMenu,Wdth,Hght){
+	var a,b,c,d;
+	if(RcrsLvl==1){
+		a=LowBgColor;
+		b=HighBgColor;
+		c=FontLowColor;
+		d=FontHighColor}
+	else {	a=LowSubBgColor;
+		b=HighSubBgColor;
+		c=FontSubLowColor;
+		d=FontSubHighColor	}
+	this.value=eval(WhatMenu+'[0]');
+	this.ro=0;
+	if(this.value.indexOf('rollover')!=-1){
+		this.ro=1;
+		this.ri1=this.value.substring(this.value.indexOf(':')+1,this.value.lastIndexOf(':'));
+		this.ri2=this.value.substring(this.value.lastIndexOf(':')+1,this.value.length);
+		this.rid=WhatMenu+'i';this.value="<img src='"+this.ri1+"' name='"+this.rid+"'>"}
+	if(LeftPaddng&&this.value.indexOf('<')==-1&&MenuTextCentered=='left')this.value='&nbsp\;'+this.value;
+	if(FontBold)this.value=this.value.bold();
+	if(FontItalic)this.value=this.value.italics();
+	this.Ovalue=this.value;
+	this.value=this.value.fontcolor(c);
+	this.Ovalue=this.Ovalue.fontcolor(d);
+	this.value=CntrTxt+"<font face='"+FontFamily+"' point-size='"+FontSize+"'>"+this.value+TxtClose;
+	this.Ovalue=CntrTxt+"<font face='"+FontFamily+"' point-size='"+FontSize+"'>"+this.Ovalue+TxtClose;
+	this.LoBck=a;
+	this.HiBck=b;
+	this.ChildCntnr=null;
+	this.PrvMbr=PrMmbr;
+	this.Hilite=0;
+	this.visibility='inherit';
+	if(this.LoBck)this.bgColor=this.LoBck;
+	this.resizeTo(Wdth,Hght);
+	if(!AcrssFrms&&eval(WhatMenu+'[2]'))this.background.src=eval(WhatMenu+'[2]');
+	this.document.write(this.value);
+	this.document.close();
+	this.CmdLyr=new Layer(Wdth,MmbrCntnr);
+	this.CmdLyr.Level=RcrsLvl;
+	this.CmdLyr.LinkTxt=eval(WhatMenu+'[1]');
+	this.CmdLyr.visibility='inherit';
+	this.CmdLyr.onmouseover=RcrsLvl==1&&UnfoldsOnClick?OpenMenuClick:OpenMenu;
+	this.CmdLyr.onmouseout=CloseMenu;
+	this.CmdLyr.captureEvents(Event.MOUSEUP);
+	this.CmdLyr.onmouseup=RcrsLvl==1&&UnfoldsOnClick&&eval(WhatMenu+'[3]')?OpenMenu:GoTo;
+	this.CmdLyr.LowLyr=this;
+	this.CmdLyr.resizeTo(Wdth,Hght);
+	this.CmdLyr.Container=MmbrCntnr;
+	if(eval(WhatMenu+'[3]')&&ShowArrow){
+		a=RcrsLvl==1&&FirstLineHorizontal?3:RightToLeft?6:0;
+		this.CmdLyr.ImgLyr=new Layer(Arrws[a+1],this.CmdLyr);
+		this.CmdLyr.ImgLyr.visibility='inherit';
+		this.CmdLyr.ImgLyr.top=RcrsLvl==1&&FirstLineHorizontal?Hght-Arrws[a+2]-2:(Hght-Arrws[a+2])/2;
+		this.CmdLyr.ImgLyr.left=RightToLeft?2:Wdth-Arrws[a+1]-2;
+		this.CmdLyr.ImgLyr.width=Arrws[a+1];
+		this.CmdLyr.ImgLyr.height=Arrws[a+2];
+		ImgStr="<img src='"+Arrws[a]+"' width='"+Arrws[a+1]+"' height='"+Arrws[a+2]+"'>";
+		this.CmdLyr.ImgLyr.document.write(ImgStr);
+		this.CmdLyr.ImgLyr.document.close()}}
+
+function CreateMenuStructure(MName,NumberOf){
+	RcrsLvl++;
+	var i,NoOffSubs,Mbr,Wdth=0,Hght=0;
+	var PrvMmbr=null;
+	var WMnu=MName+'1';
+	var MenuWidth=eval(WMnu+'[5]');
+	var MenuHeight=eval(WMnu+'[4]');
+	var Location=RcrsLvl==1?FrstLoc:ScLoc;
+	if (RcrsLvl==1&&FirstLineHorizontal){
+		for(i=1;i<NumberOf+1;i++){
+			WMnu=MName+eval(i);
+			Wdth=eval(WMnu+'[5]')?Wdth+eval(WMnu+'[5]'):Wdth+MenuWidth}
+		Wdth=BorderBtwnElmnts?Wdth+(NumberOf+1)*BorderWidth:Wdth+2*BorderWidth;Hght=MenuHeight+2*BorderWidth}
+	else{	for(i=1;i<NumberOf+1;i++){
+			WMnu=MName+eval(i);
+			Hght=eval(WMnu+'[4]')?Hght+eval(WMnu+'[4]'):Hght+MenuHeight}
+		Hght=BorderBtwnElmnts?Hght+(NumberOf+1)*BorderWidth:Hght+2*BorderWidth;Wdth=MenuWidth+2*BorderWidth}
+	if(DomYes){
+		var MmbrCntnr=Location.document.createElement("div");
+		MmbrCntnr.style.position='absolute';
+		MmbrCntnr.style.visibility='hidden';
+		Location.document.body.appendChild(MmbrCntnr)}
+	else{	if(Nav4) var MmbrCntnr=new Layer(Wdth,Location)
+		else{	WMnu+='c';
+			Location.document.body.insertAdjacentHTML("AfterBegin","<div id='"+WMnu+"' style='visibility:hidden; position:absolute;'><\/div>");
+			var MmbrCntnr=Location.document.all[WMnu]}}
+	MmbrCntnr.SetUp=CntnrSetUp;
+	MmbrCntnr.SetUp(Wdth,Hght,NumberOf);
+	if(Exp4){	MmbrCntnr.InnerString='';
+		for(i=1;i<NumberOf+1;i++){
+			WMnu=MName+eval(i);
+			MmbrCntnr.InnerString+="<div id='"+WMnu+"' style='position:absolute;'><\/div>"}
+		MmbrCntnr.innerHTML=MmbrCntnr.InnerString}
+	for(i=1;i<NumberOf+1;i++){
+		WMnu=MName+eval(i);
+		NoOffSubs=eval(WMnu+'[3]');
+		Wdth=RcrsLvl==1&&FirstLineHorizontal?eval(WMnu+'[5]')?eval(WMnu+'[5]'):MenuWidth:MenuWidth;
+		Hght=RcrsLvl==1&&FirstLineHorizontal?MenuHeight:eval(WMnu+'[4]')?eval(WMnu+'[4]'):MenuHeight;
+		if(DomYes){
+			Mbr=Location.document.createElement("div");
+			Mbr.style.position='absolute';
+			Mbr.style.visibility='inherit';
+			MmbrCntnr.appendChild(Mbr)}
+		else Mbr=Nav4?new Layer(Wdth,MmbrCntnr):Location.document.all[WMnu];
+		Mbr.SetUp=Nav4?NavMbrSetUp:MbrSetUp;
+		Mbr.SetUp(MmbrCntnr,PrvMmbr,WMnu,Wdth,Hght);
+		if(NoOffSubs) Mbr.ChildCntnr=CreateMenuStructure(WMnu+'_',NoOffSubs);
+		PrvMmbr=Mbr}
+	MmbrCntnr.FrstMbr=Mbr;
+	RcrsLvl--;
+	return(MmbrCntnr)}
+
+function CreateMenuStructureAgain(MName,NumberOf){
+	var i,WMnu,NoOffSubs,PrvMmbr,Mbr=FrstCntnr.FrstMbr;
+	RcrsLvl++;
+	for(i=NumberOf;i>0;i--){
+		WMnu=MName+eval(i);
+		NoOffSubs=eval(WMnu+'[3]');
+		PrvMmbr=Mbr;
+		if(NoOffSubs)Mbr.ChildCntnr=CreateMenuStructure(WMnu+'_',NoOffSubs);
+		Mbr=Mbr.PrvMbr}
+	RcrsLvl--}
+
+function BeforeStart(){return}
+function AfterBuild(){return}
+function BeforeFirstOpen(){return}
+function AfterCloseAll(){return}
+
+</script>
+
+<!-- REST OF BODY CONTENT BELOW HERE -->
+
+<script type="text/javascript" src="http://webstat.marketingszoftverek.hu/st.php?woc=796309325"></script>
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>BT Baskets - ITSH Kft mérkőzés, Üzleti Kosárliga 2016-2017</title>
+<meta name="keywords" content="hazai, vendég, csapatok, játékosok, helyszín, Szurkolj">
+<meta name="description" content="Esemény: Üzleti Kosárliga, Sport: Kosárlabda, Helyszín:	Zsíros Tibor Kosárlabda Csarnok, Dátum: 2016-09-19 20:40:00" />
+
+<link rel="image_src" href="../image/uzleti_liga_logo.jpg" /> 
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="css/rating.css" type="text/css">
+<style type="text/css">
+
+#hintbox{ /*CSS for pop up hint box */
+position:absolute;
+top: 0;
+background-color: lightyellow;
+width: 150px; /*Default width of hint.*/ 
+padding: 3px;
+border:1px solid black;
+font:normal 11px Verdana;
+line-height:18px;
+z-index:100;
+border-right: 3px solid black;
+border-bottom: 3px solid black;
+visibility: hidden;
+}
+
+.hintanchor{ /*CSS for link that shows hint onmouseover*/
+font-weight: bold;
+color: navy;
+margin: 3px 8px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+/***********************************************
+* Show Hint script- © Dynamic Drive (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit http://www.dynamicdrive.com/ for this script and 100s more.
+***********************************************/
+		
+var horizontal_offset="9px" //horizontal offset of hint box from anchor link
+
+/////No further editting needed
+
+var vertical_offset="0" //horizontal offset of hint box from anchor link. No need to change.
+var ie=document.all
+var ns6=document.getElementById&&!document.all
+
+function getposOffset(what, offsettype){
+var totaloffset=(offsettype=="left")? what.offsetLeft : what.offsetTop;
+var parentEl=what.offsetParent;
+while (parentEl!=null){
+totaloffset=(offsettype=="left")? totaloffset+parentEl.offsetLeft : totaloffset+parentEl.offsetTop;
+parentEl=parentEl.offsetParent;
+}
+return totaloffset;
+}
+
+function iecompattest(){
+return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+}
+
+function clearbrowseredge(obj, whichedge){
+var edgeoffset=(whichedge=="rightedge")? parseInt(horizontal_offset)*-1 : parseInt(vertical_offset)*-1
+if (whichedge=="rightedge"){
+var windowedge=ie && !window.opera? iecompattest().scrollLeft+iecompattest().clientWidth-30 : window.pageXOffset+window.innerWidth-40
+dropmenuobj.contentmeasure=dropmenuobj.offsetWidth
+if (windowedge-dropmenuobj.x < dropmenuobj.contentmeasure)
+edgeoffset=dropmenuobj.contentmeasure+obj.offsetWidth+parseInt(horizontal_offset)
+}
+else{
+var windowedge=ie && !window.opera? iecompattest().scrollTop+iecompattest().clientHeight-15 : window.pageYOffset+window.innerHeight-18
+dropmenuobj.contentmeasure=dropmenuobj.offsetHeight
+if (windowedge-dropmenuobj.y < dropmenuobj.contentmeasure)
+edgeoffset=dropmenuobj.contentmeasure-obj.offsetHeight
+}
+return edgeoffset
+}
+
+function showhint(menucontents, obj, e, tipwidth){
+if ((ie||ns6) && document.getElementById("hintbox")){
+dropmenuobj=document.getElementById("hintbox")
+dropmenuobj.innerHTML=menucontents
+dropmenuobj.style.left=dropmenuobj.style.top=-500
+if (tipwidth!=""){
+dropmenuobj.widthobj=dropmenuobj.style
+dropmenuobj.widthobj.width=tipwidth
+}
+dropmenuobj.x=getposOffset(obj, "left")
+dropmenuobj.y=getposOffset(obj, "top")
+dropmenuobj.style.left=dropmenuobj.x-clearbrowseredge(obj, "rightedge")+obj.offsetWidth+"px"
+dropmenuobj.style.top=dropmenuobj.y-clearbrowseredge(obj, "bottomedge")+"px"
+dropmenuobj.style.visibility="visible"
+obj.onmouseout=hidetip
+}
+}
+
+function hidetip(e){
+dropmenuobj.style.visibility="hidden"
+dropmenuobj.style.left="-500px"
+}
+
+function createhintbox(){
+var divblock=document.createElement("div")
+divblock.setAttribute("id", "hintbox")
+document.body.appendChild(divblock)
+}
+
+if (window.addEventListener)
+window.addEventListener("load", createhintbox, false)
+else if (window.attachEvent)
+window.attachEvent("onload", createhintbox)
+else if (document.getElementById)
+window.onload=createhintbox
+
+</script><script type='text/javascript' src='inc/swfobject.js'></script>                                                                              
+<script type='text/javascript' src='inc/querystring.js'></script>
+<script type='text/javascript' src='inc/rating_ajax.js'></script>
+
+<script type='text/javascript' src='jquery/jquery-1.4.2.js'></script>
+<script type='text/javascript' src='jquery/jquery.corner.js'></script>
+<script type='text/javascript' src='jquery/jquery.watermark.js'></script>
+
+
+  <script type="text/javascript">
+  function linkpopup(id,width,height,top,left) {
+	  prop = "width="+width;
+	  prop=prop+",height="+height;
+	  prop=prop+",left="+left;
+	  prop=prop+",top="+top;
+	  prop=prop+",toolbar=yes,location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes";
+	  url="http://uzletiliga.hu/eredmenyek/link.php?uid="+id;
+	  window.open(url,'',prop);
+	}
+
+	//Finds y value of given object
+  function findPos(obj) {
+    var curtop = 0;
+    if (obj.offsetParent) {
+      do {
+        curtop += obj.offsetTop;
+      } while (obj = obj.offsetParent);
+      return [curtop];
+    }
+  }
+  
+  function scrollToElement(objid) {
+    //Get object
+    var obj = document.getElementById(objid);
+    //Scroll to location
+    // workaround for IE6
+    if(obj)
+      setTimeout('window.scrollTo(0,'+findPos(obj)+')',1);
+  }
+  
+  function ParseQueryStringAndScroll() {
+    var qs = new Querystring();
+    var v = qs.get("anchor","");
+    if(v!="") scrollToElement(v);
+  }
+  
+  function galery(url) {
+    var w = 1020;
+    var h = 750;
+    bal = (screen.width-w)/2;
+    url = "galery/album.php?a=" + url + "&n=1";
+    prop = "width=" + w + ",height=" + h + ",left=20,top=5,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes";
+    window.open(url,'',prop);
+  }
+  
+  function login_ajax() {
+			var o = new Object();
+	    o.login_username = $("#login_username").val();
+	    o.login_password = $("#login_password").val();
+	    //var SendData = JSON.stringify(o);
+			$.post("login_ajax.php",
+				o,
+	   		function(data){ $("#login").html(data); if(data.indexOf('login_username')==-1)  location.reload(); }
+	   	);
+  }
+  
+  
+  </script>
+
+</head>
+<body onload='ParseQueryStringAndScroll();'>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/hu_HU/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="page" id="pageid"> 
+  <div class="header" id="headerid">
+
+
+
+<div class="center">  
+  
+  <div style="position: relative; width: 990px; height: 200px; border: 0px dashed;">
+    <div id='indoor_2017' style="width: 990px; height: 200px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 20;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 30; border: 0px dashed;">
+      <a href="indoor_uzleti_liga_2017" onclick="linkpopup('112','1100','800','0','00'); return(false);">
+      <img src="../../image/transparent_990x200.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/indoor_uzleti_liga_2017.swf','indoor_uzleti_liga_2017','990','200','8','#ffffff');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('indoor_2017');
+  </script>
+    
+</div>
+
+
+
+ <table width="990" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+	  	<td height="38" background="../../image/nevnap_background.png">
+		 <div class="nevnap">Ma 2016. 12. 29. csütörtök, Tamás napja van. Holnap Dávid napja lesz.</div>
+   </td>
+   </tr>
+   </table>
+	
+	
+	 <table style="padding-top:1px" width="990" height="102" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+	  	<td height="102"  background="../../image/header_background_v2.2.png" style="background-repeat:no-repeat">
+		
+		<table width="990" height="100" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="100" width="5">&nbsp;</td>
+		<td height="100" width="184" align="center" valign="top">
+		
+		<table width="184" border="0" cellspacing="0" cellpadding="5">
+      		<tr>
+	  			<td height="100"><img style="position:relative; z-index:200" src="../../image/uzleti_liga_weblogo.png">
+				</td>
+		 	</tr>
+	   </table>
+		</td>
+	     <td height="100" width="201">&nbsp;</td>
+		<td height="100" width="600">
+<!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 600px; height: 100px; border: 0px dashed;">
+    <div id='hajterapias_sapka' style="width: 600px; height: 100px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 10;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 20; border: 0px dashed;">
+      <a href="hajterapia" onclick="linkpopup('108','1024','768','0','0'); return(false);">
+      <img src="../../image/transparent_600x100.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/hajterapias_sapka.swf','hajterapia','600','100','8','#ffffff');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('hajterapias_sapka');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->
+	  </td>
+      </tr>
+   </table>
+   </td>
+   </tr>
+   </table>
+        		
+      </div>
+  <div class="big" width=100%>
+  <div class="menu">
+  
+  </div>  <script type="text/javascript" src="jquery/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="jquery/jquery.blockUI.js"></script>
+  
+  <div class="content">
+        <table class='eventmenu_table'><tr><td colspan=8><h2 style='margin-bottom: 0px;'>Üzleti Kosárliga</h2></td></tr><tr><th style='width:60px;'><font size=-2 color=#666666>Idényválasztás:</font></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=17'>2007-2008</a></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=48'>2008-2009</a></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=72'>2009-2010</a></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=103'>2010-2011</a></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=130'>2011-2012</a></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=156'>2012-2013</a></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=180'>2013-2014</a></th></tr><tr><th style='width:60px;'>&nbsp;</th><th style='width:110px;'><a class='idenylink' href='event.php?eid=213'>2014-2015</a></th><th style='width:110px;'><a class='idenylink' href='event.php?eid=243'>2015-2016</a></th><th style='width:110px;'><span class='idenyaktiv'>2016-2017</span></th><th style='width:110px;'>&nbsp;</th><th style='width:110px;'>&nbsp;</th><th style='width:110px;'>&nbsp;</th><th style='width:110px;'>&nbsp;</th></tr></table><table class='eventmenu_table'><tr><td colspan=7></td></tr><tr><th style='width:100px;'><a href='teams.php?eid=275'>Csapatok</a></th><th style='width:100px;'><a href='matches.php?eid=275'>Mérkőzések</a></th><th style='width:100px;'><a href='table3.php?eid=275'>Tabella</a></th><th style='width:100px;'><a href='goals3.php?eid=275'>Dobólista</a></th><th style='width:100px;'><a href='cards3.php?eid=275'>Hibák/büntetések</a></th><th style='width:100px;'><a href='locations.php?eid=275'>Helyszínek</a></th><th style='width:100px;'><a href='fans.php?eid=275'>Szurkolók</a></th></tr></table>   <p>
+	<div class="lap">Mérkőzés adatai</div>
+   	<p>
+    <br><table class='match_details_table' align=center border=5>
+<tr>
+<th colspan=2><h6>Meccslap</h6></th></tr>
+<tr>
+<td style='width:250px;'>Esemény</td><td style='width:250px;'>Üzleti Kosárliga</td></tr>
+<tr>
+<td>Sport</td><td>Kosárlabda</td></tr>
+<tr>
+<td>Helyszín</td><td>Zsíros Tibor Kosárlabda Csarnok</td></tr>
+<tr>
+<td>Dátum</td><td>2016-09-19 20:40:00</td></tr>
+<tr>
+<td>Mérkőzés időtartama</td><td>40 perc</td></tr>
+<tr>
+<td>Szakasz</td><td>OSZTALYOZO</td></tr>
+<tr>
+<td>Csoport</td><td>A-csoport</td></tr>
+<tr>
+<td>Játékvezető #1</td><td>Mocsai László</td></tr>
+<tr>
+<td>Tudósító</td><td>Rácz Bálint</td></tr>
+<tr>
+<td>Jegyzőkönyvvezető</td><td>Rácz Bálint</td></tr>
+<tr>
+<th>Hazai</th><th>Vendég</th></tr>
+<tr>
+<th><a href='team_details.php?tid=4038&eid=275'>BT Baskets</a></th><th><a href='team_details.php?tid=4051&eid=275'>ITSH Kft</a></th></tr>
+<tr>
+<td><a href='player_details.php?pid=12928&eid=275&tid=4038'><b>Horváth Soma&nbsp;(31)</b></a><font color=green>&nbsp;&nbsp;OK</font></td><td><a href='player_details.php?pid=14296&eid=275&tid=4051'><b>Bagita Ákos&nbsp;(18)</b></a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+<tr>
+<td><a href='player_details.php?pid=12934&eid=275&tid=4038'><b>Mihaly Mikesy&nbsp;(13)</b></a><font color=green>&nbsp;&nbsp;OK</font></td><td><a href='player_details.php?pid=14572&eid=275&tid=4051'><b>Hevesi Ferenc&nbsp;(4)</b></a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+<tr>
+<td><a href='player_details.php?pid=12903&eid=275&tid=4038'><b>Pascal Wahlen&nbsp;(9)</b></a><font color=green>&nbsp;&nbsp;OK</font></td><td><a href='player_details.php?pid=9834&eid=275&tid=4051'>Horváth Orsolya&nbsp;(6)</a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+<tr>
+<td><a href='player_details.php?pid=14561&eid=275&tid=4038'><b>Peter Bertok&nbsp;(32)</b></a><font color=green>&nbsp;&nbsp;OK</font></td><td><a href='player_details.php?pid=14145&eid=275&tid=4051'><b>Joó Máté&nbsp;(8)</b></a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+<tr>
+<td><a href='player_details.php?pid=14091&eid=275&tid=4038'><b>Pleszel András&nbsp;(3)</b></a><font color=green>&nbsp;&nbsp;OK</font></td><td><a href='player_details.php?pid=12104&eid=275&tid=4051'><b>Juhász Bence&nbsp;(32)</b></a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+<tr>
+<td>&nbsp;</td><td><a href='player_details.php?pid=13441&eid=275&tid=4051'>Kránicz András&nbsp;(34)</a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+<tr>
+<td>&nbsp;</td><td><a href='player_details.php?pid=11369&eid=275&tid=4051'>Molnár Márton&nbsp;(10)</a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+<tr>
+<td>&nbsp;</td><td><a href='player_details.php?pid=13359&eid=275&tid=4051'><b>Orbán Krisztián&nbsp;(24)</b></a><font color=green>&nbsp;&nbsp;OK</font></td></tr>
+</table>
+<br><hr width=30%><br>
+<table class='match_details_table' align=center border=5>
+<tr>
+	<th colspan=6><h6>Meccs kronológia</h6></th></tr>
+<tr>
+<th colspan=2 style="width:150px"><img src="../tm/pics/150px.gif"></th><th colspan=2 style="width:200px"><img src="../tm/pics/200px.gif"><br>Hazai</th><th colspan=2 style="width:200px"><img src="../tm/pics/200px.gif"><br>Vendég</th></tr>
+<tr>
+<th colspan=2>&nbsp;</th><th colspan=2><a href='team_details.php?tid=4038&eid=275'>BT Baskets</a></th><th colspan=2><a href='team_details.php?tid=4051&eid=275'>ITSH Kft</a></th></tr>
+<tr>
+<th colspan=2>Mezszín</th><th colspan=2>kék</th><th colspan=2>fehér</th></tr>
+<tr>
+<th colspan=2>Végeredmény:</th><th colspan=4>31:32 (13:11,5:9,9:0,4:12)</th></tr>
+<tr>
+<th colspan=6>Részletek</th></tr>
+<tr><td rowspan=2>1. negyed</td><td>Dobók</td><td colspan=2><table border=0><tr><td width=120px><a href='player_details.php?pid=12903&eid=275&tid=4051'>Pascal Wahlen&nbsp;(9):</a></td><td> 2,2</td></tr><tr><td width=120px><a href='player_details.php?pid=12928&eid=275&tid=4051'>Horváth Soma&nbsp;(31):</a></td><td> 2</td></tr><tr><td width=120px><a href='player_details.php?pid=14091&eid=275&tid=4051'>Pleszel András&nbsp;(3):</a></td><td> 2,1,2,2</td></tr></table></td><td colspan=2><table border=0><tr><td width=120px><a href='player_details.php?pid=13359&eid=275&tid=4051'>Orbán Krisztián&nbsp;(24):</a></td><td> 3</td></tr><tr><td width=120px><a href='player_details.php?pid=13441&eid=275&tid=4051'>Kránicz András&nbsp;(34):</a></td><td> 3,3</td></tr><tr><td width=120px><a href='player_details.php?pid=14296&eid=275&tid=4051'>Bagita Ákos&nbsp;(18):</a></td><td> 2</td></tr></table></td></tr><tr><td>Eredmény</td><th colspan=2>13</th><th colspan=2>11</th></tr><tr><td rowspan=2>2. negyed</td><td>Dobók</td><td colspan=2><table border=0><tr><td width=120px><a href='player_details.php?pid=12928&eid=275&tid=4051'>Horváth Soma&nbsp;(31):</a></td><td> 3</td></tr><tr><td width=120px><a href='player_details.php?pid=14561&eid=275&tid=4051'>Peter Bertok&nbsp;(32):</a></td><td> 2</td></tr></table></td><td colspan=2><table border=0><tr><td width=120px><a href='player_details.php?pid=11369&eid=275&tid=4051'>Molnár Márton&nbsp;(10):</a></td><td> 3,2</td></tr><tr><td width=120px><a href='player_details.php?pid=13441&eid=275&tid=4051'>Kránicz András&nbsp;(34):</a></td><td> 2</td></tr><tr><td width=120px><a href='player_details.php?pid=14296&eid=275&tid=4051'>Bagita Ákos&nbsp;(18):</a></td><td> 2</td></tr></table></td></tr><tr><td>Eredmény</td><th colspan=2>5</th><th colspan=2>9</th></tr><tr><td rowspan=2>3. negyed</td><td>Dobók</td><td colspan=2><table border=0><tr><td width=120px><a href='player_details.php?pid=12928&eid=275&tid=4038'>Horváth Soma&nbsp;(31):</a></td><td> 2</td></tr><tr><td width=120px><a href='player_details.php?pid=14561&eid=275&tid=4038'>Peter Bertok&nbsp;(32):</a></td><td> 2,2,1,2</td></tr></table></td><td colspan=2>&nbsp;</td></tr><tr><td>Eredmény</td><th colspan=2>9</th><th colspan=2>0</th></tr><tr><td rowspan=2>4. negyed</td><td>Dobók</td><td colspan=2><table border=0><tr><td width=120px><a href='player_details.php?pid=12934&eid=275&tid=4051'>Mihaly Mikesy&nbsp;(13):</a></td><td> 2</td></tr><tr><td width=120px><a href='player_details.php?pid=14091&eid=275&tid=4051'>Pleszel András&nbsp;(3):</a></td><td> 2</td></tr></table></td><td colspan=2><table border=0><tr><td width=120px><a href='player_details.php?pid=12104&eid=275&tid=4051'>Juhász Bence&nbsp;(32):</a></td><td> 2</td></tr><tr><td width=120px><a href='player_details.php?pid=13359&eid=275&tid=4051'>Orbán Krisztián&nbsp;(24):</a></td><td> 3,3</td></tr><tr><td width=120px><a href='player_details.php?pid=13441&eid=275&tid=4051'>Kránicz András&nbsp;(34):</a></td><td> 2,2</td></tr></table></td></tr><tr><td>Eredmény</td><th colspan=2>4</th><th colspan=2>12</th></tr><tr><td colspan=2>Hibapontok</td><td colspan=2><table border=0><tr><td width=120px><a href='player_details.php?pid=12903&eid=275&tid=4038'>Pascal Wahlen&nbsp;(9):</a></td><td>3 hibapont</td></tr><tr><td width=120px><a href='player_details.php?pid=12928&eid=275&tid=4038'>Horváth Soma&nbsp;(31):</a></td><td>2 hibapont</td></tr><tr><td width=120px><a href='player_details.php?pid=12934&eid=275&tid=4038'>Mihaly Mikesy&nbsp;(13):</a></td><td>1 hibapont</td></tr><tr><td width=120px><a href='player_details.php?pid=14091&eid=275&tid=4038'>Pleszel András&nbsp;(3):</a></td><td>4 hibapont</td></tr><tr><td width=120px><a href='player_details.php?pid=14561&eid=275&tid=4038'>Peter Bertok&nbsp;(32):</a></td><td>2 hibapont</td></tr></table></td><td colspan=2><table border=0><tr><td width=120px><a href='player_details.php?pid=9834&eid=275&tid=4051'>Horváth Orsolya&nbsp;(6):</a></td><td>1 hibapont</td></tr><tr><td width=120px><a href='player_details.php?pid=11369&eid=275&tid=4051'>Molnár Márton&nbsp;(10):</a></td><td>2 hibapont</td></tr><tr><td width=120px><a href='player_details.php?pid=12104&eid=275&tid=4051'>Juhász Bence&nbsp;(32):</a></td><td>4 hibapont</td></tr><tr><td width=120px><a href='player_details.php?pid=13359&eid=275&tid=4051'>Orbán Krisztián&nbsp;(24):</a></td><td>1 hibapont</td></tr><tr><td width=120px><a href='player_details.php?pid=13441&eid=275&tid=4051'>Kránicz András&nbsp;(34):</a></td><td>1 hibapont</td></tr><tr><td width=120px><a href='player_details.php?pid=14145&eid=275&tid=4051'>Joó Máté&nbsp;(8):</a></td><td>1 hibapont</td></tr><tr><td width=120px><a href='player_details.php?pid=14296&eid=275&tid=4051'>Bagita Ákos&nbsp;(18):</a></td><td>2 hibapont</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Hevesi Ferenc&nbsp;(4):</a></td><td>1 hibapont</td></tr></table></td></tr></table>
+<br><hr width=30%><br><table class='match_details_table' align=center border=5>
+<tr><th colspan=12 style='width:700px'><h6>Hazai csapat: <a href='team_details.php?tid=4038&eid=275'>BT Baskets</a></h6></th></tr><tr>
+<th rowspan=3>Név (mezszám)</th><th colspan=8>Dobott pontok</th><th rowspan=3>Hibák</th><th rowspan=3>Kipont.</th><th rowspan=3>Kiáll.</th></tr>
+<tr>
+<th colspan=4>Negyedenként</th><th colspan=3>Érték szerint</th><th rowspan=2>Össz.</th></tr>
+<tr>
+<th>1.</th><th>2.</th><th>3.</th><th>4.</th><th>1 (db)</th><th>2 (db)</th><th>3 (db)</th></tr>
+<tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4038'>Horváth Soma&nbsp;(31)</a></td><td align=center>2</td><td align=center>3</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>1</td><td align=center>7</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4038'>Mihaly Mikesy&nbsp;(13)</a></td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4038'>Pascal Wahlen&nbsp;(9)</a></td><td align=center>4</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>4</td><td align=center>3</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4038'>Peter Bertok&nbsp;(32)</a></td><td align=center>&mdash;</td><td align=center>2</td><td align=center>7</td><td align=center>&mdash;</td><td align=center>1</td><td align=center>4</td><td align=center>&mdash;</td><td align=center>9</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4038'>Pleszel András&nbsp;(3)</a></td><td align=center>7</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>1</td><td align=center>4</td><td align=center>&mdash;</td><td align=center>9</td><td align=center>4</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr></table><br><hr width=30%><br><table class='match_details_table' align=center border=5>
+<tr><th colspan=12 style='width:700px'><h6>Vendég csapat: <a href='team_details.php?tid=4051&eid=275'>ITSH Kft</a></h6></th></tr><tr>
+<th rowspan=3>Név (mezszám)</th><th colspan=8>Dobott pontok</th><th rowspan=3>Hibák</th><th rowspan=3>Kipont.</th><th rowspan=3>Kiáll.</th></tr>
+<tr>
+<th colspan=4>Negyedenként</th><th colspan=3>Érték szerint</th><th rowspan=2>Össz.</th></tr>
+<tr>
+<th>1.</th><th>2.</th><th>3.</th><th>4.</th><th>1 (db)</th><th>2 (db)</th><th>3 (db)</th></tr>
+<tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Bagita Ákos&nbsp;(18)</a></td><td align=center>2</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>4</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Hevesi Ferenc&nbsp;(4)</a></td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>0</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Horváth Orsolya&nbsp;(6)</a></td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>0</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Joó Máté&nbsp;(8)</a></td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>0</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Juhász Bence&nbsp;(32)</a></td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>2</td><td align=center>4</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Kránicz András&nbsp;(34)</a></td><td align=center>6</td><td align=center>2</td><td align=center>&mdmdash;</td><td align=center>4</td><td align=center>&mdash;</td><td align=center>3</td><td align=center>2</td><td align=center>12</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Molnár Márton&nbsp;(10)</a></td><td align=center>&mdash;</td><td align=center>5</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>1</td><td align=center>1</td><td align=center>5</td><td align=center>2</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr><tr><td width=120px><a href='player_details.php?pid=14572&eid=275&tid=4051'>Orbán Krisztián&nbsp;(24)</a></td><td align=center>3</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>6</td><td align=center>&mdash;</td><td align=center>&mdash;</td><td align=center>3</td><td align=center>9</td><td align=center>1</td><td align=center>&mdash;</td><td align=center>&mdash;</td></tr></table><br><hr width=30%><br><table class='match_details_table' style='width:600px; max-width: 600px; overflow:hidden;' align=center border=5>
+<tr>
+<th colspan=2><h6>Kezdőcsapatok</h6></th></tr>
+<tr>
+<td colspan=2><b>Hazai: </b>Horváth Soma, Mihaly Mikesy, Pascal Wahlen, Peter Bertok, Pleszel András<br><b>Vendég: </b>Bagita Ákos, Hevesi Ferenc, Joó Máté, Juhász Bence, Orbán Krisztián</th></tr>
+<tr>
+<th colspan=2><h6>Tudósítás</h6></th></tr>
+<tr>
+<td colspan=2><p>Megkezdődött az újabb idény az Üzleti Kosárliga keretein belül. A Zsíros Tibor csarnok első mérkőzésén a kék mezes BT Baskets csapott össze a fehér színben pályára lépő ITSH csapata ellen.</p>
+<p>Orbán triplája nyitotta a mérkőzést, viszont ezt követően sokáig nem tudott betalálni az ITSH együttese, hiszen a BT Baskets erre egy 9 pontos futással válaszolt. (Wahlen 4, Pleszel 3, Horváth 2) A kezdeti előny így a hazaiaknál volt, azonban Kránicz két hárompontossal gyorsan visszarázta a fehérmezeseket, Pleszel kosarával viszont a BT zárta előnyben az első játékrészt.(13-11)</p>
+<p>A második negyededet már sokkal csekélyebbre vették a csapatok. A BT például az előző 13 ponthoz képest ezúttal csak 5-öt tudott összezsákolni, míg az ITSH viszont csak kettővel múlta alul az előző negyedet. Így tehát a vendégek meg tudták fordítani a találkozó addigi állását, amihez nagyban közrejátszott Molnár 5 pontos menetelése, viszont az esetek többségében minden felé pattant a labda csak a gyűrűbe nem, vagy nem is érte el egyáltalán. Ehhez képest a második negyed is hasonlóan szorosan zárult, mint az előző. (18-20)</p>
+<p>Nehéz bármit is megemlíteni a harmadik játékrész öt és fél percéről, hiszen nem történt semmi. Pontosabban egyetlen pontot nem dobtak a csapatok, csupán elrontott kísérletek, kihagyott büntetők és pontatlan támadások jellemezték ezeket a perceket. Körülbelül 5:37-nél megtört a jég, Bertók dobott egy duplát, majd a negyed során még további 5 ponttal gyarapította eddigi számláját. Az ITSH egyszer sem talált be, így az előny ismét a BT Baskets kezében volt.(27-20)</p>
+<p>Erős védékezésre volt szüksége a BT-nek, azonban a zárónegyed nem épp úgy alakult, ahogy azt eltervezték. Összesen négy pontig jutottak Mikesy és Pleszel részéről (2,2). A vendégek viszont kihasználták az adódó lehetőséget és eddigi legjobb teljesítményükkel, azaz 12 ponttal behúzták a győzelmet az addig előnyben lévő BT-től, amihez nagymértékben szükség volt Orbán két triplájára. A végeredmény tehát: 31-32</p></td></tr>
+<tr>
+<th colspan=2><h6>Nyilatkozatok</h6></th></tr>
+<tr>
+<th style="width:300px">Hazai</th><th style="width:300px">Vendég</th></tr>
+<tr>
+<th><a href='team_details.php?tid=4038&eid=275'>BT Baskets</a></th><th><a href='team_details.php?tid=4051&eid=275'>ITSH Kft</a></th></tr>
+<tr>
+<th>ismeretlen</th><th>ismeretlen</th></tr>
+<tr>
+<td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td align='center' colspan=2>Tudósító: Rácz Bálint</td></tr><tr><td align='center' colspan=2>Jegyzőkönyvvezető: Rácz Bálint</td></tr></table>
+	 <div align="center">
+	 <br />
+	 <span class="megosztas">Oszd meg a mérkőzés tudósítását ismerőseiddel!</span><br /><br />
+	<a target="_blank" title="Megosztás Facebookon" href="http://www.facebook.com/sharer.php"><img style="margin-right:5px" src="../image/facebook.jpg" /></a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script> 
+
+</div>
+	  ﻿<div id='rate'><br><hr width=30%><br><table class='ertekeles_match_details_table' align=center border=5>
+<tr>
+<th colspan=2><h6>Értékeld Te is a tudósítás és a játékvezetés színvonalát!</h6></th></tr>
+<tr>
+<th style="width:250px" width="250">Hazai</th><th style="width:250px" width="250">Vendég</th></tr>
+<tr>
+<th><a href='team_details.php?tid=4038&eid=275'>BT Baskets</a></th><th><a href='team_details.php?tid=4051&eid=275'>ITSH Kft</a></th></tr>
+<tr>
+<th colspan=2>Tudósítás értékelése (1-5)</th></tr>
+<tr>
+<td align='center'><div style='margin-top: 5px;'><b>Nincs értékelve</b></div><br /><div style='margin-bottom: 5px;'><a href='#' onclick='window.scrollTo(0, 0);'>Értékeléshez jelentkezz be!</a></div></td><td align='center'><div style='margin-top: 5px;'><b>Nincs értékelve</b></div><br /><div style='margin-bottom: 5px;'><a href='#' onclick='window.scrollTo(0, 0);'>Értékeléshez jelentkezz be!</a></div></td></tr>
+<tr>
+<th colspan=2>Bíró értékelése (1-5)</th></tr>
+<tr>
+<td align='center'><div style='margin-top: 5px;'><b>Nincs értékelve</b></div><br /><div style='margin-bottom: 5px;'><a href='#' onclick='window.scrollTo(0, 0);'>Értékeléshez jelentkezz be!</a></div></td><td align='center'><div style='margin-top: 5px;'><b>Nincs értékelve</b></div><br /><div style='margin-bottom: 5px;'><a href='#' onclick='window.scrollTo(0, 0);'>Értékeléshez jelentkezz be!</a></div></td></tr>
+</table>
+</div>
+<br><hr width=30%><br><table class='match_details_table' align=center border=5>
+<tr>
+<th colspan=2><h6>Szurkolói csapatkövetés - meccsfigyelés</h6></th></tr>
+<tr>
+<th style='width:250px;'>Hazai</th><th style='width:250px;'>Vendég</th></tr>
+<tr>
+<th><a href='team_details.php?tid=4038&eid='>BT Baskets</a></th><th><a href='team_details.php?tid=4051&eid='>ITSH Kft</a></th></tr>
+<tr><td align=center>Csapatkövetéshez be kell jelentkezned!</td><td align=center>Csapatkövetéshez be kell jelentkezned!</td></tr>
+</table>
+<br><hr width=30%><br><table class='fanmatch_table' align=center border=5>
+<tr>
+<th colspan=6><h6>Szurkolj kedvenc csapatodnak!</h6></th></tr>
+<tr>
+<th colspan=2 style="width:200px">&nbsp;</th><th colspan=2 style="width:200px">Hazai</th><th colspan=2 style="width:200px">Vendég</th></tr>
+<tr>
+<th colspan=2>&nbsp;</th><th colspan=2><a href='team_details.php?tid=4038&eid=275'>BT Baskets</a></th><th colspan=2><a href='team_details.php?tid=4051&eid=275'>ITSH Kft</a></th></tr>
+<tr>
+<th colspan=2>Szurkolók száma</th><th colspan=2>0</th><th colspan=2>0</th></tr>
+<tr>
+<th colspan=2>Szurkolás</th><th colspan=2>A szurkolás lezárult</th><th colspan=2>A szurkolás lezárult</th></tr>
+</table>
+		<table width="600" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="310" height="25">&nbsp;</td>
+    <td width="10" height="25">&nbsp;</td>
+    <td width="280" height="25"></td>
+  </tr>
+  <tr>
+    <td width="310" height="190"  align="left" valign="middle"  bgcolor="#FFFF99">
+	<table width="310" height="190" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+       <td align="left" valign="middle">
+	   
+	<div style="position: relative; width: 310px; height: 190px; border: 0px dashed;">
+    <div id='szurkolasi_nyeremenyjatek_2011-2012' style="width: 310px; height: 190px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 200;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 1000; border: 0px dashed;">
+      <a href="szurkolas_2011-2012" onclick="linkpopup('68','1024','768','0','0'); return(false);">
+      <img src="../../image/transparent_310x190.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../reklam/szurkolasi_nyeremenyjatek_2011-2012.swf','szurkolas_2011-2012','310','190','8','#ffffff');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('szurkolasi_nyeremenyjatek_2011-2012');
+  </script>
+	   
+	   </td>
+      </tr>
+    </table>
+	</td>
+    <td width="10" height="188" bgcolor="#FFFF99">&nbsp;</td>
+    <td  align="center" width="280" height="190" bgcolor="#FFFF99" valign="top">
+	<table width="280" height="100" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="bottom" align="center" bgcolor="#FFFF99">
+      <div class="content_felhivas">Szurkolj kedvenc csapatodnak<br />és NYERJ!</div><br>
+	  </td>
+  </tr>
+</table>
+
+        <br>Legyen népszerű csapatod kollégáid, barátaid, családod körében! 
+        <a href="szurkolas.php">Kattints  ide a szurkoláshoz! </a><br /><br />
+		Nézd meg az Üzleti Liga 2011-2012 szurkolási játék nyereményeit! 
+ <a href="nyeremenyek_uzleti_liga_2011-2012.php">Kattints ide!</a>
+	</td>
+  </tr>
+  <tr>
+    <td width="310" height="15">&nbsp;</td>
+    <td width="10" height="15">&nbsp;</td>
+    <td width="280" height="15">&nbsp;</td>
+  </tr>
+</table>
+  
+  
+ 
+    <br><hr width=30%><br><table class='matches_table' align=center border=5>
+<tr><th colspan=5><h6>Két csapat eddigi mérkőzései egymás ellen</h6></th></tr><tr>
+<th style="width:100px">Bajnokság</th><th style="width:70px">Szezon</th><th style="width:120px">Dátum</th><th style="width:180px">Meccs</th><th style="width:80px">Eredmény</th></tr>
+<tr>
+<td><a href='event_details.php?eid=275'>Üzleti Kosárliga</a></td><td>2016-2017</td><td>2016-09-19 20:40:00</td><td><a href='team_details.php?eid=275&tid=4038'>BT Baskets</a> - <a href='team_details.php?eid=275&tid=4051'>ITSH Kft</a></td><td><a href='match_details3.php?eid=275&mid=22599'><b>31:32</b> <font style='font-size:10px'>(13:11,5:9,9:0,4:12)</font></a></td></tr>
+<tr>
+<td><a href='event_details.php?eid=243'>Üzleti Kosárliga</a></td><td>2015-2016</td><td>2015-10-05 18:35:00</td><td><a href='team_details.php?eid=243&tid=3573'>ITSH Kft</a> - <a href='team_details.php?eid=243&tid=3585'>BT Baskets</a></td><td><a href='match_details3.php?eid=243&mid=20052'><b>52:23</b> <font style='font-size:10px'>(13:4,13:6,17:5,9:8)</font></a></td></tr>
+<tr><td colspan=5>Meccsek száma: 2</td></tr>
+</table>
+<br><br>  </div>
+<div class="content2"> 
+  
+  
+     
+    <div id="login">
+			<h3 style='margin: 0px;'>Bejelentkezés az Üzleti Liga Eredmények oldalra</h3><input tabindex=1 type='text' id='login_username'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a tabindex=-1 href='fanreg.php?redirect=match_details3.php?eid=275&mid=22599'>Regisztráció</a><br><input tabindex=2 type='password' id='login_password'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a tabindex=-1 href='fan_do_login.php'>Elfelejtett jelszó</a><br><input tabindex=3 type='button' id='login_gomb' value='Bejelentkezés' onclick='login_ajax();'><br><br><table border=0><tr><td><a href='uzleti_liga_meccsfigyelo_szolgaltatas.php' style='margin-left: 0px;'>Meccsfigyelés / Eredménykövetés</a></td><td>&nbsp;&nbsp;<a href='uzleti_liga_merkozes_eloregisztracio.php' style='margin-left: 0px;'>Mérkőzés előregisztráció</a></td></tr><tr><td><a href='szurkolas.php' style='margin-left: 0px;'>Online szurkolás + nyeremények</a></td><td>&nbsp;&nbsp;<a href='ertekeles.php' style='margin-left: 0px;'>Bíró és tudósítás értékelés</a></td></tr></table><script type='text/javascript'>$('#login').corner();$('#login_username').watermark('email cím');$('#login_password').watermark('jelszó');</script>		</div>
+  
+  	<table width="370" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="5" height="22" background="../../image/content2_background_top_edge.png">&nbsp;</td>
+        <td width="365" background="../../image/content2_background_top.png">&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="5" height="560" background="../../image/content2_background_left.png">&nbsp;</td>
+        <td width="365"  bgcolor="#CCFF66">
+
+<noscript>
+
+<!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 360px; height: 200px; border: 0px dashed;">
+    <div id='uzleti_liga_mufu_2013' style="width: 360px; height: 200px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 10;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 20; border: 0px dashed;">
+      <a href="mufu_2013" onclick="linkpopup('105','1024','768','0','0'); return(false);">
+      <img src="../../image/transparent_360x200.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/mufu_2013.swf','mufu_2013','360','200','8','#ccff66');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('uzleti_liga_mufu_2013');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->	
+    <table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>
+			
+
+
+<!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 360px; height: 200px; border: 0px dashed;">
+    <div id='indoor_uzleti_liga_2014' style="width: 360px; height: 200px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 10;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 20; border: 0px dashed;">
+      <a href="indoor_2014" onclick="linkpopup('100','1024','768','0','0'); return(false);">
+       <img src="../../image/transparent_360x200.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/indoor_uzleti_liga_2012.swf','indoor_2014','360','200','8','#CCFF66');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('indoor_uzleti_liga_2014');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->				
+	
+
+	<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>
+
+
+
+
+<!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 360px; height: 200px; border: 0px dashed;">
+    <div id='orszagos_ceges_focikupa_2013' style="width: 360px; height: 200px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 10;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 20; border: 0px dashed;">
+      <a href="orszagos_kupa_2013" onclick="linkpopup('107','1024','768','0','0'); return(false);">
+       <img src="../../image/transparent_360x200.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/orszagos_ceges_focikupa_v2.swf','orszagos_kupa_2013','360','200','8','#CCFF66');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('orszagos_ceges_focikupa_2013');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->				
+	
+
+	<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>
+		
+</noscript>
+
+	<img class='pracli' onclick="linkpopup('82','1024','768','0','0'); return(false);" src="../reklam/macskaalom_banner_2011.jpg" width="360" height="150" />	
+
+<noscript>	
+
+		<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>	
+		
+	
+  
+  <!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 360px; height: 100px; border: 0px dashed;">
+    <div id='uzleti_fallabdaliga' style="width: 360px; height: 100px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 10;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 20; border: 0px dashed;">
+      <a href="fallabda" onclick="linkpopup('93','1024','768','0','0'); return(false);">
+       <img src="../../image/transparent_360x100.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/uzleti_fallabdaliga.swf','fallabda','360','100','8','#CCFF66');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('uzleti_fallabdaliga');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->			
+
+        
+
+        
+	
+		<!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 180px; height: 180px; border: 0px dashed;">
+    <div id='indoor_uzleti_kupa_2012_osz' style="width: 180px; height: 180px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 10;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 20; border: 0px dashed;">
+      <a href="indoor2012osz" onclick="linkpopup('99','1024','768','0','0'); return(false);">
+      <img src="../../image/transparent_180x180.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/indoor_uzleti_kupa_osz_2012.swf','indoor2012osz','180','180','8','#ffffff');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('indoor_uzleti_kupa_2012_osz');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->			
+				
+			<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>		
+
+	
+			
+		<img class='pracli' onclick="linkpopup('76','1024','768','0','0'); return(false);" src="kep/uzleti_ligara.jpg" width="360" height="150" />	
+		
+	
+		
+		
+		<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+           
+		   <td width="178" height="125" align="left" valign="middle">
+		
+		
+			</td>
+            <td width="4" height="125">&nbsp;</td>
+			<td width="178" height="125" align="center" valign="middle">
+			
+			</td>
+            <td width="5" height="125">&nbsp;</td>
+			
+          </tr>
+        </table>
+		
+	
+		
+		
+		<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>
+		
+</noscript>				
+						
+		
+	
+		
+	<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>		
+		
+
+<!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 360px; height: 130px; border: 0px dashed;">
+    <div id='biro_tudosito_ertekeles' style="width: 360px; height: 130px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 10;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 20; border: 0px dashed;">
+      <a href="ertekeles" onclick="linkpopup('87','1024','768','0','0'); return(false);">
+      <img src="../../image/transparent_360x130.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/biro_tudosito_ertekeles.swf','ertekeles','360','130','8','#ccff66');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('biro_tudosito_ertekeles');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->			        
+        
+    <table width="365" border="0" cellpadding="0" cellspacing="0">
+    <tr><td width="360" height="50">
+		﻿<table class='results_table' border=0>
+<tr><th colspan=5>Legjobb tudósítók, 2016-2017 őszi-téli idény</th></tr><tr>
+<td style="width: 30px">&nbsp;</td><td style="font-weight:bold; text-align:center; width: 100px">Név</td><td style="font-weight:bold; text-align:center; width: 80px;">Város</td><td style="font-weight:bold; text-align:center; width: 100px;">Értékelések száma</td><td style="font-weight:bold; text-align:center; width: 70px">Átlag</td></tr>
+<tr>
+<td>1.</td><td>Korom Milán Zoltán</td><td>Budapest</td><td align='center' style='text-align: center'>8</td><td align='center' style='text-align: center'>5.00</td></tr>
+<tr>
+<td>2.</td><td>Nestor Tamás</td><td>Budapest</td><td align='center' style='text-align: center'>33</td><td align='center' style='text-align: center'>4.94</td></tr>
+<tr>
+<td>3.</td><td>Kunvári Krisztián</td><td>Budapest</td><td align='center' style='text-align: center'>82</td><td align='center' style='text-align: center'>4.83</td></tr>
+<tr>
+<td>4.</td><td>Blahó Dávid</td><td>Budapest</td><td align='center' style='text-align: center'>17</td><td align='center' style='text-align: center'>4.65</td></tr>
+<tr>
+<td>5.</td><td>Rácz Bálint</td><td>Budapest</td><td align='center' style='text-align: center'>25</td><td align='center' style='text-align: center'>4.52</td></tr>
+<tr><td colspan=5>&nbsp;</td></tr></table></br>
+		</td></tr>
+    </table>
+   
+   	<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>		
+        
+	<!-- IGY KELL BERAKNI A HIRDETEST -->
+	<div style="position: relative; width: 360px; height: 200px; border: 0px dashed;">
+    <div id='szardinia-szallas' style="width: 360px; height: 200px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 200;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 1000; border: 0px dashed;">
+      <a href="szardinia" onclick="linkpopup('24','1024','768','0','0'); return(false);">
+      <img src="../../image/transparent_360x200.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/szardinia-szallas.swf','szardinia','360','200','8','#ffffff');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('szardinia-szallas');
+  </script>
+	<!-- IGY KELL BERAKNI A HIRDETEST -->		
+		
+		<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="15" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>
+		
+		 <table width="365" border="0" cellpadding="0" cellspacing="0">
+         <tr>
+            <td width="360" align="top" height="40">
+			Ismerd meg Te is a Földközi-tenger e csodálatos szigetét az ott élő, és magyarok számára utazási irodát működtető Petrei Emese segítségével...<br>         
+        <a href="hirek_sardynia_travel.php">Tovább</a>
+			</td>
+		 	<td width="5" height="50">&nbsp;</td>
+          </tr>
+        </table>
+		
+
+					
+		<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>
+		
+	
+		
+	
+		
+		
+		<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+           
+		    <td width="178" height="620" align="left" valign="middle">
+			
+			<script type="text/javascript"><!--
+google_ad_client = "pub-8329188041768665";
+/* 160x600, Üzleti Liga hirdetések */
+google_ad_slot = "6406822192";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+			</td>
+            <td width="4" height="600">&nbsp;</td>
+			<td width="178" height="620">
+			
+			
+<noscript>			
+				
+		   <div align="center" style="position: relative; width: 178px; height: 240px; border: 0px dashed;">
+    <div id='uzleti_kosarliga_2' style="width: 178px; height: 240px; position: relative; top: 0px; left: 0px; border: 0px dashed; z-index: 200;">
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; z-index: 1000; border: 0px dashed;">
+      <a href="Uzleti_Kosarliga_2_banner" onclick="linkpopup('65','1024','768','20','20'); return(false);">
+      <img src="../../image/transparent_178x240.gif" style="border-style: none" />
+      </a>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var so = new SWFObject('../../reklam/uzleti_kosarliga_2.swf','Uzleti_Kosarliga_2_banner','178','240','8','#ffffff');
+    so.addParam('quality','high');
+    so.addParam('wmode','opaque');
+    so.write('uzleti_kosarliga_2');
+  </script>		
+		 
+</noscript
+
+			
+		<div align=left>
+				
+		</div>
+		
+			
+	 <br /><br /><br /><br />	
+		
+	 
+	 <div align=left>
+			<img style="margin-left:29px" class='pracli' onclick="linkpopup('86','1024','768','0','0'); return(false);" src="../../reklam/autoberlesonline-120x240.gif" width="120" height="240" />	
+		</div>
+
+<noscript> 
+		<div align=center>
+			<img class='pracli' onclick="linkpopup('61','1024','768','0','0'); return(false);" src="../../reklam/uzleti_tervek_125x125.jpg" width="125" height="125" />	
+			</div>
+</noscript>
+		  
+		  </td>
+            <td width="5" height="620">&nbsp;</td>
+			
+          </tr>
+        </table>
+		
+			<table width="365" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="20" width="365"><img src="../../image/zold_kitolto_content2_kepek_koze.png" width="365" height="6"></td>
+          </tr>
+        </table>
+		
+				
+
+		
+		 <table width="365" border="0" cellpadding="0" cellspacing="0">
+         <tr>
+           
+		    <td bgcolor="#CCFF66" width="360" height="270" align="center" valign="middle">
+						
+			<iframe name="childframe" width="360" height="260" style="width:360px;height:270px;" src="http://www.hrportal.hu/dinamicbox2/tertlist2.php?go=yes&a1=yes&a2=yes&a4=yes&a9=yes&a12=yes&a29=yes&a30=yes&a31=yes&a33=yes&a37=yes&a39=yes&a40=yes&a44=yes&a46=yes&a47=yes&a49=yes&a50=yes&a51=yes&a52=yes&a53=yes&a55=yes&a56=yes&a57=yes&a60=yes&a64=yes&a69=yes&a70=yes&a72=yes&a73=yes&a75=yes&a76=yes&cikknum=5&szeles=360&magas=260&szerkezet=withoutbody&logo=sotet&fejlmagas=30&margin=18&fontf=platino&fonts=9&fontc=0A1A48&bgc=ccff66&keret=bigborder&borderc=6E7A57&borderw=1&sormag=14&cstav=12&hfonts=11&hfontc=132558&hfontcu=564845&hfontcb=normal&hfontdec=underline" scrolling="no" frameborder="0" allowtransparency="1"> </iframe>
+		</td>
+		 	<td width="5" height="270">&nbsp;</td>
+          </tr>
+        </table>
+		
+			
+		
+		</td>
+      </tr>
+      <tr>
+        <td width="5" height="22" background="../../image/content2_background_bottom_edge.png">&nbsp;</td>
+        <td width="365" background="../../image/content2_background_bottom.png">&nbsp;</td>
+      </tr>
+    </table>
+	
+	
+  </div>
+  
+	﻿  </div>
+  <div class="footer">
+  <table align="center" width="472" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="472" height="12"><div class="hirdetes"></div></td>
+      </tr>
+	 
+      <tr>
+        <td width="472" height="24">&nbsp;</td>
+      </tr>
+	  </table>
+<a href="http://www.uzletiliga.hu/eredmenyek">Üzleti Liga Eredmények kezdőlap</a>
+<span class="bordo"> | </span>
+<a href="http://www.uzletiliga.hu/eredmenyek/szurkolas.php">Szurkolás</a>
+<span class="bordo"> | </span>
+<a href="http://www.uzletiliga.hu/eredmenyek/archivum.php">Archívum</a>
+<span class="bordo"> | </span>
+<a href="http://uzletiliga.hu/eredmenyek/mediaajanlat.php">Médiaajánlat</a>
+<span class="bordo"> | </span>
+<a href="http://uzletiliga.hu/eredmenyek/impresszum.php">Impresszum</a>
+<br /><br />
+<a href="http://www.uzletiliga.hu">Üzleti Liga főoldal</a>
+<span class="bordo"> | </span>
+<a href="http://www.uzletiliga.hu/tm">Team menedzsment</a>
+<span class="bordo"> | </span>
+<a href="http://www.uzletiliga.hu/rendezvenyszervezes.php">Rendezvényszervezés</a>
+
+<br /><br /><br /><br />
+
+<a href="http://www.uzletiliga.hu">Bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_gyor_tel.php">Győr</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_gyor_tavasz.php">Győr foci</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_gyor_tavasz_nyilt_ajanlat.php">győri kispályás bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_gyor_tel_nyilt_ajanlat.php">győri városi bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_szekesfehervar_tel.php">Székesfehérvár</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_szekesfehervar_tavasz.php">Székesfehérvár foci</a>
+
+<span class="bordo"> | </span>
+<a href="../uzleti_kosarliga_2.php">Kosárlabda</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_kosarliga_nyilt_ajanlat.php">Kosárlabda bajnokság</a>
+
+<br /><br />
+<a href="../agazati_liga.php">Teremfoci</a>
+<span class="bordo"> | </span>
+<a href="../indoor_uzleti_liga.php">Teremfoci bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../agazati_liga_nyilt_ajanlat.php">Teremfoci Budapest</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_varosmajor.php">Focibajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_angyalfold.php">Műfüves foci</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_pest.php">Műfüves bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_angyalfold_nyilt_ajanlat.php">Labdarúgó bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_varosmajor_nyilt_ajanlat.php">Kispályás bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_pest_nyilt_ajanlat.php">Labdarúgás</a>
+<br /><br />
+<a href="../indoor_uzleti_liga_nyilt_ajanlat.php">Teremlabdarúgó bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_szekesfehervar_tel_nyilt_ajanlat.php">székesfehérvári városi kispályás bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../indoor_uzleti_kupa_tel_nyilt_ajanlat.php">Focikupa</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_kosarliga_2_nyilt_ajanlat.php">Kosárlabda csapat</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_bowlingliga_2_nyilt_ajanlat.php">Céges bowlingbajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_fallabdaliga.php">Fallabda bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_fallabdaliga_nyilt_ajanlat.php">Fallabda</a>
+<br /><br />
+<a href="../noi_uzleti_liga.php">Női foci</a>
+<span class="bordo"> | </span>
+<a href="../noi_uzleti_liga_nyilt_ajanlat.php">Női labdarúgás</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_roplabdaliga_nyilt_ajanlat.php">Röplabda</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_roplabdaliga.php">Röplabda bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_bowlingliga.php">Bowlingcentrum</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_bowlingliga_2.php">Bowling Budapest</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_bowlingliga_nyilt_ajanlat.php">Bowling verseny</a>
+<span class="bordo"> | </span>
+<a href="../bowling_tippek.php">Bowling tippek</a>
+<span class="bordo"> | </span>
+<a href="../foci_vb_2010.php">Foci VB 2010</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_orszagos_teremlabdarugo_bajnoksag_agazat_valasztas.php">Ágazat</a>
+<br /><br />
+<a href="../uzleti_kezilabdaliga_nyilt_ajanlat.php">Kézilabda</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_kezilabdaliga.php">Kézilabda bajnokság</a>
+<span class="bordo"> | </span>
+<a href="../uzleti_liga_hosszuret_nyilt_ajanlat.php">Kispályás foci</a>
+<span class="bordo"> | </span>
+<a href="../footgolf.php">Footgolf</a>
+<span class="bordo"> | </span>
+<a target="_blank" href="../mufuves_labdarugo_bajnoksag.php">Műfüves labdarúgó bajnokság</a>
+<br /><br />
+
+<div class="copyright">
+    <br>Page generation time: 0,192 sec<br><br />
+&copy; 2006-2016 Dynamic Team</div>
+<br />
+  </div>
+</div>
+﻿<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+  ga('create', 'UA-43474209-1', 'uzletiliga.hu');
+  ga('send', 'pageview');
+</script></body>
+</html>
+
+
+﻿<script type='text/javascript'>
+
+function Go(){return}
+
+/***********************************************************************
+    YOU CAN MANUALLY CHANGE THE MENU HERE, BUT BE VERY CAREFUL !
+***********************************************************************/
+
+Menu1=new Array('Bowling','','',2,26,150);
+  Menu1_1=new Array('Budapest','','',2,26,150);
+    Menu1_1_1=new Array('Üzleti Bowlingliga','event.php?eid=276','',0,26,200);
+    Menu1_1_2=new Array('Üzleti Bowlingliga 2','event.php?eid=228','',0,26,200);
+  Menu1_2=new Array('országos','','',1,26,150);
+    Menu1_2_1=new Array('Üzleti Bowlingliga','event.php?eid=108','',0,26,200);
+Menu2=new Array('Kézilabda','','',1,26,150);
+  Menu2_1=new Array('Budapest','','',1,26,150);
+    Menu2_1_1=new Array('Üzleti Kézilabdaliga','event.php?eid=278','',0,26,200);
+Menu3=new Array('Kosárlabda','','',1,26,150);
+  Menu3_1=new Array('Budapest','','',3,26,150);
+    Menu3_1_1=new Array('Üzleti Kosárliga','event.php?eid=275','',0,26,200);
+    Menu3_1_2=new Array('Üzleti Kosárliga 2','event.php?eid=261','',0,26,200);
+    Menu3_1_3=new Array('Üzleti Kosárliga tavasz','event.php?eid=171','',0,26,200);
+Menu4=new Array('Labdarúgás','','',3,26,150);
+  Menu4_1=new Array('Budapest','','',14,26,150);
+    Menu4_1_1=new Array('Ágazati Liga','event.php?eid=272','',0,26,200);
+    Menu4_1_2=new Array('Építőipar Liga','event.php?eid=41','',0,26,200);
+    Menu4_1_3=new Array('Indoor Üzleti Liga','event.php?eid=256','',0,26,200);
+    Menu4_1_4=new Array('Indoor Üzleti Liga Felkészítő','event.php?eid=280','',0,26,200);
+    Menu4_1_5=new Array('Informatika Liga','event.php?eid=269','',0,26,200);
+    Menu4_1_6=new Array('Jármű Liga','event.php?eid=70','',0,26,200);
+    Menu4_1_7=new Array('Női Üzleti Liga','event.php?eid=195','',0,26,200);
+    Menu4_1_8=new Array('Pénzügy Liga','event.php?eid=270','',0,26,200);
+    Menu4_1_9=new Array('Telecom és Média Liga','event.php?eid=271','',0,26,200);
+    Menu4_1_10=new Array('Üzleti Liga Angyalföld','event.php?eid=262','',0,26,200);
+    Menu4_1_11=new Array('Üzleti Liga Buda','event.php?eid=264','',0,26,200);
+    Menu4_1_12=new Array('Üzleti Liga Felkészítő','event.php?eid=260','',0,26,200);
+    Menu4_1_13=new Array('Üzleti Liga Pest','event.php?eid=263','',0,26,200);
+    Menu4_1_14=new Array('Üzleti Liga Városmajor','event.php?eid=237','',0,26,200);
+  Menu4_2=new Array('Győr','','',3,26,150);
+    Menu4_2_1=new Array('Üzleti Liga Győr - ősz','event.php?eid=273','',0,26,200);
+    Menu4_2_2=new Array('Üzleti Liga Győr - tavasz','event.php?eid=35','',0,26,200);
+    Menu4_2_3=new Array('Üzleti Liga Győr - tél','event.php?eid=258','',0,26,200);
+  Menu4_3=new Array('Székesfehérvár','','',2,26,150);
+    Menu4_3_1=new Array('Üzleti Liga Sz.fehérvár - ősz','event.php?eid=274','',0,26,200);
+    Menu4_3_2=new Array('Üzleti Liga Sz.fehérvár - tél','event.php?eid=257','',0,26,200);
+Menu5=new Array('Labdarúgókupa','','',4,26,150);
+  Menu5_1=new Array('Budapest','','',4,26,150);
+    Menu5_1_1=new Array('Ágazati Bajnokok Ligája','event.php?eid=267','',0,26,200);
+    Menu5_1_2=new Array('Ágazati Kupa','event.php?eid=197','',0,26,200);
+    Menu5_1_3=new Array('Év céges csapata műfüvön','event.php?eid=281','',0,26,200);
+    Menu5_1_4=new Array('Informatika Kupa','event.php?eid=162','',0,26,200);
+  Menu5_2=new Array('Győr','','',1,26,150);
+    Menu5_2_1=new Array('Üzleti Kupa Győr','event.php?eid=282','',0,26,200);
+  Menu5_3=new Array('Székesfehérvár','','',1,26,150);
+    Menu5_3_1=new Array('Üzleti Kupa Székesfehérvár','event.php?eid=161','',0,26,200);
+  Menu5_4=new Array('országos','','',6,26,150);
+    Menu5_4_1=new Array('Győr VS Székesfehérvár','event.php?eid=177','',0,26,200);
+    Menu5_4_2=new Array('Indoor Üzleti Kupa - ősz','event.php?eid=283','',0,26,200);
+    Menu5_4_3=new Array('Indoor Üzleti Kupa - tavasz','event.php?eid=29','',0,26,200);
+    Menu5_4_4=new Array('Indoor Üzleti Kupa - tél','event.php?eid=259','',0,26,200);
+    Menu5_4_5=new Array('Országos Céges Focikupa','event.php?eid=265','',0,26,200);
+    Menu5_4_6=new Array('Országos Teremfoci Döntő','event.php?eid=268','',0,26,200);
+Menu6=new Array('Röplabda','','',1,26,150);
+  Menu6_1=new Array('Budapest','','',1,26,150);
+    Menu6_1_1=new Array('Üzleti Röplabdaliga','event.php?eid=279','',0,26,200);
+var NoOffFirstLineMenus=6;	// Number of first level items
+var LowBgColor='660000';		// Background color when mouse is not over
+var LowSubBgColor='660000';	// Background color when mouse is not over on subs
+var HighBgColor='660000';	// Background color when mouse is over
+var HighSubBgColor='A0080E';	// Background color when mouse is over on subs
+var FontLowColor='FFFFFF';	// Font color when mouse is not over
+var FontSubLowColor='FFFFFF';	// Font color subs when mouse is not over
+var FontHighColor='F9E486';	// Font color when mouse is over
+var FontSubHighColor='F9E486';	// Font color subs when mouse is over
+var BorderColor='808080';	// Border color
+var BorderSubColor='808080';	// Border color for subs
+var BorderWidth=0;		// Border width
+var BorderBtwnElmnts=1;		// Border between elements 1 or 0
+var FontFamily="Tahoma, Verdana, Arial"	        // Font family menu items
+var FontSize=10;			// Font size menu items
+var FontBold=1;			// Bold menu items 1 or 0
+var FontItalic=0;		// Italic menu items 1 or 0
+var MenuTextCentered='left';	// Item text position 'left', 'center' or 'right'
+var MenuCentered='left';	// Menu horizontal position 'left', 'center' or 'right'
+var MenuVerticalCentered='top';	// Menu vertical position 'top', 'middle','bottom' or static
+var ChildOverlap=.2;		// horizontal overlap child/ parent
+var ChildVerticalOverlap=.2;	// vertical overlap child/ parent
+
+var header_top = document.getElementById('headerid').offsetHeight;
+var page_left = document.getElementById('pageid').offsetLeft;
+
+var StartTop=header_top;		// Menu offset x coordinate
+var StartLeft=page_left;		// Menu offset y coordinate
+var VerCorrect=0;		// Multiple frames y correction
+var HorCorrect=0;		// Multiple frames x correction
+var LeftPaddng=4;		// Left padding
+var TopPaddng=5;		// Top padding
+var FirstLineHorizontal=1;	// SET TO 1 FOR HORIZONTAL MENU, 0 FOR VERTICAL
+var MenuFramesVertical=1;	// Frames in cols or rows 1 or 0
+var DissapearDelay=1000;	// delay before menu folds in
+var TakeOverBgColor=1;		// Menu frame takes over background color subitem frame
+var FirstLineFrame='navig';	// Frame where first level appears
+var SecLineFrame='space';	// Frame where sub levels appear
+var DocTargetFrame='space';	// Frame where target documents appear
+var TargetLoc='';		// span id for relative positioning
+var HideTop=0;			// Hide first level when loading new document 1 or 0
+var MenuWrap=1;			// enables/ disables menu wrap 1 or 0
+var RightToLeft=0;		// enables/ disables right to left unfold 1 or 0
+var UnfoldsOnClick=0;		// Level 1 unfolds onclick/ onmouseover
+var WebMasterCheck=0;		// menu tree checking on or off 1 or 0
+var ShowArrow=0;		// Uses arrow gifs when 1
+var KeepHilite=1;		// Keep selected path highligthed
+var Arrws=['tri.gif',5,10,'tridown.gif',10,5,'trileft.gif',5,10];	// Arrow source, width and height
+
+
+/***********************************************************************
+   DO NOT EDIT ANYTHING BELOW THIS LINE - IT WILL BREAK THE SCRIPT !
+***********************************************************************/
+
+var AgntUsr=navigator.userAgent.toLowerCase();
+var DomYes=document.getElementById?1:0;
+var NavYes=AgntUsr.indexOf('mozilla')!=-1&&AgntUsr.indexOf('compatible')==-1?1:0;
+var ExpYes=AgntUsr.indexOf('msie')!=-1?1:0;
+var Opr=AgntUsr.indexOf('opera')!=-1?1:0;
+var Opr6orless=window.opera && navigator.userAgent.search(/opera.[1-6]/i)!=-1 //DynamicDrive.com added code
+if ( Opr6orless!=1 ) { ExpYes = 1 }
+var DomNav=DomYes&&NavYes?1:0;
+var DomExp=DomYes&&ExpYes?1:0;
+var Nav4=NavYes&&!DomYes&&document.layers?1:0;
+var Exp4=ExpYes&&!DomYes&&document.all?1:0;
+var PosStrt=(NavYes||ExpYes)&&!Opr6orless?1:0;
+var FrstLoc,ScLoc,DcLoc;
+var ScWinWdth,ScWinHght,FrstWinWdth,FrstWinHght;
+var ScLdAgainWin;
+var FirstColPos,SecColPos,DocColPos;
+var RcrsLvl=0;
+var FrstCreat=1,Loadd=0,Creatd=0,IniFlg,AcrssFrms=1;
+var FrstCntnr=null,CurrntOvr=null,CloseTmr=null;
+var CntrTxt,TxtClose,ImgStr;
+var Ztop=100;
+var ShwFlg=0;
+var M_StrtTp=StartTop,M_StrtLft=StartLeft;
+var StaticPos=0;
+var LftXtra=DomNav&&!Opr?LeftPaddng:0; //Changed for Opera
+var TpXtra=DomNav?TopPaddng:0;
+var M_Hide=Nav4?'hide':'hidden';
+var M_Show=Nav4?'show':'visible';
+var Par=parent.frames[0]&&FirstLineFrame!=SecLineFrame?parent:window;
+var Doc=Par.document;
+var Bod=Doc.body;
+var Trigger=NavYes&&!Opr?Par:Bod; //Changed for Opera
+
+MenuTextCentered=MenuTextCentered==1||MenuTextCentered=='center'?'center':MenuTextCentered==0||MenuTextCentered!='right'?'left':'right';
+WbMstrAlrts=["Item not defined: ","Item needs height: ","Item needs width: "];
+
+if(Trigger.onload)Dummy=Trigger.onload;
+if(DomNav||Opr)Trigger.addEventListener('load',Go,false); //Changed for Opera
+else Trigger.onload=Go;
+
+function Dummy(){return}
+
+function CnclSlct(){return false}
+
+function RePos(){
+	FrstWinWdth=ExpYes?FrstLoc.document.body.clientWidth:FrstLoc.innerWidth;
+	FrstWinHght=ExpYes?FrstLoc.document.body.clientHeight:FrstLoc.innerHeight;
+	ScWinWdth=ExpYes?ScLoc.document.body.clientWidth:ScLoc.innerWidth;
+	ScWinHght=ExpYes?ScLoc.document.body.clientHeight:ScLoc.innerHeight;
+	if(MenuCentered=='justify'&&FirstLineHorizontal){
+		FrstCntnr.style.width=FrstWinWdth;
+		ClcJus();
+		var P=FrstCntnr.FrstMbr,W=Menu1[5],i;
+		for(i=0;i<NoOffFirstLineMenus;i++){P.style.width=W;P=P.PrvMbr}}
+	StaticPos=-1;
+	if(TargetLoc)ClcTrgt();
+	if(MenuCentered)ClcLft();
+	if(MenuVerticalCentered)ClcTp();
+	PosMenu(FrstCntnr,StartTop,StartLeft)}
+
+function UnLoaded(){
+	if(CloseTmr)clearTimeout(CloseTmr);
+	Loadd=0; Creatd=0;
+	if(HideTop){
+		var FCStyle=Nav4?FrstCntnr:FrstCntnr.style;
+		FCStyle.visibility=M_Hide}}
+
+function ReDoWhole(){
+	if(ScWinWdth!=ScLoc.innerWidth||ScWinHght!=ScLoc.innerHeight||FrstWinWdth!=FrstLoc.innerWidth||FrstWinHght!=FrstLoc.innerHeight)Doc.location.reload()}
+
+function Check(WMnu,NoOf){
+	var i,array,ArrayLoc;
+	ArrayLoc=parent.frames[0]?parent.frames[FirstLineFrame]:self;
+	for(i=0;i<NoOf;i++){
+		array=WMnu+eval(i+1);
+		if(!ArrayLoc[array]){WbMstrAlrt(0,array); return false}
+		if(i==0){	if(!ArrayLoc[array][4]){WbMstrAlrt(1,array); return false}
+			if(!ArrayLoc[array][5]){WbMstrAlrt(2,array); return false}}
+		if(ArrayLoc[array][3])if(!Check(array+'_',ArrayLoc[array][3])) return false}
+	return true}
+
+function WbMstrAlrt(No,Xtra){
+	return confirm(WbMstrAlrts[No]+Xtra+'   ')}
+
+function Go(){
+	Dummy();
+	if(Loadd||!PosStrt)return;
+	BeforeStart();
+	Creatd=0; Loadd=1;
+	status='Building menu';
+	if(FrstCreat){
+		if(FirstLineFrame =="" || !parent.frames[FirstLineFrame]){
+			FirstLineFrame=SecLineFrame;
+			if(FirstLineFrame =="" || !parent.frames[FirstLineFrame]){
+				FirstLineFrame=SecLineFrame=DocTargetFrame;
+				if(FirstLineFrame =="" || !parent.frames[FirstLineFrame])FirstLineFrame=SecLineFrame=DocTargetFrame=''}}
+		if(SecLineFrame =="" || !parent.frames[SecLineFrame]){
+			SecLineFrame=DocTargetFrame;
+			if(SecLineFrame =="" || !parent.frames[SecLineFrame])SecLineFrame=DocTargetFrame=FirstLineFrame}
+		if(DocTargetFrame =="" || !parent.frames[DocTargetFrame])DocTargetFrame=SecLineFrame;
+		if(WebMasterCheck){	if(!Check('Menu',NoOffFirstLineMenus)){status='build aborted';return}}
+		FrstLoc=FirstLineFrame!=""?parent.frames[FirstLineFrame]:window;
+		ScLoc=SecLineFrame!=""?parent.frames[SecLineFrame]:window;
+		DcLoc=DocTargetFrame!=""?parent.frames[DocTargetFrame]:window;
+		if (FrstLoc==ScLoc) AcrssFrms=0;
+		if (AcrssFrms)FirstLineHorizontal=MenuFramesVertical?0:1;
+		FrstWinWdth=ExpYes?FrstLoc.document.body.clientWidth:FrstLoc.innerWidth;
+		FrstWinHght=ExpYes?FrstLoc.document.body.clientHeight:FrstLoc.innerHeight;
+		ScWinWdth=ExpYes?ScLoc.document.body.clientWidth:ScLoc.innerWidth;
+		ScWinHght=ExpYes?ScLoc.document.body.clientHeight:ScLoc.innerHeight;
+		if(Nav4){	CntrTxt=MenuTextCentered!='left'?"<div align='"+MenuTextCentered+"'>":"";
+			TxtClose="</font>"+MenuTextCentered!='left'?"</div>":""}}
+	FirstColPos=Nav4?FrstLoc.document:FrstLoc.document.body;
+	SecColPos=Nav4?ScLoc.document:ScLoc.document.body;
+	DocColPos=Nav4?DcLoc.document:ScLoc.document.body;
+	if (TakeOverBgColor)FirstColPos.bgColor=AcrssFrms?SecColPos.bgColor:DocColPos.bgColor;
+	if(MenuCentered=='justify'&&FirstLineHorizontal)ClcJus();
+	if(FrstCreat){
+		FrstCntnr=CreateMenuStructure('Menu',NoOffFirstLineMenus);
+		FrstCreat=AcrssFrms?0:1}
+	else CreateMenuStructureAgain('Menu',NoOffFirstLineMenus);
+	if(TargetLoc)ClcTrgt();
+	if(MenuCentered)ClcLft();
+	if(MenuVerticalCentered)ClcTp();
+	PosMenu(FrstCntnr,StartTop,StartLeft);
+	IniFlg=1;
+	Initiate();
+	Creatd=1;
+	if (AcrssFrms) 	//Added for Opera
+		{	 //Added for Opera
+		ScLdAgainWin=ExpYes?ScLoc.document.body:ScLoc;
+		ScLdAgainWin.onunload=UnLoaded;
+		}	 //Added for Opera
+	Trigger.onresize=Nav4?ReDoWhole:RePos;
+	AfterBuild();
+	if(MenuVerticalCentered=='static'&&!AcrssFrms)setInterval('KeepPos()',250);
+	status='Menu ready for use'}
+
+function KeepPos(){
+	var TS=ExpYes?FrstLoc.document.body.scrollTop:FrstLoc.pageYOffset;
+	if(TS!=StaticPos){
+		var FCStyle=Nav4?FrstCntnr:FrstCntnr.style;
+		FCStyle.top=FrstCntnr.OrgTop=StartTop+TS;StaticPos=TS}}
+
+function ClcJus(){
+	var a=BorderBtwnElmnts?1:2,b=BorderBtwnElmnts?BorderWidth:0;
+	var Size=Math.round(((FrstWinWdth-a*BorderWidth)/NoOffFirstLineMenus)-b),i,j;
+	for(i=1;i<NoOffFirstLineMenus+1;i++){j=eval('Menu'+i);j[5]=Size}
+	StartLeft=0}
+
+function ClcTrgt(){
+	var TLoc=Nav4?FrstLoc.document.layers[TargetLoc]:DomYes?FrstLoc.document.getElementById(TargetLoc):FrstLoc.document.all[TargetLoc];
+	StartTop=M_StrtTp;
+	StartLeft=M_StrtLft;
+	if(DomYes){
+		while(TLoc){StartTop+=TLoc.offsetTop;StartLeft+=TLoc.offsetLeft;TLoc=TLoc.offsetParent}}
+	else{	StartTop+=Nav4?TLoc.pageY:TLoc.offsetTop;StartLeft+=Nav4?TLoc.pageX:TLoc.offsetLeft}}
+
+function ClcLft(){
+	if(MenuCentered!='left'&&MenuCentered!='justify'){
+		var Size=FrstWinWdth-(!Nav4?parseInt(FrstCntnr.style.width):FrstCntnr.clip.width);
+		StartLeft=M_StrtLft;
+		StartLeft+=MenuCentered=='right'?Size:Size/2}}
+
+function ClcTp(){
+	if(MenuVerticalCentered!='top'&&MenuVerticalCentered!='static'){
+		var Size=FrstWinHght-(!Nav4?parseInt(FrstCntnr.style.height):FrstCntnr.clip.height);
+		StartTop=M_StrtTp;
+		StartTop+=MenuVerticalCentered=='bottom'?Size:Size/2}}
+
+function PosMenu(CntnrPntr,Tp,Lt){
+	var Topi,Lefti,Hori;
+	var Cntnr=CntnrPntr;
+	var Mmbr=Cntnr.FrstMbr;
+	var CntnrStyle=!Nav4?Cntnr.style:Cntnr;
+	var MmbrStyle=!Nav4?Mmbr.style:Mmbr;
+	var PadL=Mmbr.value.indexOf('<')==-1?LftXtra:0;
+	var PadT=Mmbr.value.indexOf('<')==-1?TpXtra:0;
+	var MmbrWt=!Nav4?parseInt(MmbrStyle.width)+PadL:MmbrStyle.clip.width;
+	var MmbrHt=!Nav4?parseInt(MmbrStyle.height)+PadT:MmbrStyle.clip.height;
+	var CntnrWt=!Nav4?parseInt(CntnrStyle.width):CntnrStyle.clip.width;
+	var CntnrHt=!Nav4?parseInt(CntnrStyle.height):CntnrStyle.clip.height;
+	var SubTp,SubLt;
+	RcrsLvl++;
+	if (RcrsLvl==1 && AcrssFrms)!MenuFramesVertical?Tp=FrstWinHght-CntnrHt+(Nav4?4:0):Lt=RightToLeft?0:FrstWinWdth-CntnrWt+(Nav4?4:0);
+	if (RcrsLvl==2 && AcrssFrms)!MenuFramesVertical?Tp=0:Lt=RightToLeft?ScWinWdth-CntnrWt:0;
+	if (RcrsLvl==2 && AcrssFrms){Tp+=VerCorrect;Lt+=HorCorrect}
+	CntnrStyle.top=RcrsLvl==1?Tp:0;
+	Cntnr.OrgTop=Tp;
+	CntnrStyle.left=RcrsLvl==1?Lt:0;
+	Cntnr.OrgLeft=Lt;
+	if (RcrsLvl==1 && FirstLineHorizontal){
+		Hori=1;Lefti=CntnrWt-MmbrWt-2*BorderWidth;Topi=0}
+	else{	Hori=Lefti=0;Topi=CntnrHt-MmbrHt-2*BorderWidth}
+	while(Mmbr!=null){
+		MmbrStyle.left=Lefti+BorderWidth;
+		MmbrStyle.top=Topi+BorderWidth;
+		if(Nav4)Mmbr.CmdLyr.moveTo(Lefti+BorderWidth,Topi+BorderWidth);
+		if(Mmbr.ChildCntnr){
+			if(RightToLeft)ChldCntnrWdth=Nav4?Mmbr.ChildCntnr.clip.width:parseInt(Mmbr.ChildCntnr.style.width);
+			if(Hori){	SubTp=Topi+MmbrHt+2*BorderWidth;
+				SubLt=RightToLeft?Lefti+MmbrWt-ChldCntnrWdth:Lefti}
+			else{	SubLt=RightToLeft?Lefti-ChldCntnrWdth+ChildOverlap*MmbrWt+BorderWidth:Lefti+(1-ChildOverlap)*MmbrWt+BorderWidth;
+				SubTp=RcrsLvl==1&&AcrssFrms?Topi:Topi+ChildVerticalOverlap*MmbrHt}
+			PosMenu(Mmbr.ChildCntnr,SubTp,SubLt)}
+		Mmbr=Mmbr.PrvMbr;
+		if(Mmbr){	MmbrStyle=!Nav4?Mmbr.style:Mmbr;
+			PadL=Mmbr.value.indexOf('<')==-1?LftXtra:0;
+			PadT=Mmbr.value.indexOf('<')==-1?TpXtra:0;
+			MmbrWt=!Nav4?parseInt(MmbrStyle.width)+PadL:MmbrStyle.clip.width;
+			MmbrHt=!Nav4?parseInt(MmbrStyle.height)+PadT:MmbrStyle.clip.height;
+			Hori?Lefti-=BorderBtwnElmnts?(MmbrWt+BorderWidth):(MmbrWt):Topi-=BorderBtwnElmnts?(MmbrHt+BorderWidth):(MmbrHt)}}
+	RcrsLvl--}
+
+function Initiate(){
+	if(IniFlg){	Init(FrstCntnr);IniFlg=0;
+		if(ShwFlg)AfterCloseAll();ShwFlg=0}}
+
+function Init(CntnrPntr){
+	var Mmbr=CntnrPntr.FrstMbr;
+	var MCStyle=Nav4?CntnrPntr:CntnrPntr.style;
+	RcrsLvl++;
+	MCStyle.visibility=RcrsLvl==1?M_Show:M_Hide;
+	while(Mmbr!=null){
+		if(Mmbr.Hilite){Mmbr.Hilite=0;if(KeepHilite)LowItem(Mmbr)}
+		if(Mmbr.ChildCntnr) Init(Mmbr.ChildCntnr);
+		Mmbr=Mmbr.PrvMbr}
+	RcrsLvl--}
+
+function ClearAllChilds(Pntr){
+	var CPCCStyle;
+	while (Pntr){
+		if(Pntr.Hilite){
+			Pntr.Hilite=0;
+			if(KeepHilite)LowItem(Pntr);
+			if(Pntr.ChildCntnr){
+				CPCCStyle=Nav4?Pntr.ChildCntnr:Pntr.ChildCntnr.style;
+				CPCCStyle.visibility=M_Hide;
+				ClearAllChilds(Pntr.ChildCntnr.FrstMbr)}
+			break}
+		Pntr=Pntr.PrvMbr}}
+
+function GoTo(){
+	if(this.LinkTxt){
+		status='';
+		var HP=Nav4?this.LowLyr:this;
+		LowItem(HP);
+		this.LinkTxt.indexOf('javascript:')!=-1?eval(this.LinkTxt):DcLoc.location.href=this.LinkTxt}}
+
+function HiliteItem(P){
+	if(Nav4){
+		if(P.ro)P.document.images[P.rid].src=P.ri2;
+		else{	if(P.HiBck)P.bgColor=P.HiBck;
+			if(P.value.indexOf('<img')==-1){
+				P.document.write(P.Ovalue);
+				P.document.close()}}}
+	else{	if(P.ro){	var Lc=P.Level==1?FrstLoc:ScLoc;
+			Lc.document.images[P.rid].src=P.ri2}
+		else{	if(P.HiBck)P.style.backgroundColor=P.HiBck;
+			if(P.HiFntClr)P.style.color=P.HiFntClr}}
+	P.Hilite=1}
+
+function LowItem(P){
+	if(P.ro){	if(Nav4)P.document.images[P.rid].src=P.ri1;
+		else{	var Lc=P.Level==1?FrstLoc:ScLoc;
+			Lc.document.images[P.rid].src=P.ri1}}
+	else{	if(Nav4){	if(P.LoBck)P.bgColor=P.LoBck;
+			if(P.value.indexOf('<img')==-1){
+				P.document.write(P.value);
+				P.document.close()}}
+		else{	if(P.LoBck)P.style.backgroundColor=P.LoBck;
+			if(P.LwFntClr)P.style.color=P.LwFntClr}}}
+
+function OpenMenu(){
+	if(!Loadd||!Creatd) return;
+	var TpScrlld=ExpYes?ScLoc.document.body.scrollTop:ScLoc.pageYOffset;
+	var LScrlld=ExpYes?ScLoc.document.body.scrollLeft:ScLoc.pageXOffset;
+	var CCnt=Nav4?this.LowLyr.ChildCntnr:this.ChildCntnr;
+	var ThisHt=Nav4?this.clip.height:parseInt(this.style.height);
+	var ThisWt=Nav4?this.clip.width:parseInt(this.style.width);
+	var ThisLft=AcrssFrms&&this.Level==1&&!FirstLineHorizontal?0:Nav4?this.Container.left:parseInt(this.Container.style.left);
+	var ThisTp=AcrssFrms&&this.Level==1&&FirstLineHorizontal?0:Nav4?this.Container.top:parseInt(this.Container.style.top);
+	var HP=Nav4?this.LowLyr:this;
+	CurrntOvr=this;
+	IniFlg=0;
+	ClearAllChilds(this.Container.FrstMbr);
+	HiliteItem(HP);
+	if(CCnt!=null){
+		if(!ShwFlg){ShwFlg=1;	BeforeFirstOpen()}
+		var CCW=Nav4?this.LowLyr.ChildCntnr.clip.width:parseInt(this.ChildCntnr.style.width);
+		var CCH=Nav4?this.LowLyr.ChildCntnr.clip.height:parseInt(this.ChildCntnr.style.height);
+		var ChCntTL=Nav4?this.LowLyr.ChildCntnr:this.ChildCntnr.style;
+		var SubLt=AcrssFrms&&this.Level==1?CCnt.OrgLeft+ThisLft+LScrlld:CCnt.OrgLeft+ThisLft;
+		var SubTp=AcrssFrms&&this.Level==1?CCnt.OrgTop+ThisTp+TpScrlld:CCnt.OrgTop+ThisTp;
+		if(MenuWrap){
+			if(RightToLeft){
+				if(SubLt<LScrlld)SubLt=this.Level==1?LScrlld:SubLt+(CCW+(1-2*ChildOverlap)*ThisWt);
+				if(SubLt+CCW>ScWinWdth+LScrlld)SubLt=ScWinWdth+LScrlld-CCW}
+			else{	if(SubLt+CCW>ScWinWdth+LScrlld)SubLt=this.Level==1?ScWinWdth+LScrlld-CCW:SubLt-(CCW+(1-2*ChildOverlap)*ThisWt);
+				if(SubLt<LScrlld)SubLt=LScrlld}
+			if(SubTp+CCH>TpScrlld+ScWinHght)SubTp=this.Level==1?SubTp=TpScrlld+ScWinHght-CCH:SubTp-CCH+(1-2*ChildVerticalOverlap)*ThisHt;
+			if(SubTp<TpScrlld)SubTp=TpScrlld}
+		ChCntTL.top=SubTp;ChCntTL.left=SubLt;ChCntTL.visibility=M_Show}
+	status=this.LinkTxt}
+
+function OpenMenuClick(){
+	if(!Loadd||!Creatd) return;
+	var HP=Nav4?this.LowLyr:this;
+	CurrntOvr=this;
+	IniFlg=0;
+	ClearAllChilds(this.Container.FrstMbr);
+	HiliteItem(HP);
+	status=this.LinkTxt}
+
+function CloseMenu(){
+	if(!Loadd||!Creatd) return;
+	if(!KeepHilite){
+		var HP=Nav4?this.LowLyr:this;
+		LowItem(HP)}
+	status='';
+	if(this==CurrntOvr){
+		IniFlg=1;
+		if(CloseTmr)clearTimeout(CloseTmr);
+		CloseTmr=setTimeout('Initiate(CurrntOvr)',DissapearDelay)}}
+
+function CntnrSetUp(Wdth,Hght,NoOff){
+	var x=RcrsLvl==1?BorderColor:BorderSubColor;
+	this.FrstMbr=null;
+	this.OrgLeft=this.OrgTop=0;
+	if(x)this.bgColor=x;
+	if(Nav4){	this.visibility='hide';
+		this.resizeTo(Wdth,Hght)}
+	else{	if(x)this.style.backgroundColor=x;
+		this.style.width=Wdth;
+		this.style.height=Hght;
+		this.style.fontFamily=FontFamily;
+		this.style.fontWeight=FontBold?'bold':'normal';
+		this.style.fontStyle=FontItalic?'italic':'normal';
+		this.style.fontSize=FontSize+'pt';
+		this.style.zIndex=RcrsLvl+Ztop}}
+
+function MbrSetUp(MmbrCntnr,PrMmbr,WhatMenu,Wdth,Hght){
+	var Location=RcrsLvl==1?FrstLoc:ScLoc;
+	var MemVal=eval(WhatMenu+'[0]');
+	var t,T,L,W,H,S;
+	var a,b,c,d;
+	this.PrvMbr=PrMmbr;
+	this.Level=RcrsLvl;
+	this.LinkTxt=eval(WhatMenu+'[1]');
+	this.Container=MmbrCntnr;
+	this.ChildCntnr=null;
+	this.Hilite=0;
+	this.style.overflow='hidden';
+	this.style.cursor=ExpYes&&(this.LinkTxt||(RcrsLvl==1&&UnfoldsOnClick))?'hand':'default';
+	this.ro=0;
+	if(MemVal.indexOf('rollover')!=-1){
+		this.ro=1;
+		this.ri1=MemVal.substring(MemVal.indexOf(':')+1,MemVal.lastIndexOf(':'));
+		this.ri2=MemVal.substring(MemVal.lastIndexOf(':')+1,MemVal.length);
+		this.rid=WhatMenu+'i';MemVal="<img src='"+this.ri1+"' name='"+this.rid+"'>"}
+	this.value=MemVal;
+	if(RcrsLvl==1){
+		a=LowBgColor;
+		b=HighBgColor;
+		c=FontLowColor;
+		d=FontHighColor}
+	else{	a=LowSubBgColor;
+		b=HighSubBgColor;
+		c=FontSubLowColor;
+		d=FontSubHighColor}
+	this.LoBck=a;
+	this.LwFntClr=c;
+	this.HiBck=b;
+	this.HiFntClr=d;
+	this.style.color=this.LwFntClr;
+	if(this.LoBck)this.style.backgroundColor=this.LoBck;
+	this.style.textAlign=MenuTextCentered;
+	if(eval(WhatMenu+'[2]'))this.style.backgroundImage="url(\'"+eval(WhatMenu+'[2]')+"\')";
+	if(MemVal.indexOf('<')==-1){
+		this.style.width=Wdth-LftXtra;
+		this.style.height=Hght-TpXtra;
+		this.style.paddingLeft=LeftPaddng;
+		this.style.paddingTop=TopPaddng}
+	else{	this.style.width=Wdth;
+		this.style.height=Hght}
+	if(MemVal.indexOf('<')==-1&&DomYes){
+		t=Location.document.createTextNode(MemVal);
+		this.appendChild(t)}
+	else this.innerHTML=MemVal;
+	if(eval(WhatMenu+'[3]')&&ShowArrow){
+		a=RcrsLvl==1&&FirstLineHorizontal?3:RightToLeft?6:0;
+		S=Arrws[a];
+		W=Arrws[a+1];
+		H=Arrws[a+2];
+		T=RcrsLvl==1&&FirstLineHorizontal?Hght-H-2:(Hght-H)/2;
+		L=RightToLeft?2:Wdth-W-2;
+		if(DomYes){
+
+			t=Location.document.createElement('img');
+			this.appendChild(t);
+			t.style.position='absolute';
+			t.src=S;
+
+			t.style.width=W;
+			t.style.height=H;
+			t.style.top=T;
+			t.style.left=L}
+		else{	MemVal+="<div style='position:absolute; top:"+T+"; left:"+L+"; width:"+W+"; height:"+H+";visibility:inherit'><img src='"+S+"'></div>";
+			this.innerHTML=MemVal}}
+	if(ExpYes){this.onselectstart=CnclSlct;
+		this.onmouseover=RcrsLvl==1&&UnfoldsOnClick?OpenMenuClick:OpenMenu;
+		this.onmouseout=CloseMenu;
+		this.onclick=RcrsLvl==1&&UnfoldsOnClick&&eval(WhatMenu+'[3]')?OpenMenu:GoTo	}
+	else{	RcrsLvl==1&&UnfoldsOnClick?this.addEventListener('mouseover',OpenMenuClick,false):this.addEventListener('mouseover',OpenMenu,false);
+		this.addEventListener('mouseout',CloseMenu,false);
+		RcrsLvl==1&&UnfoldsOnClick&&eval(WhatMenu+'[3]')?this.addEventListener('click',OpenMenu,false):this.addEventListener('click',GoTo,false)}}
+
+function NavMbrSetUp(MmbrCntnr,PrMmbr,WhatMenu,Wdth,Hght){
+	var a,b,c,d;
+	if(RcrsLvl==1){
+		a=LowBgColor;
+		b=HighBgColor;
+		c=FontLowColor;
+		d=FontHighColor}
+	else {	a=LowSubBgColor;
+		b=HighSubBgColor;
+		c=FontSubLowColor;
+		d=FontSubHighColor	}
+	this.value=eval(WhatMenu+'[0]');
+	this.ro=0;
+	if(this.value.indexOf('rollover')!=-1){
+		this.ro=1;
+		this.ri1=this.value.substring(this.value.indexOf(':')+1,this.value.lastIndexOf(':'));
+		this.ri2=this.value.substring(this.value.lastIndexOf(':')+1,this.value.length);
+		this.rid=WhatMenu+'i';this.value="<img src='"+this.ri1+"' name='"+this.rid+"'>"}
+	if(LeftPaddng&&this.value.indexOf('<')==-1&&MenuTextCentered=='left')this.value='&nbsp\;'+this.value;
+	if(FontBold)this.value=this.value.bold();
+	if(FontItalic)this.value=this.value.italics();
+	this.Ovalue=this.value;
+	this.value=this.value.fontcolor(c);
+	this.Ovalue=this.Ovalue.fontcolor(d);
+	this.value=CntrTxt+"<font face='"+FontFamily+"' point-size='"+FontSize+"'>"+this.value+TxtClose;
+	this.Ovalue=CntrTxt+"<font face='"+FontFamily+"' point-size='"+FontSize+"'>"+this.Ovalue+TxtClose;
+	this.LoBck=a;
+	this.HiBck=b;
+	this.ChildCntnr=null;
+	this.PrvMbr=PrMmbr;
+	this.Hilite=0;
+	this.visibility='inherit';
+	if(this.LoBck)this.bgColor=this.LoBck;
+	this.resizeTo(Wdth,Hght);
+	if(!AcrssFrms&&eval(WhatMenu+'[2]'))this.background.src=eval(WhatMenu+'[2]');
+	this.document.write(this.value);
+	this.document.close();
+	this.CmdLyr=new Layer(Wdth,MmbrCntnr);
+	this.CmdLyr.Level=RcrsLvl;
+	this.CmdLyr.LinkTxt=eval(WhatMenu+'[1]');
+	this.CmdLyr.visibility='inherit';
+	this.CmdLyr.onmouseover=RcrsLvl==1&&UnfoldsOnClick?OpenMenuClick:OpenMenu;
+	this.CmdLyr.onmouseout=CloseMenu;
+	this.CmdLyr.captureEvents(Event.MOUSEUP);
+	this.CmdLyr.onmouseup=RcrsLvl==1&&UnfoldsOnClick&&eval(WhatMenu+'[3]')?OpenMenu:GoTo;
+	this.CmdLyr.LowLyr=this;
+	this.CmdLyr.resizeTo(Wdth,Hght);
+	this.CmdLyr.Container=MmbrCntnr;
+	if(eval(WhatMenu+'[3]')&&ShowArrow){
+		a=RcrsLvl==1&&FirstLineHorizontal?3:RightToLeft?6:0;
+		this.CmdLyr.ImgLyr=new Layer(Arrws[a+1],this.CmdLyr);
+		this.CmdLyr.ImgLyr.visibility='inherit';
+		this.CmdLyr.ImgLyr.top=RcrsLvl==1&&FirstLineHorizontal?Hght-Arrws[a+2]-2:(Hght-Arrws[a+2])/2;
+		this.CmdLyr.ImgLyr.left=RightToLeft?2:Wdth-Arrws[a+1]-2;
+		this.CmdLyr.ImgLyr.width=Arrws[a+1];
+		this.CmdLyr.ImgLyr.height=Arrws[a+2];
+		ImgStr="<img src='"+Arrws[a]+"' width='"+Arrws[a+1]+"' height='"+Arrws[a+2]+"'>";
+		this.CmdLyr.ImgLyr.document.write(ImgStr);
+		this.CmdLyr.ImgLyr.document.close()}}
+
+function CreateMenuStructure(MName,NumberOf){
+	RcrsLvl++;
+	var i,NoOffSubs,Mbr,Wdth=0,Hght=0;
+	var PrvMmbr=null;
+	var WMnu=MName+'1';
+	var MenuWidth=eval(WMnu+'[5]');
+	var MenuHeight=eval(WMnu+'[4]');
+	var Location=RcrsLvl==1?FrstLoc:ScLoc;
+	if (RcrsLvl==1&&FirstLineHorizontal){
+		for(i=1;i<NumberOf+1;i++){
+			WMnu=MName+eval(i);
+			Wdth=eval(WMnu+'[5]')?Wdth+eval(WMnu+'[5]'):Wdth+MenuWidth}
+		Wdth=BorderBtwnElmnts?Wdth+(NumberOf+1)*BorderWidth:Wdth+2*BorderWidth;Hght=MenuHeight+2*BorderWidth}
+	else{	for(i=1;i<NumberOf+1;i++){
+			WMnu=MName+eval(i);
+			Hght=eval(WMnu+'[4]')?Hght+eval(WMnu+'[4]'):Hght+MenuHeight}
+		Hght=BorderBtwnElmnts?Hght+(NumberOf+1)*BorderWidth:Hght+2*BorderWidth;Wdth=MenuWidth+2*BorderWidth}
+	if(DomYes){
+		var MmbrCntnr=Location.document.createElement("div");
+		MmbrCntnr.style.position='absolute';
+		MmbrCntnr.style.visibility='hidden';
+		Location.document.body.appendChild(MmbrCntnr)}
+	else{	if(Nav4) var MmbrCntnr=new Layer(Wdth,Location)
+		else{	WMnu+='c';
+			Location.document.body.insertAdjacentHTML("AfterBegin","<div id='"+WMnu+"' style='visibility:hidden; position:absolute;'><\/div>");
+			var MmbrCntnr=Location.document.all[WMnu]}}
+	MmbrCntnr.SetUp=CntnrSetUp;
+	MmbrCntnr.SetUp(Wdth,Hght,NumberOf);
+	if(Exp4){	MmbrCntnr.InnerString='';
+		for(i=1;i<NumberOf+1;i++){
+			WMnu=MName+eval(i);
+			MmbrCntnr.InnerString+="<div id='"+WMnu+"' style='position:absolute;'><\/div>"}
+		MmbrCntnr.innerHTML=MmbrCntnr.InnerString}
+	for(i=1;i<NumberOf+1;i++){
+		WMnu=MName+eval(i);
+		NoOffSubs=eval(WMnu+'[3]');
+		Wdth=RcrsLvl==1&&FirstLineHorizontal?eval(WMnu+'[5]')?eval(WMnu+'[5]'):MenuWidth:MenuWidth;
+		Hght=RcrsLvl==1&&FirstLineHorizontal?MenuHeight:eval(WMnu+'[4]')?eval(WMnu+'[4]'):MenuHeight;
+		if(DomYes){
+			Mbr=Location.document.createElement("div");
+			Mbr.style.position='absolute';
+			Mbr.style.visibility='inherit';
+			MmbrCntnr.appendChild(Mbr)}
+		else Mbr=Nav4?new Layer(Wdth,MmbrCntnr):Location.document.all[WMnu];
+		Mbr.SetUp=Nav4?NavMbrSetUp:MbrSetUp;
+		Mbr.SetUp(MmbrCntnr,PrvMmbr,WMnu,Wdth,Hght);
+		if(NoOffSubs) Mbr.ChildCntnr=CreateMenuStructure(WMnu+'_',NoOffSubs);
+		PrvMmbr=Mbr}
+	MmbrCntnr.FrstMbr=Mbr;
+	RcrsLvl--;
+	return(MmbrCntnr)}
+
+function CreateMenuStructureAgain(MName,NumberOf){
+	var i,WMnu,NoOffSubs,PrvMmbr,Mbr=FrstCntnr.FrstMbr;
+	RcrsLvl++;
+	for(i=NumberOf;i>0;i--){
+		WMnu=MName+eval(i);
+		NoOffSubs=eval(WMnu+'[3]');
+		PrvMmbr=Mbr;
+		if(NoOffSubs)Mbr.ChildCntnr=CreateMenuStructure(WMnu+'_',NoOffSubs);
+		Mbr=Mbr.PrvMbr}
+	RcrsLvl--}
+
+function BeforeStart(){return}
+function AfterBuild(){return}
+function BeforeFirstOpen(){return}
+function AfterCloseAll(){return}
+
+</script>
+
+<!-- REST OF BODY CONTENT BELOW HERE -->
+
+<script type="text/javascript" src="http://webstat.marketingszoftverek.hu/st.php?woc=796309325"></script>
