@@ -2,7 +2,7 @@ const gulp          = require('gulp');
 const gutil         = require('gulp-util');
 const del           = require('del');
 const install       = require('gulp-install');
-const zip           = require('gulp-zip');
+const archiver      = require('archiver');
 const AWS           = require('aws-sdk');
 const fs            = require('fs');
 const path          = require('path');
@@ -51,20 +51,28 @@ gulp.task('npm-dependencies', () => {
 });
 
 gulp.task('lambda-builds', () => {
-    const gulpSources = lambdaFolders.map(lambda => {
-        const source = [
-            path.join(LAMBDA_ABOSULTE_DIR, lambda, '**/*'),
-            `!${path.join(LAMBDA_ABOSULTE_DIR, lambda, 'package.json')}`,
-            path.join(LAMBDA_ABOSULTE_DIR, lambda, '/.*')
-        ];
+    const promises = lambdaFolders.map(lambda => {
+        return new Promise((resolve, reject) => {
+            const archive = archiver('zip');
+            const output = fs.createWriteStream(path.join(LAMBDA_RELATIVE_DIR, lambda, 'build.zip'));
 
-        return gulp.src(source)
-            .pipe(zip('build.zip'))
-            .pipe(gulp.dest(`${LAMBDA_RELATIVE_DIR}/${lambda}`));
-    
+            output.on('close', resolve);
+            archive.on('error', (err) => {
+                gutil.log(err);
+                reject();
+            });
+
+            archive.pipe(output);
+
+            archive.file(path.join(LAMBDA_RELATIVE_DIR, lambda, 'index.js'), { name: 'index.js' });
+
+            archive.directory(path.join(LAMBDA_RELATIVE_DIR, lambda, 'node_modules/'), 'node_modules');
+
+            archive.finalize();
+        });
     });
 
-    return merge.apply(null, gulpSources);
+    return Promise.all(promises);
 });
 
 const lambdaUploader = (lambdaFolder) => {
