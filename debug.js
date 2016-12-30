@@ -18,6 +18,7 @@ function openBrowser(command) {
     const driver = new webdriver.Builder()
         .forBrowser('chrome')
         .build();
+
     getDevToolsUrl(command).then(devToolsUrl => {
         driver.get(devToolsUrl);
         // This is required so the browser won't exit
