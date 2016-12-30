@@ -1,7 +1,7 @@
 {
   "name": "store-event-details",
   "version": "1.0.0",
-  "description": "",
+  "description": "Store event details in dynamo DB.",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {},

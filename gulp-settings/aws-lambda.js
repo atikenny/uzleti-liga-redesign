@@ -88,39 +88,103 @@ gulp.task('upload', () => {
 });
 
 const lambdaUploader = (lambdaFolder) => {
+    const packageJSON = require(path.join(LAMBDA_ABOSULTE_DIR, lambdaFolder, 'package.json'));
+    const lambdaFunctionName = changeCase.camelCase(packageJSON.name);
+    const lambdaFunctionDescription = packageJSON.description;
     const awsLambda = new AWS.Lambda();
-    const lambda = changeCase.camelCase(require(path.join(LAMBDA_ABOSULTE_DIR, lambdaFolder, 'package.json')).name);
+
+    return getLambdaFunction(awsLambda, lambdaFunctionName)
+        .then(() => updateLambdaFunction(awsLambda, lambdaFolder, lambdaFunctionName))
+        .catch(() => createLambdaFunction(awsLambda, lambdaFolder, lambdaFunctionName, lambdaFunctionDescription));
+};
+
+const getLambdaFunction = (awsLambda, lambdaFunctionName) => {
+    gutil.log(`Checking if lambda function: ${lambdaFunctionName} exists`);
 
     return new Promise((resolve, reject) => {
-        awsLambda.getFunction({ FunctionName: lambda }, (err) => {
+        awsLambda.getFunction({ FunctionName: lambdaFunctionName }, (err) => {
             if (err) {
                 if (err.statusCode === 404) {
-                    gutil.log(`Unable to find lambda function: ${lambda}`);
-                    gutil.log('Verify the lambda function name and AWS region are correct');
+                    gutil.log(`Unable to find lambda function: ${lambdaFunctionName}, creating it now...`);
                 } else {
                     gutil.log('AWS API request failed. Check your AWS credentials and permission');
                 }
 
                 reject(err);
-            } else {
-                fs.readFile(path.join(LAMBDA_ABOSULTE_DIR, lambdaFolder, 'build.zip'), (err, data) => {
-                    const params = {
-                        FunctionName: lambda,
-                        ZipFile: data
-                    };
-
-                    awsLambda.updateFunctionCode(params, (err) => {
-                        if (err) {
-                            gutil.log(err);
-                            gutil.log('Package upload failed. Check your iam:PassRole permission');
-                            reject(err);
-                        }
-
-                        gutil.log(`Successfully uploaded: ${chalk.green(lambda)}`);
-                        resolve('success');
-                    });
-                });
             }
+
+            resolve('Success');
+        });
+    });
+};
+
+const updateLambdaFunction = (awsLambda, lambdaFolder, lambdaFunctionName) => {
+    gutil.log(`Updating lambda function: ${lambdaFunctionName}...`);
+
+    return new Promise((resolve, reject) => {
+        readLambdaBuild(lambdaFolder, lambdaFunctionName)
+            .then((fileData) => {
+                awsLambda.updateFunctionCode({
+                    FunctionName: lambdaFunctionName,
+                    ZipFile: fileData
+                }, (err) => {
+                    if (err) {
+                        gutil.log(err);
+                        gutil.log('Package upload failed. Check your iam:PassRole permission');
+
+                        reject(err);
+                    }
+
+                    gutil.log(`Successfully updated: ${chalk.green(lambdaFunctionName)}`);
+
+                    resolve('success');
+                });
+            });
+    });
+};
+
+const createLambdaFunction = (awsLambda, lambdaFolder, lambdaFunctionName, lambdaFunctionDescription) => {
+    gutil.log(`Creating lambda function: ${lambdaFunctionName}...`);
+
+    return new Promise((resolve, reject) => {
+        readLambdaBuild(lambdaFolder, lambdaFunctionName)
+            .then((fileData) => {
+                awsLambda.createFunction({
+                    Code: { ZipFile: fileData },
+                    FunctionName: lambdaFunctionName,
+                    Handler: 'index.handler',
+                    Role: 'arn:aws:iam::136323943602:role/service-role/developer',
+                    Runtime: 'nodejs4.3',
+                    Description: lambdaFunctionDescription
+                }, (err) => {
+                    if (err) {
+                        gutil.log(err);
+                        gutil.log('Package upload failed. Check your iam:PassRole permission');
+
+                        reject(err);
+                    }
+
+                    gutil.log(`Successfully created: ${chalk.green(lambdaFunctionName)}`);
+
+                    resolve('success');
+                });
+            });
+    });
+};
+
+const readLambdaBuild = (lambdaFolder, lambdaFunctionName) => {
+    gutil.log(`Reading build for lambda function: ${lambdaFunctionName}...`);
+
+    return new Promise((resolve, reject) => {
+        fs.readFile(path.join(LAMBDA_ABOSULTE_DIR, lambdaFolder, 'build.zip'), (err, fileData) => {
+            if (err) {
+                gutil.log(`Cannot read build file for lambda: ${lambdaFunctionName}, in folder: ${lambdaFolder}`);
+                gutil.log(err);
+
+                reject(err);
+            }
+
+            resolve(fileData);
         });
     });
 };

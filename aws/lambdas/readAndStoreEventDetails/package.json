@@ -1,7 +1,7 @@
 {
-  "name": "get-event-data",
+  "name": "read-and-store-event-details",
   "version": "1.0.0",
-  "description": "Get data for business league events.",
+  "description": "Read and store the details of a specific event.",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {},
