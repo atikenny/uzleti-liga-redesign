@@ -2,8 +2,6 @@
 
 const http      = require('http');
 const cheerio   = require('cheerio');
-const fs        = require('fs');
-const html      = fs.readFileSync('./match.html', { encoding: 'utf8' });
 
 let $;
 
