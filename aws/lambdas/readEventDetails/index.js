@@ -61,14 +61,17 @@ exports.handler = (event, context, callback) => {
 
     let body = '';
 
-    const req = http.get(addQueryParams({ eid: eventId }, requestOptions), (res) => {
-        res.setEncoding('utf8');
-        res.on('data', (chunk) => body += chunk);
-        res.on('end', () => {
+    const request = http.get(addQueryParams({
+        eid: eventId,
+        ie: Date.now() /* cache busting */
+    }, requestOptions), (response) => {
+        response.setEncoding('utf8');
+        response.on('data', (chunk) => body += chunk);
+        response.on('end', () => {
             callback(null, parseMatchesPage(eventId, body));
         });
     });
 
-    req.on('error', callback);
-    req.end();
+    request.on('error', callback);
+    request.end();
 };
