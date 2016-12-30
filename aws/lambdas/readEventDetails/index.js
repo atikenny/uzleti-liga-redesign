@@ -57,7 +57,7 @@ const parseMatchesPage = (eventId, html) => {
 };
 
 exports.handler = (event, context, callback) => {
-    const eventId = event.queryStringParameters.eventId;
+    const eventId = event.eventId;
 
     let body = '';
 
