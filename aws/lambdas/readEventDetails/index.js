@@ -49,7 +49,7 @@ const parseMatchesPage = (eventId, html) => {
     const year = $('.idenyaktiv').html();
 
     return {
-        eventId,
+        id: eventId,
         league,
         year,
         matches

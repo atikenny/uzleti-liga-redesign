@@ -46,9 +46,21 @@ exports.handler = (event, context, callback) => {
         }
 
         if (!results.Items.length) {
-            dynamo.putItem(getPutEventParams(eventDetails), callback);
+            dynamo.putItem(getPutEventParams(eventDetails), (error, result) => {
+                if (error) {
+                    callback(null, error);
+                }
+                
+                callback(null, result);
+            });
         } else {
-            dynamo.updateItem(getUpdateEventParams(eventDetails, results.Items[0].matches), callback);
+            dynamo.updateItem(getUpdateEventParams(eventDetails, results.Items[0].matches), (error, result) => {
+                if (error) {
+                    callback(null, error);
+                }
+                
+                callback(null, result);
+            });
         }
     };
 
