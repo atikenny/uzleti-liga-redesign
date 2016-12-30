@@ -5,12 +5,13 @@ const _             = require('lodash/fp');
 const os = process.platform  === 'win32' ? 'win' : process.platform;
 
 const fileToDebug = process.argv.splice(2)[0];
+const nodeNightlyArguments = ['--inspect', '--debug-brk', fileToDebug];
 
 if(os === 'win') {
-    const command = spawn('./node_modules/node-nightly/node-nightly/node', ['--inspect', '--debug-brk', fileToDebug]);
+    const command = spawn('./node_modules/node-nightly/node-nightly/node', nodeNightlyArguments);
     openBrowser(command);
 } else {
-    const command = spawn('./node_modules/node-nightly/node-nightly/bin/node', ['--inspect', '--debug-brk', fileToDebug]);
+    const command = spawn('./node_modules/node-nightly/node-nightly/bin/node', nodeNightlyArguments);
     openBrowser(command);
 }
 
