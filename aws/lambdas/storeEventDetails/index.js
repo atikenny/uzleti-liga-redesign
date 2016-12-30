@@ -38,12 +38,8 @@ const getUpdateEventParams = (eventDetails, existingMatches) => {
 const doesMatchExist = (existingMatches, match) => !existingMatches.some(existingMatch => existingMatch.id === match.id);
 
 exports.handler = (event, context, callback) => {
-    const eventDetails = {
-        id:         event.event.eventId,
-        league:     event.event.league,
-        year:       event.event.year,
-        matches:    event.event.matches
-    };
+    const eventDetails = event.event;
+
     const processQueryResults = (error, results) => {
         if (error) {
             callback(null, error);
