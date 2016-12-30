@@ -57,8 +57,10 @@
     "lodash": "^4.17.2",
     "merge-stream": "^1.0.1",
     "minimist": "^1.2.0",
+    "node-nightly": "^1.6.1",
     "pretty-hrtime": "^1.0.3",
     "react-addons-test-utils": "^15.4.1",
+    "selenium-webdriver": "^3.0.1",
     "sinon": "^1.17.6",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
