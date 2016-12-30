@@ -1,6 +1,8 @@
+[![Dependency Status][david-badge]][david-badge-url]
+[![devDependency Status][david-dev-badge]][david-dev-badge-url]
+
 # uzleti-liga-redesign
 Redesign for Üzleti Liga pages as a new web page
-
 
 # Screenshots
 ## Matches
@@ -23,3 +25,8 @@ This will start up a static file server that can be reach on this url: [https://
 
 ## Support
 Pull requests are welcome!
+
+[david-badge]: https://david-dm.org/atikenny/uzleti-liga-redesign.svg
+[david-badge-url]: https://david-dm.org/atikenny/uzleti-liga-redesign
+[david-dev-badge]: https://david-dm.org/atikenny/uzleti-liga-redesign/dev-status.svg
+[david-dev-badge-url]: https://david-dm.org/atikenny/uzleti-liga-redesign?type=dev

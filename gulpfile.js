@@ -1,3 +1,5 @@
+require('./gulp-settings/aws-lambda');
+
 const HELPERS       = require('./gulp-settings/helpers')(module);
 const gulp          = require('gulp');
 const sass          = require('gulp-sass');
