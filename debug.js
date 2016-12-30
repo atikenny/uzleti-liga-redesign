@@ -30,7 +30,11 @@ function openBrowser(command) {
 function getDevToolsUrl(command) {
     return new Promise((resolve, reject) => {
         command.stderr.on('data', data => {
-            const devToolsUrl = _.find(_.includes('chrome-devtools'), data.toString().split('\r\n')).trim();
+            const devToolsUrl = _.flow(
+                    _.find(_.includes('chrome-devtools')),
+                    _.trim
+                )(data.toString().split('\r\n'))
+
             // unsubscribe from the stream
             command.stderr.on('data', () => {});
 
