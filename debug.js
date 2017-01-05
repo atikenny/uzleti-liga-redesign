@@ -42,7 +42,7 @@ function getDevToolsUrl(command) {
                 )(data.toString().split('\r\n'))
 
             // unsubscribe from the stream
-            command.stderr.on('data', () => {});
+            command.stderr.on('data', _.noop);
 
             resolve(devToolsUrl);
         });
