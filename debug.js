@@ -7,7 +7,8 @@ const NODE_NIGHTLY_CONFIG = {
     path: {
         win: './node_modules/node-nightly/node-nightly/node',
         other: './node_modules/node-nightly/node-nightly/bin/node'
-    }
+    },
+    line_ending: process.platform  === 'win32' ? '\r\n' : '\n'
 };
 
 const fileToDebug = process.argv.splice(2)[0];
@@ -39,7 +40,7 @@ function getDevToolsUrl(command) {
             const devToolsUrl = _.flow(
                     _.find(_.includes('chrome-devtools')),
                     _.trim
-                )(data.toString().split('\r\n'))
+                )(data.toString().split(NODE_NIGHTLY_CONFIG.line_ending))
 
             // unsubscribe from the stream
             command.stderr.on('data', _.noop);
