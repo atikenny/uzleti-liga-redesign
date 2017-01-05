@@ -23,7 +23,7 @@ function openBrowser(command) {
     getDevToolsUrl(command).then(devToolsUrl => {
         driver.get(devToolsUrl);
         // This is required so the browser won't exit
-        driver.wait(new Promise((resolve, reject) => {}));
+        driver.wait(new Promise(_.noop));
     });
 }
 
