@@ -5,10 +5,7 @@ const _             = require('lodash/fp');
 
 const NODE_NIGHTLY_CONFIG = {
     os: process.platform  === 'win32' ? 'win' : process.platform,
-    path: {
-        win: './node_modules/node-nightly/node-nightly/node',
-        other: './node_modules/node-nightly/node-nightly/bin/node'
-    },
+    path: process.platform  === 'win32' ? './node_modules/node-nightly/node-nightly/node' : './node_modules/node-nightly/node-nightly/bin/node',
     line_ending: process.platform  === 'win32' ? '\r\n' : '\n'
 };
 
@@ -21,14 +18,9 @@ if (!fs.existsSync(fileToDebug)) {
 }
 
 const nodeNightlyArguments = ['--inspect', '--debug-brk', fileToDebug];
+const command = spawn(NODE_NIGHTLY_CONFIG.path, nodeNightlyArguments);
 
-if(NODE_NIGHTLY_CONFIG.os === 'win') {
-    const command = spawn(NODE_NIGHTLY_CONFIG.path.win, nodeNightlyArguments);
-    openBrowser(command);
-} else {
-    const command = spawn(NODE_NIGHTLY_CONFIG.path.other, nodeNightlyArguments);
-    openBrowser(command);
-}
+openBrowser(command);
 
 function openBrowser(command) {
     const driver = new webdriver.Builder()
