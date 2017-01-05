@@ -25,7 +25,7 @@ const addQueryParams = (queryParams, requestOptions) => {
 };
 
 const parseMatchesPage = (eventId, html) => {
-    $ = cheerio.load(html);
+    $ = cheerio.load(html, { decodeEntities: false });
 
     const getMatchId = ($resultCell) => {
         const matchDetailsLink = $resultCell.find('a').attr('href');
