@@ -2,16 +2,22 @@ const spawn         = require('child_process').spawn;
 const webdriver     = require('selenium-webdriver');
 const _             = require('lodash/fp');
 
-const os = process.platform  === 'win32' ? 'win' : process.platform;
+const NODE_NIGHTLY_CONFIG = {
+    os: process.platform  === 'win32' ? 'win' : process.platform,
+    path: {
+        win: './node_modules/node-nightly/node-nightly/node',
+        other: './node_modules/node-nightly/node-nightly/bin/node'
+    }
+};
 
 const fileToDebug = process.argv.splice(2)[0];
 const nodeNightlyArguments = ['--inspect', '--debug-brk', fileToDebug];
 
-if(os === 'win') {
-    const command = spawn('./node_modules/node-nightly/node-nightly/node', nodeNightlyArguments);
+if(NODE_NIGHTLY_CONFIG.os === 'win') {
+    const command = spawn(NODE_NIGHTLY_CONFIG.path.win, nodeNightlyArguments);
     openBrowser(command);
 } else {
-    const command = spawn('./node_modules/node-nightly/node-nightly/bin/node', nodeNightlyArguments);
+    const command = spawn(NODE_NIGHTLY_CONFIG.path.other, nodeNightlyArguments);
     openBrowser(command);
 }
 
