@@ -27,7 +27,7 @@ npm run deploy:lambda -- --src <lambdaFunctionFolder> --src <otherLambdaFolder>
 ## Debug scripts in chrome devtool
 Let's say we have a lambda function called: **getAllTheMoney**
 
-This will recide in the folder: `aws/lambdas/getAllTheMoney`
+This will reside in the folder: `aws/lambdas/getAllTheMoney`
 
 It has an **index.js** file containing the logic.
 
