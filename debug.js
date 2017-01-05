@@ -1,4 +1,5 @@
 const spawn         = require('child_process').spawn;
+const fs            = require('fs');
 const webdriver     = require('selenium-webdriver');
 const _             = require('lodash/fp');
 
@@ -12,6 +13,13 @@ const NODE_NIGHTLY_CONFIG = {
 };
 
 const fileToDebug = process.argv.splice(2)[0];
+
+if (!fs.existsSync(fileToDebug)) {
+    console.error('Error!');
+    console.error(`File: ${fileToDebug} does not exist`);
+    return;
+}
+
 const nodeNightlyArguments = ['--inspect', '--debug-brk', fileToDebug];
 
 if(NODE_NIGHTLY_CONFIG.os === 'win') {
