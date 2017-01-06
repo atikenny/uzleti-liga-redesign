@@ -1,7 +1,7 @@
 {
-  "name": "get-event-data",
+  "name": "store-event-details",
   "version": "1.0.0",
-  "description": "Get data for business league events.",
+  "description": "Store event details in dynamo DB.",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {},

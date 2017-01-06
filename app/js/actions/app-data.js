@@ -29,7 +29,7 @@ export const fetchData = () => {
     return (dispatch) => {
         dispatch(fetchingData());
 
-        return getEventData(1)
+        return getEventData(275)
             .then(mapEventData)
             .then(response => addMatchesState(response, dispatch))
             .then(response => dispatch(receivedData(response.data)));
