@@ -87,23 +87,29 @@ gulp.task('upload', () => {
     return Promise.all(lambdaFolders.map(lambdaUploader));
 });
 
+let awsLambda;
+
 const lambdaUploader = (lambdaFolder) => {
+    awsLambda = new AWS.Lambda();
+
     const packageJSON = require(path.join(LAMBDA_ABOSULTE_DIR, lambdaFolder, 'package.json'));
     const lambdaFunctionName = changeCase.camelCase(packageJSON.name);
     const lambdaFunctionDescription = packageJSON.description;
-    const awsLambda = new AWS.Lambda();
 
-    return getLambdaFunction(awsLambda, lambdaFunctionName)
-        .then(() => updateLambdaFunction(awsLambda, lambdaFolder, lambdaFunctionName))
-        .catch(() => createLambdaFunction(awsLambda, lambdaFolder, lambdaFunctionName, lambdaFunctionDescription));
+    return getLambdaFunction(lambdaFunctionName)
+        .then(() => updateLambdaFunction(lambdaFolder, lambdaFunctionName))
+        .catch(() => createLambdaFunction(lambdaFolder, lambdaFunctionName, lambdaFunctionDescription));
 };
 
-const getLambdaFunction = (awsLambda, lambdaFunctionName) => {
+const getLambdaFunction = (lambdaFunctionName) => {
     gutil.log(`Checking if lambda function: ${lambdaFunctionName} exists`);
 
     return new Promise((resolve, reject) => {
-        awsLambda.getFunction({ FunctionName: lambdaFunctionName }, (err) => {
-            if (err) {
+        awsAsync('getFunction', { FunctionName: lambdaFunctionName })
+            .then(() => {
+                resolve('Success');
+            })
+            .catch((err) => {
                 if (err.statusCode === 404) {
                     gutil.log(`Unable to find lambda function: ${lambdaFunctionName}, creating it now...`);
                 } else {
@@ -111,64 +117,71 @@ const getLambdaFunction = (awsLambda, lambdaFunctionName) => {
                 }
 
                 reject(err);
-            }
-
-            resolve('Success');
-        });
+            });
     });
 };
 
-const updateLambdaFunction = (awsLambda, lambdaFolder, lambdaFunctionName) => {
+const updateLambdaFunction = (lambdaFolder, lambdaFunctionName) => {
     gutil.log(`Updating lambda function: ${lambdaFunctionName}...`);
 
     return new Promise((resolve, reject) => {
         readLambdaBuild(lambdaFolder, lambdaFunctionName)
-            .then((fileData) => {
-                awsLambda.updateFunctionCode({
-                    FunctionName: lambdaFunctionName,
-                    ZipFile: fileData
-                }, (err) => {
-                    if (err) {
-                        gutil.log(err);
-                        gutil.log('Package upload failed. Check your iam:PassRole permission');
+            .then((fileData) => awsAsync('updateFunctionCode', {
+                FunctionName: lambdaFunctionName,
+                ZipFile: fileData
+            }))
+            .catch((err) => {
+                if (err) {
+                    gutil.log(err);
+                    gutil.log('Package upload failed. Check your iam:PassRole permission');
 
-                        reject(err);
-                    }
+                    reject(err);
+                }
+            })
+            .then(() => {
+                gutil.log(`Successfully updated: ${chalk.green(lambdaFunctionName)}`);
 
-                    gutil.log(`Successfully updated: ${chalk.green(lambdaFunctionName)}`);
-
-                    resolve('success');
-                });
+                resolve('success');
             });
     });
 };
 
-const createLambdaFunction = (awsLambda, lambdaFolder, lambdaFunctionName, lambdaFunctionDescription) => {
+const createLambdaFunction = (lambdaFolder, lambdaFunctionName, lambdaFunctionDescription) => {
     gutil.log(`Creating lambda function: ${lambdaFunctionName}...`);
 
     return new Promise((resolve, reject) => {
         readLambdaBuild(lambdaFolder, lambdaFunctionName)
-            .then((fileData) => {
-                awsLambda.createFunction({
-                    Code: { ZipFile: fileData },
-                    FunctionName: lambdaFunctionName,
-                    Handler: 'index.handler',
-                    Role: 'arn:aws:iam::136323943602:role/service-role/developer',
-                    Runtime: 'nodejs4.3',
-                    Description: lambdaFunctionDescription
-                }, (err) => {
-                    if (err) {
-                        gutil.log(err);
-                        gutil.log('Package upload failed. Check your iam:PassRole permission');
+            .then((fileData) => awsAsync('createFunction', {
+                Code: { ZipFile: fileData },
+                FunctionName: lambdaFunctionName,
+                Handler: 'index.handler',
+                Role: 'arn:aws:iam::136323943602:role/service-role/developer',
+                Runtime: 'nodejs4.3',
+                Description: lambdaFunctionDescription
+            }))
+            .catch((err) => {
+                gutil.log(err);
+                gutil.log('Package upload failed. Check your iam:PassRole permission');
 
-                        reject(err);
-                    }
+                reject(err);
+            })
+            .then(() => {
+                gutil.log(`Successfully created: ${chalk.green(lambdaFunctionName)}`);
 
-                    gutil.log(`Successfully created: ${chalk.green(lambdaFunctionName)}`);
-
-                    resolve('success');
-                });
+                resolve('success');
             });
+    });
+};
+
+const awsAsync = (method, params) => {
+    return new Promise((resolve, reject) => {
+        awsLambda[method](params, (err, result) => {
+            if (err) {
+                reject(err);
+            }
+
+            resolve(result);
+        });
     });
 };
 
