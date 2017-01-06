@@ -6,7 +6,7 @@ const _             = require('lodash/fp');
 const NODE_NIGHTLY_CONFIG = {
     os: process.platform  === 'win32' ? 'win' : process.platform,
     path: process.platform  === 'win32' ? './node_modules/node-nightly/node-nightly/node' : './node_modules/node-nightly/node-nightly/bin/node',
-    line_ending: process.platform  === 'win32' ? '\r\n' : '\n'
+    line_ending: require('os').EOL
 };
 
 const fileToDebug = process.argv.splice(2)[0];
