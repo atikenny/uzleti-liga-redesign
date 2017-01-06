@@ -35,18 +35,21 @@ function openBrowser(command) {
 }
 
 function getDevToolsUrl(command) {
+    const getUrlFromStdErr = (resolve, data) => {
+        const devToolsUrl = _.flow(
+                _.find(_.includes('chrome-devtools')),
+                _.trim
+            )(data.toString().split(NODE_NIGHTLY_CONFIG.line_ending))
+
+        // unsubscribe from the stream
+        command.stderr.removeListener('data', getUrlFromStdErr);
+
+        resolve(devToolsUrl);
+    };
+
+
     return new Promise((resolve, reject) => {
-        command.stderr.on('data', data => {
-            const devToolsUrl = _.flow(
-                    _.find(_.includes('chrome-devtools')),
-                    _.trim
-                )(data.toString().split(NODE_NIGHTLY_CONFIG.line_ending))
-
-            // unsubscribe from the stream
-            command.stderr.on('data', _.noop);
-
-            resolve(devToolsUrl);
-        });
+        command.stderr.on('data', _.curry(getUrlFromStdErr)(resolve));
     });
 }
 
