@@ -24,5 +24,18 @@ npm run deploy:lambda -- --src <lambdaFunctionFolder>
 npm run deploy:lambda -- --src <lambdaFunctionFolder> --src <otherLambdaFolder>
 ```
 
+## Debug scripts in chrome devtool
+Let's say we have a lambda function called: **getAllTheMoney**
+
+This will reside in the folder: `aws/lambdas/getAllTheMoney`
+
+It has an **index.js** file containing the logic.
+
+```
+npm run debug aws/lambdas/getAllTheMoney/index.js
+```
+
+This will start the node-nightly debug tool and opens a chrome with the devtool url.
+
 ## Future improvements
 - [x] Add gulp task for zip and deploy
