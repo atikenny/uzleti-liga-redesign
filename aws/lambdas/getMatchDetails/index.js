@@ -33,9 +33,10 @@ const addQueryParams = (queryParams, requestOptions) => {
     return requestOptions;
 };
 
-const parseMatchPage = (html) => {
+const parseMatchPage = (html, matchId, eventId) => {
     $ = cheerio.load(html);
-    const table = $('.match_details_table').filter((index, element) => {
+
+    const matchChronology = $('.match_details_table').filter((index, element) => {
         return $(element).find('h6').text() === 'Meccs kronológia';
     });
 
@@ -71,18 +72,17 @@ exports.handler = (event, context, callback) => {
     const eventId = event.eventId;
     const matchId = event.matchId;
 
-    // let body = '';
-    console.log(parseMatchPage(html));
+    let body = '';
 
-    // const req = http.get(addQueryParams({ eid: eventId, mid: matchId }, requestOptions), (res) => {
-    //     res.setEncoding('utf8');
-    //     res.on('data', (chunk) => body += chunk);
-    //     res.on('end', () => {
-    //         callback(null, body);
-    //     });
-    //     res.on('error', callback);
-    // });
+    const req = http.get(addQueryParams({ eid: eventId, mid: matchId }, Object.assign({}, requestOptions)), (res) => {
+        res.setEncoding('utf8');
+        res.on('data', (chunk) => body += chunk);
+        res.on('end', () => {
+            callback(null, parseMatchPage(body, matchId, eventId));
+        });
+    });
 
-    // req.on('error', callback);
-    // req.end();
+    req.on('error', callback);
+    req.end();
 };
+
