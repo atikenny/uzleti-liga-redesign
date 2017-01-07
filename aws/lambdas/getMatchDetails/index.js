@@ -52,6 +52,14 @@ const parseMatchPage = (html, matchId, eventId) => {
         return $(this).find('td').eq(0).text() === 'Helyszín';
     }).find('td').eq(1).text();
 
+    const round = getRound(matchTable.find('tr').filter(function () {
+        return $(this).find('td').eq(0).text() === 'Szakasz';
+    }));
+
+    const group = matchTable.find('tr').filter(function () {
+        return $(this).find('td').eq(0).text() === 'Csoport';
+    }).find('td').eq(1).text().split('-')[0];
+
 
 const asd = (event, context, callback) => {
     // const eventId = event.eventId;
