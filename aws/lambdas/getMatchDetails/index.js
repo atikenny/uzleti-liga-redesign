@@ -76,32 +76,94 @@ const parseMatchPage = (html, matchId, eventId) => {
 
     getPlayers(homeTeam, awayTeam);
 
+    getStats(matchChronology, homeTeam, awayTeam);
+
+    return {
+        homeTeam,
+        awayTeam,
+        id: matchId,
+        date,
+        location: {
+            name: location
+        },
+        group,
+        round,
+        matchDetailsLink
+    };
+
     function getMatchDetailsLink(eventId, matchId) {
         return `http://www.uzletiliga.hu/eredmenyek/match_details3.php?eid=${eventId}&mid=${matchId}`;
     }
 
-const asd = (event, context, callback) => {
-    // const eventId = event.eventId;
-    // const matchId = event.matchId;
+    function getRound(element) {
+        switch(element.find('td').eq(1).text()) {
+            case 'FOTABLA':
+                return 'season';
+            case 'OSZTALYOZO':
+                return 'preliminary';
+        }
+    }
 
-    // let body = '';
-    parseMatchPage(html);
-    // console.log(parseMatchPage(html));
+    function getStats(matchChronology, homeTeam, awayTeam) {
+        const homeTeamTables = $(matchChronology).find('table').filter((index, element) => index % 2 === 0 && index !== 8);
+        const homeTeamFouls = $(matchChronology).find('table').eq(8);
+        const awayTeamTables = $(matchChronology).find('table').filter((index, element) => index % 2 === 1 && index !== 9);
+        const awayTeamFouls = $(matchChronology).find('table').eq(9);
 
-    // const req = http.get(addQueryParams({ eid: eventId, mid: matchId }, requestOptions), (res) => {
-    //     res.setEncoding('utf8');
-    //     res.on('data', (chunk) => body += chunk);
-    //     res.on('end', () => {
-    //         callback(null, body);
-    //     });
-    //     res.on('error', callback);
-    // });
+        $(homeTeamTables).each(function (index) {
+            $(this).find('tr').each(function () {
+                const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
+                _.find(homeTeam.players, { id: playerId }).stats.periods.push({
+                    scores: getScores(this)
+                });
+            });
+            homeTeam.players.forEach(player => {
+                if (player.stats.periods.length < index + 1) {
+                    player.stats.periods.push({
+                        scores: []
+                    });
+                }
+            });
+        });
 
-    // req.on('error', callback);
-    // req.end();
-};
+        $(homeTeamFouls).find('tr').each(function () {
+            const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
+            const fouls = Number($(this).find('td').last().text().split('hibapont')[0].trim());
+            _.find(homeTeam.players, { id: playerId }).stats.fouls = fouls;
+        });
 
-asd();
+        $(awayTeamTables).each(function (index) {
+            $(this).find('tr').each(function () {
+                const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
+                _.find(awayTeam.players, { id: playerId }).stats.periods.push({
+                    scores: getScores(this)
+                });
+            });
+            awayTeam.players.forEach(player => {
+                if (player.stats.periods.length < index + 1) {
+                    player.stats.periods.push({
+                        scores: []
+                    });
+                }
+            });
+        });
+
+        $(awayTeamFouls).find('tr').each(function () {
+            const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
+            const fouls = Number($(this).find('td').last().text().split('hibapont')[0].trim());
+            _.find(awayTeam.players, { id: playerId }).stats.fouls = fouls;
+        });
+    }
+
+    function getScores(element) {
+        return $(element)
+                .find('td')
+                .last()
+                .text()
+                .trim()
+                .split(',')
+                .map(Number);
+    }
 
     function getPlayers(homeTeam, awayTeam) {
         const matchPage = $('.match_details_table').eq(0).find('tr')
