@@ -44,8 +44,10 @@ const parseMatchPage = (html, matchId, eventId) => {
         return $(element).find('h6').text() === 'Meccslap';
     });
 
-    return [];
-}
+    const date = matchTable.find('tr').filter(function () {
+        return $(this).find('td').eq(0).text() === 'Dátum';
+    }).find('td').eq(1).text().split(' ').join(':');
+
 
 const asd = (event, context, callback) => {
     // const eventId = event.eventId;
