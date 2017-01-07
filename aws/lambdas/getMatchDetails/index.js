@@ -48,6 +48,10 @@ const parseMatchPage = (html, matchId, eventId) => {
         return $(this).find('td').eq(0).text() === 'Dátum';
     }).find('td').eq(1).text().split(' ').join(':');
 
+    const location = matchTable.find('tr').filter(function () {
+        return $(this).find('td').eq(0).text() === 'Helyszín';
+    }).find('td').eq(1).text();
+
 
 const asd = (event, context, callback) => {
     // const eventId = event.eventId;
