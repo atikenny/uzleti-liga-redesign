@@ -1,7 +1,7 @@
 {
   "name": "get-match-details",
   "version": "1.0.0",
-  "description": "",
+  "description": "Get the details of a given match",
   "main": "index.js",
   "dependencies": {
     "cheerio": "^0.22.0",
