@@ -11,6 +11,14 @@ const requestOptions = {
     path: '/eredmenyek/match_details3.php'
 };
 
+const getQueryParams = (element) => {
+    if (!$(element).prop('href')) {
+        throw new Error('No href attribute');
+    }
+
+    return $(element).prop('href').split('?')[1].split('&');
+};
+
 const addQueryParams = (queryParams, requestOptions) => {
     requestOptions.path += Object.keys(queryParams).reduce((queryParamsString, paramKey, paramIndex) => {
         if (paramIndex === 0) {
