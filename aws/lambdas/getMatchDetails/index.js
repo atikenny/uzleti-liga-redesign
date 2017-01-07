@@ -2,6 +2,7 @@
 
 const http      = require('http');
 const cheerio   = require('cheerio');
+const _         = require('lodash');
 
 let $;
 
