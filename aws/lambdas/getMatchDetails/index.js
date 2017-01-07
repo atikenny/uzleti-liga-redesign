@@ -63,6 +63,19 @@ const parseMatchPage = (html, matchId, eventId) => {
     const { host, path } = addQueryParams({ eid: eventId, mid: matchId }, Object.assign({}, requestOptions));
 
     const matchDetailsLink = host + path;
+
+    let homeTeam = {
+        id: '',
+        players: []
+    };
+
+    let awayTeam = {
+        id: '',
+        players: []
+    };
+
+    getPlayers(homeTeam, awayTeam);
+
     function getMatchDetailsLink(eventId, matchId) {
         return `http://www.uzletiliga.hu/eredmenyek/match_details3.php?eid=${eventId}&mid=${matchId}`;
     }
@@ -89,6 +102,53 @@ const asd = (event, context, callback) => {
 };
 
 asd();
+
+    function getPlayers(homeTeam, awayTeam) {
+        const matchPage = $('.match_details_table').eq(0).find('tr')
+            .filter(function () {
+                return $(this).find('a').length > 0;
+            }).next();
+
+        homeTeam.id = getTeamId(matchPage.prev().find('a').eq(0));
+        awayTeam.id = getTeamId(matchPage.prev().find('a').eq(1));
+
+        let playerRow = matchPage.eq(0);
+
+        while (playerRow.length > 0) {
+            if (playerRow.find('a').eq(0).text() !== '') {
+                homeTeam.players.push({
+                    name: getName(playerRow.find('a').eq(0)),
+                    id: getQueryParams(playerRow.find('a').eq(0))[0].split('=')[1],
+                    stats: {
+                        fouls: 0,
+                        periods: []
+                    }
+                });
+            }
+
+            if (playerRow.find('a').eq(1).text() !== '') {
+                awayTeam.players.push({
+                    name: getName(playerRow.find('a').eq(1)),
+                    id: getQueryParams(playerRow.find('a').eq(1))[0].split('=')[1],
+                    stats: {
+                        fouls: 0,
+                        periods: []
+                    }
+                });
+            }
+
+            playerRow = playerRow.next();
+        }
+
+        function getTeamId(element) {
+            return getQueryParams(element)[0].split('=')[1];
+        }
+
+        function getName(element) {
+            return element.text().split('(')[0].trim();
+        }
+    }
+}
 
 exports.handler = (event, context, callback) => {
     const eventId = event.eventId;
