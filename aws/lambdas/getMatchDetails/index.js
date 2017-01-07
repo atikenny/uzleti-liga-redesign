@@ -40,7 +40,9 @@ const parseMatchPage = (html, matchId, eventId) => {
         return $(element).find('h6').text() === 'Meccs kronológia';
     });
 
-    console.log(table.find('tr'));
+    const matchTable = $('.match_details_table').filter((index, element) => {
+        return $(element).find('h6').text() === 'Meccslap';
+    });
 
     return [];
 }
