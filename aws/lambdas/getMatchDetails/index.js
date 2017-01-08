@@ -33,6 +33,122 @@ const addQueryParams = (queryParams, requestOptions) => {
     return requestOptions;
 };
 
+function getRound(element) {
+    switch(element.find('td').eq(1).text()) {
+        case 'FOTABLA':
+            return 'season';
+        case 'OSZTALYOZO':
+            return 'preliminary';
+    }
+}
+
+function getStats(matchChronology, homeTeam, awayTeam) {
+    const homeTeamTables = $(matchChronology).find('table').filter((index, element) => index % 2 === 0 && index !== 8);
+    const homeTeamFouls = $(matchChronology).find('table').eq(8);
+    const awayTeamTables = $(matchChronology).find('table').filter((index, element) => index % 2 === 1 && index !== 9);
+    const awayTeamFouls = $(matchChronology).find('table').eq(9);
+
+    $(homeTeamTables).each(function (index) {
+        $(this).find('tr').each(function () {
+            const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
+            _.find(homeTeam.players, { id: playerId }).stats.periods.push({
+                scores: getScores(this)
+            });
+        });
+        homeTeam.players.forEach(player => {
+            if (player.stats.periods.length < index + 1) {
+                player.stats.periods.push({
+                    scores: []
+                });
+            }
+        });
+    });
+
+    $(homeTeamFouls).find('tr').each(function () {
+        const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
+        const fouls = Number($(this).find('td').last().text().split('hibapont')[0].trim());
+        _.find(homeTeam.players, { id: playerId }).stats.fouls = fouls;
+    });
+
+    $(awayTeamTables).each(function (index) {
+        $(this).find('tr').each(function () {
+            const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
+            _.find(awayTeam.players, { id: playerId }).stats.periods.push({
+                scores: getScores(this)
+            });
+        });
+        awayTeam.players.forEach(player => {
+            if (player.stats.periods.length < index + 1) {
+                player.stats.periods.push({
+                    scores: []
+                });
+            }
+        });
+    });
+
+    $(awayTeamFouls).find('tr').each(function () {
+        const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
+        const fouls = Number($(this).find('td').last().text().split('hibapont')[0].trim());
+        _.find(awayTeam.players, { id: playerId }).stats.fouls = fouls;
+    });
+}
+
+function getScores(element) {
+    return $(element)
+            .find('td')
+            .last()
+            .text()
+            .trim()
+            .split(',')
+            .map(Number);
+}
+
+function getPlayers(homeTeam, awayTeam) {
+    const matchPage = $('.match_details_table').eq(0).find('tr')
+        .filter(function () {
+            return $(this).find('a').length > 0;
+        }).next();
+
+    homeTeam.id = getTeamId(matchPage.prev().find('a').eq(0));
+    awayTeam.id = getTeamId(matchPage.prev().find('a').eq(1));
+
+    let playerRow = matchPage.eq(0);
+
+    while (playerRow.length > 0) {
+        if (playerRow.find('a').eq(0).text() !== '') {
+            homeTeam.players.push({
+                name: getName(playerRow.find('a').eq(0)),
+                id: getQueryParams(playerRow.find('a').eq(0))[0].split('=')[1],
+                stats: {
+                    fouls: 0,
+                    periods: []
+                }
+            });
+        }
+
+        if (playerRow.find('a').eq(1).text() !== '') {
+            awayTeam.players.push({
+                name: getName(playerRow.find('a').eq(1)),
+                id: getQueryParams(playerRow.find('a').eq(1))[0].split('=')[1],
+                stats: {
+                    fouls: 0,
+                    periods: []
+                }
+            });
+        }
+
+        playerRow = playerRow.next();
+    }
+
+    function getTeamId(element) {
+        return getQueryParams(element)[0].split('=')[1];
+    }
+
+    function getName(element) {
+        return element.text().split('(')[0].trim();
+    }
+}
+
 const parseMatchPage = (html, matchId, eventId) => {
     $ = cheerio.load(html);
 
@@ -90,126 +206,6 @@ const parseMatchPage = (html, matchId, eventId) => {
         round,
         matchDetailsLink
     };
-
-    function getMatchDetailsLink(eventId, matchId) {
-        return `http://www.uzletiliga.hu/eredmenyek/match_details3.php?eid=${eventId}&mid=${matchId}`;
-    }
-
-    function getRound(element) {
-        switch(element.find('td').eq(1).text()) {
-            case 'FOTABLA':
-                return 'season';
-            case 'OSZTALYOZO':
-                return 'preliminary';
-        }
-    }
-
-    function getStats(matchChronology, homeTeam, awayTeam) {
-        const homeTeamTables = $(matchChronology).find('table').filter((index, element) => index % 2 === 0 && index !== 8);
-        const homeTeamFouls = $(matchChronology).find('table').eq(8);
-        const awayTeamTables = $(matchChronology).find('table').filter((index, element) => index % 2 === 1 && index !== 9);
-        const awayTeamFouls = $(matchChronology).find('table').eq(9);
-
-        $(homeTeamTables).each(function (index) {
-            $(this).find('tr').each(function () {
-                const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
-                _.find(homeTeam.players, { id: playerId }).stats.periods.push({
-                    scores: getScores(this)
-                });
-            });
-            homeTeam.players.forEach(player => {
-                if (player.stats.periods.length < index + 1) {
-                    player.stats.periods.push({
-                        scores: []
-                    });
-                }
-            });
-        });
-
-        $(homeTeamFouls).find('tr').each(function () {
-            const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
-            const fouls = Number($(this).find('td').last().text().split('hibapont')[0].trim());
-            _.find(homeTeam.players, { id: playerId }).stats.fouls = fouls;
-        });
-
-        $(awayTeamTables).each(function (index) {
-            $(this).find('tr').each(function () {
-                const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
-                _.find(awayTeam.players, { id: playerId }).stats.periods.push({
-                    scores: getScores(this)
-                });
-            });
-            awayTeam.players.forEach(player => {
-                if (player.stats.periods.length < index + 1) {
-                    player.stats.periods.push({
-                        scores: []
-                    });
-                }
-            });
-        });
-
-        $(awayTeamFouls).find('tr').each(function () {
-            const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
-            const fouls = Number($(this).find('td').last().text().split('hibapont')[0].trim());
-            _.find(awayTeam.players, { id: playerId }).stats.fouls = fouls;
-        });
-    }
-
-    function getScores(element) {
-        return $(element)
-                .find('td')
-                .last()
-                .text()
-                .trim()
-                .split(',')
-                .map(Number);
-    }
-
-    function getPlayers(homeTeam, awayTeam) {
-        const matchPage = $('.match_details_table').eq(0).find('tr')
-            .filter(function () {
-                return $(this).find('a').length > 0;
-            }).next();
-
-        homeTeam.id = getTeamId(matchPage.prev().find('a').eq(0));
-        awayTeam.id = getTeamId(matchPage.prev().find('a').eq(1));
-
-        let playerRow = matchPage.eq(0);
-
-        while (playerRow.length > 0) {
-            if (playerRow.find('a').eq(0).text() !== '') {
-                homeTeam.players.push({
-                    name: getName(playerRow.find('a').eq(0)),
-                    id: getQueryParams(playerRow.find('a').eq(0))[0].split('=')[1],
-                    stats: {
-                        fouls: 0,
-                        periods: []
-                    }
-                });
-            }
-
-            if (playerRow.find('a').eq(1).text() !== '') {
-                awayTeam.players.push({
-                    name: getName(playerRow.find('a').eq(1)),
-                    id: getQueryParams(playerRow.find('a').eq(1))[0].split('=')[1],
-                    stats: {
-                        fouls: 0,
-                        periods: []
-                    }
-                });
-            }
-
-            playerRow = playerRow.next();
-        }
-
-        function getTeamId(element) {
-            return getQueryParams(element)[0].split('=')[1];
-        }
-
-        function getName(element) {
-            return element.text().split('(')[0].trim();
-        }
-    }
 }
 
 exports.handler = (event, context, callback) => {
