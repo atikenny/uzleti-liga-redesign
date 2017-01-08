@@ -4,8 +4,7 @@
   "description": "Get the details of a given match",
   "main": "index.js",
   "dependencies": {
-    "cheerio": "^0.22.0",
-    "lodash": "^4.17.4"
+    "cheerio": "^0.22.0"
   },
   "devDependencies": {},
   "scripts": {

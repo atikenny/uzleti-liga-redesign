@@ -2,7 +2,6 @@
 
 const http      = require('http');
 const cheerio   = require('cheerio');
-const _         = require('lodash');
 
 let $;
 
@@ -51,7 +50,7 @@ function getStats(matchChronology, homeTeam, awayTeam) {
     $(homeTeamTables).each(function (index) {
         $(this).find('tr').each(function () {
             const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
-            _.find(homeTeam.players, { id: playerId }).stats.periods.push({
+            homeTeam.players.find(player => player.id === playerId).stats.periods.push({
                 scores: getScores(this)
             });
         });
@@ -67,13 +66,13 @@ function getStats(matchChronology, homeTeam, awayTeam) {
     $(homeTeamFouls).find('tr').each(function () {
         const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
         const fouls = Number($(this).find('td').last().text().split('hibapont')[0].trim());
-        _.find(homeTeam.players, { id: playerId }).stats.fouls = fouls;
+        homeTeam.players.find(player => player.id === playerId).stats.fouls = fouls;
     });
 
     $(awayTeamTables).each(function (index) {
         $(this).find('tr').each(function () {
             const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
-            _.find(awayTeam.players, { id: playerId }).stats.periods.push({
+            awayTeam.players.find(player => player.id === playerId).stats.periods.push({
                 scores: getScores(this)
             });
         });
@@ -89,7 +88,7 @@ function getStats(matchChronology, homeTeam, awayTeam) {
     $(awayTeamFouls).find('tr').each(function () {
         const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
         const fouls = Number($(this).find('td').last().text().split('hibapont')[0].trim());
-        _.find(awayTeam.players, { id: playerId }).stats.fouls = fouls;
+        awayTeam.players.find(player => player.id === playerId).stats.fouls = fouls;
     });
 }
 
