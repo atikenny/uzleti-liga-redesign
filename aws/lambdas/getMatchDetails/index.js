@@ -88,7 +88,9 @@ function getStats(matchChronology, homeTeam, awayTeam) {
     $(awayTeamFouls).find('tr').each(function () {
         const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
         const fouls = Number($(this).find('td').last().text().split('hibapont')[0].trim());
-        awayTeam.players.find(player => player.id === playerId).stats.fouls = fouls;
+        const player = awayTeam.players.find(player => player.id === playerId);
+        
+        player.stats.fouls = fouls;
     });
 }
 
@@ -114,21 +116,25 @@ function getPlayers(homeTeam, awayTeam) {
     let playerRow = matchPage.eq(0);
 
     while (playerRow.length > 0) {
-        if (playerRow.find('a').eq(0).text() !== '') {
+        const homePlayerCell = playerRow.find('td').eq(0);
+
+        if (homePlayerCell.find('a').text() !== '') {
             homeTeam.players.push({
-                name: getName(playerRow.find('a').eq(0)),
-                id: getQueryParams(playerRow.find('a').eq(0))[0].split('=')[1],
+                name: getName(homePlayerCell.find('a')),
+                id: getQueryParams(homePlayerCell.find('a'))[0].split('=')[1],
                 stats: {
                     fouls: 0,
                     periods: []
                 }
             });
         }
+        
+        const awayPlayerCell = playerRow.find('td').eq(1);
 
-        if (playerRow.find('a').eq(1).text() !== '') {
+        if (awayPlayerCell.find('a').text() !== '') {
             awayTeam.players.push({
-                name: getName(playerRow.find('a').eq(1)),
-                id: getQueryParams(playerRow.find('a').eq(1))[0].split('=')[1],
+                name: getName(awayPlayerCell.find('a')),
+                id: getQueryParams(awayPlayerCell.find('a'))[0].split('=')[1],
                 stats: {
                     fouls: 0,
                     periods: []
@@ -148,7 +154,7 @@ function getPlayers(homeTeam, awayTeam) {
     }
 }
 
-const parseMatchPage = (html, matchId, eventId) => {
+const parseMatchPage = (html, matchId, eventId, matchDetailsLink) => {
     $ = cheerio.load(html);
 
     const matchChronology = $('.match_details_table').filter((index, element) => {
@@ -174,10 +180,6 @@ const parseMatchPage = (html, matchId, eventId) => {
     const group = matchTable.find('tr').filter(function () {
         return $(this).find('td').eq(0).text() === 'Csoport';
     }).find('td').eq(1).text().split('-')[0];
-
-    const { host, path } = addQueryParams({ eid: eventId, mid: matchId }, Object.assign({}, requestOptions));
-
-    const matchDetailsLink = host + path;
 
     let homeTeam = {
         id: '',
@@ -210,14 +212,16 @@ const parseMatchPage = (html, matchId, eventId) => {
 exports.handler = (event, context, callback) => {
     const eventId = event.eventId;
     const matchId = event.matchId;
+    const matchDetailsRequest = addQueryParams({ eid: eventId, mid: matchId }, Object.assign({}, requestOptions));
+    const matchDetailsLink = matchDetailsRequest.host + matchDetailsRequest.path;
 
     let body = '';
 
-    const req = http.get(addQueryParams({ eid: eventId, mid: matchId }, Object.assign({}, requestOptions)), (res) => {
+    const req = http.get(matchDetailsRequest, (res) => {
         res.setEncoding('utf8');
         res.on('data', (chunk) => body += chunk);
         res.on('end', () => {
-            callback(null, parseMatchPage(body, matchId, eventId));
+            callback(null, parseMatchPage(body, matchId, eventId, matchDetailsLink));
         });
     });
 
