@@ -25,7 +25,7 @@ const addQueryParams = (queryParams, requestOptions) => {
 };
 
 const parseMatchesPage = (eventId, html) => {
-    $ = cheerio.load(html);
+    $ = cheerio.load(html, { decodeEntities: false });
 
     const getMatchId = ($resultCell) => {
         const matchDetailsLink = $resultCell.find('a').attr('href');
@@ -49,7 +49,7 @@ const parseMatchesPage = (eventId, html) => {
     const year = $('.idenyaktiv').html();
 
     return {
-        eventId,
+        id: eventId,
         league,
         year,
         matches
@@ -57,18 +57,21 @@ const parseMatchesPage = (eventId, html) => {
 };
 
 exports.handler = (event, context, callback) => {
-    const eventId = event.queryStringParameters.eventId;
+    const eventId = event.eventId;
 
     let body = '';
 
-    const req = http.get(addQueryParams({ eid: eventId }, requestOptions), (res) => {
-        res.setEncoding('utf8');
-        res.on('data', (chunk) => body += chunk);
-        res.on('end', () => {
+    const request = http.get(addQueryParams({
+        eid: eventId,
+        ie: Date.now() /* cache busting */
+    }, requestOptions), (response) => {
+        response.setEncoding('utf8');
+        response.on('data', (chunk) => body += chunk);
+        response.on('end', () => {
             callback(null, parseMatchesPage(eventId, body));
         });
     });
 
-    req.on('error', callback);
-    req.end();
+    request.on('error', callback);
+    request.end();
 };

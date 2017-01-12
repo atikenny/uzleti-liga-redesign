@@ -1,7 +1,7 @@
 {
   "name": "read-event-details",
   "version": "1.0.0",
-  "description": "",
+  "description": "Read the main details of a specific event.",
   "main": "index.js",
   "dependencies": {
     "cheerio": "^0.22.0"

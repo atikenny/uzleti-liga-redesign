@@ -4,44 +4,8 @@
 		"selected_items":
 		[
 			[
-				"toplay",
-				"toPlayerThreePointerCount"
-			],
-			[
-				"toPlayee",
-				"toPlayerFreeThrowCount"
-			],
-			[
-				"periodS",
-				"periodStats"
-			],
-			[
-				"extend",
-				"extendPlayerPeriodStats"
-			],
-			[
-				"getTem",
-				"getTeamStats"
-			],
-			[
-				"player",
-				"playerStat"
-			],
-			[
-				"Prop",
-				"PropTypes.object"
-			],
-			[
-				"Matstat",
-				"MatchStats"
-			],
-			[
-				"match",
-				"matches"
-			],
-			[
-				"Propt",
-				"PropTypes.func"
+				"con",
+				"console.log"
 			],
 			[
 				"Mastabutton",
@@ -262,6 +226,10 @@
 			[
 				"margin",
 				"margin: "
+			],
+			[
+				"match",
+				"matchesHTML"
 			],
 			[
 				"matche",
@@ -514,6 +482,38 @@
 			[
 				"remve",
 				"removeImage"
+			],
+			[
+				"image",
+				"imageId"
+			],
+			[
+				"classN",
+				"className"
+			],
+			[
+				"im",
+				"imageFile"
+			],
+			[
+				"file",
+				"fileObj"
+			],
+			[
+				"item",
+				"itemType"
+			],
+			[
+				"prop",
+				"props"
+			],
+			[
+				"funcion",
+				"function"
+			],
+			[
+				"shared",
+				"sharedWithItem"
 			]
 		]
 	},
@@ -527,13 +527,13 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 191.0,
-		"last_filter": "mardo",
+		"height": 342.0,
+		"last_filter": "inpa",
 		"selected_items":
 		[
 			[
-				"mardo",
-				"Set Syntax: Markdown"
+				"inpa",
+				"Package Control: Install Package"
 			],
 			[
 				"sybabe",
@@ -557,10 +557,6 @@
 			],
 			[
 				"in",
-				"Package Control: Install Package"
-			],
-			[
-				"inpa",
 				"Package Control: Install Package"
 			],
 			[
@@ -716,7 +712,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 414.0
+		"width": 398.0
 	},
 	"console":
 	{
@@ -738,53 +734,43 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Source/uzleti-liga-redesign",
-		"/C/Source/uzleti-liga-redesign/app",
-		"/C/Source/uzleti-liga-redesign/app/js/actions",
-		"/C/Source/uzleti-liga-redesign/aws",
-		"/C/Source/uzleti-liga-redesign/aws/lambdas",
-		"/C/Source/uzleti-liga-redesign/aws/lambdas/getEventData",
-		"/C/Source/uzleti-liga-redesign/aws/lambdas/readEventPage"
+		"/C/Users/Attila/Code/uzleti-liga-redesign"
 	],
 	"file_history":
 	[
-		"/C/Source/uzleti-liga-redesign/aws/lambdas/readEventPage/index.js",
-		"/C/Source/uzleti-liga-redesign/app/js/aws-client.js",
-		"/C/Source/uzleti-liga-redesign/app/js/actions/app-data.js",
-		"/C/Source/uzleti-liga-redesign/gulpfile.js",
-		"/C/Source/uzleti-liga-redesign/aws/lambdas/getEventData/index.js",
-		"/C/Source/uzleti-liga-redesign/app/js/components/dates.jsx",
-		"/C/Source/uzleti-liga-redesign/app/js/components/matches/match-scores.test.js",
-		"/C/Source/uzleti-liga-redesign/docs/data-model.json",
-		"/C/Source/uzleti-liga-redesign/business-league.sublime-project",
-		"/C/Source/uzleti-liga-redesign/aws/lambdas/readEventPage/node_modules/cheerio/package.json",
-		"/C/Source/uzleti-liga-redesign/aws/lambdas/readme.MD",
-		"/C/Source/uzleti-liga-redesign/package.json",
-		"/C/Source/uzleti-liga-redesign/aws/lambdas/readEventPage/node_modules/jquery/package.json",
-		"/C/Source/uzleti-liga-redesign/app/js/components/header.jsx",
-		"/C/Source/uzleti-liga-redesign/app/js/reducers/app-data.js",
-		"/C/Source/uzleti-liga-redesign/app/js/transformers/matches.js",
-		"/C/Source/uzleti-liga-redesign/aws/apiGateway-js-sdk/README.md",
-		"/C/Source/uzleti-liga-redesign/app/js/main/components/header.test.js",
-		"/C/Source/uzleti-liga-redesign/app/js/main/components/header.jsx",
-		"/C/Source/uzleti-liga-redesign/app/js/main/components/sidebar.test.js",
-		"/C/Source/uzleti-liga-redesign/app/js/main/transformers/matches.js",
-		"/C/Source/uzleti-liga-redesign/app/js/main/components/matches/match-stats.jsx",
-		"/C/Source/uzleti-liga-redesign/app/js/injected-script.js",
-		"/C/Source/uzleti-liga-redesign/app/sass/main/components/_matches.scss",
-		"/C/Source/uzleti-liga-redesign/app/sass/main/_common.scss",
-		"/C/Source/uzleti-liga-redesign/app/js/main/components/matches/index.jsx",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/package.json",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/aws/lambdas/readEventPage/index.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/docs/data-model.json",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/app/js/actions/app-data.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/aws/lambdas/readme.md",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/aws/lambdas/getEventData/index.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/node_modules/aws-api-gateway-client/apigClient.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/node_modules/aws-api-gateway-client/lib/apiGatewayCore/apiGatewayClient.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/gulpfile.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/app/js/main-app.jsx",
+		"/C/Users/Attila/Code/aws-sdk-js/clients/apigateway.js",
+		"/C/Users/Attila/Code/aws-sdk-js/lib/services/apigateway.js",
+		"/C/Users/Attila/Code/aws-sdk-js/apis/apigateway-2015-07-09.paginators.json",
+		"/C/Users/Attila/Code/aws-sdk-js/apis/apigateway-2015-07-09.normal.json",
+		"/C/Users/Attila/Desktop/aws-sdk-2.7.18.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/aws/apiGateway-js-sdk/lib/url-template/url-template.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/aws/apiGateway-js-sdk/lib/axios/dist/axios.standalone.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/aws/apiGateway-js-sdk/lib/apiGatewayCore/apiGatewayClient.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/aws/apiGateway-js-sdk/lib/apiGatewayCore/sigV4Client.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/aws/apiGateway-js-sdk/lib/apiGatewayCore/simpleHttpClient.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/aws/apiGateway-js-sdk/lib/apiGatewayCore/utils.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/aws/apiGateway-js-sdk/README.md",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/node_modules/redux/src/index.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/app/js/main/test-helper.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/server/event-collector.js",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/app/js/main/components/matches/index.jsx",
+		"/C/Users/Attila/Code/uzleti-liga-redesign/app/js/main/components/matches/match-stats-button.jsx",
 		"/C/Source/uzleti-liga-redesign/app/js/main/components/matches/match-scores.jsx",
-		"/C/Source/uzleti-liga-redesign/app/js/old-redesigner.js",
-		"/C/Source/uzleti-liga-redesign/app/js/main/actions/app-data.js",
-		"/C/Source/uzleti-liga-redesign/app/js/main/reducers/app-data.js",
-		"/C/Source/uzleti-liga-redesign/app/js/main/actions/matches.js",
-		"/C/Source/uzleti-liga-redesign/app/js/main/components/matches/match-stats-button.jsx",
-		"/C/Source/uzleti-liga-redesign/app/js/main/components/dates.jsx",
-		"/C/Source/uzleti-liga-redesign/app/js/main/actions/match-stats.js",
-		"/C/Source/uzleti-liga-redesign/app/js/main/reducers/matches.js",
-		"/C/Source/uzleti-liga-redesign/app/js/main/reducers/index.js",
+		"/C/Source/uzleti-liga-redesign/app/sass/main/components/_matches.scss",
 		"/C/Source/uzleti-liga-redesign/app/sass/_variables.scss",
+		"/C/Source/uzleti-liga-redesign/app/js/main/components/dates.jsx",
+		"/C/Source/uzleti-liga-redesign/business-league.sublime-project",
+		"/C/Source/uzleti-liga-redesign/gulpfile.js",
 		"/C/Source/uzleti-liga-redesign/app/index.html",
 		"/C/Source/uzleti-liga-redesign/server/event-collector.js",
 		"/C/Source/uzleti-liga-redesign/.gitignore",
@@ -797,6 +783,7 @@
 		"/C/Source/uzleti-liga-redesign/app/sass/_fonts.scss",
 		"/C/Source/uzleti-liga-redesign/app/sass/_colors.scss",
 		"/C/Source/uzleti-liga-redesign/app/sass/business-league.scss",
+		"/C/Source/uzleti-liga-redesign/package.json",
 		"/C/Source/uzleti-liga-redesign/index.js",
 		"/C/Source/hotel-pwa/resources/documentation/import-localhost-cert-for-windows.md",
 		"/C/Source/uzleti-liga-redesign/sass/business-league.scss",
@@ -807,7 +794,6 @@
 		"/C/Source/uzleti-liga-redesign/sass/main/components/header.scss",
 		"/C/Source/uzleti-liga-redesign/manifest.json",
 		"/C/Source/uzleti-liga-redesign/js/main/main-app.jsx",
-		"/C/Users/Attila/Code/uzleti-liga-redesign/gulpfile.js",
 		"/C/Users/Attila/Code/uzleti-liga-redesign/js/main/components/business-league.js",
 		"/C/Users/Attila/Code/uzleti-liga-redesign/js/matches.js",
 		"/C/Users/Attila/Code/uzleti-liga-redesign/js/storage-handler.js",
@@ -875,7 +861,11 @@
 		"/C/Users/Attila/Code/chealt/code/client/components/rigth-icon-menu.jsx",
 		"/C/Users/Attila/Code/chealt/code/client/components/invite-friend.jsx",
 		"/C/Users/Attila/Code/chealt/code/client/components/activity-list.jsx",
-		"/C/Users/Attila/Code/chealt/code/client/components/comments-list.jsx"
+		"/C/Users/Attila/Code/chealt/code/client/components/comments-list.jsx",
+		"/C/Users/Attila/Code/chealt/code/client/components/guests.jsx",
+		"/C/Users/Attila/Code/chealt/code/client/components/event.jsx",
+		"/C/Users/Attila/Code/chealt/code/client/components/home.jsx",
+		"/C/Users/Attila/Code/chealt/code/client/components/profile.jsx"
 	],
 	"find":
 	{
@@ -886,7 +876,6 @@
 		"height": 96.0,
 		"where_history":
 		[
-			"<project>,*.*",
 			"<project>,*.scss",
 			"<project>,*.*",
 			"<project>,*.jsx",
@@ -918,20 +907,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-			"appData",
-			"data",
-			"mapMatchesToDates",
-			"<td>{player.stats.",
-			"quarter-score",
-			"getPlayerStats",
-			"playerStats",
-			"match-s",
-			".table",
-			"${",
-			"\"",
-			"class=",
-			"match-stats-container",
-			"renderIndividualStats",
+			"var",
+			"build:vendor",
 			"scores-contain",
 			"#{$root}/",
 			"var",
@@ -1045,7 +1022,19 @@
 			"}",
 			"\"",
 			"flaticon",
-			"}"
+			"}",
+			"flaticon",
+			"Flaticon",
+			"\"",
+			"rowing",
+			"H",
+			"B",
+			"activities",
+			"Events",
+			"}",
+			" ,",
+			"  ,",
+			"   ,"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1124,40 +1113,32 @@
 		"selected_items":
 		[
 			[
-				"dates",
-				"app\\js\\components\\dates.jsx"
-			],
-			[
-				"appda",
-				"app\\js\\reducers\\app-data.js"
-			],
-			[
-				"heade",
-				"app\\js\\components\\header.jsx"
-			],
-			[
-				"majs",
-				"app\\js\\transformers\\matches.js"
-			],
-			[
-				"da",
+				"mod",
 				"docs\\data-model.json"
 			],
 			[
-				"a",
+				"appda",
 				"app\\js\\actions\\app-data.js"
 			],
 			[
-				"mascs",
-				"app\\sass\\main\\components\\_matches.scss"
+				"mainapp",
+				"app\\js\\main-app.jsx"
 			],
 			[
-				"oldrede",
-				"app\\js\\old-redesigner.js"
+				"pjson",
+				"package.json"
 			],
 			[
-				"matscs",
-				"app\\sass\\main\\components\\_matches.scss"
+				"awsread",
+				"aws\\apiGateway-js-sdk\\README.md"
+			],
+			[
+				"teshelp",
+				"app\\js\\main\\test-helper.js"
+			],
+			[
+				"server",
+				"server\\event-collector.js"
 			],
 			[
 				"gitig",
@@ -1424,6 +1405,10 @@
 				"client\\components\\drawer.jsx"
 			],
 			[
+				"heade",
+				"client\\components\\layout\\header.jsx"
+			],
+			[
 				"profile",
 				"client\\components\\profile.jsx"
 			],
@@ -1634,6 +1619,10 @@
 			[
 				"eventscs",
 				"client\\styles\\events.scss"
+			],
+			[
+				"layo",
+				"client\\components\\layout\\layout.jsx"
 			]
 		],
 		"width": 0.0
