@@ -1,0 +1,15 @@
+{
+  "name": "get-match-details",
+  "version": "1.0.0",
+  "description": "Get the details of a given match",
+  "main": "index.js",
+  "dependencies": {
+    "cheerio": "^0.22.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
