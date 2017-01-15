@@ -32,15 +32,6 @@ const addQueryParams = (queryParams, requestOptions) => {
     return requestOptions;
 };
 
-const getRound = (element) => {
-    switch(element.find('td').eq(1).text()) {
-        case 'FOTABLA':
-            return 'season';
-        case 'OSZTALYOZO':
-            return 'preliminary';
-    }
-};
-
 const getStats = (matchChronology, homeTeam, awayTeam) => {
     const homeTeamTables = $(matchChronology).find('td:nth-child(3) table:not(:contains("hibapont"))');
     const homeTeamFouls = $(matchChronology).find('table:contains("hibapont")').eq(0);
@@ -152,31 +143,24 @@ const getPlayers = (homeTeam, awayTeam) => {
 };
 
 const parseMatchPage = (html, matchId, eventId, matchDetailsLink) => {
+    const getRound = (roundName) => {
+        switch (roundName) {
+            case 'FOTABLA':
+                return 'season';
+            case 'OSZTALYOZO':
+                return 'preliminary';
+        }
+    };
+
     $ = cheerio.load(html);
 
-    const matchChronology = $('.match_details_table').filter((index, element) => {
-        return $(element).find('h6').text() === 'Meccs kronológia';
-    });
-
-    const matchTable = $('.match_details_table').filter((index, element) => {
-        return $(element).find('h6').text() === 'Meccslap';
-    });
-
-    const date = matchTable.find('tr').filter(function () {
-        return $(this).find('td').eq(0).text() === 'Dátum';
-    }).find('td').eq(1).text().split(' ').join(':');
-
-    const location = matchTable.find('tr').filter(function () {
-        return $(this).find('td').eq(0).text() === 'Helyszín';
-    }).find('td').eq(1).text();
-
-    const round = getRound(matchTable.find('tr').filter(function () {
-        return $(this).find('td').eq(0).text() === 'Szakasz';
-    }));
-
-    const group = matchTable.find('tr').filter(function () {
-        return $(this).find('td').eq(0).text() === 'Csoport';
-    }).find('td').eq(1).text().split('-')[0];
+    const $matchChronology = $('.match_details_table:contains("Meccs kronológia")');
+    const $matchTable = $('.match_details_table:contains("Meccslap")');
+    
+    const date = $matchTable.find('tr:contains("Dátum") td:nth-child(2)').text();
+    const location = $matchTable.find('tr:contains("Helyszín") td:nth-child(2)').text();
+    const group = $matchTable.find('tr:contains("Csoport") td:nth-child(2)').text().split('-')[0];
+    const round = getRound($matchTable.find('tr:contains("Szakasz") td:nth-child(2)').text());
 
     let homeTeam = {
         id: '',
@@ -190,7 +174,7 @@ const parseMatchPage = (html, matchId, eventId, matchDetailsLink) => {
 
     getPlayers(homeTeam, awayTeam);
 
-    getStats(matchChronology, homeTeam, awayTeam);
+    getStats($matchChronology, homeTeam, awayTeam);
 
     return {
         homeTeam,
