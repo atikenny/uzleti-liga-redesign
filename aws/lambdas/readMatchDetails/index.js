@@ -32,25 +32,27 @@ const addQueryParams = (queryParams, requestOptions) => {
     return requestOptions;
 };
 
-function getRound(element) {
+const getRound = (element) => {
     switch(element.find('td').eq(1).text()) {
         case 'FOTABLA':
             return 'season';
         case 'OSZTALYOZO':
             return 'preliminary';
     }
-}
+};
 
-function getStats(matchChronology, homeTeam, awayTeam) {
-    const homeTeamTables = $(matchChronology).find('table').filter((index, element) => index % 2 === 0 && index !== 8);
-    const homeTeamFouls = $(matchChronology).find('table').eq(8);
-    const awayTeamTables = $(matchChronology).find('table').filter((index, element) => index % 2 === 1 && index !== 9);
-    const awayTeamFouls = $(matchChronology).find('table').eq(9);
+const getStats = (matchChronology, homeTeam, awayTeam) => {
+    const homeTeamTables = $(matchChronology).find('td:nth-child(3) table:not(:contains("hibapont"))');
+    const homeTeamFouls = $(matchChronology).find('table:contains("hibapont")').eq(0);
+    const awayTeamTables = $(matchChronology).find('td:nth-child(4) table:not(:contains("hibapont"))');
+    const awayTeamFouls = $(matchChronology).find('table:contains("hibapont")').eq(1);
 
     $(homeTeamTables).each(function (index) {
         $(this).find('tr').each(function () {
             const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
-            homeTeam.players.find(player => player.id === playerId).stats.periods.push({
+            const player = homeTeam.players.find(player => player.id === playerId);
+            
+            player.stats.periods.push({
                 scores: getScores(this)
             });
         });
@@ -92,23 +94,26 @@ function getStats(matchChronology, homeTeam, awayTeam) {
         
         player.stats.fouls = fouls;
     });
-}
+};
 
-function getScores(element) {
+const getScores = (element) => {
     return $(element)
-            .find('td')
-            .last()
-            .text()
-            .trim()
-            .split(',')
-            .map(Number);
-}
+        .find('td')
+        .last()
+        .text()
+        .trim()
+        .split(',')
+        .map(Number);
+};
 
-function getPlayers(homeTeam, awayTeam) {
+const getPlayers = (homeTeam, awayTeam) => {
     const matchPage = $('.match_details_table').eq(0).find('tr')
         .filter(function () {
             return $(this).find('a').length > 0;
         }).next();
+
+    const getTeamId = (element) => getQueryParams(element)[0].split('=')[1];
+    const getName = (element) => element.text().split('(')[0].trim();
 
     homeTeam.id = getTeamId(matchPage.prev().find('a').eq(0));
     awayTeam.id = getTeamId(matchPage.prev().find('a').eq(1));
@@ -144,15 +149,7 @@ function getPlayers(homeTeam, awayTeam) {
 
         playerRow = playerRow.next();
     }
-
-    function getTeamId(element) {
-        return getQueryParams(element)[0].split('=')[1];
-    }
-
-    function getName(element) {
-        return element.text().split('(')[0].trim();
-    }
-}
+};
 
 const parseMatchPage = (html, matchId, eventId, matchDetailsLink) => {
     $ = cheerio.load(html);
@@ -207,7 +204,7 @@ const parseMatchPage = (html, matchId, eventId, matchDetailsLink) => {
         round,
         matchDetailsLink
     };
-}
+};
 
 exports.handler = (event, context, callback) => {
     const eventId = event.eventId;
