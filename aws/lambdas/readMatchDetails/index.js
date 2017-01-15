@@ -98,48 +98,43 @@ const getScores = (element) => {
 };
 
 const getPlayers = (homeTeam, awayTeam) => {
-    const matchPage = $('.match_details_table').eq(0).find('tr')
-        .filter(function () {
-            return $(this).find('a').length > 0;
-        }).next();
-
     const getTeamId = (element) => getQueryParams(element)[0].split('=')[1];
     const getName = (element) => element.text().split('(')[0].trim();
 
-    homeTeam.id = getTeamId(matchPage.prev().find('a').eq(0));
-    awayTeam.id = getTeamId(matchPage.prev().find('a').eq(1));
+    const matchPageRows = $('.match_details_table').eq(0).find('tr:has(a)');
 
-    let playerRow = matchPage.eq(0);
+    matchPageRows.each((index, element) => {
+        if (index === 0) {
+            homeTeam.id = getTeamId($(element).find('a').eq(0));
+            awayTeam.id = getTeamId($(element).find('a').eq(1));
+        } else {
+            const homePlayerCell = $(element).find('td:nth-child(1):has(a:not(:empty))');
 
-    while (playerRow.length > 0) {
-        const homePlayerCell = playerRow.find('td').eq(0);
+            if (homePlayerCell.length) {
+                homeTeam.players.push({
+                    name: getName(homePlayerCell.find('a')),
+                    id: getQueryParams(homePlayerCell.find('a'))[0].split('=')[1],
+                    stats: {
+                        fouls: 0,
+                        periods: []
+                    }
+                });
+            }
+            
+            const awayPlayerCell = $(element).find('td:nth-child(2):has(a:not(:empty))');
 
-        if (homePlayerCell.find('a').text() !== '') {
-            homeTeam.players.push({
-                name: getName(homePlayerCell.find('a')),
-                id: getQueryParams(homePlayerCell.find('a'))[0].split('=')[1],
-                stats: {
-                    fouls: 0,
-                    periods: []
-                }
-            });
+            if (awayPlayerCell.length) {
+                awayTeam.players.push({
+                    name: getName(awayPlayerCell.find('a')),
+                    id: getQueryParams(awayPlayerCell.find('a'))[0].split('=')[1],
+                    stats: {
+                        fouls: 0,
+                        periods: []
+                    }
+                });
+            }
         }
-        
-        const awayPlayerCell = playerRow.find('td').eq(1);
-
-        if (awayPlayerCell.find('a').text() !== '') {
-            awayTeam.players.push({
-                name: getName(awayPlayerCell.find('a')),
-                id: getQueryParams(awayPlayerCell.find('a'))[0].split('=')[1],
-                stats: {
-                    fouls: 0,
-                    periods: []
-                }
-            });
-        }
-
-        playerRow = playerRow.next();
-    }
+    });
 };
 
 const parseMatchPage = (html, matchId, eventId, matchDetailsLink) => {
