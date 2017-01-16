@@ -32,25 +32,18 @@ const addQueryParams = (queryParams, requestOptions) => {
     return requestOptions;
 };
 
-function getRound(element) {
-    switch(element.find('td').eq(1).text()) {
-        case 'FOTABLA':
-            return 'season';
-        case 'OSZTALYOZO':
-            return 'preliminary';
-    }
-}
-
-function getStats(matchChronology, homeTeam, awayTeam) {
-    const homeTeamTables = $(matchChronology).find('table').filter((index, element) => index % 2 === 0 && index !== 8);
-    const homeTeamFouls = $(matchChronology).find('table').eq(8);
-    const awayTeamTables = $(matchChronology).find('table').filter((index, element) => index % 2 === 1 && index !== 9);
-    const awayTeamFouls = $(matchChronology).find('table').eq(9);
+const getStats = (matchChronology, homeTeam, awayTeam) => {
+    const homeTeamTables = $(matchChronology).find('td:nth-child(3) table:not(:contains("hibapont"))');
+    const homeTeamFouls = $(matchChronology).find('table:contains("hibapont")').eq(0);
+    const awayTeamTables = $(matchChronology).find('td:nth-child(4) table:not(:contains("hibapont"))');
+    const awayTeamFouls = $(matchChronology).find('table:contains("hibapont")').eq(1);
 
     $(homeTeamTables).each(function (index) {
         $(this).find('tr').each(function () {
             const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
-            homeTeam.players.find(player => player.id === playerId).stats.periods.push({
+            const player = homeTeam.players.find(player => player.id === playerId);
+            
+            player.stats.periods.push({
                 scores: getScores(this)
             });
         });
@@ -92,94 +85,77 @@ function getStats(matchChronology, homeTeam, awayTeam) {
         
         player.stats.fouls = fouls;
     });
-}
+};
 
-function getScores(element) {
+const getScores = (element) => {
     return $(element)
-            .find('td')
-            .last()
-            .text()
-            .trim()
-            .split(',')
-            .map(Number);
-}
+        .find('td')
+        .last()
+        .text()
+        .trim()
+        .split(',')
+        .map(Number);
+};
 
-function getPlayers(homeTeam, awayTeam) {
-    const matchPage = $('.match_details_table').eq(0).find('tr')
-        .filter(function () {
-            return $(this).find('a').length > 0;
-        }).next();
+const getPlayers = (homeTeam, awayTeam) => {
+    const getTeamId = (element) => getQueryParams(element)[0].split('=')[1];
+    const getName = (element) => element.text().split('(')[0].trim();
 
-    homeTeam.id = getTeamId(matchPage.prev().find('a').eq(0));
-    awayTeam.id = getTeamId(matchPage.prev().find('a').eq(1));
+    const matchPageRows = $('.match_details_table').eq(0).find('tr:has(a)');
 
-    let playerRow = matchPage.eq(0);
+    matchPageRows.each((index, element) => {
+        if (index === 0) {
+            homeTeam.id = getTeamId($(element).find('a').eq(0));
+            awayTeam.id = getTeamId($(element).find('a').eq(1));
+        } else {
+            const homePlayerCell = $(element).find('td:nth-child(1):has(a:not(:empty))');
 
-    while (playerRow.length > 0) {
-        const homePlayerCell = playerRow.find('td').eq(0);
+            if (homePlayerCell.length) {
+                homeTeam.players.push({
+                    name: getName(homePlayerCell.find('a')),
+                    id: getQueryParams(homePlayerCell.find('a'))[0].split('=')[1],
+                    stats: {
+                        fouls: 0,
+                        periods: []
+                    }
+                });
+            }
+            
+            const awayPlayerCell = $(element).find('td:nth-child(2):has(a:not(:empty))');
 
-        if (homePlayerCell.find('a').text() !== '') {
-            homeTeam.players.push({
-                name: getName(homePlayerCell.find('a')),
-                id: getQueryParams(homePlayerCell.find('a'))[0].split('=')[1],
-                stats: {
-                    fouls: 0,
-                    periods: []
-                }
-            });
+            if (awayPlayerCell.length) {
+                awayTeam.players.push({
+                    name: getName(awayPlayerCell.find('a')),
+                    id: getQueryParams(awayPlayerCell.find('a'))[0].split('=')[1],
+                    stats: {
+                        fouls: 0,
+                        periods: []
+                    }
+                });
+            }
         }
-        
-        const awayPlayerCell = playerRow.find('td').eq(1);
-
-        if (awayPlayerCell.find('a').text() !== '') {
-            awayTeam.players.push({
-                name: getName(awayPlayerCell.find('a')),
-                id: getQueryParams(awayPlayerCell.find('a'))[0].split('=')[1],
-                stats: {
-                    fouls: 0,
-                    periods: []
-                }
-            });
-        }
-
-        playerRow = playerRow.next();
-    }
-
-    function getTeamId(element) {
-        return getQueryParams(element)[0].split('=')[1];
-    }
-
-    function getName(element) {
-        return element.text().split('(')[0].trim();
-    }
-}
+    });
+};
 
 const parseMatchPage = (html, matchId, eventId, matchDetailsLink) => {
+    const getRound = (roundName) => {
+        switch (roundName) {
+            case 'FOTABLA':
+                return 'season';
+            case 'OSZTALYOZO':
+                return 'preliminary';
+        }
+    };
+
     $ = cheerio.load(html);
 
-    const matchChronology = $('.match_details_table').filter((index, element) => {
-        return $(element).find('h6').text() === 'Meccs kronológia';
-    });
-
-    const matchTable = $('.match_details_table').filter((index, element) => {
-        return $(element).find('h6').text() === 'Meccslap';
-    });
-
-    const date = matchTable.find('tr').filter(function () {
-        return $(this).find('td').eq(0).text() === 'Dátum';
-    }).find('td').eq(1).text().split(' ').join(':');
-
-    const location = matchTable.find('tr').filter(function () {
-        return $(this).find('td').eq(0).text() === 'Helyszín';
-    }).find('td').eq(1).text();
-
-    const round = getRound(matchTable.find('tr').filter(function () {
-        return $(this).find('td').eq(0).text() === 'Szakasz';
-    }));
-
-    const group = matchTable.find('tr').filter(function () {
-        return $(this).find('td').eq(0).text() === 'Csoport';
-    }).find('td').eq(1).text().split('-')[0];
+    const $matchChronology = $('.match_details_table:contains("Meccs kronológia")');
+    const $matchTable = $('.match_details_table:contains("Meccslap")');
+    
+    const date = $matchTable.find('tr:contains("Dátum") td:nth-child(2)').text();
+    const location = $matchTable.find('tr:contains("Helyszín") td:nth-child(2)').text();
+    const group = $matchTable.find('tr:contains("Csoport") td:nth-child(2)').text().split('-')[0];
+    const round = getRound($matchTable.find('tr:contains("Szakasz") td:nth-child(2)').text());
 
     let homeTeam = {
         id: '',
@@ -193,7 +169,7 @@ const parseMatchPage = (html, matchId, eventId, matchDetailsLink) => {
 
     getPlayers(homeTeam, awayTeam);
 
-    getStats(matchChronology, homeTeam, awayTeam);
+    getStats($matchChronology, homeTeam, awayTeam);
 
     return {
         homeTeam,
@@ -207,7 +183,7 @@ const parseMatchPage = (html, matchId, eventId, matchDetailsLink) => {
         round,
         matchDetailsLink
     };
-}
+};
 
 exports.handler = (event, context, callback) => {
     const eventId = event.eventId;
