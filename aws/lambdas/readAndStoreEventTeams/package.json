@@ -1,0 +1,13 @@
+{
+  "name": "read-and-store-event-teams",
+  "version": "1.0.0",
+  "description": "Read and store the teams of a specific event.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
