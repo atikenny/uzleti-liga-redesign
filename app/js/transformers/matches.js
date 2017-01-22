@@ -127,8 +127,8 @@ const toPeriodScores = (periodScores, player) => {
     return periodScores;
 };
 
-export const mapEventData = (eventData) => {
-    return Object.assign({}, eventData, {
-        dates: eventData.matches ? mapMatchesToDates(eventData) : []
+export const mapEventData = ({ data }) => {
+    return Object.assign({}, data, {
+        dates: data.matches ? mapMatchesToDates(data) : []
     });
 };
