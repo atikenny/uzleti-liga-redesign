@@ -32,6 +32,6 @@ export const fetchData = () => {
         return getEventData(275)
             .then(mapEventData)
             .then(response => addMatchesState(response, dispatch))
-            .then(response => dispatch(receivedData(response.data)));
+            .then(response => dispatch(receivedData(response)));
     };
 };

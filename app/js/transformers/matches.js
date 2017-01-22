@@ -1,5 +1,10 @@
 const mapMatchesToDates = ({ matches, teams }) => {
     return matches.reduce((dates, match) => {
+        // if the match only has an id we take the early exit
+        if (Object.keys(match).length === 1) {
+            return dates;
+        }
+
         const matchDay = getDayFromDate(match.date);
         const date = dates.find(date => date.day === matchDay);
         
