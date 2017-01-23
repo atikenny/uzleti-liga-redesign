@@ -33,9 +33,9 @@ const addQueryParams = (queryParams, requestOptions) => {
 };
 
 const getStats = (matchChronology, homeTeam, awayTeam) => {
-    const homeTeamTables = $(matchChronology).find('td:nth-child(3) table:not(:contains("hibapont"))');
+    const homeTeamTables = $(matchChronology).find('td:nth-child(3):not(:contains("hibapont"))');
     const homeTeamFouls = $(matchChronology).find('table:contains("hibapont")').eq(0);
-    const awayTeamTables = $(matchChronology).find('td:nth-child(4) table:not(:contains("hibapont"))');
+    const awayTeamTables = $(matchChronology).find('td:nth-child(4):not(:contains("hibapont"))');
     const awayTeamFouls = $(matchChronology).find('table:contains("hibapont")').eq(1);
 
     $(homeTeamTables).each(function (index) {
@@ -47,6 +47,7 @@ const getStats = (matchChronology, homeTeam, awayTeam) => {
                 scores: getScores(this)
             });
         });
+
         homeTeam.players.forEach(player => {
             if (player.stats.periods.length < index + 1) {
                 player.stats.periods.push({
@@ -69,6 +70,7 @@ const getStats = (matchChronology, homeTeam, awayTeam) => {
                 scores: getScores(this)
             });
         });
+
         awayTeam.players.forEach(player => {
             if (player.stats.periods.length < index + 1) {
                 player.stats.periods.push({
