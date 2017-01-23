@@ -38,7 +38,7 @@ const renderMatchDetails = (match) => {
 
 const renderMatch = (match) => (
     <li key={match.id} className='match card'>
-        <MatchStatsButton matchId={match.id} matchResults={match.results} />
+        <MatchStatsButton matchId={match.id} matchResults={match.results} showStats={match.showStats} />
         {renderMatchDetails(match)}
     </li>
 );
