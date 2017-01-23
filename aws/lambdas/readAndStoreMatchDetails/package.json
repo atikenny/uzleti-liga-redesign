@@ -1,0 +1,13 @@
+{
+  "name": "read-and-store-match-details",
+  "version": "1.0.0",
+  "description": "Read and store the details of a specific match.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

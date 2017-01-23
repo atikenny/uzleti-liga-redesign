@@ -4,13 +4,17 @@ import { connect }              from 'react-redux';
 import { toggleMatchStats }     from '../../actions/matches';
 
 // For testing purposes we are exporting the unwrapped component
-export const MatchStatsButton = ({ matchResults, toggleMatchStats }) => {
+export const MatchStatsButton = ({ matchResults, toggleMatchStats, showStats }) => {
     let statsButtonClassName = 'stats-toggler';
 
     if (matchResults) {
         statsButtonClassName += ' loaded';
     } else {
         statsButtonClassName += ' loading';
+    }
+
+    if (showStats) {
+        statsButtonClassName += ' active';
     }
 
     return (
@@ -32,6 +36,7 @@ export default connect(null, mapDispatch)(MatchStatsButton);
 
 MatchStatsButton.propTypes = {
     matchId: PropTypes.number.isRequired,
+    showStats: PropTypes.bool.isRequired,
     matchResults: PropTypes.object,
     toggleMatchStats: PropTypes.func
 };

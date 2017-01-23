@@ -1,5 +1,10 @@
 const mapMatchesToDates = ({ matches, teams }) => {
     return matches.reduce((dates, match) => {
+        // if the match only has an id we take the early exit
+        if (Object.keys(match).length === 1) {
+            return dates;
+        }
+
         const matchDay = getDayFromDate(match.date);
         const date = dates.find(date => date.day === matchDay);
         
@@ -114,11 +119,11 @@ const getPeriodScores = (match) => {
 
 const toPeriodScores = (periodScores, player) => {
     player.stats.periods.forEach((playerPeriodStat, index) => {
-        let periodScore = periodScores[index];
+        const periodScore = periodScores[index];
         const playerPeriodScore = playerPeriodStat.scores.reduce(toPlayerPeriodScoreSum, 0);
 
-        if (periodScore) {
-            periodScore += playerPeriodScore;
+        if (periodScore !== undefined) {
+            periodScores[index] += playerPeriodScore;
         } else {
             periodScores.push(playerPeriodScore);
         }
@@ -127,8 +132,8 @@ const toPeriodScores = (periodScores, player) => {
     return periodScores;
 };
 
-export const mapEventData = (eventData) => {
-    return Object.assign({}, eventData, {
-        dates: eventData.matches ? mapMatchesToDates(eventData) : []
+export const mapEventData = ({ data }) => {
+    return Object.assign({}, data, {
+        dates: data.matches ? mapMatchesToDates(data) : []
     });
 };

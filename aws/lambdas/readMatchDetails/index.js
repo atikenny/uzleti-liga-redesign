@@ -191,7 +191,7 @@ exports.handler = (event, context, callback) => {
     const eventId = event.eventId;
     const matchId = event.matchId;
     const matchDetailsRequest = addQueryParams({ eid: eventId, mid: matchId }, Object.assign({}, requestOptions));
-    const matchDetailsLink = matchDetailsRequest.host + matchDetailsRequest.path;
+    const matchDetailsLink = 'http://' + matchDetailsRequest.host + matchDetailsRequest.path;
 
     let body = '';
 

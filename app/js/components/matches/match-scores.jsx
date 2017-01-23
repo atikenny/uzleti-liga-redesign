@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const MatchScores = ({ match }) => (
     <div className='scores-container'>
-        <a className='scores' href={match.matchDetailsLink}>
+        <a className='scores' href={match.matchDetailsLink} target="_blank">
             <span className='home score'>{match.results.scores.home}</span>
             <span className='away score'>{match.results.scores.away}</span>
         </a>

@@ -1,0 +1,15 @@
+{
+  "name": "read-teams-page",
+  "version": "1.0.0",
+  "description": "Read the list of teams for a specific event.",
+  "main": "index.js",
+  "dependencies": {
+    "cheerio": "^0.22.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
