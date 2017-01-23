@@ -33,6 +33,7 @@
             .match-stats-container {
                 @extend %scroller;
                 min-height: 219px;
+                max-height: 231px;
                 flex: 1 0;
                 z-index: 500;
                 overflow-y: auto;
