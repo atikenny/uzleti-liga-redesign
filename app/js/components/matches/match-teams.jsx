@@ -15,10 +15,10 @@ export const MatchTeams = ({ match }) => {
     return (
         <div className='teams'>
             <div className={homeTeamClassName}>
-                <a href={match.homeTeam.link}>{match.homeTeam.name}</a>
+                <a href={match.homeTeam.link} target="_blank">{match.homeTeam.name}</a>
             </div>
             <div className={awayTeamClassName}>
-                <a href={match.awayTeam.link}>{match.awayTeam.name}</a>
+                <a href={match.awayTeam.link} target="_blank">{match.awayTeam.name}</a>
             </div>
         </div>
     );
