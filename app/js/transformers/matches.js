@@ -119,11 +119,11 @@ const getPeriodScores = (match) => {
 
 const toPeriodScores = (periodScores, player) => {
     player.stats.periods.forEach((playerPeriodStat, index) => {
-        let periodScore = periodScores[index];
+        const periodScore = periodScores[index];
         const playerPeriodScore = playerPeriodStat.scores.reduce(toPlayerPeriodScoreSum, 0);
 
-        if (periodScore) {
-            periodScore += playerPeriodScore;
+        if (periodScore !== undefined) {
+            periodScores[index] += playerPeriodScore;
         } else {
             periodScores.push(playerPeriodScore);
         }
