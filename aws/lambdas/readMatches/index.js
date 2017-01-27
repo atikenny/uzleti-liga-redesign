@@ -64,5 +64,3 @@ exports.handler = (event, context, callback) => {
     req.on('error', callback);
     req.end();
 };
-
-exports.handler({eventId: 275}, {}, () => {});
