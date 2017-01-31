@@ -1,6 +1,6 @@
 'use strict';
 
-const http      = require('http');
+const https     = require('https');
 const cheerio   = require('cheerio');
 
 let $;
@@ -33,6 +33,7 @@ const addQueryParams = (queryParams, requestOptions) => {
 };
 
 const getStats = (matchChronology, homeTeam, awayTeam) => {
+    const unknownPlayerId = '1';
     const homeTeamTables = $(matchChronology).find('td:nth-child(3):not(:contains("hibapont"))');
     const homeTeamFouls = $(matchChronology).find('table:contains("hibapont")').eq(0);
     const awayTeamTables = $(matchChronology).find('td:nth-child(4):not(:contains("hibapont"))');
@@ -41,11 +42,14 @@ const getStats = (matchChronology, homeTeam, awayTeam) => {
     $(homeTeamTables).each(function (index) {
         $(this).find('tr').each(function () {
             const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
-            const player = homeTeam.players.find(player => player.id === playerId);
             
-            player.stats.periods.push({
-                scores: getScores(this)
-            });
+            if (playerId !== unknownPlayerId) {
+                const player = homeTeam.players.find(player => player.id === playerId);
+
+                player.stats.periods.push({
+                    scores: getScores(this)
+                });
+            }
         });
 
         homeTeam.players.forEach(player => {
@@ -59,16 +63,25 @@ const getStats = (matchChronology, homeTeam, awayTeam) => {
 
     $(homeTeamFouls).find('tr').each(function () {
         const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
-        const fouls = Number($(this).find('td').last().text().split('hibapont')[0].trim());
-        homeTeam.players.find(player => player.id === playerId).stats.fouls = fouls;
+        
+        if (playerId !== unknownPlayerId) {
+            const fouls = Number($(this).find('td').last().text().split('hibapont')[0].trim());
+
+            homeTeam.players.find(player => player.id === playerId).stats.fouls = fouls;
+        }
     });
 
     $(awayTeamTables).each(function (index) {
         $(this).find('tr').each(function () {
             const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
-            awayTeam.players.find(player => player.id === playerId).stats.periods.push({
-                scores: getScores(this)
-            });
+            
+            if (playerId !== unknownPlayerId) {
+                const player = awayTeam.players.find(player => player.id === playerId);
+                
+                player.stats.periods.push({
+                    scores: getScores(this)
+                });
+            }
         });
 
         awayTeam.players.forEach(player => {
@@ -82,10 +95,13 @@ const getStats = (matchChronology, homeTeam, awayTeam) => {
 
     $(awayTeamFouls).find('tr').each(function () {
         const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
-        const fouls = Number($(this).find('td').last().text().split('hibapont')[0].trim());
-        const player = awayTeam.players.find(player => player.id === playerId);
         
-        player.stats.fouls = fouls;
+        if (playerId !== unknownPlayerId) {
+            const fouls = Number($(this).find('td').last().text().split('hibapont')[0].trim());
+            const player = awayTeam.players.find(player => player.id === playerId);
+        
+            player.stats.fouls = fouls;
+        }
     });
 };
 
@@ -191,11 +207,11 @@ exports.handler = (event, context, callback) => {
     const eventId = event.eventId;
     const matchId = event.matchId;
     const matchDetailsRequest = addQueryParams({ eid: eventId, mid: matchId }, Object.assign({}, requestOptions));
-    const matchDetailsLink = 'http://' + matchDetailsRequest.host + matchDetailsRequest.path;
+    const matchDetailsLink = 'https://' + matchDetailsRequest.host + matchDetailsRequest.path;
 
     let body = '';
 
-    const req = http.get(matchDetailsRequest, (res) => {
+    const req = https.get(matchDetailsRequest, (res) => {
         res.setEncoding('utf8');
         res.on('data', (chunk) => body += chunk);
         res.on('end', () => {
