@@ -32,20 +32,48 @@ const addQueryParams = (queryParams, requestOptions) => {
     return requestOptions;
 };
 
+const getPlayerName = (element) => element.text().split('(')[0].trim();
+
+const convertPlayerLink = (playerLink) => {
+    return {
+        name: getPlayerName(playerLink),
+        id: getQueryParams(playerLink)[0].split('=')[1],
+        stats: {
+            fouls: 0,
+            periods: []
+        }
+    };
+};
+
+const fillPeriodStats = (periods, index) => {
+    while (periods.length < index) {
+        periods.push({ scores: [] });
+    }
+};
+
 const getStats = (matchChronology, homeTeam, awayTeam) => {
     const unknownPlayerId = '1';
     const homeTeamTables = $(matchChronology).find('td:nth-child(3):not(:contains("hibapont"))');
     const homeTeamFouls = $(matchChronology).find('table:contains("hibapont")').eq(0);
     const awayTeamTables = $(matchChronology).find('td:nth-child(4):not(:contains("hibapont"))');
     const awayTeamFouls = $(matchChronology).find('table:contains("hibapont")').eq(1);
+    const emptyStats = { stats: { periods: [] } };
 
     $(homeTeamTables).each(function (index) {
         $(this).find('tr').each(function () {
             const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
             
             if (playerId !== unknownPlayerId) {
-                const player = homeTeam.players.find(player => player.id === playerId);
+                let player = homeTeam.players.find(player => player.id === playerId);
+                
+                if (!player) {
+                    player = Object.assign({}, convertPlayerLink($(this).find('a')), emptyStats);
 
+                    fillPeriodStats(player.stats.periods, index);
+
+                    homeTeam.players.push(player);
+                }
+                
                 player.stats.periods.push({
                     scores: getScores(this)
                 });
@@ -76,7 +104,15 @@ const getStats = (matchChronology, homeTeam, awayTeam) => {
             const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
             
             if (playerId !== unknownPlayerId) {
-                const player = awayTeam.players.find(player => player.id === playerId);
+                let player = awayTeam.players.find(player => player.id === playerId);
+                
+                if (!player) {
+                    player = Object.assign({}, convertPlayerLink($(this).find('a')), emptyStats);
+
+                    fillPeriodStats(player.stats.periods, index);
+
+                    awayTeam.players.push(player);
+                }
                 
                 player.stats.periods.push({
                     scores: getScores(this)
@@ -117,8 +153,6 @@ const getScores = (element) => {
 
 const getPlayers = (homeTeam, awayTeam) => {
     const getTeamId = (element) => getQueryParams(element)[0].split('=')[1];
-    const getName = (element) => element.text().split('(')[0].trim();
-
     const matchPageRows = $('.match_details_table').eq(0).find('tr:has(a)');
 
     matchPageRows.each((index, element) => {
@@ -129,27 +163,13 @@ const getPlayers = (homeTeam, awayTeam) => {
             const homePlayerCell = $(element).find('td:nth-child(1):has(a:not(:empty))');
 
             if (homePlayerCell.length) {
-                homeTeam.players.push({
-                    name: getName(homePlayerCell.find('a')),
-                    id: getQueryParams(homePlayerCell.find('a'))[0].split('=')[1],
-                    stats: {
-                        fouls: 0,
-                        periods: []
-                    }
-                });
+                homeTeam.players.push(convertPlayerLink(homePlayerCell.find('a')));
             }
             
             const awayPlayerCell = $(element).find('td:nth-child(2):has(a:not(:empty))');
 
             if (awayPlayerCell.length) {
-                awayTeam.players.push({
-                    name: getName(awayPlayerCell.find('a')),
-                    id: getQueryParams(awayPlayerCell.find('a'))[0].split('=')[1],
-                    stats: {
-                        fouls: 0,
-                        periods: []
-                    }
-                });
+                awayTeam.players.push(convertPlayerLink(awayPlayerCell.find('a')));
             }
         }
     });
