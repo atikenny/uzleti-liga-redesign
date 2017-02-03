@@ -1,19 +1,11 @@
 import React, { PropTypes } from 'react';
 
 const getPeriodsCount = (teams) => {
-    let periodsCount = 0;
+    const periods = teams.map(team => 
+        team.players.map(player => player.stats.periods.length)
+    ).reduce((_periods, teamPeriods) => _periods.concat(teamPeriods), []);
 
-    teams.forEach(team => {
-        team.players.forEach(player => {
-            const playerPeriodsCount = player.stats.periods.length;
-
-            if (playerPeriodsCount > periodsCount) {
-                periodsCount = playerPeriodsCount;
-            }
-        });
-    });
-
-    return (new Array(periodsCount)).fill(1); // create a periods count long array for easier iteration
+    return (new Array(Math.max(...periods))).fill(1); // create a periods count long array for easier iteration
 };
 
 const renderTeamStats = (teamStats, periods) => (
