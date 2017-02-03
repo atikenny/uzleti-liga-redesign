@@ -1,14 +1,29 @@
 import React, { PropTypes } from 'react';
 
-const renderTeamStats = (teamStats) => (
+const getPeriodsCount = (teams) => {
+    let periodsCount = 0;
+
+    teams.forEach(team => {
+        team.players.forEach(player => {
+            const playerPeriodsCount = player.stats.periods.length;
+
+            if (playerPeriodsCount > periodsCount) {
+                periodsCount = playerPeriodsCount;
+            }
+        });
+    });
+
+    return (new Array(periodsCount)).fill(1); // create a periods count long array for easier iteration
+};
+
+const renderTeamStats = (teamStats, periods) => (
     <table className='table'>
         <thead>
             <tr>
                 <th>{teamStats.name}</th>
-                <th>Q1</th>
-                <th>Q2</th>
-                <th>Q3</th>
-                <th>Q4</th>
+                {periods.map((period, index) => (
+                <th key={index}>Q{index + 1}</th>
+                ))}
                 <th></th>
                 <th>1</th>
                 <th>2</th>
@@ -34,16 +49,20 @@ const renderTeamStats = (teamStats) => (
     </table>
 );
 
-const MatchStats = ({ match }) => (
-    <div className='match-stats-container'>
-        <div className='home-stats match-stats'>
-            {renderTeamStats(match.homeTeam)}
+const MatchStats = ({ match }) => {
+    const periods = getPeriodsCount([match.homeTeam, match.awayTeam]);
+
+    return (
+        <div className='match-stats-container'>
+            <div className='home-stats match-stats'>
+                {renderTeamStats(match.homeTeam, periods)}
+            </div>
+            <div className='away-stats match-stats'>
+                {renderTeamStats(match.awayTeam, periods)}
+            </div>
         </div>
-        <div className='away-stats match-stats'>
-            {renderTeamStats(match.awayTeam)}
-        </div>
-    </div>
-);
+    );
+};
 
 export default MatchStats;
 
