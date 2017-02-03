@@ -81,6 +81,9 @@
         position: relative;
         z-index: 500;
         background-color: #fff;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
     }
 
     .date-container {
