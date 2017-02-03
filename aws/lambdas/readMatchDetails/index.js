@@ -60,7 +60,7 @@ const getStats = (matchChronology, homeTeam, awayTeam) => {
     const emptyStats = { stats: { periods: [] } };
 
     $(homeTeamTables).each(function (index) {
-        $(this).find('tr').each(function () {
+        $(this).find('tr:not(:contains("Kipontozódott"))').each(function () {
             const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
             
             if (playerId !== unknownPlayerId) {
@@ -100,7 +100,7 @@ const getStats = (matchChronology, homeTeam, awayTeam) => {
     });
 
     $(awayTeamTables).each(function (index) {
-        $(this).find('tr').each(function () {
+        $(this).find('tr:not(:contains("Kipontozódott"))').each(function () {
             const playerId = getQueryParams($(this).find('a'))[0].split('=')[1];
             
             if (playerId !== unknownPlayerId) {
