@@ -1,0 +1,13 @@
+{
+  "name": "update-empty-matches",
+  "version": "1.0.0",
+  "description": "Read empty matches from the DB and update their details.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
