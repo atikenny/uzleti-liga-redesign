@@ -35,7 +35,7 @@ exports.handler = (event, context, callback) => {
 
     const processQueryResults = (error, results) => {
         if (error) {
-            callback(null, error);
+            callback(error);
         }
 
         const matches = (results.Items.length && results.Items[0].matches) || [];
@@ -52,7 +52,7 @@ exports.handler = (event, context, callback) => {
         if (matchIndex !== undefined) {
             dynamo.updateItem(getUpdateMatchParams(eventId, matchIndex, matchDetails), (error, result) => {
                 if (error) {
-                    callback(null, error);
+                    callback(error);
                 }
                 
                 callback(null, result);

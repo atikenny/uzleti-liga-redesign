@@ -12,9 +12,9 @@ const invokeReadMatchDetails = (eventId, matchId) => {
             })
         }, (err, result) => {
             if (err) {
-                reject(err);
+                reject('readMatchDetails error: ', err);
             }
-            
+
             resolve(JSON.parse(result.Payload));
         });
     });
@@ -30,10 +30,12 @@ const invokeStoreMatchDetails = (eventId, matchId, matchDetails) => {
                 matchDetails: matchDetails
             })
         }, (error, result) => {
-            if (error || result.FunctionError) {
-                reject(error || result.Payload);
+            const errorMessage = error || JSON.parse(result.Payload).errorMessage;
+
+            if (errorMessage) {
+                reject('storeMatchDetails error for eventId: ' + eventId + ', matchId: ' + matchId + ', error message: ' + errorMessage);
             }
-            
+
             resolve(result);
         });
     });
@@ -50,6 +52,6 @@ exports.handler = (event, context, callback) => {
             callback(null, result);
         })
         .catch((error) => {
-            callback(null, error);
+            callback(error);
         });
 };
