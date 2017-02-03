@@ -1,30 +1,27 @@
 const mapMatchesToDates = ({ matches, teams }) => {
-    return matches.reduce((dates, match) => {
-        // if the match only has an id we take the early exit
-        if (Object.keys(match).length === 1) {
+    return matches
+        .filter(match => Boolean(match.date))
+        .reduce((dates, match) => {
+            const matchDay = getDayFromDate(match.date);
+            const date = dates.find(date => date.day === matchDay);
+            
+            Object.assign(match.homeTeam, getTeamDetails(match.homeTeam.id, teams), getPlayersStats(match.homeTeam.players));
+            Object.assign(match.awayTeam, getTeamDetails(match.awayTeam.id, teams), getPlayersStats(match.awayTeam.players));
+
+            match.results = getMatchResults(match);
+            match.time = getTimeFromDate(match.date);
+
+            if (date) {
+                date.matches.push(match);
+            } else {
+                dates.push({
+                    day: matchDay,
+                    matches: [match]
+                });
+            }
+
             return dates;
-        }
-
-        const matchDay = getDayFromDate(match.date);
-        const date = dates.find(date => date.day === matchDay);
-        
-        Object.assign(match.homeTeam, getTeamDetails(match.homeTeam.id, teams), getPlayersStats(match.homeTeam.players));
-        Object.assign(match.awayTeam, getTeamDetails(match.awayTeam.id, teams), getPlayersStats(match.awayTeam.players));
-
-        match.results = getMatchResults(match);
-        match.time = getTimeFromDate(match.date);
-
-        if (date) {
-            date.matches.push(match);
-        } else {
-            dates.push({
-                day: matchDay,
-                matches: [match]
-            });
-        }
-
-        return dates;
-    }, []);
+        }, []);
 };
 
 const getDayFromDate = (date) => {
