@@ -69,15 +69,13 @@
         position: relative;
         z-index: 500;
         background-color: #fff;
-        height: 100%;
+        height: 283px;
         display: flex;
         flex-direction: column;
     }
 
     .match-stats-container {
         @extend %scroller;
-        min-height: 219px;
-        max-height: 283px;
         flex: 1 0;
         z-index: 500;
         overflow-y: auto;
