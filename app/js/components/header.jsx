@@ -1,7 +1,8 @@
 import React, { PropTypes }     from 'react';
 import { connect }              from 'react-redux';
 
-import { toggleSidebar }          from '../actions/sidebar';
+import { toggleSidebar }        from '../actions/sidebar';
+import { getPageName }          from '../selectors/page';
 
 // For testing purposes we also export the unwrapped component
 // Reference: http://redux.js.org/docs/recipes/WritingTests.html
@@ -27,11 +28,9 @@ export const Header = ({ toggleSidebar, pageName }) => (
     </header>
 );
 
-const mapState = ({ appData }) => {
-    const pageName = appData.data ? `${appData.data.league} ${appData.data.year} ${appData.data.season}` : '';
-
+const mapState = (state) => {
     return {
-        pageName
+        pageName: getPageName(state)
     };
 };
 
