@@ -1,89 +1,87 @@
+@import '../../variables';
+@import '../../breakpoints';
+
 .matches-container {
     .matches {
-        padding: 20px 0;
-        display: flex;
-        flex-wrap: wrap;
+        padding: ($gutter-size * 2) 0;
+        overflow: hidden;
+    }
 
-        .match {
-            @extend %clearfix;
-            position: relative;
-            margin-bottom: 32px;
-            min-width: 400px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            min-height: 100px;
-            
-            &.hidden {
+    .match {
+        @extend %clearfix;
+        position: relative;
+        margin-bottom: $gutter-size * 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 100px;
+        
+        &.hidden {
+            @extend %hidden;
+        }
+
+        &.show-stats {
+            > * {
                 @extend %hidden;
             }
 
-            &.show-stats {
-                > * {
-                    @extend %hidden;
-                }
-
-                .match-stats-container,
-                .stats-toggler {
-                    display: block;
-                }
-            }
-
-            .match-stats-container {
-                @extend %scroller;
-                min-height: 219px;
-                max-height: 231px;
-                flex: 1 0;
-                z-index: 500;
-                overflow-y: auto;
-                background-color: white;
-
-                .sum-score {
-                    font-weight: bold;
-                }
-            }
-
+            .match-stats-container,
             .stats-toggler {
-                position: absolute;
-                top: 0;
-                right: 0;
-                padding: 4px;
-                color: white;
-                z-index: 400;
-                transition: all .4s ease;
-                transform: translateY(-7px);
-                border-radius: 4px 4px 0 0;
+                display: block;
+            }
+        }
 
-                &.loading,
-                &.inactive {
-                    background-color: $greyColor;
-                    pointer-events: none;
-                }
+        .stats-toggler {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 4px;
+            color: white;
+            z-index: 400;
+            transition: all .4s ease;
+            transform: translateY(-7px);
+            border-radius: 4px 4px 0 0;
 
-                &.loaded {
-                    background-color: #3C92A6;
-                }
-
-                &.active {
-                    background-color: $mainColorLightest;
-                }
+            &.loading,
+            &.inactive {
+                background-color: $greyColor;
+                pointer-events: none;
             }
 
-            &:hover .stats-toggler {
-                transform: translateY(-32px);
+            &.loaded {
+                background-color: #3C92A6;
             }
+
+            &.active {
+                background-color: $mainColorLightest;
+            }
+        }
+
+        &:hover .stats-toggler {
+            transform: translateY(-32px);
         }
     }
 
     .match-details,
-    .match-stats {
+    .match-stats-container {
         position: relative;
         z-index: 500;
         background-color: #fff;
-        height: 100%;
+        height: 283px;
         display: flex;
         flex-direction: column;
+    }
+
+    .match-stats-container {
+        @extend %scroller;
+        flex: 1 0;
+        z-index: 500;
+        overflow-y: auto;
+        background-color: white;
+
+        .sum-score {
+            font-weight: bold;
+        }
     }
 
     .date-container {
@@ -112,7 +110,7 @@
     }
 
     .scores-container {
-        margin-top: $gutter-size;
+        margin-top: $gutter-size * 2;
     }
 
     .teams,
@@ -125,12 +123,12 @@
         box-sizing: border-box;
         width: 50%;
         float: left;
-        padding: 0 20px;
+        padding: 0 ($gutter-size * 2);
     }
 
     .teams {
         position: relative;
-        padding-top: 20px;
+        padding-top: $gutter-size * 2;
         display: flex;
         flex-grow: 1;
         align-items: center;
@@ -164,21 +162,20 @@
         background-color: #f7f7f7;
         border: 1px solid #ebebeb;
         border-width: 1px 0;
-        margin-top: 20px;
+        margin-top: $gutter-size * 2;
 
         .result {
             flex: 1;
-            margin: 0 12px;
             text-align: center;
             font-size: 16px;
-            padding: 12px;
+            padding: $gutter-size ($gutter-size * 2);
         }
     }
 
     .location-container {
         text-align: center;
         font-size: 14px;
-        margin: 20px 0;
+        margin: ($gutter-size * 2) 0;
 
         .material-icons {
             vertical-align: -0.15em;
@@ -186,8 +183,30 @@
     }
 
     .match-time-container {
-        padding: 12px;
+        padding: $gutter-size;
         font-size: 32px;
         text-align: center;
+    }
+}
+
+@media (min-width: $breakpoint-m) {
+    .match-container {
+        width: 50%;
+        float: left;
+        box-sizing: border-box;
+    }
+}
+
+@media (min-width: $breakpoint-l) {
+    .match-container {
+        width: 33.33%;
+        float: left;
+        box-sizing: border-box;
+    }
+}
+
+@media (min-width: $breakpoint-xl) {
+    .match-container {
+        width: 25%;
     }
 }

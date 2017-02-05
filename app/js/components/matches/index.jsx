@@ -37,9 +37,11 @@ const renderMatchDetails = (match) => {
 };
 
 const renderMatch = (match) => (
-    <li key={match.id} className='match card'>
-        <MatchStatsButton matchId={match.id} matchResults={match.results} showStats={match.showStats} />
-        {renderMatchDetails(match)}
+    <li key={match.id} className='match-container'>
+        <div className='match card'>
+            <MatchStatsButton matchId={match.id} matchResults={match.results} showStats={match.showStats} />
+            {renderMatchDetails(match)}
+        </div>
     </li>
 );
 
