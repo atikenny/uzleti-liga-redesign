@@ -2,6 +2,8 @@
 [![devDependency Status][david-dev-badge]][david-dev-badge-url]
 
 # uzleti-liga-redesign
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/atikenny/uzleti-liga-redesign.svg)](https://greenkeeper.io/)
 Redesign for Üzleti Liga pages as a new web page
 
 # Screenshots
